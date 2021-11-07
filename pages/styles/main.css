@@ -34,7 +34,6 @@ main a {
 }
 
 main a button {
-    text-transform: uppercase;
     color: #fff;
     background-color: #1d9ae4;
     font-family: Montserrat;
@@ -55,7 +54,6 @@ main a button {
 }
 
 main a .discord__button {
-    text-transform: uppercase;
     color: #fff;
     background-color: #5865F2;
     font-family: Montserrat;
