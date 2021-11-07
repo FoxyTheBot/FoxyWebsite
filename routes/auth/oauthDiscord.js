@@ -38,7 +38,7 @@ router.get('/login/callback', async (req, res) => {
 
             if (!userData) {
                 new user({
-                    _id: userID,
+                    _id: result.id,
                     userCreationTimestamp: Date.now(),
                     premium: false,
                     isBanned: false,

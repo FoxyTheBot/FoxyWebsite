@@ -70,15 +70,16 @@ router.get('/daily', (req, res) => {
 
             } else {
 
-                userData.coins += amount;
+                userData.balance += amount;
                 userData.lastDaily = Date.now();
                 userData.save().catch(err => console.log(err));
 
                 req.session.coins = amount;
-
+                req.session.dbCoins = userData.balance;
                 res.status(200).render("../pages/logged/daily.ejs", {
                     user: req.session.user_info,
                     coins: req.session.coins,
+                    dbCoins: req.session.dbCoins,
                 }
                 )
             }
