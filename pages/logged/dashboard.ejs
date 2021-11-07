@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="icon" href="../assets/images/foxycake.png">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <a class="logo" href="/"><img src="../assets/images/Foxy.png" alt="logo"></a>
+        <nav>
+            <ul class="nav__links">
+                <li> <a href="/github">GitHub</a></li>
+                <li><a href="/privacy">Termos</a></li>
+                <li><a href="/discord">Suporte</a></li>
+                <li><a href="/team">Equipe</a></li>
+                <li><a href="/commands">Comandos</a></li>
+                <li><a href="/logout">Sair</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="/">Home</a>
+        <p class="menu cta">Menu</p>
+    </header>
+    <main>
+        <img class="user__avatar"
+            src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png?size=1024">
+        <h1> Olá, <%= user.username%>#<%= user.discriminator %>
+        </h1>
+        <br>
+        <h3>Você possui <%= db.reps %> reps.</h3>
+        <h3>Você possui <%= db.coins %> FoxCoins.</h3>
+        <div class="action__buttons">
+            <a href="/backgrounds" id="default"><button class="default-button">Backgrounds</button></a>
+            <br>
+            <br>
+            <br>
+            <a href="/del" id="danger"><button class="danger-button" onclick="">Deletar conta</button></a>
+        </div>
+        <br>
+        <br>
+        <br>
+    </main>
+
+</body>
+
+</html>

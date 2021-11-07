@@ -1,0 +1,15 @@
+{
+    "port": "8081",
+    "url": "http://localhost:8081/",
+    "oauth": {
+        "clientId": "737044809650274325",
+        "callbackURL": "http://localhost:8081/login/callback",
+        "scopes": ["identify"]
+    },
+    "session": {
+        "secret": "oichip",
+        "cookie": {
+            "maxAge": 604800000
+        }
+    }
+}

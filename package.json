@@ -1,0 +1,35 @@
+{
+  "name": "foxy-website",
+  "version": "2.0.0",
+  "description": "Website da Foxy feito em JavaScript, express e ejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WinG4merBR/BotFoxy.github.io.git"
+  },
+  "keywords": [
+    "foxy",
+    "seu-servidor",
+    "discord-bot",
+    "discord.js",
+    "express",
+    "ejs",
+    "javascript"
+  ],
+  "author": "WinG4merBR",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/WinG4merBR/BotFoxy.github.io/issues"
+  },
+  "homepage": "https://github.com/WinG4merBR/BotFoxy.github.io#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.0.12",
+    "node-fetch": "^3.0.0"
+  }
+}

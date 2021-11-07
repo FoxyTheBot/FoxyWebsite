@@ -1,0 +1,72 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500&display=swap);
+.title-staffs {
+    text-align: center;
+    margin: 5%;
+    color: #fff;
+    font-family: Montserrat;
+}
+
+.title {
+    margin-top: 3%;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    color: #fff;
+}
+
+.developers {
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+}
+
+.cards-equipe {
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+    text-align: center;
+    background-image: url('../assets/images/DiscordHook.png');
+    background-size: 4cm;
+    max-width: 275px;
+    border-radius: 5px;
+}
+
+.cards-equipe .avatar {
+    margin: 10px;
+    width: 70%;
+    height: auto;
+    border-radius: 50%;
+    padding: 4px;
+    border: 5px solid #8d9fe1;
+    transition: border 0.5s;
+}
+
+.cards-equipe .content h3 {
+    color: #fff;
+    margin: 2%;
+    font-family: Montserrat, sans-serif;
+    font-size: 135%;
+}
+
+.cards-equipe .content p {
+    color: #fff;
+    margin: 2%;
+    font-family: Montserrat, sans-serif;
+    font-size: 80%;
+}
+
+.cards-equipe .content a i {
+    color: #fff;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 200%;
+}
+
+@media screen and (max-width: 770px) {
+    .cards-equipe {
+        padding-top: 1px;
+    }
+}
