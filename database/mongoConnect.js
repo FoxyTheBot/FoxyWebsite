@@ -2,17 +2,24 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 
+
 const userSchema = new mongoose.Schema({
     _id: String,
-    coins: Number,
-    lastDaily: String,
-    reps: Number,
-    lastRep: String,
-    backgrounds: Array,
-    background: String,
-    aboutme: String,
-    marry: String,
+    userCreation: Date,
     premium: Boolean,
-});
+    isBanned: Boolean,
+    banData: {
+        moderator: String,
+        reason: String
+    },
+    aboutme: String,
+    balance: Number,
+    lastDaily: Date,
+    marriedWith: String,
+    repCount: Number,
+    lastRep: Date,
+    background: String,
+    backgrounds: Array
+}, { versionKey: false, id: false });
 
 module.exports = mongoose.model('user', userSchema);
