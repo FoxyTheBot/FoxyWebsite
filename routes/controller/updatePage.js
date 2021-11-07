@@ -35,9 +35,13 @@ router.get("/dashboard", (req, res) => {
 
         async function getUserData() {
             const userData = await user.findOne({ _id: userId });
+            var aboutMe = await userData.aboutme;
+
+            if(!aboutMe) aboutMe = "Você não possui um sobre mim definido!";
             res.status(200).render("../pages/logged/dashboard.ejs", {
                 user: req.session.user_info,
                 db: userData,
+                aboutme: aboutMe
             });
         }
 
