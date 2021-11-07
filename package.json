@@ -11,13 +11,11 @@
     "url": "git+https://github.com/WinG4merBR/BotFoxy.github.io.git"
   },
   "keywords": [
-    "foxy",
-    "seu-servidor",
-    "discord-bot",
-    "discord.js",
     "express",
     "ejs",
-    "javascript"
+    "discord-authentication",
+    "foxy",
+    "seu-servidor"
   ],
   "author": "WinG4merBR",
   "license": "AGPL-3.0",
@@ -25,6 +23,7 @@
     "url": "https://github.com/WinG4merBR/BotFoxy.github.io/issues"
   },
   "homepage": "https://github.com/WinG4merBR/BotFoxy.github.io#readme",
+  
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
