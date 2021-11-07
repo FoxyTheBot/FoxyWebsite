@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const config = require('../../config.json');
+const user = require('../../database/mongoConnect');
+
 
 router.use(require("express-session")(config.session));
 
@@ -29,13 +31,62 @@ router.get("/dashboard", (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
-        res.status(200).render("../pages/logged/dashboard.ejs", {
-            user: req.session.user_info,
-            db: req.session.db_info,
-        });
+        const userId = req.session.user_info.id;
+
+        async function getUserData() {
+            const userData = await user.findOne({ _id: userId });
+            res.status(200).render("../pages/logged/dashboard.ejs", {
+                user: req.session.user_info,
+                db: userData,
+            });
+        }
+
+        getUserData();
     }
 });
 
+router.get('/daily', (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect('/login');
+    } else {
+        async function getDaily() {
+            const userId = req.session.user_info.id;
+            var userData = await user.findOne({ _id: userId });
+            const timeout = 43200000;
+
+            var amount = Math.floor(Math.random() * 3200);
+
+            if (userData.premium) {
+                amount = amount * 4200;
+            }
+
+            const daily = await userData.lastDaily;
+            if (daily !== null && timeout - (Date.now() - daily) > 0) {
+
+                return res.status(200).render("../pages/logged/dailyTime.ejs", {
+                    user: req.session.user_info,
+                    db: req.session.db_info,
+                });
+
+            } else {
+
+                userData.coins += amount;
+                userData.lastDaily = Date.now();
+                userData.save().catch(err => console.log(err));
+
+                req.session.coins = amount;
+
+                res.status(200).render("../pages/logged/daily.ejs", {
+                    user: req.session.user_info,
+                    coins: req.session.coins,
+                }
+                )
+            }
+        }
+
+        getDaily();
+    }
+});
 router.get('/team', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../pages/logged-off/team.ejs");
