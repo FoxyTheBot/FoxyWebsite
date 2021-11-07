@@ -67,6 +67,13 @@ main a button:hover {
     margin-top: 20px;
 }
 
+main h2 {
+    color: #fff;
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-top: 5px;
+}
+
 main .action__buttons #default .default-button {
     color: #fff;
     background-color: #047cd6;
