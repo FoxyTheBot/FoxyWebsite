@@ -27,69 +27,62 @@ router.get("/privacy", (req, res) => {
     }
 })
 
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
         const userId = req.session.user_info.id;
 
-        async function getUserData() {
-            const userData = await user.findOne({ _id: userId });
-            var aboutMe = await userData.aboutme;
+        const userData = await user.findOne({ _id: userId });
+        var aboutMe = await userData.aboutme;
 
-            if(!aboutMe) aboutMe = "Você não possui um sobre mim definido!";
-            res.status(200).render("../pages/logged/dashboard.ejs", {
-                user: req.session.user_info,
-                db: userData,
-                aboutme: aboutMe
-            });
-        }
+        if (!aboutMe) aboutMe = "Você não possui um sobre mim definido!";
+        res.status(200).render("../pages/logged/dashboard.ejs", {
+            user: req.session.user_info,
+            db: userData,
+            aboutme: aboutMe
+        });
 
-        getUserData();
+
     }
 });
 
-router.get('/daily', (req, res) => {
+router.get('/daily', async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
-        async function getDaily() {
-            const userId = req.session.user_info.id;
-            var userData = await user.findOne({ _id: userId });
-            const timeout = 43200000;
+        const userId = req.session.user_info.id;
+        var userData = await user.findOne({ _id: userId });
+        const timeout = 43200000;
 
-            var amount = Math.floor(Math.random() * 3200);
+        var amount = Math.floor(Math.random() * 3200);
 
-            if (userData.premium) {
-                amount = amount * 4200;
-            }
-
-            const daily = await userData.lastDaily;
-            if (daily !== null && timeout - (Date.now() - daily) > 0) {
-
-                return res.status(200).render("../pages/logged/dailyTime.ejs", {
-                    user: req.session.user_info,
-                    db: req.session.db_info,
-                });
-
-            } else {
-
-                userData.balance += amount;
-                userData.lastDaily = Date.now();
-                userData.save().catch(err => console.log(err));
-
-                req.session.coins = amount;
-                req.session.dbCoins = userData.balance;
-                res.status(200).render("../pages/logged/daily.ejs", {
-                    user: req.session.user_info,
-                    coins: req.session.coins,
-                    dbCoins: req.session.dbCoins,
-                }
-                )
-            }
+        if (userData.premium) {
+            amount = amount * 4200;
         }
 
-        getDaily();
+        const daily = await userData.lastDaily;
+        if (daily !== null && timeout - (Date.now() - daily) > 0) {
+
+            return res.status(200).render("../pages/logged/dailyTime.ejs", {
+                user: req.session.user_info,
+                db: req.session.db_info,
+            });
+
+        } else {
+
+            userData.balance += amount;
+            userData.lastDaily = Date.now();
+            userData.save().catch(err => console.log(err));
+
+            req.session.coins = amount;
+            req.session.dbCoins = userData.balance;
+            res.status(200).render("../pages/logged/daily.ejs", {
+                user: req.session.user_info,
+                coins: req.session.coins,
+                dbCoins: req.session.dbCoins,
+            });
+        }
     }
 });
 router.get('/team', (req, res) => {
