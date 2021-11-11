@@ -3,7 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/dailyPage.css">
     <link rel="stylesheet" href="../styles/footer.css">
     <link rel="icon" href="../assets/images/foxycake.png">
     <title>Foxy | Dashboard</title>
@@ -28,9 +28,12 @@
     <main>
         <img class="main__image" src="../assets/images/foxyoculos.png" alt="dashboard">
         <h1>Você coletou seu daily e ganhou:</h1>
-        <h2><%= coins %> FoxCoins</h2>
+        <h2>
+            <%= coins %> FoxCoins
+        </h2>
         <br>
-        <h3>Agora você possui <%= dbCoins %></h3>
+        <h3>Agora você possui <%= dbCoins %>
+        </h3>
         <br>
         <div class="action__buttons">
             <a href="/dashboard" id="default"><button class="default-button">Voltar</button></a>

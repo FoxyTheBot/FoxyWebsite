@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
             user: req.session.user_info,
         });
     }
-})
+});
 
 router.get("/privacy", (req, res) => {
     if (!req.session.bearer_token) {
@@ -25,7 +25,7 @@ router.get("/privacy", (req, res) => {
             db: req.session.db_info,
         });
     }
-})
+});
 
 router.get("/dashboard", async (req, res) => {
     if (!req.session.bearer_token) {

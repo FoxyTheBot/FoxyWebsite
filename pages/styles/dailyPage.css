@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("/assets/images/DiscordBackground.png");
+}
+
+main {
+    padding-left: 28%;
+    padding-right: 30%;
+    margin-top: 15%;
+    transition-duration: 0.5s;
+    text-align: center;
+}
+
+main .main__image {
+    margin-top: -15%;
+    margin-bottom: 5%;
+}
+
+main .user__avatar {
+    width: 45%;
+    height: 45%;
+    border-radius: 50%;
+    margin-top: -30%;
+    margin-bottom: 5%;
+}
+
+main h1 {
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-family: Montserrat;
+    animation-name: chipe;
+    animation-duration: 4s;
+}
+
+main h3 {
+    color: #fff;
+    font-size: 18px;
+    font-family: sans-serif;
+    margin-left: 5px;
+}
+
+main a {
+    list-style: none;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    background: rgb(56, 56, 56);
+    border-radius: 300px;
+    position: relative;
+    background-size: 100%;
+    left: 50%;
+}
+
+main a button:hover {
+    background-color: #047cd6;
+    transition-duration: 0.5s;
+}
+
+.action__buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+main h2 {
+    color: #fff;
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-top: 5px;
+}
+
+main .action__buttons #default .default-button {
+    color: #fff;
+    background-color: #047cd6;
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    animation: float 6s ease-in-out infinite;
+    transition-duration: 0.5s;
+}
+
+main .action__buttons #danger .danger-button {
+    color: #fff;
+    background-color: #ff0000;
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    animation: float 6s ease-in-out infinite;
+    transition-duration: 0.5s;
+}
+
+@keyframes chipe {
+    from {
+        color: rgb(255, 255, 255);
+    }
+    to {
+        color: rgb(0, 204, 255);
+    }
+}
