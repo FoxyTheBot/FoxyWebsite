@@ -20,10 +20,7 @@ router.get("/privacy", (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../pages/logged-off/privacy.ejs");
     } else {
-        res.status(200).render("../pages/logged/privacy.ejs", {
-            user: req.session.user_info,
-            db: req.session.db_info,
-        });
+        res.status(200).render("../pages/logged/privacy.ejs");
     }
 });
 
@@ -85,59 +82,36 @@ router.get('/daily', async (req, res) => {
         }
     }
 });
+
 router.get('/team', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../pages/logged-off/team.ejs");
     } else {
-        res.status(200).render("../pages/logged/team.ejs", {
-            user: req.session.user_info,
-            db: req.session.db_info,
-        });
+        res.status(200).render("../pages/logged/team.ejs");
     }
-})
-
-router.get('/del', (req, res) => {
-    if (!req.session.bearer_token) {
-        res.redirect('/login');
-    } else {
-        res.status(200).render("../pages/logged/del.ejs", {
-            user: req.session.user_info,
-            db: req.session.db_info,
-        });
-    }
-})
+});
 
 router.get('/commands', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../pages/logged-off/commands.ejs");
     } else {
-        res.status(200).render("../pages/logged/commands.ejs", {
-            user: req.session.user_info,
-            db: req.session.db_info,
-        });
+        res.status(200).render("../pages/logged/commands.ejs");
     }
 });
 
 router.get('/error', (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../pages/logged-off/error.ejs", {
-            error: req.query.error,
-        });
+        res.status(200).render("../pages/logged-off/error.ejs");
     } else {
-        res.status(200).render("../pages/logged/error.ejs", {
-            user: req.session.user_info,
-            error: req.query.error,
-        });
+        res.status(200).render("../pages/logged/error.ejs");
     }
 });
 
 router.get('/404', (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../pages/logged-off/404.ejs")
+        res.status(200).render("../pages/logged-off/404.ejs");
     } else {
-        res.status(200).render("../pages/logged-on/404.ejs", {
-            user: req.session.user_info
-        });
+        res.status(200).render("../pages/logged-on/404.ejs");
     }
 });
 
