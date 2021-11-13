@@ -36,7 +36,10 @@
                 <li><a href="/logout">Sair</a></li>
             </ul>
         </nav>
-        <img class="header__avatar" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png"><a class="name__cta" href="/dashboard"><%= user.username %></a>
+        <img class="header__avatar" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png"><a
+            class="name__cta" href="/dashboard">
+            <%= user.username %>
+        </a>
         <p class="menu cta">Menu</p>
     </header>
     <div id="mobile__menu" class="overlay">
