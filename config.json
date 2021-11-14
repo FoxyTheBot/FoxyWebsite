@@ -7,7 +7,7 @@
         "scopes": ["identify"]
     },
     "session": {
-        "secret": "oichip",
+        "secret": "foxy",
         "cookie": {
             "maxAge": 604800000
         }
