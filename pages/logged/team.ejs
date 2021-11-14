@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css">
-    <script src="js/autoPlay.js"></script>
+    <script src="../js/playAudio.js"></script>
     <link rel="stylesheet" href="/styles/footer.css" type="text/css">
     <link rel="stylesheet" href="/styles/main.css" type="text/css">
     <link rel="stylesheet" href="/styles/profiles.css" type="text/css">
@@ -47,14 +47,14 @@
     <h1 class="title-staffs">Desenvolvedores</h1>
     <div class="developers">
         <div class="cards-equipe">
-            <img class="avatar" src="/assets/profiles/win.png" onclick="playAudio('assets/audios/MadobeNanami.wav')">
+            <img class="avatar" src="/assets/profiles/win.png" onclick="playAudio('./assets/audios/MadobeNanami.wav')">
             <div class="content">
                 <h3 class="avatar-name">Win</h3>
                 <br>
             </div>
         </div>
         <div class="cards-equipe">
-            <img class="avatar" src="/assets/profiles/energy.png" onclick="playAudio('assets/audios/MadobeTouko.wav')">
+            <img class="avatar" src="/assets/profiles/energy.png" onclick="playAudio('./assets/audios/MadobeTouko.wav')">
             <div class="content">
                 <h3 class="avatar-name">energy</h3>
                 <br>
@@ -89,8 +89,6 @@
         </div>
     </div>
     <br><br><br>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </body>
 
 </html>
