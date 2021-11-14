@@ -2,7 +2,7 @@
 node_modules
 package-lock.json
 
-## Microsoft Edge DevTools files
-launch.json 
+## Visual Studio Code
+.vscode
 ## Secret files
 .env
