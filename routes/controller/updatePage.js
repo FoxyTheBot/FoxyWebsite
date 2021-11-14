@@ -77,7 +77,7 @@ router.get('/daily', async (req, res) => {
             res.status(200).render("../pages/logged/daily.ejs", {
                 user: req.session.user_info,
                 coins: req.session.coins,
-                dbCoins: req.session.dbCoins,
+                dbCoins: req.session.dbCoins
             });
         }
     }

@@ -17,7 +17,7 @@ main {
 }
 
 main .main__image {
-    margin-top: -15%;
+    margin-top: -25%;
     margin-bottom: 5%;
 }
 
@@ -31,15 +31,24 @@ main .user__avatar {
 
 main h1 {
     color: rgb(255, 255, 255);
-    font-size: 40px;
+    font-size: 25px;
     font-family: Montserrat;
-    animation-name: chipe;
     animation-duration: 4s;
 }
 
+main #coins {
+    color:#047cd6;
+}
 main h3 {
     color: #fff;
     font-size: 18px;
+    font-family: sans-serif;
+    margin-left: 5px;
+}
+
+main h4 {
+    color: #fff;
+    font-size: 15px;
     font-family: sans-serif;
     margin-left: 5px;
 }
@@ -101,13 +110,4 @@ main .action__buttons #danger .danger-button {
     margin: 20px 5px 10px 5px;
     animation: float 6s ease-in-out infinite;
     transition-duration: 0.5s;
-}
-
-@keyframes chipe {
-    from {
-        color: rgb(255, 255, 255);
-    }
-    to {
-        color: rgb(0, 204, 255);
-    }
 }
