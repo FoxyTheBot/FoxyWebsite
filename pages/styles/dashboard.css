@@ -9,27 +9,31 @@ body {
 }
 
 main {
-    padding-left: 28%;
+    padding-left: 3%;
     padding-right: 30%;
-    margin-top: 15%;
+    margin-top: 25%;
     transition-duration: 0.5s;
-    text-align: center;
+}
+
+main .dashboard_section {
+    margin-top: 15%;
+}
+main .dashboard-title {
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    font-family: Montserrat;
+    animation-duration: 4s;
 }
 
 main .main__image {
-    margin-top: -15%;
-    margin-bottom: 5%;
-}
-
-main .user__avatar {
-    width: 40%;
-    height: 40%;
+    width: 25%;
+    height: 25%;
     border-radius: 50%;
     margin-top: -30%;
     margin-bottom: 5%;
 }
 
-main h1 {
+main .username {
     color: rgb(255, 255, 255);
     font-size: 25px;
     font-family: Montserrat;
@@ -47,37 +51,26 @@ main a {
     list-style: none;
 }
 
-main #value {
+main .user-status {
+    margin-left: 35em;
+}
+main .user-status #value {
     color: #486be0;
 }
-.avatar {
-    width: 200px;
-    height: 200px;
-    background: rgb(56, 56, 56);
-    border-radius: 300px;
-    position: relative;
-    background-size: 100%;
-    left: 50%;
-}
 
-main a button:hover {
-    background-color: #047cd6;
-    transition-duration: 0.5s;
-}
-
-.action__buttons {
+main .userinfo {
     text-align: center;
-    margin-top: 20px;
+    margin-top: -24%;
 }
 
-main h2 {
-    color: #fff;
-    font-size: 20px;
-    font-family: sans-serif;
-    margin-top: 5px;
+main .aboutme {
+    margin-top: -5%;
+}
+main .main__buttons {
+    margin-top: 5%;
 }
 
-main .action__buttons #default .default-button {
+main .main__buttons .action__btn .btn {
     color: #fff;
     background-color: #047cd6;
     font-family: Montserrat;
@@ -91,16 +84,15 @@ main .action__buttons #default .default-button {
     transition-duration: 0.5s;
 }
 
-main .action__buttons #danger .danger-button {
+main .main__buttons .action__btn .danger_btn {
     color: #fff;
-    background-color: #ff0000;
+    background-color: rgb(224, 72, 72);
     font-family: Montserrat;
     font-size: 20px;
     cursor: pointer;
     padding: 10px 12px 10px 12px;
     border-radius: 5px;
     border: none;
-    margin: 20px 5px 10px 5px;
     animation: float 6s ease-in-out infinite;
     transition-duration: 0.5s;
 }

@@ -37,8 +37,9 @@ main h1 {
 }
 
 main #coins {
-    color:#486be0;
+    color: #486be0;
 }
+
 main h3 {
     color: #fff;
     font-size: 18px;
@@ -84,7 +85,7 @@ main h2 {
     margin-top: 5px;
 }
 
-main .action__buttons #default .default-button {
+main .main__buttons #default .default-button {
     color: #fff;
     background-color: #047cd6;
     font-family: Montserrat;
@@ -98,16 +99,21 @@ main .action__buttons #default .default-button {
     transition-duration: 0.5s;
 }
 
-main .action__buttons #danger .danger-button {
+.inline-emoji {
+    height: 1.5em;
+    position: relative;
+    top: 0.3em;
+}
+
+main .main__buttons .action__btn .danger_btn {
     color: #fff;
-    background-color: #ff0000;
+    background-color: rgb(224, 72, 72);
     font-family: Montserrat;
     font-size: 20px;
     cursor: pointer;
     padding: 10px 12px 10px 12px;
     border-radius: 5px;
     border: none;
-    margin: 20px 5px 10px 5px;
     animation: float 6s ease-in-out infinite;
     transition-duration: 0.5s;
 }
