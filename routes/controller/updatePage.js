@@ -83,6 +83,31 @@ router.get('/daily', async (req, res) => {
     }
 });
 
+router.get('/delete', async(req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect('/login');
+    } else {
+        const userId = req.session.user_info.id;
+        const userData = await user.findOne({ _id: userId });
+        userData.remove().catch(err => console.log(err));
+        req.session.destroy();
+        return res.status(200).render("../pages/logged-off/deletedUser.ejs");
+    }
+});
+
+router.get('/confirm', async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect('/login');
+    } else {
+        const userId = req.session.user_info.id;
+        const userData = await user.findOne({ _id: userId });
+        res.status(200).render("../pages/logged/confirm.ejs", {
+            user: req.session.user_info,
+            db: userData
+        });
+    }
+});
+
 router.get('/team', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../pages/logged-off/team.ejs");

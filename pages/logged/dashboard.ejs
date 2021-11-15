@@ -4,7 +4,6 @@
 <head>
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/dashboard.css">
-    <link rel="stylesheet" href="../styles/footer.css">
     <link rel="icon" href="../assets/images/foxycake.png">
     <title>Foxy | Dashboard</title>
 </head>
@@ -25,27 +24,39 @@
         <a class="cta" href="/">Home</a>
         <p class="menu cta">Menu</p>
     </header>
-    <main>
-        <img class="user__avatar"
-            src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png?size=1024">
-        <h1> Olá, <%= user.username%>#<%= user.discriminator %>
-        </h1>
-        <br>
-        <br>
-        <h3>Você possui <strong id="value"><%= db.repCount %></strong> reputações</h3>
-        <h3>Você possui <strong id="value"><%= db.balance %></strong> FoxCoins</h3>
-        <br>
-        <h3><strong>Sobre Mim:</strong>
-            <%= aboutme %>
-        </h3>
-        <div class="action__buttons">
-            <a href="/daily" id="default"><button class="default-button">Daily</button></a>
-        </div>
-        <br>
-        <br>
-        <br>
-    </main>
 
+    <main>
+        <img class="main__image"
+            src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png?size=1024">
+
+        <div class="userinfo">
+            <h1 class="username">
+                <%= user.username %>#<%= user.discriminator %>
+            </h1>
+
+            <br>
+            <div class="user-status">
+                <h3>FoxCoins: <strong id="value">
+                        <%= db.balance %>
+                    </strong></h3>
+                <h3>Reputações: <strong id="value">
+                        <%= db.repCount %>
+                    </strong></h3>
+                <br>
+            </div>
+            <h3 class="aboutme">Sobre mim: <br>
+                <%= aboutme %>
+            </h3>
+        </div>
+        <div class="dashboard_section">
+            <h1 class="dashboard-title">Painel de Controle</h1>
+            <div class="main__buttons">
+                <a class="action__btn" href="/daily"><button class="btn">Daily</button></a>
+                <a class="action__btn" href="/aboutme"><button class="btn">Sobre mim</button></a>
+                <a class="action__btn" href="/confirm"><button class="danger_btn">Deletar Conta</button></a>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>
