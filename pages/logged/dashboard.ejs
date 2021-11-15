@@ -31,8 +31,9 @@
         <h1> Olá, <%= user.username%>#<%= user.discriminator %>
         </h1>
         <br>
-        <h3>Você possui <%= db.repCount %> reps.</h3>
-        <h3>Você possui <%= db.balance %> FoxCoins.</h3>
+        <br>
+        <h3>Você possui <strong id="value"><%= db.repCount %></strong> reputações</h3>
+        <h3>Você possui <strong id="value"><%= db.balance %></strong> FoxCoins</h3>
         <br>
         <h3><strong>Sobre Mim:</strong>
             <%= aboutme %>
