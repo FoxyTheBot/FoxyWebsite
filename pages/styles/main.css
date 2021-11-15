@@ -43,7 +43,7 @@ main a button {
     border-radius: 5px;
     border: none;
     margin: 20px 5px 10px 5px;
-    animation: float 10s ease-in-out infinite;
+    animation: float 15s ease-in-out infinite;
     transition-duration: 0.5s;
 }
 
