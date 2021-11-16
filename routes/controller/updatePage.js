@@ -32,12 +32,24 @@ router.get("/dashboard", async (req, res) => {
 
         const userData = await user.findOne({ _id: userId });
         var aboutMe = await userData.aboutme;
+        var premium = await userData.premium;
+        const userBanned = await userData.isBanned;
+        if(premium) {
+            premium = "🔑 Premium User";
+        } else {
+            premium = null;
+        }
+
+        if(userBanned) {
+            res.status(401).render("../pages/logged/banned.ejs");
+        }
 
         if (!aboutMe) aboutMe = "Você não possui um sobre mim definido!";
         res.status(200).render("../pages/logged/dashboard.ejs", {
             user: req.session.user_info,
             db: userData,
-            aboutme: aboutMe
+            aboutme: aboutMe,
+            premium: premium
         });
 
 
@@ -83,7 +95,7 @@ router.get('/daily', async (req, res) => {
     }
 });
 
-router.get('/delete', async(req, res) => {
+router.get('/delete', async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
