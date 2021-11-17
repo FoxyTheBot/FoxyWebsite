@@ -3,7 +3,6 @@ const router = express.Router();
 const config = require('../../config.json');
 const user = require('../../database/mongoConnect');
 
-
 router.use(require("express-session")(config.session));
 
 router.get("/", (req, res) => {
@@ -34,13 +33,14 @@ router.get("/dashboard", async (req, res) => {
         var aboutMe = await userData.aboutme;
         var premium = await userData.premium;
         const userBanned = await userData.isBanned;
-        if(premium) {
+
+        if (premium) {
             premium = "🔑 Premium User";
         } else {
             premium = null;
         }
 
-        if(userBanned) {
+        if (userBanned) {
             res.status(401).render("../pages/logged/banned.ejs");
         }
 
@@ -51,8 +51,6 @@ router.get("/dashboard", async (req, res) => {
             aboutme: aboutMe,
             premium: premium
         });
-
-
     }
 });
 

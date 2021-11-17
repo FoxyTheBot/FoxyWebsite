@@ -18,6 +18,7 @@ main {
 main .dashboard_section {
     margin-top: 15%;
 }
+
 main .dashboard-title {
     color: rgb(255, 255, 255);
     font-size: 25px;
@@ -35,7 +36,7 @@ main .main__image {
 
 main .username {
     color: rgb(255, 255, 255);
-    font-size: 25px;
+    font-size: 36px;
     font-family: Montserrat;
     animation-duration: 4s;
 }
@@ -54,6 +55,7 @@ main a {
 main .user-status {
     margin-left: 35em;
 }
+
 main .user-status #value {
     color: #486be0;
 }
@@ -64,10 +66,12 @@ main .userinfo {
 }
 
 main .aboutme {
+    font-size: 20px;
     margin-top: -5%;
 }
+
 main .main__buttons {
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 main .main__buttons .action__btn .btn {
@@ -95,4 +99,88 @@ main .main__buttons .action__btn .danger_btn {
     border: none;
     animation: float 6s ease-in-out infinite;
     transition-duration: 0.5s;
+}
+
+@media only screen and (max-width: 700px) {
+    main .main__buttons .action__btn .danger_btn {
+        color: #fff;
+        background-color: rgb(224, 72, 72);
+        font-family: Montserrat;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 10px 12px 10px 12px;
+        border-radius: 5px;
+        border: none;
+        margin: 20px 5px 10px 5px;
+        animation: float 6s ease-in-out infinite;
+        transition-duration: 0.5s;
+    }
+    main .main__buttons .action__btn .btn {
+        color: #fff;
+        background-color: #047cd6;
+        font-family: Montserrat;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 10px 12px 10px 12px;
+        border-radius: 5px;
+        border: none;
+        margin: 20px 5px 10px 5px;
+        animation: float 6s ease-in-out infinite;
+        transition-duration: 0.5s;
+    }
+    main {
+        padding-left: 3%;
+        padding-right: 30%;
+        margin-top: 25%;
+        transition-duration: 0.5s;
+    }
+    main .dashboard_section {
+        margin-top: 17%;
+    }
+    main .dashboard-title {
+        color: #ffffff;
+        font-size: 25px;
+        margin-right: 4%;
+        font-family: Montserrat;
+        animation-duration: 4s;
+    }
+    main .main__image {
+        width: 25%;
+        height: 25%;
+        border-radius: 50%;
+        margin-top: -30%;
+        margin-bottom: 5%;
+    }
+    main .username {
+        color: rgb(255, 255, 255);
+        font-size: 25px;
+        font-family: Montserrat;
+        animation-duration: 4s;
+    }
+    main h3 {
+        color: #fff;
+        font-size: 18px;
+        font-family: sans-serif;
+        margin-left: 5px;
+    }
+    main a {
+        list-style: none;
+    }
+    main .user-status {
+        margin-left: 5%;
+    }
+    main .user-status #value {
+        color: #486be0;
+    }
+    main .userinfo {
+        text-align: center;
+        margin-top: -24%;
+        margin-right: 5%;
+    }
+    main .aboutme {
+        margin-top: 5%;
+    }
+    main .main__buttons {
+        margin-top: 5%;
+    }
 }
