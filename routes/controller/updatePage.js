@@ -99,6 +99,10 @@ router.get('/delete', async (req, res) => {
     } else {
         const userId = req.session.user_info.id;
         const userData = await user.findOne({ _id: userId });
+        const marriedData = await user.findOne({ marriedWith: userId });
+
+        marriedData.marriedWith = null;
+        marriedData.save()
         userData.remove().catch(err => console.log(err));
         req.session.destroy();
         return res.status(200).render("../pages/logged-off/deletedUser.ejs");
