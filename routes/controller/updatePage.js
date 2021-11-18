@@ -65,7 +65,7 @@ router.get('/daily', async (req, res) => {
         var amount = Math.floor(Math.random() * 3200);
 
         if (userData.premium) {
-            amount = amount * 4200;
+            amount = amount + 4628;
         }
 
         const daily = await userData.lastDaily;
