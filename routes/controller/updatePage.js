@@ -35,7 +35,7 @@ router.get("/dashboard", async (req, res) => {
         const userBanned = await userData.isBanned;
 
         if (premium) {
-            premium = "🔑 Premium User";
+            premium = "🔑";
         } else {
             premium = null;
         }

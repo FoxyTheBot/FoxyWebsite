@@ -31,6 +31,7 @@ main .main__image {
     height: 25%;
     border-radius: 50%;
     margin-top: -30%;
+    margin-left: 25%;
     margin-bottom: 5%;
 }
 
@@ -56,18 +57,29 @@ main .user-status {
     margin-left: 35em;
 }
 
-main .user-status #value {
-    color: #486be0;
+main .user-status .rep {
+    margin-top: 15%;
 }
 
-main .userinfo {
+main .bal #value {
+    color: #486be0;
+    margin-right: 35%;
+}
+
+main .rep #value {
+    color: #486be0;
+    margin-right: 100%;
+}
+
+main .user__statistics {
     text-align: center;
     margin-top: -24%;
+    margin-left: 35%;
 }
 
-main .aboutme {
+main .aboutme-session .aboutme-title {
     font-size: 20px;
-    margin-top: -5%;
+    margin-top: -13%;
 }
 
 main .main__buttons {
@@ -102,19 +114,85 @@ main .main__buttons .action__btn .danger_btn {
 }
 
 @media only screen and (max-width: 700px) {
-    main .main__buttons .action__btn .danger_btn {
-        color: #fff;
-        background-color: rgb(224, 72, 72);
-        font-family: Montserrat;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 10px 12px 10px 12px;
-        border-radius: 5px;
-        border: none;
-        margin: 20px 5px 10px 5px;
-        animation: float 6s ease-in-out infinite;
+    main {
+        padding-left: 3%;
+        padding-right: 30%;
+        margin-top: 25%;
         transition-duration: 0.5s;
     }
+    
+    main .dashboard_section {
+        margin-top: 15%;
+    }
+    
+    main .dashboard-title {
+        color: rgb(255, 255, 255);
+        font-size: 25px;
+        font-family: Montserrat;
+        animation-duration: 4s;
+    }
+    
+    main .main__image {
+        width: 35%;
+        height: 35%;
+        border-radius: 50%;
+        margin-top: -30%;
+        margin-left: 50%;
+        margin-bottom: 5%;
+    }
+    
+    main .username {
+        color: rgb(255, 255, 255);
+        font-size: 36px;
+        margin-top: 30%;
+        font-family: Montserrat;
+        animation-duration: 4s;
+    }
+    
+    main h3 {
+        color: #fff;
+        font-size: 18px;
+        font-family: sans-serif;
+        margin-left: 5px;
+    }
+    
+    main a {
+        list-style: none;
+    }
+    
+    main .user-status {
+        margin-left: 15em;
+    }
+    
+    main .user-status .rep {
+        margin-top: 15%;
+    }
+    
+    main .bal #value {
+        color: #486be0;
+        margin-right: 35%;
+    }
+    
+    main .rep #value {
+        color: #486be0;
+        margin-right: 100%;
+    }
+    
+    main .user__statistics {
+        text-align: center;
+        margin-top: -24%;
+        margin-left: 35%;
+    }
+    
+    main .aboutme-session .aboutme-title {
+        font-size: 20px;
+        margin-top: -13%;
+    }
+    
+    main .main__buttons {
+        margin-top: 2%;
+    }
+    
     main .main__buttons .action__btn .btn {
         color: #fff;
         background-color: #047cd6;
@@ -128,59 +206,18 @@ main .main__buttons .action__btn .danger_btn {
         animation: float 6s ease-in-out infinite;
         transition-duration: 0.5s;
     }
-    main {
-        padding-left: 3%;
-        padding-right: 30%;
-        margin-top: 25%;
+    
+    main .main__buttons .action__btn .danger_btn {
+        color: #fff;
+        background-color: rgb(224, 72, 72);
+        font-family: Montserrat;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 10px 12px 10px 12px;
+        border-radius: 5px;
+        border: none;
+        animation: float 6s ease-in-out infinite;
         transition-duration: 0.5s;
     }
-    main .dashboard_section {
-        margin-top: 17%;
-    }
-    main .dashboard-title {
-        color: #ffffff;
-        font-size: 25px;
-        margin-right: 4%;
-        font-family: Montserrat;
-        animation-duration: 4s;
-    }
-    main .main__image {
-        width: 25%;
-        height: 25%;
-        border-radius: 50%;
-        margin-top: -30%;
-        margin-bottom: 5%;
-    }
-    main .username {
-        color: rgb(255, 255, 255);
-        font-size: 25px;
-        font-family: Montserrat;
-        animation-duration: 4s;
-    }
-    main h3 {
-        color: #fff;
-        font-size: 18px;
-        font-family: sans-serif;
-        margin-left: 5px;
-    }
-    main a {
-        list-style: none;
-    }
-    main .user-status {
-        margin-left: 5%;
-    }
-    main .user-status #value {
-        color: #486be0;
-    }
-    main .userinfo {
-        text-align: center;
-        margin-top: -24%;
-        margin-right: 5%;
-    }
-    main .aboutme {
-        margin-top: 5%;
-    }
-    main .main__buttons {
-        margin-top: 5%;
-    }
 }
+

@@ -29,28 +29,26 @@
         <img class="main__image"
             src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png?size=1024">
 
-        <div class="userinfo">
+        <div class="user__statistics">
             <h1 class="username">
-                <%= user.username %>#<%= user.discriminator %>
+                <%= user.username %>#<%= user.discriminator %><%= premium %>
             </h1>
 
-            <br>
             <div class="user-status">
-                <h3>FoxCoins: <strong id="value">
+                <h3 class="bal">FoxCoins: <strong id="value">
                         <%= db.balance %>
                     </strong></h3>
-                <h3>Reputações: <strong id="value">
+                <h3 class="rep">Reputações:<strong id="value">
                         <%= db.repCount %>
                     </strong></h3>
-                <h3>
-                    <%= premium %>
-                </h3>
                 <br>
-
             </div>
-            <h3 class="aboutme">Sobre mim: <br>
-                <%= aboutme %>
-            </h3>
+
+            <div class="aboutme-session">
+                <h3 class="aboutme-title">Sobre mim: <br>
+                    <%= aboutme %>
+                </h3>
+            </div>
         </div>
         <div class="dashboard_section">
             <h1 class="dashboard-title">Painel de Controle</h1>
