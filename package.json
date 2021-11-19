@@ -1,8 +1,8 @@
 {
   "name": "foxy-website",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Website da Foxy feito em JavaScript, express e ejs",
-  "main": "app.js",
+  "main": "start.js",
   "scripts": {
     "test": "node ."
   },

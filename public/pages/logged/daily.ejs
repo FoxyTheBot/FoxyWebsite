@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/pages.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="icon" href="../assets/images/foxycake.png">
+    <title>Foxy | Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <a class="logo" href="/"><img src="../assets/images/Foxy.png" alt="logo"></a>
+        <nav>
+            <ul class="nav__links">
+                <li> <a href="/github">GitHub</a></li>
+                <li><a href="/privacy">Termos</a></li>
+                <li><a href="/discord">Suporte</a></li>
+                <li><a href="/team">Equipe</a></li>
+                <li><a href="/commands">Comandos</a></li>
+                <li><a href="/logout">Sair</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="/">Home</a>
+        <p class="menu cta">Menu</p>
+    </header>
+    <main>
+        <img class="main__image" src="../assets/images/foxyoculos.png" alt="dashboard">
+        <h1>Parabéns! Você coletou seu prêmio diário e ganhou...</h1>
+        <br>
+        <h2>
+            <strong id="coins"><%= coins %></strong> FoxCoins
+        </h2>
+        <br>
+        <h3>Agora você possui <%= dbCoins %> FoxCoins
+        </h3>
+        <br>
+        <div class="main__buttons">
+            <a href="/dashboard" id="default"><button class="default-button">Voltar</button></a>
+        </div>
+    </main>
+
+</body>
+
+</html>

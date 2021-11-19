@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("/assets/images/DiscordBackground.png");
+}
+
+main {
+    padding-left: 28%;
+    padding-right: 30%;
+    margin-top: 15%;
+    transition-duration: 0.5s;
+    text-align: center;
+}
+
+main .main__image {
+    margin-top: -25%;
+    margin-bottom: 5%;
+}
+
+main .user__avatar {
+    width: 45%;
+    height: 45%;
+    border-radius: 50%;
+    margin-top: -30%;
+    margin-bottom: 5%;
+}
+
+main h1 {
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    font-family: Montserrat;
+    animation-duration: 4s;
+}
+
+main #coins {
+    color: #486be0;
+}
+
+main h3 {
+    color: #fff;
+    font-size: 18px;
+    font-family: sans-serif;
+    margin-left: 5px;
+}
+
+main h4 {
+    color: #fff;
+    font-size: 15px;
+    font-family: sans-serif;
+    margin-left: 5px;
+}
+
+main a {
+    list-style: none;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    background: rgb(56, 56, 56);
+    border-radius: 300px;
+    position: relative;
+    background-size: 100%;
+    left: 50%;
+}
+
+main a button:hover {
+    background-color: #047cd6;
+    transition-duration: 0.5s;
+}
+
+.action__buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+main h2 {
+    color: #fff;
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-top: 5px;
+}
+
+main .main__buttons #default .default-button {
+    color: #fff;
+    background-color: #047cd6;
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    animation: float 6s ease-in-out infinite;
+    transition-duration: 0.5s;
+}
+
+.inline-emoji {
+    height: 1.5em;
+    position: relative;
+    top: 0.3em;
+}
+
+main .main__buttons .action__btn .danger_btn {
+    color: #fff;
+    background-color: rgb(224, 72, 72);
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    animation: float 6s ease-in-out infinite;
+    transition-duration: 0.5s;
+}
