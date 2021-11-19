@@ -7,9 +7,9 @@ router.use(require("express-session")(config.session));
 
 router.get("/", (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../pages/logged-off/index.ejs");
+        res.status(200).render("../public/pages/logged-off/index.ejs");
     } else {
-        res.status(200).render("../pages/logged/index.ejs", {
+        res.status(200).render("../public/pages/logged/index.ejs", {
             user: req.session.user_info,
         });
     }
@@ -17,9 +17,9 @@ router.get("/", (req, res) => {
 
 router.get("/privacy", (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../pages/logged-off/privacy.ejs");
+        res.status(200).render("../public/pages/logged-off/privacy.ejs");
     } else {
-        res.status(200).render("../pages/logged/privacy.ejs");
+        res.status(200).render("../public/pages/logged/privacy.ejs");
     }
 });
 
@@ -41,11 +41,11 @@ router.get("/dashboard", async (req, res) => {
         }
 
         if (userBanned) {
-            res.status(401).render("../pages/logged/banned.ejs");
+            res.status(401).render("../public/pages/logged/banned.ejs");
         }
 
         if (!aboutMe) aboutMe = "Você não possui um sobre mim definido!";
-        res.status(200).render("../pages/logged/dashboard.ejs", {
+        res.status(200).render("../public/pages/logged/dashboard.ejs", {
             user: req.session.user_info,
             db: userData,
             aboutme: aboutMe,
@@ -71,7 +71,7 @@ router.get('/daily', async (req, res) => {
         const daily = await userData.lastDaily;
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
 
-            return res.status(200).render("../pages/logged/dailyTime.ejs", {
+            return res.status(200).render("../public/pages/logged/dailyTime.ejs", {
                 user: req.session.user_info,
                 db: req.session.db_info,
             });
@@ -84,7 +84,7 @@ router.get('/daily', async (req, res) => {
 
             req.session.coins = amount;
             req.session.dbCoins = userData.balance;
-            res.status(200).render("../pages/logged/daily.ejs", {
+            res.status(200).render("../public/pages/logged/daily.ejs", {
                 user: req.session.user_info,
                 coins: req.session.coins,
                 dbCoins: req.session.dbCoins
@@ -105,7 +105,7 @@ router.get('/delete', async (req, res) => {
         marriedData.save()
         userData.remove().catch(err => console.log(err));
         req.session.destroy();
-        return res.status(200).render("../pages/logged-off/deletedUser.ejs");
+        return res.status(200).render("../public/pages/logged-off/deletedUser.ejs");
     }
 });
 
@@ -115,7 +115,7 @@ router.get('/confirm', async (req, res) => {
     } else {
         const userId = req.session.user_info.id;
         const userData = await user.findOne({ _id: userId });
-        res.status(200).render("../pages/logged/confirm.ejs", {
+        res.status(200).render("../public/pages/logged/confirm.ejs", {
             user: req.session.user_info,
             db: userData
         });
@@ -124,33 +124,33 @@ router.get('/confirm', async (req, res) => {
 
 router.get('/team', (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../pages/logged-off/team.ejs");
+        res.status(200).render("../public/pages/logged-off/team.ejs");
     } else {
-        res.status(200).render("../pages/logged/team.ejs");
+        res.status(200).render("../public/pages/logged/team.ejs");
     }
 });
 
 router.get('/commands', (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../pages/logged-off/commands.ejs");
+        res.status(200).render("../public/pages/logged-off/commands.ejs");
     } else {
-        res.status(200).render("../pages/logged/commands.ejs");
+        res.status(200).render("../public/pages/logged/commands.ejs");
     }
 });
 
 router.get('/error', (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../pages/logged-off/error.ejs");
+        res.status(200).render("../public/pages/logged-off/error.ejs");
     } else {
-        res.status(200).render("../pages/logged/error.ejs");
+        res.status(200).render("../public/pages/logged/error.ejs");
     }
 });
 
 router.get('/404', (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../pages/logged-off/404.ejs");
+        res.status(200).render("../public/pages/logged-off/404.ejs");
     } else {
-        res.status(200).render("../pages/logged-on/404.ejs");
+        res.status(200).render("../public/pages/logged-on/404.ejs");
     }
 });
 
