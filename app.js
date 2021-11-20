@@ -3,20 +3,21 @@ require('dotenv').config();
 
 module.exports = class App {
     constructor(port) {
-        this.app = express();
         this.port = port;
     }
 
-    start() {
-        this.app.use(express.static('./public/pages'));
-        this.app.set('view engine', 'ejs');
+    startServer() {
+        const app = express();
 
-        this.app.use('/', require("./routes/controller/updatePage"));
-        this.app.use('/', require("./routes/controller/redirectPage"));
-        this.app.use('/', require("./routes/auth/oauthDiscord"));
+        app.use(express.static('./public/pages'));
+        app.set('view engine', 'ejs');
+
+        app.use('/', require("./routes/controller/updatePage"));
+        app.use('/', require("./routes/controller/redirectPage"));
+        app.use('/', require("./routes/auth/oauthDiscord"));
 
 
-        this.app.listen(this.port, () => {
+        app.listen(this.port, () => {
             console.log(`[APP] Servidor iniciado na porta ${this.port}`);
         });
 

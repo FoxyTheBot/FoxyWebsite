@@ -26,7 +26,6 @@ router.get('/login/callback', async (req, res) => {
 
             const oauthData = await oauth.json();
 
-
             const userResult = await fetch('https://discord.com/api/users/@me', {
                 headers: {
                     authorization: `${oauthData.token_type} ${oauthData.access_token}`,
