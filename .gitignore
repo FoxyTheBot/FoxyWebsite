@@ -4,5 +4,9 @@ package-lock.json
 
 ## Visual Studio Code
 .vscode
+
+## IntelliJ Files
+.idea
+
 ## Secret files
 .env
