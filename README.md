@@ -22,7 +22,7 @@ MONGO_URI=<seu-uri-do-mongodb>
 
 ## Executando o servidor
 
-<p>Para executar você irá precisar do Node.js</p>
+<p>Para executar você irá precisar do Node.js (Recomendado Node.Js 16)</p>
 
 <p>Instale as dependências:</p>
 
