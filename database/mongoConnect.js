@@ -8,10 +8,7 @@ const userSchema = new mongoose.Schema({
     userCreation: Date,
     premium: Boolean,
     isBanned: Boolean,
-    banData: {
-        moderator: String,
-        reason: String
-    },
+    banReason: String,
     aboutme: String,
     balance: Number,
     lastDaily: Date,
