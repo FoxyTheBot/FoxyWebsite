@@ -34,6 +34,11 @@ router.get("/dashboard", async (req, res) => {
         var premium = await userData.premium;
         const userBanned = await userData.isBanned;
 
+        if (aboutMe.length > 60) {
+            const aboutme = aboutMe.match(/.{1,60}/g);
+            aboutMe = aboutme.join("\n");
+        }
+
         if (premium) {
             premium = "🔑";
         } else {
