@@ -11,12 +11,12 @@ body {
 main {
     padding-left: 3%;
     padding-right: 30%;
-    margin-top: 25%;
+    margin-top: 18.8em;
     transition-duration: 0.5s;
 }
 
 main .dashboard_section {
-    margin-top: 15%;
+    margin-top: 10%;
 }
 
 main .dashboard-title {
@@ -30,8 +30,9 @@ main .main__image {
     width: 25%;
     height: 25%;
     border-radius: 50%;
+    border: solid rgb(0, 174, 255);
     margin-top: -30%;
-    margin-left: 15%;
+    margin-left: 10%;
     margin-bottom: 5%;
 }
 
@@ -79,7 +80,7 @@ main .user__statistics {
 
 main .aboutme-session .aboutme-title {
     font-size: 20px;
-    margin-top: -13%;
+    margin-top: -1%;
 }
 
 main .main__buttons {
@@ -122,7 +123,7 @@ main .main__buttons .action__btn .danger_btn {
     }
     
     main .dashboard_section {
-        margin-top: 15%;
+        margin-top: 5%;
     }
     
     main .dashboard-title {
@@ -185,12 +186,11 @@ main .main__buttons .action__btn .danger_btn {
     }
     
     main .aboutme-session .aboutme-title {
-        font-size: 20px;
-        margin-top: -13%;
+        display: none;
     }
     
     main .main__buttons {
-        margin-top: 2%;
+        margin-top: -2%;
     }
     
     main .main__buttons .action__btn .btn {
