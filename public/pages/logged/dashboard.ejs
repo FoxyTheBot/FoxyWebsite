@@ -17,7 +17,6 @@
                 <li><a href="/privacy">Termos</a></li>
                 <li><a href="/discord">Suporte</a></li>
                 <li><a href="/team">Equipe</a></li>
-                <li><a href="/commands">Comandos</a></li>
                 <li><a href="/logout">Sair</a></li>
             </ul>
         </nav>
@@ -31,7 +30,8 @@
 
         <div class="user__statistics">
             <h1 class="username">
-                <%= user.username %>#<%= user.discriminator %><%= premium %>
+                <%= user.username %>#<%= user.discriminator %>
+                        <%= premium %>
             </h1>
 
             <div class="user-status">
