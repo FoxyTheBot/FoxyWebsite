@@ -42,14 +42,15 @@ router.get('/login/callback', async (req, res) => {
                     premium: false,
                     isBanned: false,
                     banData: null,
+                    banReason: null,
                     aboutme: null,
                     balance: 0,
                     lastDaily: null,
                     marriedWith: null,
                     repCount: 0,
                     lastRep: null,
-                    background: "default.png",
-                    backgrounds: ["default.png"]
+                    background: "default",
+                    backgrounds: ["default"]
                 }).save().catch(err => console.log(err));
 
                 console.log(`[MONGO] Usuário: ${result.username} foi salvo no banco de dados!`);
