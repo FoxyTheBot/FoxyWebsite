@@ -5,6 +5,9 @@ package-lock.json
 ## Visual Studio Code
 .vscode
 
+## Build
+build
+
 ## IntelliJ Files
 .idea
 

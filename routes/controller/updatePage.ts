@@ -1,4 +1,4 @@
-const express = require('express');
+import * as express from 'express';
 const router = express.Router();
 const config = require('../../config.json');
 const user = require('../../database/mongoConnect');
@@ -27,12 +27,12 @@ router.get("/dashboard", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
-        const userId = req.session.user_info.id;
+        const userId: String = req.session.user_info.id;
 
         const userData = await user.findOne({ _id: userId });
-        var aboutMe = await userData.aboutme;
-        var premium = await userData.premium;
-        const userBanned = await userData.isBanned;
+        var aboutMe: String = await userData.aboutme;
+        var premium: String = await userData.premium;
+        const userBanned: Boolean = await userData.isBanned;
 
         if (aboutMe.length > 60) {
             const aboutme = aboutMe.match(/.{1,60}/g);

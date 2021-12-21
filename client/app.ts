@@ -1,20 +1,21 @@
 const express = require('express');
 require('dotenv').config();
 
-module.exports = class App {
+export class App {
+    port: number;
     constructor(port) {
         this.port = port;
     }
 
-    startServer() {
+    startServer(): void {
         const app = express();
 
-        app.use(express.static('./public/pages'));
+        app.use(express.static('./build/public/pages'));
         app.set('view engine', 'ejs');
 
-        app.use('/', require("./routes/controller/updatePage"));
-        app.use('/', require("./routes/controller/redirectPage"));
-        app.use('/', require("./routes/auth/oauthDiscord"));
+        app.use('/', require("../routes/controller/updatePage"));
+        app.use('/', require("../routes/controller/redirectPage"));
+        app.use('/', require("../routes/auth/oauthDiscord"));
 
 
         app.listen(this.port, () => {

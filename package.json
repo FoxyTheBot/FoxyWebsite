@@ -1,10 +1,12 @@
 {
   "name": "foxy-website",
   "version": "3.0.0",
-  "description": "Website da Foxy feito em JavaScript, express e ejs",
-  "main": "start.js",
+  "description": "Website da Foxy feito em TypeScript, JavaScript, ExpressJS e EJS",
+  "main": "build/start.js",
   "scripts": {
-    "test": "node ."
+    "clean": "rimraf build/",
+    "copy-files": "copyfiles -u 1 ./public/pages/logged/*.ejs ./public/pages/logged-off/*.ejs ./public/pages/styles/*.css ./public/pages/assets/**/*.png ./public/pages/assets/**/*.svg ./public/pages/assets/**/*.mp3 build/public/",
+    "build": "npm run clean && tsc && npm run copy-files"
   },
   "repository": {
     "type": "git",
@@ -30,5 +32,10 @@
     "express-session": "^1.17.2",
     "mongoose": "^6.0.12",
     "node-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "node-fetch-commonjs": "^3.1.1",
+    "rimraf": "^3.0.2"
   }
 }

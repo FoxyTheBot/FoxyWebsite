@@ -22,26 +22,35 @@ MONGO_URI=<seu-uri-do-mongodb>
 
 ## Executando o servidor
 
-<p>Para executar você irá precisar do Node.js (Recomendado Node.Js 16)</p>
+<p>Para executar você irá precisar do Node.js (Recomendado Node.Js 16) e do TSC (TypeScript Compiler)</p>
 
+<p>Instale o tsc no seu computador</p>
+
+```bash
+$ npm install -g typescript
+```
 <p>Instale as dependências:</p>
 
 ```bash
-npm install
+$ npm install
 ```
-<p>No arquivo start.js insira uma porta de preferência por padrão usamos a porta 8081:</p>
+
+<p>No arquivo start.ts insira uma porta de preferência por padrão usamos a porta 8081:</p>
 
 ```js
-const App = require('./App');
+import { App } from './client/app';
 const client = new App(8081);
 client.start();
+```
+
+<p>Compile os arquivos</p>
+
+```
+$ npm run build
 ```
 
 <p> Execute o servidor:</p>
 
 ```bash
- node start.js
+$ node .
 ```
-
-
-<p>Você não pode usar o nome do bot <a href="https://github.com/FoxyTheBot/Foxy">Foxy</a> no website como se fosse seu bot.

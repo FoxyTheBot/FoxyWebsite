@@ -1,6 +1,6 @@
 const express = require('express');
 const config = require('../../config.json');
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const fetch = require("node-fetch-commonjs");
 const router = express.Router();
 const user = require('../../database/mongoConnect.js')
 

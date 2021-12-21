@@ -1,4 +1,4 @@
-const express = require('express');
+import * as express from 'express';
 const router = express.Router();
 
 router.get('/add', (req, res) => {
@@ -13,4 +13,4 @@ router.get('/discord', (req, res) => {
     res.redirect('https://discord.gg/Tj6AMkbXbA');
 });
 
-module.exports = router; 
+export = router; 
