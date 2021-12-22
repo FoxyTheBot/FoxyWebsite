@@ -43,7 +43,7 @@ const client = new App(8081);
 client.start();
 ```
 
-<p>Compile os arquivos</p>
+<p>Execute esse comando para compilar e mover arquivos Non-TS para a pasta build</p>
 
 ```
 $ npm run build
