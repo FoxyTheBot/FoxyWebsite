@@ -40,6 +40,7 @@ router.get('/login/callback', async (req, res) => {
                     _id: result.id,
                     userCreationTimestamp: Date.now(),
                     premium: false,
+                    premiumDate: null,
                     isBanned: false,
                     banData: null,
                     banReason: null,

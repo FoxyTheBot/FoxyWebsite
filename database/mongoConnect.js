@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     _id: String,
     userCreationTimestamp: Date,
     premium: Boolean,
+    premiumDate: Date,
     isBanned: Boolean,
     banData: Date,
     banReason: String,
