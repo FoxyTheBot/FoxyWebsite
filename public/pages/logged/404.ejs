@@ -28,7 +28,17 @@
         <a class="cta" href="/dashboard">Dashboard</a>
         <p class="menu cta">Menu</p>
     </header>
-
+    <div id="mobile__menu" class="overlay">
+        <a class="close">&times;</a>
+        <div class="overlay__content">
+            <a href="/team">Equipe</a>
+            <a href="/github">GitHub</a>
+            <a href="/discord">Suporte</a>
+            <a href="/privacy">Termos de uso</a>
+            <a href="/logout">Sair</a>
+            <a href="/dashboard"><%= user.username %></a>
+        </div>
+    </div>
     <main>
         <h1>404</h1>
         <h3>
@@ -39,5 +49,5 @@
         <a href="/"><button>Voltar a página inicial</button></a>
     </main>
 </body>
-
+<script src="../js/HeaderMobile.js"></script>
 </html>

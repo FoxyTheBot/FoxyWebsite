@@ -40,14 +40,18 @@
         <a class="name__cta" href="/dashboard">
             <%= user.username %>
         </a>
+        <p class="menu cta">Menu</p>
     </header>
     <div id="mobile__menu" class="overlay">
         <a class="close">&times;</a>
         <div class="overlay__content">
             <a href="/team">Equipe</a>
+            <a href="/github">GitHub</a>
+            <a href="/discord">Suporte</a>
             <a href="/privacy">Termos de uso</a>
+            <a href="/logout">Sair</a>
+            <a href="/dashboard"><%= user.username %></a>
         </div>
-        </header>
     </div>
     <main>
         <img class="main__image" src="../assets/images/foxyoculos.png">
@@ -56,8 +60,6 @@
         <a href="/add"><button><img class="button__image" src="../assets/buttons/AddMember.png">Adicionar</button></a>
         <a href="/discord"><button class="discord__button"><img class="button__image"
                     src="../assets/buttons/WhiteLogo.svg">Suporte</button></a>
-        <a id="commands-mobile" href="/commands"><button>Comandos</button></a>
-        <a id="commands-mobile" href="https://discord.gg/PuvK9wD6TM"><button>Equipe</button></a>
 
 
     </main>
@@ -101,5 +103,5 @@
     </div>
 
 </body>
-
+<script src="../js/HeaderMobile.js"></script>
 </html>

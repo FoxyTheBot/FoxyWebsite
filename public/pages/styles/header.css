@@ -90,6 +90,7 @@ header {
 
 /* Mobile Nav */
 
+
 .menu {
   display: none;
 }
@@ -104,10 +105,6 @@ header {
   background-color: #24252a;
   overflow-x: hidden;
   transition: all 0.5s ease 0s;
-}
-
-#btn-mobile {
-  display: none;
 }
 
 .overlay--active {
@@ -132,7 +129,6 @@ header {
 .overlay a:hover, .overlay a:focus {
   color: #0088a9;
 }
-
 .overlay .close {
   position: absolute;
   top: 20px;
@@ -142,16 +138,25 @@ header {
   cursor: pointer;
 }
 
-#commands-mobile {
-  display: none;
+@media screen and (max-height: 450px) {
+  .overlay a {
+      font-size: 20px;
+  }
+
+  .overlay .close {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+  }
 }
 
-@media only screen and (max-width: 700px) {
-  .nav__links, .cta {
-    display: none;
+@media only screen and (max-width: 800px) {
+  .nav__links, .cta, .name__cta, .header__avatar {
+      display: none;
   }
+
   .menu {
-    display: initial;
+      display: initial;
   }
 }
 

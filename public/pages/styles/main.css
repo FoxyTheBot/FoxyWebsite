@@ -150,8 +150,18 @@ main a button:hover {
 }
 
 @media only screen and (max-width: 320px) {
-    main .information p {
-        font-size: 70%;
+    main a button {
+        color: #fff;
+        background-color: #1d9ae4;
+        font-family: Montserrat;
+        font-size: 12px;
+        cursor: pointer;
+        padding: 10px 12px 10px 12px;
+        border-radius: 5px;
+        border: none;
+        margin: 20px 5px 10px 5px;
+        animation: float 15s ease-in-out infinite;
+        transition-duration: 0.5s;
     }
 }
 
@@ -216,6 +226,15 @@ main a button:hover {
     }
     main a button {
         font-size: 5vw;
+    }
+
+    main a .discord__button {
+        font-size: 5vw;
+    }
+
+    .features .card-row .card {
+        text-align: center;
+        margin-left: 5em;
     }
 }
 
