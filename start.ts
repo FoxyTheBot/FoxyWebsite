@@ -1,5 +1,3 @@
-import { app } from './client/app';
-const port = process.env.PORT || 8081;
-app.listen(port, () => {
-    console.log(`[APP] Servidor iniciado na porta ${port}`);
-});
+import { App } from './client/app';
+const client = new App(8081);
+client.startServer();
