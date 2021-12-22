@@ -1,7 +1,7 @@
 import * as express from 'express';
 require('dotenv').config();
 
-export class App {
+export default class App {
     port: number;
     constructor(port) {
         this.port = port;
