@@ -1,4 +1,4 @@
-import * as express from 'express';
+import express, { Application } from 'express';
 require('dotenv').config();
 
 export class App {
@@ -8,7 +8,7 @@ export class App {
     }
 
     startServer(): void {
-        const app = express();
+        const app: Application = express();
 
         app.use(express.static('./build/public/pages'));
         app.set('view engine', 'ejs');
