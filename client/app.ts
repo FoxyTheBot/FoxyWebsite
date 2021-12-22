@@ -1,4 +1,4 @@
-const express = require('express');
+import * as express from 'express';
 require('dotenv').config();
 
 export class App {
