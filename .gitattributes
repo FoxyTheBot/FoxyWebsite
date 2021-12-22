@@ -1,2 +1,2 @@
-*.ejs linguist-detectable=false
+*.ts linguist-detectable=true
 *.ejs linguist-language=TypeScript
