@@ -37,7 +37,7 @@ $ npm install
 
 <p>No arquivo start.ts insira uma porta de preferência por padrão usamos a porta 8081:</p>
 
-```js
+```ts
 import { App } from './client/app';
 const client = new App(8081);
 client.start();
