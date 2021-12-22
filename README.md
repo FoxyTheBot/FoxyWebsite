@@ -52,5 +52,5 @@ $ npm run build
 <p> Execute o servidor:</p>
 
 ```bash
-$ yarn start
+$ node .
 ```
