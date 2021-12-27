@@ -35,17 +35,17 @@
         </div>
     </div>
     <main>
-        <h1>Sobre Mim:</h1>
-        <h3>Edite seu sobre mim aqui: <br></h3>
-        <div id="form">
-            <a href="/save">
-                <button type="submit" class="input_submit" onClick="submitForm(this.form)">Salvar</button>
-            </a>
-        </div>
-        <script>
-            document.getElementById("form").submit();
-        </script>
+        <h1>Sobre mim</h1>
+        <h3>Altere seu sobre mim direto pelo website</h3>
+        <form action="/submit" method="post">
+            <input type="text" name="aboutme" placeholder="Foxy muito fofa :3" required>
+            <button type="submit">Salvar</button>
+        </form>
+        <h3>Não insira dados pessoais como telefone, cartão de crédito, etc</h3>
+        <br>
+        <div class="main__buttons">
+            <a href="/dashboard" id="default"><button class="default-button">Voltar</button></a>
+            </div>
     </main>
 </body>
-<script src="../js/HeaderMobile.js"></script>
 </html>

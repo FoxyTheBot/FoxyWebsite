@@ -10,7 +10,9 @@ export class App {
     startServer(): void {
         const app: Application = express();
 
-        app.use(express.static('./build/public/pages'));
+        app.use(express.json());
+        app.use(express.urlencoded());
+        app.use(express.static('./public/pages'));
         app.set('view engine', 'ejs');
 
         app.use('/', require("../routes/controller/updatePage"));

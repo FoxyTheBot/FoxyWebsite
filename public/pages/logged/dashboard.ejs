@@ -53,19 +53,18 @@
                     </strong></h3>
                 <br>
             </div>
-
-            <div class="aboutme-session">
-                <h3 class="aboutme-title">Sobre mim: <br>
-                    <%= aboutme %>
-                </h3>
-            </div>
         </div>
         <div class="dashboard_section">
-            <h1 class="dashboard-title">Painel de Controle</h1>
             <div class="main__buttons">
                 <a class="action__btn" href="/daily"><button class="btn">Daily</button></a>
-                <a class="action__btn" href="/confirm"><button class="danger_btn">Deletar Conta</button></a>
+                <a class="action__btn" href="/aboutme"><button class="btn">Sobre mim</button></a>
+                <a class="action__btn" href="/confirm"><button class="btn danger">Deletar Conta</button></a>
             </div>
+        </div>
+        <div class="aboutme-session">
+            <h3 class="aboutme-title">Sobre mim: <br><br>
+                <%= aboutme %>
+            </h3>
         </div>
     </main>
 </body>

@@ -28,7 +28,7 @@ router.get("/dashboard", async (req, res) => {
         res.redirect('/login');
     } else {
         const userId: String = req.session.user_info.id;
-
+        
         const userData = await user.findOne({ _id: userId });
         var aboutMe: String = await userData.aboutme;
         var premium: String = await userData.premium;
@@ -127,6 +127,30 @@ router.get('/confirm', async (req, res) => {
     }
 });
 
+router.get("/aboutme", async (req, res) => {
+    if(!req.session.bearer_token) {
+        res.redirect('/login');
+    } else {
+        const userId = req.session.user_info.id;
+        const userData = await user.findOne({ _id: userId });
+
+        res.status(200).render("../public/pages/logged/aboutme.ejs", {
+            user: req.session.user_info,
+            db: userData
+        })
+    }
+});
+
+router.post("/submit", async (req, res) => {
+    if(!req.session.bearer_token) {
+        res.redirect('/login');
+    } else {
+        const userData = await user.findOne({ _id: req.session.user_info.id });
+        userData.aboutme = req.body.aboutme;
+        userData.save().catch(err => console.log(err));
+        return res.redirect('/dashboard');
+    }
+})
 router.get('/team', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/team.ejs");
@@ -155,7 +179,7 @@ router.get('/404', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/404.ejs");
     } else {
-        res.status(200).render("../public/pages/logged-on/404.ejs");
+        res.status(200).render("../public/pages/logged/404.ejs");
     }
 });
 

@@ -65,6 +65,31 @@ main a .discord__button {
     transition-duration: 0.5s;
 }
 
+main input {
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    font-family: Montserrat;
+    font-size: 20px;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    transition-duration: 0.5s;
+}
+
+main form button {
+    color: #fff;
+    background-color: #7289da;
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    transition-duration: 0.5s;
+}
+
 main a .button__image {
     width: 20px;
     height: 20px;

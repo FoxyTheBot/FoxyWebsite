@@ -11,7 +11,7 @@ body {
 main {
     padding-left: 3%;
     padding-right: 30%;
-    margin-top: 18.8em;
+    margin-top: 20em;
     transition-duration: 0.5s;
 }
 
@@ -19,18 +19,10 @@ main .dashboard_section {
     margin-top: 10%;
 }
 
-main .dashboard-title {
-    color: rgb(255, 255, 255);
-    font-size: 25px;
-    font-family: Montserrat;
-    animation-duration: 4s;
-}
-
 main .main__image {
     width: 25%;
     height: 25%;
     border-radius: 50%;
-    border: solid rgb(0, 174, 255);
     margin-top: -30%;
     margin-left: 10%;
     margin-bottom: 5%;
@@ -80,38 +72,36 @@ main .user__statistics {
 
 main .aboutme-session .aboutme-title {
     font-size: 20px;
-    margin-top: -1%;
+    margin-top: 15%;
 }
 
 main .main__buttons {
-    margin-top: 2%;
+    margin-top: -16%;
+    margin-left: 39%;
+    padding: .75rem 1rem;
 }
 
 main .main__buttons .action__btn .btn {
-    color: #fff;
-    background-color: #047cd6;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
     font-family: Montserrat;
     font-size: 20px;
+    color: #fff;
+    min-width: 36px;
+    margin-left: 1.5%;
+    padding: .5rem 1rem;
+    border-radius: 50px;
     cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    margin: 20px 5px 10px 5px;
-    animation: float 6s ease-in-out infinite;
-    transition-duration: 0.5s;
+    text-decoration: none;
+    background: #7289da;
+    transition: background-color .2s
 }
 
-main .main__buttons .action__btn .danger_btn {
-    color: #fff;
-    background-color: rgb(224, 72, 72);
-    font-family: Montserrat;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    animation: float 6s ease-in-out infinite;
-    transition-duration: 0.5s;
+main .main__buttons .action__btn .btn.danger {
+    background: #ff4949;
 }
 
 @media only screen and (max-width: 700px) {
@@ -193,31 +183,5 @@ main .main__buttons .action__btn .danger_btn {
         margin-top: -2%;
     }
     
-    main .main__buttons .action__btn .btn {
-        color: #fff;
-        background-color: #047cd6;
-        font-family: Montserrat;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 10px 12px 10px 12px;
-        border-radius: 5px;
-        border: none;
-        margin: 20px 5px 10px 5px;
-        animation: float 6s ease-in-out infinite;
-        transition-duration: 0.5s;
-    }
-    
-    main .main__buttons .action__btn .danger_btn {
-        color: #fff;
-        background-color: rgb(224, 72, 72);
-        font-family: Montserrat;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 10px 12px 10px 12px;
-        border-radius: 5px;
-        border: none;
-        animation: float 6s ease-in-out infinite;
-        transition-duration: 0.5s;
-    }
 }
 
