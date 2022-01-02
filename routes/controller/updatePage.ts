@@ -33,6 +33,7 @@ router.get("/dashboard", async (req, res) => {
         var aboutMe: String = await userData.aboutme;
         var premium: String = await userData.premium;
         const userBanned: Boolean = await userData.isBanned;
+        if (!aboutMe) aboutMe = "Você não possui um sobre mim definido!";
 
         if (aboutMe.length > 60) {
             const aboutme = aboutMe.match(/.{1,60}/g);
@@ -49,7 +50,6 @@ router.get("/dashboard", async (req, res) => {
             res.status(401).render("../public/pages/logged/banned.ejs");
         }
 
-        if (!aboutMe) aboutMe = "Você não possui um sobre mim definido!";
         res.status(200).render("../public/pages/logged/dashboard.ejs", {
             user: req.session.user_info,
             db: userData,
