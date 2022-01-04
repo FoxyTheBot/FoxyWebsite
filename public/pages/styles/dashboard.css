@@ -104,6 +104,37 @@ main .main__buttons .action__btn .btn.danger {
     background: #ff4949;
 }
 
+@media only screen and (min-width: 717px) {
+    main {
+        padding-left: 3%;
+        padding-right: 30%;
+        margin-top: 25%;
+        transition-duration: 0.5s;
+    }
+
+    main .dashboard_section {
+        margin-top: 10%;
+    }
+
+    main .main__image {
+        width: 25%;
+        height: 25%;
+    }
+
+    main .username {
+        font-size: 35px;
+        margin-left: 5%;
+    }
+
+    main .main__buttons {
+        padding: .45rem 1em;
+    }
+
+    main .main__buttons .action__btn .btn.danger {
+        margin-top: 5%;
+    }
+}
+
 @media only screen and (min-width: 1714px) {
     main {
         padding-left: 3%;
@@ -164,6 +195,7 @@ main .main__buttons .action__btn .btn.danger {
         margin-top: -24%;
         margin-left: 35%;
     }
+
     main .aboutme-session .aboutme-title {
         font-size: 35px
     }
