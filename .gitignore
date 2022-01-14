@@ -5,6 +5,9 @@ package-lock.json
 ## Visual Studio Code
 .vscode
 
+## Assets
+api/content/*
+
 ## Build
 build
 

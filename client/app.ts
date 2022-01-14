@@ -17,6 +17,7 @@ export class App {
 
         app.use('/', require("../routes/controller/updatePage"));
         app.use('/', require("../routes/controller/redirectPage"));
+        app.use('/', require("../routes/controller/apiControl"));
         app.use('/', require("../routes/auth/oauthDiscord"));
 
 
