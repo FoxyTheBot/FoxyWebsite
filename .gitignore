@@ -6,7 +6,7 @@ package-lock.json
 .vscode
 
 ## Assets
-api/content/*
+api/content/backgrounds
 
 ## Build
 build
