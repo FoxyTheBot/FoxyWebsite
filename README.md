@@ -22,8 +22,6 @@ MONGO_URI=<seu-uri-do-mongodb>
 
 ## Executando o servidor
 
-<p>Para executar você irá precisar do Node.js (Recomendado Node.Js 16) e do TSC (TypeScript Compiler)</p>
-
 <p>Instale o tsc no seu computador</p>
 
 ```bash
@@ -43,14 +41,11 @@ const client = new App(8081);
 client.start();
 ```
 
-<p>Execute esse comando para compilar e mover arquivos Non-TS para a pasta build</p>
-
-```
-$ npm run build
-```
-
 <p> Execute o servidor:</p>
 
 ```bash
 $ npm run start
 ```
+
+⚠ | **Lembrando que o website usa ts-node por padrão, caso você queira compilar por si só lembre-se de configurar o tsconfig.json, package.json e lembre-se de mover os arquivos Non-TS para a pasta onde está os arquivos compilados**
+
