@@ -23,6 +23,14 @@ router.get("/privacy", (req, res) => {
     }
 });
 
+router.get("/radio", (req, res) => {
+    if (!req.session.bearer_token) {
+        res.status(200).render("../public/pages/logged-off/radio.ejs");
+    } else {
+        res.status(200).render("../public/pages/logged/radio.ejs");
+    }
+});
+
 router.get("/dashboard", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
