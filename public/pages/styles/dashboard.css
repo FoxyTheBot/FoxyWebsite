@@ -128,6 +128,7 @@ main .main__buttons .action__btn .btn.danger {
 
     main .main__buttons {
         padding: .45rem 1em;
+        margin-top: -20%;
     }
 
     main .main__buttons .action__btn .btn.danger {

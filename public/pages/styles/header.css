@@ -9,7 +9,7 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 2px 10%;
+  padding: 7px 10%;
   background-color: #2d80f7;
   transition-duration: 0.5s;
 }
@@ -20,7 +20,7 @@ header {
 
 .logo img {
   border-radius: 50%;
-  width: 10%;
+  width: 11%;
   min-width: 50px;
 }
 
@@ -54,7 +54,7 @@ header {
 }
 
 .cta {
-  margin-left: 20px;
+  margin-left: 10px;
   padding: 9px 25px;
   background-color: #fd4d18;
   border-radius: 3px;
@@ -77,8 +77,7 @@ header {
   color: #fff;
   font-family: Montserrat;
   text-decoration: none;
-  width: 20px;
-  height: 20px;
+  max-width: 100%;
   top: 3px;
 }
 

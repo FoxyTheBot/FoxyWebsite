@@ -43,7 +43,6 @@ main a button {
     border-radius: 5px;
     border: none;
     margin: 20px 5px 10px 5px;
-    animation: float 15s ease-in-out infinite;
     transition-duration: 0.5s;
 }
 
@@ -110,11 +109,11 @@ main a button:hover {
     border-top: solid 1px #fff;
     margin-top: 15%;
     padding: 30px;
-    background: linear-gradient(269deg, #7289da, #5865F2);
+    background: linear-gradient(269deg, #7289da, #5865F2, #f89514);
     background-size: 400% 400%;
-    -webkit-animation: gradient-button 5s ease infinite;
-    -moz-animation: gradient-button 5s ease infinite;
-    animation: gradient-button 5s ease infinite;
+    -webkit-animation: gradient-button 10s ease infinite;
+    -moz-animation: gradient-button 10s ease infinite;
+    animation: gradient-button 10s ease infinite;
     opacity: inherit;
 }
 
@@ -185,7 +184,6 @@ main a button:hover {
         border-radius: 5px;
         border: none;
         margin: 20px 5px 10px 5px;
-        animation: float 15s ease-in-out infinite;
         transition-duration: 0.5s;
     }
 }
@@ -212,18 +210,6 @@ main a button:hover {
 .features .card-row .card p:hover {
     color: #fff;
     transition-duration: 0.5s;
-}
-
-@keyframes float {
-    0% {
-        transform: rotate(5deg);
-    }
-    50% {
-        transform: rotate(-5deg);
-    }
-    100% {
-        transform: rotate(5deg);
-    }
 }
 
 @media only screen and (max-width: 800px) {

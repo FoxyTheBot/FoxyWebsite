@@ -30,7 +30,6 @@ router.get("/radio", (req, res) => {
         res.status(200).render("../public/pages/logged/radio.ejs");
     }
 });
-
 router.get("/dashboard", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
