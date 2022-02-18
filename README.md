@@ -1,7 +1,6 @@
 # Foxy Website
 
 ## ⚠ | Documentation is in Portuguese
-<br>
 
 ## Clonando o repositório do Website
 <p>Para isso você irá precisar do <a href="https://git-scm.com/">git</a></p>
