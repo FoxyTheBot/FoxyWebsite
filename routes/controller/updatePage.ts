@@ -2,6 +2,7 @@ import * as express from 'express';
 const router = express.Router();
 const config = require('../../config.json');
 const user = require('../../database/mongoConnect');
+const key = require('../../database/keyModel');
 
 router.use(require("express-session")(config.session));
 
@@ -12,6 +13,35 @@ router.get("/", (req, res) => {
         res.status(200).render("../public/pages/logged/index.ejs", {
             user: req.session.user_info,
         });
+    }
+});
+
+router.get("/premium", (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect("/login");
+    } else {
+        res.status(200).render("../public/pages/logged/premium.ejs", {
+            user: req.session.user_info,
+        });
+    }
+});
+
+router.post("/activate", async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect("/login");
+    } else {
+        const userData = await user.findOne({ _id: req.session.user_info.id });
+        const keyData = await key.findOne({ key: req.body.key });
+
+        if (!keyData) return res.send("<script>alert('Invalid key');window.location.href='/premium';</script>");
+        if (keyData.activated) return res.send("<script>alert('Key already activated');window.location.href='/dashboard';</script>");
+        if (keyData._id !== userData._id) return res.send("<script>alert('This key is not yours');</script>");
+        if (userData.premium) return res.send("<script>alert('You already have premium');</script>");
+
+        userData.premium = true;
+        userData.premiumDate = new Date();
+        userData.save();
+        return res.send("<script>alert('Premium activated');window.location.href='/dashboard';</script>");
     }
 });
 
