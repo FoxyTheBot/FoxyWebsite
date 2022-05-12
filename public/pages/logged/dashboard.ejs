@@ -32,7 +32,9 @@
             <a href="/discord">Suporte</a>
             <a href="/privacy">Termos de uso</a>
             <a href="/logout">Sair</a>
-            <a href="/dashboard"><%= user.username %></a>
+            <a href="/dashboard">
+                <%= user.username %>
+            </a>
         </div>
     </div>
     <main>
@@ -59,6 +61,7 @@
             <div class="main__buttons">
                 <a class="action__btn" href="/daily"><button class="btn">Daily</button></a>
                 <a class="action__btn" href="/aboutme"><button class="btn">Sobre mim</button></a>
+                <a class="action__btn" href="/premium"><button class="btn">Premium</button></a>
                 <a class="action__btn" href="/confirm"><button class="btn danger">Deletar Conta</button></a>
             </div>
         </div>
@@ -70,4 +73,5 @@
     </main>
 </body>
 <script src="../js/HeaderMobile.js"></script>
+
 </html>
