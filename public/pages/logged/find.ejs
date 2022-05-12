@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="icon" href="../assets/images/foxycake.png">
+    <title>Foxy | Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <a class="logo" href="/"><img src="../assets/images/Foxy.png" alt="logo"></a>
+        <nav>
+            <ul class="nav__links">
+                <li> <a href="/github">GitHub</a></li>
+                <li><a href="/privacy">Termos</a></li>
+                <li><a href="/discord">Suporte</a></li>
+                <li><a href="/team">Equipe</a></li>
+                <li><a href="/radio">Rádio</a></li>
+                <li><a href="/logout">Sair</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="/">Home</a>
+        <p class="menu cta">Menu</p>
+    </header>
+    <div id="mobile__menu" class="overlay">
+        <a class="close">&times;</a>
+        <div class="overlay__content">
+            <a href="/team">Equipe</a>
+            <a href="/github">GitHub</a>
+            <a href="/discord">Suporte</a>
+            <a href="/privacy">Termos de uso</a>
+            <a href="/logout">Sair</a>
+            <a href="/dashboard">
+                <%= user.username %>
+            </a>
+        </div>
+    </div>
+    <main>
+        <img class="main__image"
+            src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png?size=1024">
+
+        <div class="user__statistics">
+            <h1 class="username">
+                <%= user.username %>#<%= user.discriminator %>
+            </h1>
+
+            <div class="user-status">
+                <h3 class="bal">FoxCoins: <strong id="value">
+                        <%= db.balance %>
+                    </strong></h3>
+                <h3 class="rep">Reputações:<strong id="value">
+                        <%= db.repCount %>
+                    </strong></h3>
+                <<h3 class="rep">Premium<strong id="value">
+                        <%= db.premium %>
+                            <br>
+            </div>
+        </div>
+        <div class="dashboard_section">
+            <div class="main__buttons">
+                <a class="action__btn" href="/dev/balance"><button class="btn">Editar FoxCoins</button></a>
+                <a class="action__btn" href="/dev/premium"><button class="btn">Ativar/Desativar Premium</button></a>
+                <a class="action__btn" href="/dev/ban"><button class="btn danger">Banir Usuário</button></a>
+            </div>
+        </div>
+        <div class="aboutme-session">
+            <h3 class="aboutme-title">Sobre mim: <br><br>
+                <%= db.aboutme %>
+            </h3>
+        </div>
+    </main>
+</body>
+<script src="../js/HeaderMobile.js"></script>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Foxy | Sobre Mim</title>
+    <link rel="icon" href="../assets/images/foxycake.png">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/header.css">
+</head>
+
+<body>
+    <header>
+        <a class="logo" href="/"><img src="../assets/images/Foxy.png" alt="logo"></a>
+        <nav>
+            <ul class="nav__links">
+                <li> <a href="/github">GitHub</a></li>
+                <li><a href="/privacy">Termos</a></li>
+                <li><a href="/discord">Suporte</a></li>
+                <li><a href="/team">Equipe</a></li>
+                <li><a href="/radio">Rádio</a></li>
+                <li><a href="/logout">Sair</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="/">Home</a>
+        <p class="menu cta">Menu</p>
+    </header>
+    <div id="mobile__menu" class="overlay">
+        <a class="close">&times;</a>
+        <div class="overlay__content">
+            <a href="/team">Equipe</a>
+            <a href="/github">GitHub</a>
+            <a href="/discord">Suporte</a>
+            <a href="/privacy">Termos de uso</a>
+            <a href="/logout">Sair</a>
+            <a href="/dashboard">
+                <%= user.username %>
+            </a>
+        </div>
+    </div>
+    <main>
+        <h1>Olá, <%= user.username%>
+        </h1>
+        <h3>Coloque a ID do usuário</h3>
+        <form action="/find" method="post">
+            <input type="number" name="id" placeholder="User ID" required maxlength="18">
+            <button type="submit">Salvar</button>
+        </form>
+        <br>
+    </main>
+</body>
+
+</html>

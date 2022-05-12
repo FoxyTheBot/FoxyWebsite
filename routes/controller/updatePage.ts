@@ -1,6 +1,7 @@
 import * as express from 'express';
 const router = express.Router();
 const config = require('../../config.json');
+const fetch = require("node-fetch-commonjs");
 const user = require('../../database/mongoConnect');
 
 router.use(require("express-session")(config.session));
@@ -30,12 +31,13 @@ router.get("/radio", (req, res) => {
         res.status(200).render("../public/pages/logged/radio.ejs");
     }
 });
+
 router.get("/dashboard", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
         const userId: String = req.session.user_info.id;
-        
+
         const userData = await user.findOne({ _id: userId });
         var aboutMe: String = await userData.aboutme;
         var premium: String = await userData.premium;
@@ -135,7 +137,7 @@ router.get('/confirm', async (req, res) => {
 });
 
 router.get("/aboutme", async (req, res) => {
-    if(!req.session.bearer_token) {
+    if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
         const userId = req.session.user_info.id;
@@ -148,8 +150,41 @@ router.get("/aboutme", async (req, res) => {
     }
 });
 
+router.get('/dev', (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect('/login');
+    } else {
+        if (req.session.user_info.id === config.oauth.ownerId) {
+            res.status(200).render("../public/pages/logged/dev.ejs", {
+                user: req.session.user_info
+            });
+        }
+    }
+});
+
+router.post("/find", async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect('/login');
+    } else {
+        const discordInfo = await fetch(`https://discord.com/api/v9/users/${req.body.id}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bot ${process.env.BOT_TOKEN}`
+            }
+        });
+
+        const discordData = await discordInfo.json();
+        const userData = await user.findOne({ _id: req.body.id });
+        if (!userData) return res.status(404).send("Não encontrado no banco de dados e/ou na API do Discord.");
+        res.status(200).render("../public/pages/logged/find.ejs", {
+            user: discordData,
+            db: userData
+        });
+    }
+});
+
 router.post("/submit", async (req, res) => {
-    if(!req.session.bearer_token) {
+    if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
         const userData = await user.findOne({ _id: req.session.user_info.id });
