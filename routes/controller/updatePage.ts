@@ -172,7 +172,7 @@ router.get("/aboutme", async (req, res) => {
         const userId = req.session.user_info.id;
         const userData = await user.findOne({ _id: userId });
 
-        res.status(200).render("../public/pages/logged/aboutme.ejs", {
+        res.status(200).render("../public/pages/logged/aboutMe.ejs", {
             user: req.session.user_info,
             db: userData
         })
