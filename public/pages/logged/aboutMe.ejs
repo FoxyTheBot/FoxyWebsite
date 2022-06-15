@@ -17,7 +17,6 @@
                 <li><a href="/privacy">Termos</a></li>
                 <li><a href="/discord">Suporte</a></li>
                 <li><a href="/team">Equipe</a></li>
-                <li><a href="/radio">Rádio</a></li>
                 <li><a href="/logout">Sair</a></li>
             </ul>
         </nav>
@@ -32,7 +31,9 @@
             <a href="/discord">Suporte</a>
             <a href="/privacy">Termos de uso</a>
             <a href="/logout">Sair</a>
-            <a href="/dashboard"><%= user.username %></a>
+            <a href="/dashboard">
+                <%= user.username %>
+            </a>
         </div>
     </div>
     <main>
@@ -46,7 +47,8 @@
         <br>
         <div class="main__buttons">
             <a href="/dashboard" id="default"><button class="default-button">Voltar</button></a>
-            </div>
+        </div>
     </main>
 </body>
+
 </html>

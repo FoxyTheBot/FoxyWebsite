@@ -40,6 +40,7 @@ router.post("/activate", async (req, res) => {
 
         userData.premium = true;
         userData.premiumDate = new Date();
+        userData.premiumType = "INFINITY_PRO";
         userData.save();
         return res.send("<script>alert('Premium activated');window.location.href='/dashboard';</script>");
     }
@@ -105,10 +106,11 @@ router.get('/daily', async (req, res) => {
         var userData = await user.findOne({ _id: userId });
         const timeout = 43200000;
 
-        var amount = Math.floor(Math.random() * 3200);
+        let amount = Math.floor(Math.random() * 8000);
+        amount = Math.round(amount / 10) * 10;
 
         if (userData.premium) {
-            amount = amount + 4628;
+            amount = amount * 2;
         }
 
         const daily = await userData.lastDaily;
