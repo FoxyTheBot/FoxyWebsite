@@ -6,7 +6,7 @@ package-lock.json
 .vscode
 
 ## Assets
-api/content/backgrounds
+assets/content/backgrounds
 
 ## Build
 build
@@ -16,4 +16,3 @@ build
 
 ## Secret files
 .env
-bot-assets/assets
