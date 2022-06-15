@@ -16,4 +16,4 @@ build
 
 ## Secret files
 .env
-bot-assets/content/backgrounds
+bot-assets/assets
