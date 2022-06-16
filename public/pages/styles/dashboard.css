@@ -1,3 +1,5 @@
+@import"https://fonts.googleapis.com/css?family=Roboto:500";
+
 * {
     margin: 0;
     padding: 0;
@@ -5,14 +7,13 @@
 }
 
 body {
-    background-image: url("/assets/images/DiscordBackground.png");
+    background-image: url("../assets/images/DiscordBackground.png");
 }
 
 main {
     padding-left: 3%;
     padding-right: 30%;
     margin-top: 20em;
-    transition-duration: 0.5s;
 }
 
 main .dashboard_section {
@@ -24,6 +25,12 @@ main .main__image {
     height: 25%;
     border-radius: 50%;
     margin-top: -30%;
+    margin-left: 10%;
+    margin-bottom: 5%;
+}
+
+main .user__statistics {
+    margin-top: 5%;
     margin-left: 10%;
     margin-bottom: 5%;
 }
@@ -51,7 +58,11 @@ main .user-status {
 }
 
 main .user-status .rep {
-    margin-top: 15%;
+    margin-top: 5%;
+}
+
+main .user-status .premium {
+    margin-top: 5%;
 }
 
 main .bal #value {
@@ -62,6 +73,15 @@ main .bal #value {
 main .rep #value {
     color: #486be0;
     margin-right: 100%;
+}
+
+main .premium #value {
+    color: #486be0;
+    margin-right: 100%;
+}
+
+main .bal {
+    margin-left: 5%;
 }
 
 main .user__statistics {
@@ -75,33 +95,73 @@ main .aboutme-session .aboutme-title {
     margin-top: 15%;
 }
 
+main .premium_session .premium-title {
+    margin-left: 70%;
+}
+
 main .main__buttons {
-    margin-top: -16%;
+    margin-top: -20%;
     margin-left: 39%;
-    padding: .75rem 1rem;
 }
 
 main .main__buttons .action__btn .btn {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    align-items: center;
+    justify-content: center;
     border: none;
     outline: none;
-    font-family: Montserrat;
-    font-size: 20px;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
     color: #fff;
     min-width: 36px;
     margin-left: 1.5%;
     padding: .5rem 1rem;
-    border-radius: 50px;
+    box-sizing: border-box;
+    border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
     background: #7289da;
-    transition: background-color .2s
+    transition: background-color .15s ease, color .15s ease;
 }
 
+
 main .main__buttons .action__btn .btn.danger {
-    background: #ff4949;
+    background: #ed4245;
+}
+
+main .main__buttons .action__btn .btn.danger:hover {
+    background: #d53b3e;
+}
+
+main .main__buttons .action__btn .btn.primary {
+    background: #5865f2;
+}
+
+main .main__buttons .action__btn .btn.primary:disabled {
+    background: #4752c4;
+    opacity: .5;
+    cursor: not-allowed
+}
+
+main .main__buttons .action__btn .btn.primary:hover {
+    background: #4752c4;
+}
+
+main .main__buttons .action__btn .btn.success {
+    background: #3ba55c;
+}
+
+main .main__buttons .action__btn .btn.success:hover {
+    background: #359553;
+}
+
+main .main__buttons .action__btn .btn.success:disabled {
+    opacity: .5;
+    background-color: #359553;
+    cursor: not-allowed;
 }
 
 @media only screen and (min-width: 717px) {
@@ -113,7 +173,7 @@ main .main__buttons .action__btn .btn.danger {
     }
 
     main .dashboard_section {
-        margin-top: 10%;
+        margin-top: -10%;
     }
 
     main .main__image {

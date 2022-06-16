@@ -53,18 +53,32 @@
                 <h3 class="rep">Reputações:<strong id="value">
                         <%= db.repCount %>
                     </strong></h3>
-                <br>
+
+                <% if (type) {%>
+                    <h3 class="premium">Assinatura: <strong id="value">
+                            <%= type %>
+                        </strong></h3>
+                    <% } %>
+                        <br>
             </div>
         </div>
         <div class="dashboard_section">
-            <br>
-            <br>
-            <br>
             <div class="main__buttons">
-                <a class="action__btn" href="/daily"><button class="btn">Daily</button></a>
-                <a class="action__btn" href="/aboutme"><button class="btn">Sobre mim</button></a>
-                <a class="action__btn" href="/premium"><button class="btn">Premium</button></a>
-                <a class="action__btn" href="/confirm"><button class="btn danger">Deletar Conta</button></a>
+                <% if (allowed===true) { %>
+                    <a class="action__btn" href="/daily"><button class="btn primary">Daily</button></a>
+                    <% } else { %>
+                        <a class="action__btn" href="/daily"><button class="btn primary" disabled>Daily</button></a>
+                        <% } %>
+                            <a class="action__btn" href="/aboutme"><button class="btn primary">Sobre mim</button></a>
+                            <% if (!db.premium) { %>
+                                <a class="action__btn" href="/premium"><button class="btn success">Premium</button></a>
+                                <% } else {%>
+                                    <a class="action__btn"><button class="btn success" disabled>Premium</button></a>
+                                    <% } %>
+                                        <br>
+                                        <a class="action__btn" href="/confirm"><button class="btn danger">Deletar
+                                                Conta</button></a>
+
             </div>
         </div>
         <div class="aboutme-session">

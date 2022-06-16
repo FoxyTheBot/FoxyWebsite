@@ -17,7 +17,9 @@ const userSchema = new mongoose.Schema({
     repCount: Number,
     lastRep: Date,
     background: String,
-    backgrounds: Array
+    backgrounds: Array,
+    language: String,
+    premiumType: String,
 }, { versionKey: false, id: false });
 
 module.exports = mongoose.model('user', userSchema);

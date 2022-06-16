@@ -16,9 +16,12 @@ router.get("/", (req, res) => {
     }
 });
 
-router.get("/premium", (req, res) => {
+router.get("/premium", async (req, res) => {
+    const userData = await user.findOne({ _id: req.session.user_info.id });
     if (!req.session.bearer_token) {
         res.redirect("/login");
+    } else if (await userData.premium) {
+        res.redirect("/dashboard");
     } else {
         res.status(200).render("../public/pages/logged/premium.ejs", {
             user: req.session.user_info,
@@ -71,6 +74,8 @@ router.get("/dashboard", async (req, res) => {
         const userData = await user.findOne({ _id: userId });
         var aboutMe: String = await userData.aboutme;
         var premium: String = await userData.premium;
+        const timeout = 43200000;
+        const daily = await userData.lastDaily;
         const userBanned: Boolean = await userData.isBanned;
         if (!aboutMe) aboutMe = "Você não possui um sobre mim definido!";
 
@@ -85,16 +90,50 @@ router.get("/dashboard", async (req, res) => {
             premium = null;
         }
 
+        if (await userData.premiumType) {
+            var type;
+            switch (await userData.premiumType) {
+                case "INFINITY_PRO": {
+                    type = "Foxy Infinity Pro";
+                    break;
+                }
+                case "INFINITY_ESSENTIALS": {
+                    type = "Foxy Infinity Essentials";
+                    break;
+                }
+                case "INFINITY_TURBO": {
+                    type = "Foxy Infinity Turbo";
+                    break;
+                }
+                case "VETERAN": {
+                    type = "Foxy Veteran";
+                    break;
+                }
+            }
+        }
         if (userBanned) {
             res.status(401).render("../public/pages/logged/banned.ejs");
         }
 
-        res.status(200).render("../public/pages/logged/dashboard.ejs", {
-            user: req.session.user_info,
-            db: userData,
-            aboutme: aboutMe,
-            premium: premium
-        });
+        if (daily !== null && timeout - (Date.now() - daily) > 0) {
+            return res.status(200).render("../public/pages/logged/dashboard.ejs", {
+                allowed: false,
+                user: req.session.user_info,
+                db: userData,
+                aboutme: aboutMe,
+                premium: premium,
+                type: type,
+            });
+        } else {
+            res.status(200).render("../public/pages/logged/dashboard.ejs", {
+                allowed: true,
+                user: req.session.user_info,
+                db: userData,
+                aboutme: aboutMe,
+                premium: premium,
+                type: type
+            });
+        }
     }
 });
 
@@ -104,7 +143,6 @@ router.get('/daily', async (req, res) => {
     } else {
         const userId = req.session.user_info.id;
         var userData = await user.findOne({ _id: userId });
-        const timeout = 43200000;
 
         let amount = Math.floor(Math.random() * 8000);
         amount = Math.round(amount / 10) * 10;
@@ -112,20 +150,16 @@ router.get('/daily', async (req, res) => {
         if (userData.premium) {
             amount = amount * 2;
         }
-
+        const timeout = 43200000;
         const daily = await userData.lastDaily;
+
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
-
-            return res.status(200).render("../public/pages/logged/dailyTime.ejs", {
-                user: req.session.user_info,
-                db: req.session.db_info,
-            });
-
+            return res.redirect("/dashboard");
         } else {
 
-            userData.balance += amount;
-            userData.lastDaily = Date.now();
-            userData.save().catch(err => console.log(err));
+            // userData.balance += amount;
+            // userData.lastDaily = Date.now();
+            // userData.save().catch(err => console.log(err));
 
             req.session.coins = amount;
             req.session.dbCoins = userData.balance;
