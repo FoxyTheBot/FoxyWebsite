@@ -90,8 +90,9 @@ router.get("/dashboard", async (req, res) => {
             premium = null;
         }
 
+        var type;
+
         if (await userData.premiumType) {
-            var type;
             switch (await userData.premiumType) {
                 case "INFINITY_PRO": {
                     type = "Foxy Infinity Pro";
