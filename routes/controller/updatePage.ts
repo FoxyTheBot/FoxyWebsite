@@ -151,53 +151,53 @@ router.get('/daily', async (req, res) => {
         const timeout = 43200000;
         const daily = await userData.lastDaily;
 
-        // if (daily !== null && timeout - (Date.now() - daily) > 0) {
-        //     return res.redirect("/dashboard");
-        // } else {
+        if (daily !== null && timeout - (Date.now() - daily) > 0) {
+            return res.redirect("/dashboard");
+        } else {
 
-        var h1 = "Você resgatou o seu prêmio diário e...";
-        var h3;
-        console.log(await userData.premiumType);
-        if (await userData.premiumType) {
-            switch (await userData.premiumType) {
-                case "INFINITY_PRO": {
-                    h1 = `Você resgatou o seu prêmio diário e como você é assinante do Infinity Pro, seu daily foi multiplicado por 1.5x`;
-                    amount = amount * 1.5;
-                    break;
-                }
-                case "INFINITY_ESSENTIALS": {
-                    h1 = `Você resgatou o seu prêmio diário e como você é assinante do Infinity Essentials, seu daily foi multiplicado por 1.25x`;
-                    amount = amount * 1.25;
-                    break;
-                }
-                case "INFINITY_TURBO": {
-                    h1 = `Você resgatou o seu prêmio diário e como você é assinante do Infinity Turbo, seu daily foi multiplicado por 2x`;
-                    amount = amount * 2;
-                    break;
-                }
-                case "VETERAN": {
-                    h1 = `Você é um veterano do Foxy Premium, e recebeu 2x de daily é isso :3`;
-                    h3 = "Digamos que você é uma raridade, o Foxy Veteran é um plano para pessoas que pegaram o premium antes do surgimento dos planos Foxy Infinity... E poucas pessoas puderam isso"
-                    amount = amount * 2;
-                    break;
+            var h1 = "Você resgatou o seu prêmio diário e...";
+            var h3;
+            console.log(await userData.premiumType);
+            if (await userData.premiumType) {
+                switch (await userData.premiumType) {
+                    case "INFINITY_PRO": {
+                        h1 = `Você resgatou o seu prêmio diário e como você é assinante do Infinity Pro, seu daily foi multiplicado por 1.5x`;
+                        amount = amount * 1.5;
+                        break;
+                    }
+                    case "INFINITY_ESSENTIALS": {
+                        h1 = `Você resgatou o seu prêmio diário e como você é assinante do Infinity Essentials, seu daily foi multiplicado por 1.25x`;
+                        amount = amount * 1.25;
+                        break;
+                    }
+                    case "INFINITY_TURBO": {
+                        h1 = `Você resgatou o seu prêmio diário e como você é assinante do Infinity Turbo, seu daily foi multiplicado por 2x`;
+                        amount = amount * 2;
+                        break;
+                    }
+                    case "VETERAN": {
+                        h1 = `Você é um veterano do Foxy Premium, e recebeu 2x de daily é isso :3`;
+                        h3 = "Digamos que você é uma raridade, o Foxy Veteran é um plano para pessoas que pegaram o premium antes do surgimento dos planos Foxy Infinity... E poucas pessoas puderam isso"
+                        amount = amount * 2;
+                        break;
+                    }
                 }
             }
+
+            userData.balance += amount;
+            userData.lastDaily = Date.now();
+            userData.save().catch(err => console.log(err));
+
+            req.session.coins = amount;
+            req.session.dbCoins = userData.balance;
+            res.status(200).render("../public/pages/logged/daily.ejs", {
+                user: req.session.user_info,
+                coins: req.session.coins,
+                h1: h1,
+                h3: h3,
+                dbCoins: req.session.dbCoins
+            });
         }
-
-        // userData.balance += amount;
-        // userData.lastDaily = Date.now();
-        // userData.save().catch(err => console.log(err));
-
-        req.session.coins = amount;
-        req.session.dbCoins = userData.balance;
-        res.status(200).render("../public/pages/logged/daily.ejs", {
-            user: req.session.user_info,
-            coins: req.session.coins,
-            h1: h1,
-            h3: h3,
-            dbCoins: req.session.dbCoins
-        });
-        // }
     }
 });
 
