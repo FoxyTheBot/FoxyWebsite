@@ -53,13 +53,10 @@
                 <h3 class="rep">Reputações:<strong id="value">
                         <%= db.repCount %>
                     </strong></h3>
-
-                <% if (type) {%>
-                    <h3 class="premium">Assinatura: <strong id="value">
-                            <%= type %>
-                        </strong></h3>
-                    <% } %>
-                        <br>
+                <br>
+                <br>
+                <br>
+                <br>
             </div>
         </div>
         <div class="dashboard_section">
@@ -85,6 +82,12 @@
             <h3 class="aboutme-title">Sobre mim: <br><br>
                 <%= aboutme %>
             </h3>
+
+            <% if (type) {%>
+                <h3 class="premium">Assinatura: <strong id="value">
+                        <%= type %>
+                    </strong></h3>
+                <% } %>
         </div>
     </main>
 </body>

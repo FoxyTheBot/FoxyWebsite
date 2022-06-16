@@ -40,7 +40,9 @@
     </div>
     <main>
         <img class="main__image" src="../assets/images/foxyoculos.png" alt="dashboard">
-        <h1>Parabéns! Você coletou seu prêmio diário e ganhou...</h1>
+        <h1>
+            <%= h1 %>
+        </h1>
         <br>
         <h2>
             <strong id="coins">
@@ -49,6 +51,8 @@
         </h2>
         <br>
         <h3>Agora você possui <%= dbCoins %> FoxCoins
+                <br>
+                <%= h3 %>
         </h3>
         <br>
         <div class="main__buttons">
