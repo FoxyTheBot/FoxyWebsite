@@ -13,4 +13,11 @@ router.get('/discord', (req, res) => {
     res.redirect('https://discord.gg/Tj6AMkbXbA');
 });
 
+router.get('/support', (req, res) => {
+    res.redirect('https://discord.gg/Tj6AMkbXbA');
+});
+
+router.get('/donate', (req, res) => {
+    res.redirect('https://ko-fi.com/wing4merbr');
+});
 export = router; 
