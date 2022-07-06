@@ -20,4 +20,8 @@ router.get('/support', (req, res) => {
 router.get('/donate', (req, res) => {
     res.redirect('https://ko-fi.com/wing4merbr');
 });
+
+router.get('/upvote', (req, res) => {
+    res.redirect('https://top.gg/bot/737044809650274325');
+});
 export = router; 

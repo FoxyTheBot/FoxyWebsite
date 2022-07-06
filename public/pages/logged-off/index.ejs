@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/js/autoPlay.js"></script>
     <link rel="icon" href="../assets/images/foxycake.png">
-    <link rel="stylesheet" href="/styles/header.css" type="text/css">
+    <link rel="stylesheet" href="/styles/mainHeader.css" type="text/css">
     <link rel="stylesheet" href="/styles/footer.css" type="text/css">
-    <link rel="stylesheet" href="/styles/main.css" type="text/css">
+    <link rel="stylesheet" href="/styles/mainPage.css" type="text/css">
     <title>Foxy | Home</title>
 
     <meta property="og:type" content="website">
@@ -25,17 +25,61 @@
 
 <body>
     <header>
-        <a class="logo" href="/"><img src="/assets/images/Foxy.png" alt="logo"></a>
-        <nav>
-            <ul class="nav__links">
-                <li> <a href="/github">GitHub</a></li>
-                <li><a href="/privacy">Termos</a></li>
-                <li><a href="/discord">Suporte</a></li>
-                <li><a href="/team">Equipe</a></li>
-            </ul>
+        <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
+            <div class="left-side-entries">
+                <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
+                    line-height: 0px;
+                    width: 40px;
+                    height: 40px;
+
+                    position: absolute;
+                    top: 3px;
+                    border-radius: 100%;"></a></div>
+                <div class="entry"><a href="/support" class="menu" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        Suporte
+                    </a></div>
+                <div class="entry"><a href="/privacy" class="commands" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        Termos
+                    </a></div>
+                <div class="entry"><a href="/donate" class="menu">
+                        Doar
+                    </a></div>
+                <div class="entry"><a href="https://github.com/FoxyTheBot" class="extras" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        GitHub
+                    </a></div>
+                <div class="entry"><a href="/team" class="blog" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        Equipe
+                    </a></div>
+                <div class="entry"><a href="/about" class="about">
+                        Sobre
+                    </a></div>
+            </div>
+            <div class="right-side-entries">
+
+                <div class="entry" id="locale-changer-button" style="cursor: default;">
+                    </span>
+                </div>
+                <div class="entry">
+                    <a href="/dashboard" id="login-button">
+                        <div style="    font-size: 0px;
+                        line-height: 0px;
+                        width: 40px;
+                        visibility: hidden;
+                        height: 0px;
+                        display: inline-block;"></div><span style="padding-left: 4px;">
+                            Entrar
+                        </span>
+                    </a>
+                </div>
+                <div class=" entry" id="hamburger-menu-button" style="display: block;">
+                </div>
+            </div>
         </nav>
-        <a class="cta" href="/login">Login</a>
-        <p class="menu cta">Menu</p>
+        <button id="menu" class="mobile">Menu</button>
     </header>
     <div id="mobile__menu" class="overlay">
         <a class="close">&times;</a>
@@ -45,7 +89,7 @@
             <a href="/discord">Suporte</a>
             <a href="/privacy">Termos de uso</a>
             <a href="/radio">Rádio</a>
-            <a href="/login">Login</a>
+            <a href="/login">Entrar</a>
         </div>
     </div>
     <main>
@@ -60,44 +104,11 @@
 
     </main>
 
-    <div class="features">
-        <br>
-        <h1 class="title">Funcionalidades</h1>
-        <div class="card-row">
-
-            <div class="card">
-                <h3 class="feature__title">Perfil Customizável</h3>
-                <br>
-                <p>A Foxy possui um sistema de personalização de perfil onde você pode comprar backgrounds, os
-                    backgrounds são salvos e você pode alterar quando quiser!</p>
-            </div>
-
-            <div class="card">
-                <h3 class="feature__title">Casamento</h3>
-                <br>
-                <p>Foxy possui um sistema de casamento para você casar com o amor da sua vida, sem custo algum!</p>
-            </div>
-
-            <div class="card">
-                <h3 class="feature__title">Reputações</h3>
-                <br>
-                <p>Com o sistema de reputações da Foxy você pode dar reputações para alguem, trocar com seu amigo ou
-                    vender reps</p>
-            </div>
-
-            <div class="card">
-                <h3 class="feature__title">Premium</h3>
-                <br>
-                <p>Agora você pode comprar premium na Foxy, ganhar + FoxCoins e outros benefícios</p>
-            </div>
-
-            <div class="card">
-                <h3 class="feature__title">Modificação de Imagem</h3>
-                <br>
-                <p>Eu posso entreter seu servidor com meus comandos de modificação de imagem</p>
-            </div>
+    <footer>
+        <div class="terms">
+            <a href="/privacy">Política de privacidade</a>
         </div>
-    </div>
+    </footer>
     <script src="../js/HeaderMobile.js"></script>
 </body>
 

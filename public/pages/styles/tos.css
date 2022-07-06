@@ -6,13 +6,13 @@
 
 body {
     background-image: url("/assets/images/DiscordBackground.png");
+    background-color: #36393f;
 }
 
 main {
-    padding-left: 10%;
-    padding-right: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
     margin-top: 10%;
-    margin-bottom: 15%;
     transition-duration: 0.5s;
 }
 
@@ -25,6 +25,62 @@ a {
     border-radius: 2%;
     animation: float 6s ease-in-out infinite;
     transition-duration: 0.5s;
+}
+
+.features {
+    padding: 30px;
+    opacity: inherit;
+}
+
+.features .title {
+    font-family: Montserrat;
+    font-size: 150%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.features .feature__title {
+    font-family: Montserrat;
+    font-size: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.features .description {
+    font-family: Montserrat;
+    text-align: center;
+    color: #fff;
+}
+
+.features .card-row {
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+.features .card-row .card {
+    width: 80%;
+    max-width: 250px;
+    padding: 35px 20px 35px 20px;
+    background-color: #221f1f;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.features .card-row .card p {
+    font-family: Montserrat;
+    font-size: 15px;
+    color: #fff;
+    margin-left: auto;
 }
 
 main h1 {
@@ -41,7 +97,7 @@ p {
 main h3 {
     color: #fff;
     font-size: 18px;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 main a {
@@ -49,9 +105,9 @@ main a {
 }
 
 .main2 {
-    padding-left: 10%;
-    padding-right: 15%;
-    margin-top: -5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 5%;
     margin-bottom: 15%;
     transition-duration: 0.5s;
 }
@@ -78,6 +134,7 @@ main a {
         padding-right: 5%;
         transition-duration: 0.5s;
     }
+
     main {
         text-align: center;
         margin-top: 40%;
@@ -88,12 +145,15 @@ main a {
         padding-right: 5%;
         transition-duration: 0.5;
     }
+
     main h1 {
         font-size: 10vw;
     }
+
     main h3 {
         font-size: 4vw;
     }
+
     main a button {
         font-size: 5vw;
     }
@@ -103,9 +163,11 @@ main a {
     0% {
         transform: rotate(1deg);
     }
+
     50% {
         transform: rotate(-1deg);
     }
+
     100% {
         transform: rotate(1deg);
     }

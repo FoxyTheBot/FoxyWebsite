@@ -28,38 +28,55 @@
 
 <body>
     <header>
-        <a class="logo" href="/"><img src="/assets/images/Foxy.png" alt="logo"></a>
-        <nav>
-            <ul class="nav__links">
-                <li> <a href="/github">GitHub</a></li>
-                <li><a href="/privacy">Termos</a></li>
-                <li><a href="/discord">Suporte</a></li>
-                <li><a href="/team">Equipe</a></li>
-            </ul>
+        <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
+            <div class="left-side-entries">
+                <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
+                    line-height: 0px;
+                    width: 40px;
+                    height: 40px;
+
+                    position: absolute;
+                    top: 3px;
+                    border-radius: 100%;"></a></div>
+                <div class="entry"><a href="/support" class="menu" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        Suporte
+                    </a></div>
+                <div class="entry"><a href="/privacy" class="commands" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        Termos
+                    </a></div>
+                <div class="entry"><a href="/donate" class="menu">
+                        Doar
+                    </a></div>
+                <div class="entry"><a href="https://github.com/FoxyTheBot" class="extras" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        GitHub
+                    </a></div>
+                <div class="entry"><a href="/team" class="blog" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        Equipe
+                    </a></div>
+                <div class="entry"><a href="/about" class="about">
+                        Sobre
+                    </a></div>
+                <div class="entry"><a href="/upvote" class="menu">
+                        Votar
+                    </a></div>
+            </div>
+            <div class="right-side-entries">
+
+                <div class="entry" id="locale-changer-button" style="cursor: default;">
+                    </span>
+                </div>
+                <div class="entry"><a href="/dashboard" id="login-button">
+                        Login
+                    </a></div>
+                <div class="entry" id="hamburger-menu-button" style="display: block;">
+                </div>
+            </div>
         </nav>
-        <style>
-            .sla {
-                margin-left: 20px;
-                padding: 9px 25px;
-                border: none;
-                border-radius: 3px;
-                cursor: pointer;
-                transition: all 0.3s ease 0s;
-                color: #fff;
-                font-family: "Montserrat", sans-serif;
-            }
-        </style>
-        <a class="sla" href="/login">Login</a>
-        <p class="menu cta">Menu</p>
     </header>
-    <div id="mobile__menu" class="overlay">
-        <a class="close">&times;</a>
-        <div class="overlay__content">
-            <a href="/team">Equipe</a>
-            <a href="/privacy">Termos de uso</a>
-        </div>
-        </header>
-    </div>
     <main>
         <h1>Ocorreu um erro!</h1>
         <h3>Algo extremamente errado aconteceu, me desculpe pela inconveniência!</h3>

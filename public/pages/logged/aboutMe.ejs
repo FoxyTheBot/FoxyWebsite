@@ -10,18 +10,70 @@
 
 <body>
     <header>
-        <a class="logo" href="/"><img src="../assets/images/Foxy.png" alt="logo"></a>
-        <nav>
-            <ul class="nav__links">
-                <li> <a href="/github">GitHub</a></li>
-                <li><a href="/privacy">Termos</a></li>
-                <li><a href="/discord">Suporte</a></li>
-                <li><a href="/team">Equipe</a></li>
-                <li><a href="/logout">Sair</a></li>
-            </ul>
+        <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
+            <div class="left-side-entries">
+                <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
+                    line-height: 0px;
+                    width: 40px;
+                    height: 40px;
+
+                    position: absolute;
+                    top: 3px;
+                    border-radius: 100%;"></a></div>
+                <div class="entry"><a href="/support" class="menu" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        Suporte
+                    </a></div>
+                <div class="entry"><a href="/privacy" class="menu" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        Termos
+                    </a></div>
+                <div class="entry"><a href="/donate" class="menu">
+                        Doar
+                    </a></div>
+                <div class="entry"><a href="https://github.com/FoxyTheBot" class="extras" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        GitHub
+                    </a></div>
+                <div class="entry"><a href="/team" class="menu" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        Equipe
+                    </a></div>
+                <div class="entry"><a href="/about" class="about">
+                        Sobre
+                    </a></div>
+                <div class="entry"><a href="/upvote" class="menu">
+                        Votar
+                    </a></div>
+            </div>
+            <div class="right-side-entries">
+
+                <div class="entry" id="locale-changer-button" style="cursor: default;">
+                    </span>
+                </div>
+                <div class="entry">
+                    <a href="/dashboard" id="login-button"><img
+                            src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
+                        line-height: 0px;
+                        height: 40px;
+                        width: 40px;
+                        position: absolute;
+                        top: 3px;
+                        border-radius: 100%;">
+                        <div style="    font-size: 0px;
+                        line-height: 0px;
+                        width: 40px;
+                        visibility: hidden;
+                        height: 0px;
+                        display: inline-block;"></div><span style="padding-left: 4px;">
+                            <%= user.username %>#<%=user.discriminator %>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            </div>
         </nav>
-        <a class="cta" href="/">Home</a>
-        <p class="menu cta">Menu</p>
+        <button id="menu" class="mobile">Menu</button>
     </header>
     <div id="mobile__menu" class="overlay">
         <a class="close">&times;</a>
@@ -30,10 +82,8 @@
             <a href="/github">GitHub</a>
             <a href="/discord">Suporte</a>
             <a href="/privacy">Termos de uso</a>
-            <a href="/logout">Sair</a>
-            <a href="/dashboard">
-                <%= user.username %>
-            </a>
+            <a href="/radio">Rádio</a>
+            <a href="/dashboard">Dashboard</a>
         </div>
     </div>
     <main>

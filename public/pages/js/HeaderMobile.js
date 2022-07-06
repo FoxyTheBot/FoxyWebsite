@@ -1,4 +1,4 @@
-const menuOpen = document.querySelector(".menu");
+const menuOpen = document.querySelector(".mobile");
 const menuClose = document.querySelector(".close");
 const overlay = document.querySelector(".overlay");
 

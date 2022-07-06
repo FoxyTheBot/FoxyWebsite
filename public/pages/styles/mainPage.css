@@ -1,0 +1,315 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("../assets/images/DiscordBackground.png"), linear-gradient(269deg, #9744BD, #9744BD);
+}
+
+main {
+    padding-left: 30%;
+    padding-right: 50%;
+    margin-top: 15%;
+    margin-left: -25%;
+    transition-duration: 0.5s;
+    text-align: center;
+}
+
+main .right-content {
+    justify-content: space-between;
+    margin-top: -50%;
+    margin-left: 160%;
+}
+
+main .right-content .foxy-image {
+    position: absolute;
+    bottom: 0;
+    height: 92.5vh;
+    margin-left: -27%;
+}
+
+footer {
+    margin-top: 14%;
+    margin-left: 85%;
+    transition-duration: 0.5s;
+    text-align: center;
+}
+
+/* main .main__image {
+    animation: float 1s ease-in-out infinite;
+} */
+
+footer .terms a {
+    font-size: 17px;
+    font-family: sans-serif;
+    text-decoration: none;
+}
+
+main .title {
+    color: #047cd6;
+    font-size: 50px;
+    margin-bottom: 1%;
+    font-family: Montserrat;
+}
+
+main .title {
+
+    text-align: center;
+
+    background: linear-gradient(to right, #FFF 20%, #7289da 40%, #1d9ae4 60%, #FFF 80%);
+    background-size: 200% auto;
+
+    color: #000;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes shine {
+    to {
+        background-position: 50% top;
+    }
+}
+
+main h3 {
+    color: #fff;
+    font-size: 18px;
+    font-family: sans-serif;
+    margin-left: 5px;
+}
+
+main a {
+    list-style: none;
+}
+
+main a button {
+    animation: float 5s ease-in-out infinite;
+    color: #fff;
+    background-color: #1d9ae4;
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    transition-duration: 0.5s;
+}
+
+.title {
+    font-family: Montserrat;
+    color: rgb(0, 183, 255);
+    margin-top: 20px;
+}
+
+main a .discord__button {
+    color: #fff;
+    background-color: #5865F2;
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    transition-duration: 0.5s;
+}
+
+main input {
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    font-family: Montserrat;
+    font-size: 20px;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    transition-duration: 0.5s;
+}
+
+main form button {
+    color: #fff;
+    background-color: #7289da;
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    transition-duration: 0.5s;
+}
+
+main a .button__image {
+    width: 20px;
+    height: 20px;
+}
+
+main a .discord__button .button__image {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+main a button:hover {
+    background-color: #047cd6;
+    transition-duration: 0.5s;
+}
+
+
+@keyframes cardAnimation {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    50% {
+        transform: translate(0, 15px);
+    }
+
+    100% {
+        transform: translate(0, -0px);
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    main a button {
+        color: #fff;
+        background-color: #1d9ae4;
+        font-family: Montserrat;
+        font-size: 12px;
+        cursor: pointer;
+        padding: 10px 12px 10px 12px;
+        border-radius: 5px;
+        border: none;
+        margin: 20px 5px 10px 5px;
+        transition-duration: 0.5s;
+    }
+}
+
+.features .card-row .card img {
+    width: 100%;
+}
+
+.features .card-row .card h1 {
+    text-align: left;
+    color: rgb(96, 172, 248);
+    cursor: default;
+    margin-bottom: 10px;
+    font-family: Montserrat;
+}
+
+.features .card-row .card p {
+    text-align: left;
+    color: rgb(150, 150, 150);
+    cursor: default;
+    font-family: Montserrat;
+    transition-duration: 0.5s;
+}
+
+.features .card-row .card p:hover {
+    cursor: default;
+    color: #fff;
+    transition-duration: 0.5s;
+}
+
+.features * {
+    cursor: default;
+}
+
+@media only screen and (max-width: 800px) {
+    header {
+        padding-left: 5%;
+        padding-right: 5%;
+        transition-duration: 0.5s;
+    }
+
+    main {
+        text-align: center;
+        margin-top: 40%;
+        margin-bottom: 15%;
+        margin-right: 5%;
+        margin-left: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        transition-duration: 0.5;
+    }
+
+    main h1 {
+        font-size: 10vw;
+        text-align: center;
+    }
+
+    main h3 {
+        font-size: 4vw;
+    }
+
+    main a button {
+        font-size: 5vw;
+    }
+
+    main a .discord__button {
+        font-size: 5vw;
+    }
+
+    .features .card-row .card {
+        text-align: center;
+        margin-left: 5em;
+    }
+}
+
+@-webkit-keyframes gradient-button {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes gradient-button {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes gradient-button {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: rotate(3deg);
+    }
+
+    50% {
+        transform: rotate(-3deg);
+    }
+
+    100% {
+        transform: rotate(3deg);
+    }
+}

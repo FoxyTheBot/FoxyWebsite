@@ -3,94 +3,329 @@
 
 <head>
     <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/dashboard.css">
-    <link rel="icon" href="../assets/images/foxycake.png">
-    <title>Foxy | Dashboard</title>
+    <% if (agent !=='foxy' ) { %>
+        <link rel="icon" href="../assets/images/foxycake.png">
+        <title>Foxy | Dashboard</title>
+        <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
+        <% } else { %>
+            <script>
+                msg = "Foxy is Calling you...";
+                msg = "         " + msg; position = 0;
+                function scrolltitle() {
+                    document.title = msg.substring(position, msg.length) + msg.substring(0, position); position++;
+                    if (position > msg.length) position = 0
+                    window.setTimeout("scrolltitle()", 170);
+                }
+                scrolltitle();
+            </script>
+            <script src="../js/playAudio.js"></script>
+            <audio id="audio" src="../assets/escape.mp3" autoplay loop></audio>
+            <link rel="icon" href="https://static.cdnlogo.com/logos/m/70/movistar.svg">
+            <style>
+                @import"https://fonts.googleapis.com/css?family=Roboto:500";
+
+                body {
+                    background-color: #36393f;
+                    font-family: 'Roboto', sans-serif;
+                }
+
+                .incoming-call {
+                    text-align: center;
+                    margin-top: 200px;
+                    font-family: 'Roboto', sans-serif;
+                    background-color: #2f3136;
+                    border-radius: 5%;
+                    width: 400px;
+                    height: 330px;
+                    margin-top: 250px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .incoming-call .caller-image {
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 50%;
+                    margin-top: 15px;
+                }
+
+                .button--hidden {
+                    display: none;
+                }
+
+                .disabled {
+                    display: none;
+                }
+
+                .enabled {
+                    display: block;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    align-items: center;
+                    justify-content: center;
+                    border: none;
+                    outline: none;
+                    font-family: Roboto, sans-serif;
+                    line-height: 20px;
+                    text-align: center;
+                    font-size: 17px;
+                    color: #fff;
+                    min-width: 36px;
+                    padding: .5rem 1rem;
+                    box-sizing: border-box;
+                    border-radius: 4px;
+                    margin-left: 38%;
+                    cursor: pointer;
+                    text-decoration: none;
+                    background: red;
+                    transition: background-color .15s ease, color .15s ease;
+                }
+
+                .incoming-call .caller-name {
+                    color: #fff;
+                    font-size: 30px;
+                    font-weight: 500;
+                    margin-top: 5px;
+                }
+
+                .incoming-call .call-actions {
+                    margin-top: 20px;
+                }
+
+                .call-actions .btn #danger {
+                    background: #ed4245;
+                }
+
+                .call-actions .btn #success {
+                    background: #3ba55c;
+                }
+
+                .call-actions .btn {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    align-items: center;
+                    justify-content: center;
+                    border: none;
+                    outline: none;
+                    font-family: Roboto, sans-serif;
+                    line-height: 20px;
+                    text-align: center;
+                    font-size: 17px;
+                    color: #fff;
+                    min-width: 36px;
+                    padding: .5rem 1rem;
+                    box-sizing: border-box;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    text-decoration: none;
+                    background: #7289da;
+                    transition: background-color .15s ease, color .15s ease;
+                }
+
+                .bg-image {
+                    background-image: url("../assets/images/Foxy.png");
+                    filter: blur(8px);
+                    -webkit-filter: blur(8px);
+                    height: 100%;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            </style>
+            <% } %>
 </head>
 
-<body>
-    <header>
-        <a class="logo" href="/"><img src="../assets/images/Foxy.png" alt="logo"></a>
-        <nav>
-            <ul class="nav__links">
-                <li> <a href="/github">GitHub</a></li>
-                <li><a href="/privacy">Termos</a></li>
-                <li><a href="/discord">Suporte</a></li>
-                <li><a href="/team">Equipe</a></li>
-                <li><a href="/logout">Sair</a></li>
-            </ul>
-        </nav>
-        <a class="cta" href="/">Home</a>
-        <p class="menu cta">Menu</p>
-    </header>
-    <div id="mobile__menu" class="overlay">
-        <a class="close">&times;</a>
-        <div class="overlay__content">
-            <a href="/team">Equipe</a>
-            <a href="/github">GitHub</a>
-            <a href="/discord">Suporte</a>
-            <a href="/privacy">Termos de uso</a>
-            <a href="/logout">Sair</a>
-            <a href="/dashboard">
-                <%= user.username %>
-            </a>
-        </div>
-    </div>
-    <main>
-        <img class="main__image"
-            src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png?size=1024">
+<% if(agent !=='foxy' ) { %>
 
-        <div class="user__statistics">
-            <h1 class="username">
-                <%= user.username %>#<%= user.discriminator %>
-                        <%= premium %>
-            </h1>
+    <body>
+        <header>
+            <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
+                <div class="left-side-entries">
+                    <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
+                    line-height: 0px;
+                    width: 40px;
+                    height: 40px;
 
-            <div class="user-status">
-                <h3 class="bal">FoxCoins: <strong id="value">
-                        <%= db.balance %>
-                    </strong></h3>
-                <h3 class="rep">Reputações:<strong id="value">
-                        <%= db.repCount %>
-                    </strong></h3>
-                <br>
-                <br>
-                <br>
-                <br>
+                    position: absolute;
+                    top: 3px;
+                    border-radius: 100%;"></a></div>
+                    <div class="entry"><a href="/support" class="menu" data-preload-link="true"
+                            data-preload-link-activated="true">
+                            Suporte
+                        </a></div>
+                    <div class="entry"><a href="/privacy" class="menu" data-preload-link="true"
+                            data-preload-link-activated="true">
+                            Termos
+                        </a></div>
+                    <div class="entry"><a href="/donate" class="menu">
+                            Premium
+                        </a></div>
+                    <div class="entry"><a href="https://github.com/FoxyTheBot" class="extras" data-preload-link="true"
+                            data-preload-link-activated="true">
+                            GitHub
+                        </a></div>
+                    <div class="entry"><a href="/team" class="menu" data-preload-link="true"
+                            data-preload-link-activated="true">
+                            Equipe
+                        </a></div>
+                    <div class="entry"><a href="/about" class="menu">
+                            Sobre
+                        </a></div>
+                    <div class="entry"><a href="/upvote" class="menu">
+                            Votar
+                        </a></div>
+                </div>
+                <div class="right-side-entries">
+                    <div class="entry"><a class="theme-changer" id="theme-changer-button"><span>
+                            </span><span style="display: none;">
+                            </span></a></div>
+                    <div class="entry" id="locale-changer-button" style="cursor: default;">
+                        </span>
+                    </div>
+                    <div class="entry">
+                        <a href="/dashboard" id="login-button"><img
+                                src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
+                        line-height: 0px;
+                        width: 40px;
+                        height: 40px;
+
+                        position: absolute;
+                        top: 3px;
+                        border-radius: 100%;">
+                            <div style="    font-size: 0px;
+                        line-height: 0px;
+                        width: 40px;
+                        visibility: hidden;
+                        height: 0px;
+                        display: inline-block;"></div><span style="padding-left: 4px;">
+                                <%= user.username %>#<%=user.discriminator %>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </nav>
+            <button id="menu" class="mobile">Menu</button>
+        </header>
+        <div id="mobile__menu" class="overlay">
+            <a class="close">&times;</a>
+            <div class="overlay__content">
+                <a href="/team">Equipe</a>
+                <a href="/github">GitHub</a>
+                <a href="/discord">Suporte</a>
+                <a href="/privacy">Termos de uso</a>
+                <a href="/radio">Rádio</a>
+                <a href="/dashboard">Dashboard</a>
             </div>
         </div>
-        <div class="dashboard_section">
-            <div class="main__buttons">
-                <% if (allowed===true) { %>
-                    <a class="action__btn" href="/daily"><button class="btn primary">Daily</button></a>
-                    <% } else { %>
-                        <a class="action__btn" href="/daily"><button class="btn primary" disabled>Daily</button></a>
-                        <% } %>
-                            <a class="action__btn" href="/aboutme"><button class="btn primary">Sobre mim</button></a>
-                            <% if (!db.premium) { %>
-                                <a class="action__btn" href="/premium"><button class="btn success">Premium</button></a>
-                                <% } else {%>
-                                    <a class="action__btn"><button class="btn success" disabled>Premium</button></a>
-                                    <% } %>
-                                        <br>
-                                        <a class="action__btn" href="/confirm"><button class="btn danger">Deletar
-                                                Conta</button></a>
+        <main>
+            <img class="main__image"
+                src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png?size=1024">
 
+            <div class="user__statistics">
+                <h1 class="username">
+                    <%= user.username %>#<%=user.discriminator %>
+                            <%= premium %>
+                </h1>
+
+                <div class="user-status">
+                    <h3 class="bal">FoxCoins: <strong id="value">
+                            <%= db.balance %>
+                        </strong></h3>
+                    <h3 class="rep">Reputações:<strong id="value">
+                            <%= db.repCount %>
+                        </strong></h3>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
             </div>
-        </div>
-        <div class="aboutme-session">
-            <h3 class="aboutme-title">Sobre mim: <br><br>
-                <%= aboutme %>
-            </h3>
+            <div class="dashboard_section">
+                <div class="main__buttons">
+                    <% if (allowed===true) { %>
+                        <a class="action__btn" href="/daily"><button class="btn primary">Daily</button></a>
+                        <% } else { %>
+                            <a class="action__btn" href="/daily"><button class="btn primary" disabled>Daily</button></a>
+                            <% } %>
+                                <a class="action__btn" href="/aboutme"><button class="btn primary">Sobre
+                                        mim</button></a>
+                                <% if (!db.premium) { %>
+                                    <a class="action__btn" href="/premium"><button
+                                            class="btn success">Premium</button></a>
+                                    <% } else {%>
+                                        <a class="action__btn"><button class="btn success" disabled>Premium</button></a>
+                                        <% } %>
 
-            <% if (type) {%>
-                <h3 class="premium">Assinatura: <strong id="value">
-                        <%= type %>
-                    </strong></h3>
-                <% } %>
-        </div>
-    </main>
-</body>
-<script src="../js/HeaderMobile.js"></script>
+                                            <% if (db.premium && db.premiumType==='VETERAN' ||
+                                                db.premiumType==='INFINITY_PRO' || db.premiumType==='INFINITY_TURBO' ) {
+                                                %>
+                                                <a class="action__btn" href="/background"><button
+                                                        class="btn success">Background personalizado</button></a>
+                                                <% } %>
+                                                    <a class="action__btn" href="/logout"><button
+                                                            class="btn danger">Sair</button></a>
+                                                    <br>
+                                                    <a class="action__btn" href="/confirm"><button
+                                                            class="btn danger">Deletar
+                                                            Conta</button></a>
+
+                </div>
+            </div>
+            <div class="aboutme-session">
+                <h3 class="aboutme-title">Sobre mim: <br><br>
+                    <%= aboutme %>
+                </h3>
+
+                <% if (type) {%>
+                    <h3 class="premium">Assinatura: <strong id="value">
+                            <%= type %>
+                        </strong></h3>
+                    <% } %>
+            </div>
+        </main>
+    </body>
+    <script src="../js/HeaderMobile.js"></script>
+
+    <% } else {%>
+
+        <body>
+            <header>
+                <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
+                    <div class="entry"><a href="#" class="menu" data-preload-link="true"
+                            data-preload-link-activated="true">
+                            Oi
+                        </a></div>
+                    </div>
+                    <div class="right-side-entries">
+                        <div class="entry"><a href="#" class="menu">
+                                100%
+                            </a></div>
+                        <div class="entry"><a href="#" class="menu">
+                                12:15
+                            </a></div>
+                    </div>
+                    </div>
+                </nav>
+                <button id="menu" class="mobile">Menu</button>
+            </header>
+
+            <div class="bg-image"></div>
+            <div class="incoming-call">
+                <div class="caller">
+                    <img class="caller-image" src="../assets/images/Foxy.png">
+                    <h1 class="caller-name">Foxy</h1>
+                </div>
+                <div class="call-actions">
+                    <button class="btn" id="success" value="awnser"
+                        onclick="awnser('../assets/audios/cobrar.webm')">Aceitar</button>
+                    <a href="/"><button class="disabled" style="text-align: center;">Encerrar</button></a>
+                    <a href="/"><button class="btn" id="danger">Rejeitar</button></a>
+                </div>
+            </div>
+        </body>
+        <% } %>
 
 </html>

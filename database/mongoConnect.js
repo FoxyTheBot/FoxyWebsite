@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
     backgrounds: Array,
     language: String,
     premiumType: String,
+    language: String,
+    mask: String,
+    masks: Array,
+    layout: String
 }, { versionKey: false, id: false });
 
 module.exports = mongoose.model('user', userSchema);

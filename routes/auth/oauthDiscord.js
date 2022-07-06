@@ -54,6 +54,10 @@ router.get('/login/callback', async (req, res) => {
                     backgrounds: ["default"],
                     language: "pt-BR",
                     premiumType: null,
+                    language: String,
+                    mask: null,
+                    masks: [],
+                    layout: "default"
                 }).save().catch(err => console.log(err));
 
                 console.log(`[MONGO] Usuário: ${result.username} foi salvo no banco de dados!`);

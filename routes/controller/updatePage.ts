@@ -1,8 +1,13 @@
+import { MessageAttachment } from 'discord.js';
 import * as express from 'express';
 const router = express.Router();
 const config = require('../../config.json');
 const user = require('../../database/mongoConnect');
 const key = require('../../database/keyModel');
+const DiscordHook = require('../../client/WebhookManager.js');
+const upload = require('../../middlewares/uploadImage.js');
+const Resize = require('../../middlewares/Resize.js');
+const path = require('path');
 
 router.use(require("express-session")(config.session));
 
@@ -21,7 +26,7 @@ router.get("/premium", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect("/login");
     } else if (await userData.premium) {
-        res.redirect("/dashboard");
+        res.send("<script>alert('Você não está qualificado para este recurso');window.location.href='/dashboard'</script>");
     } else {
         res.status(200).render("../public/pages/logged/premium.ejs", {
             user: req.session.user_info,
@@ -49,11 +54,48 @@ router.post("/activate", async (req, res) => {
     }
 });
 
+router.get('/background', async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect("/login");
+    } else {
+        const userData = await user.findOne({ _id: req.session.user_info.id });
+        if (await userData.premium && userData.premiumType === "VETERAN" || userData.premiumType === "INFINITY_PRO" || userData.premiumType === "INFINITY_TURBO") {
+            res.status(200).render("../public/pages/logged/background.ejs", {
+                user: req.session.user_info,
+            });
+        } else {
+            return res.send("<script>alert('Você não está qualificado para este recurso');window.location.href='/dashboard';</script>");
+        }
+    }
+});
+
+router.get("/about", (req, res) => {
+    if (!req.session.bearer_token) {
+        res.status(200).render("../public/pages/logged-off/about.ejs");
+    } else {
+        res.status(200).render("../public/pages/logged/about.ejs", {
+            user: req.session.user_info,
+        });
+    }
+});
+router.post('/upload', upload.single('image'), async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect("/login");
+    } else {
+        const userData = await user.findOne({ _id: req.session.user_info.id });
+        console.log(await userData.premiumType === "VETERAN" || userData.premiumType === "INFINITY_PRO" || userData.premiumType === "INFINITY_TURBO")
+        if (await userData.premiumType === "VETERAN" || userData.premiumType === "INFINITY_PRO" || userData.premiumType === "INFINITY_TURBO") {
+
+        }
+    }
+});
 router.get("/privacy", (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/privacy.ejs");
     } else {
-        res.status(200).render("../public/pages/logged/privacy.ejs");
+        res.status(200).render("../public/pages/logged/privacy.ejs", {
+            user: req.session.user_info,
+        });
     }
 });
 
@@ -61,7 +103,9 @@ router.get("/radio", (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/radio.ejs");
     } else {
-        res.status(200).render("../public/pages/logged/radio.ejs");
+        res.status(200).render("../public/pages/logged/radio.ejs", {
+            user: req.session.user_info
+        });
     }
 });
 
@@ -124,6 +168,7 @@ router.get("/dashboard", async (req, res) => {
                 aboutme: aboutMe,
                 premium: premium,
                 type: type,
+                agent: req.useragent.source
             });
         } else {
             res.status(200).render("../public/pages/logged/dashboard.ejs", {
@@ -132,7 +177,8 @@ router.get("/dashboard", async (req, res) => {
                 db: userData,
                 aboutme: aboutMe,
                 premium: premium,
-                type: type
+                type: type,
+                agent: req.useragent.source
             });
         }
     }
@@ -157,7 +203,7 @@ router.get('/daily', async (req, res) => {
 
             var h1 = "Você resgatou o seu prêmio diário e...";
             var h3;
-            console.log(await userData.premiumType);
+            var img = "../assets/images/foxyoculos.png";
             if (await userData.premiumType) {
                 switch (await userData.premiumType) {
                     case "INFINITY_PRO": {
@@ -179,6 +225,7 @@ router.get('/daily', async (req, res) => {
                         h1 = `Você é um veterano do Foxy Premium, e recebeu 2x de daily é isso :3`;
                         h3 = "Digamos que você é uma raridade, o Foxy Veteran é um plano para pessoas que pegaram o premium antes do surgimento dos planos Foxy Infinity... E poucas pessoas puderam isso"
                         amount = amount * 2;
+                        img = "../assets/emojis/foxylick.gif"
                         break;
                     }
                 }
@@ -195,6 +242,7 @@ router.get('/daily', async (req, res) => {
                 coins: req.session.coins,
                 h1: h1,
                 h3: h3,
+                img: img,
                 dbCoins: req.session.dbCoins
             });
         }
@@ -258,7 +306,9 @@ router.get('/team', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/team.ejs");
     } else {
-        res.status(200).render("../public/pages/logged/team.ejs");
+        res.status(200).render("../public/pages/logged/team.ejs", {
+            user: req.session.user_info
+        });
     }
 });
 
@@ -266,7 +316,9 @@ router.get('/commands', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/commands.ejs");
     } else {
-        res.status(200).render("../public/pages/logged/commands.ejs");
+        res.status(200).render("../public/pages/logged/commands.ejs", {
+            user: req.session.user_info
+        });
     }
 });
 
@@ -274,7 +326,9 @@ router.get('/error', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/error.ejs");
     } else {
-        res.status(200).render("../public/pages/logged/error.ejs");
+        res.status(200).render("../public/pages/logged/error.ejs", {
+            user: req.session.user_info
+        });
     }
 });
 
@@ -282,7 +336,9 @@ router.get('/404', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/404.ejs");
     } else {
-        res.status(200).render("../public/pages/logged/404.ejs");
+        res.status(200).render("../public/pages/logged/404.ejs", {
+            user: req.session.user_info
+        });
     }
 });
 

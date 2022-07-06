@@ -6,6 +6,7 @@
 
 body {
     background-image: url("/assets/images/DiscordBackground.png");
+    background-color: #56286B;
 }
 
 main {
@@ -75,9 +76,11 @@ main a button:hover {
     0% {
         transform: translate(0, 0px);
     }
+
     50% {
         transform: translate(0, 15px);
     }
+
     100% {
         transform: translate(0, -0px);
     }
@@ -87,9 +90,11 @@ main a button:hover {
     0% {
         transform: rotate(5deg);
     }
+
     50% {
         transform: rotate(-5deg);
     }
+
     100% {
         transform: rotate(5deg);
     }
@@ -112,6 +117,7 @@ main a button:hover {
         padding-right: 5%;
         transition-duration: 0.5s;
     }
+
     main {
         text-align: center;
         margin-top: 40%;
@@ -122,13 +128,16 @@ main a button:hover {
         padding-right: 5%;
         transition-duration: 0.5;
     }
+
     main h1 {
         font-size: 10vw;
         text-align: center;
     }
+
     main h3 {
         font-size: 4vw;
     }
+
     main a button {
         font-size: 5vw;
     }
@@ -138,9 +147,11 @@ main a button:hover {
     0% {
         background-position: 0% 50%
     }
+
     50% {
         background-position: 100% 50%
     }
+
     100% {
         background-position: 0% 50%
     }
@@ -150,9 +161,11 @@ main a button:hover {
     0% {
         background-position: 0% 50%
     }
+
     50% {
         background-position: 100% 50%
     }
+
     100% {
         background-position: 0% 50%
     }
@@ -162,9 +175,11 @@ main a button:hover {
     0% {
         background-position: 0% 50%
     }
+
     50% {
         background-position: 100% 50%
     }
+
     100% {
         background-position: 0% 50%
     }

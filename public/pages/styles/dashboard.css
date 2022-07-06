@@ -8,6 +8,7 @@
 
 body {
     background-image: url("../assets/images/DiscordBackground.png");
+    background-color: #36393f;
 }
 
 main {
@@ -183,7 +184,7 @@ main .main__buttons .action__btn .btn.success:disabled {
 
     main .username {
         font-size: 35px;
-        margin-left: 5%;
+        margin-left: -10%;
     }
 
     main .main__buttons {
@@ -266,7 +267,7 @@ main .main__buttons .action__btn .btn.success:disabled {
     }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 985px) {
     main {
         padding-left: 3%;
         padding-right: 30%;
@@ -323,12 +324,12 @@ main .main__buttons .action__btn .btn.success:disabled {
 
     main .bal #value {
         color: #486be0;
-        margin-right: 35%;
+        margin-right: 10%;
     }
 
     main .rep #value {
         color: #486be0;
-        margin-right: 100%;
+        margin-right: 15%;
     }
 
     main .user__statistics {
