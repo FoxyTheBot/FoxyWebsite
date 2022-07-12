@@ -1,13 +1,8 @@
-import { MessageAttachment } from 'discord.js';
 import * as express from 'express';
 const router = express.Router();
 const config = require('../../config.json');
 const user = require('../../database/mongoConnect');
 const key = require('../../database/keyModel');
-const DiscordHook = require('../../client/WebhookManager.js');
-const upload = require('../../middlewares/uploadImage.js');
-const Resize = require('../../middlewares/Resize.js');
-const path = require('path');
 
 router.use(require("express-session")(config.session));
 
@@ -54,21 +49,6 @@ router.post("/activate", async (req, res) => {
     }
 });
 
-router.get('/background', async (req, res) => {
-    if (!req.session.bearer_token) {
-        res.redirect("/login");
-    } else {
-        const userData = await user.findOne({ _id: req.session.user_info.id });
-        if (await userData.premium && userData.premiumType === "VETERAN" || userData.premiumType === "INFINITY_PRO" || userData.premiumType === "INFINITY_TURBO") {
-            res.status(200).render("../public/pages/logged/background.ejs", {
-                user: req.session.user_info,
-            });
-        } else {
-            return res.send("<script>alert('Você não está qualificado para este recurso');window.location.href='/dashboard';</script>");
-        }
-    }
-});
-
 router.get("/about", (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/about.ejs");
@@ -78,17 +58,7 @@ router.get("/about", (req, res) => {
         });
     }
 });
-router.post('/upload', upload.single('image'), async (req, res) => {
-    if (!req.session.bearer_token) {
-        res.redirect("/login");
-    } else {
-        const userData = await user.findOne({ _id: req.session.user_info.id });
-        console.log(await userData.premiumType === "VETERAN" || userData.premiumType === "INFINITY_PRO" || userData.premiumType === "INFINITY_TURBO")
-        if (await userData.premiumType === "VETERAN" || userData.premiumType === "INFINITY_PRO" || userData.premiumType === "INFINITY_TURBO") {
 
-        }
-    }
-});
 router.get("/privacy", (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/privacy.ejs");

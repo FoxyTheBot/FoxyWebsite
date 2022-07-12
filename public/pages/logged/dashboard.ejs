@@ -258,19 +258,11 @@
                                     <% } else {%>
                                         <a class="action__btn"><button class="btn success" disabled>Premium</button></a>
                                         <% } %>
-
-                                            <% if (db.premium && db.premiumType==='VETERAN' ||
-                                                db.premiumType==='INFINITY_PRO' || db.premiumType==='INFINITY_TURBO' ) {
-                                                %>
-                                                <a class="action__btn" href="/background"><button
-                                                        class="btn success">Background personalizado</button></a>
-                                                <% } %>
-                                                    <a class="action__btn" href="/logout"><button
-                                                            class="btn danger">Sair</button></a>
-                                                    <br>
-                                                    <a class="action__btn" href="/confirm"><button
-                                                            class="btn danger">Deletar
-                                                            Conta</button></a>
+                                            <a class="action__btn" href="/logout"><button
+                                                    class="btn danger">Sair</button></a>
+                                            <br>
+                                            <a class="action__btn" href="/confirm"><button class="btn danger">Deletar
+                                                    Conta</button></a>
 
                 </div>
             </div>
