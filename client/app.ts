@@ -1,6 +1,5 @@
 import express, { Application } from 'express';
 import useragent from 'express-useragent';
-import fileupload from 'express-fileupload';
 require('dotenv').config();
 
 export class App {
@@ -14,7 +13,6 @@ export class App {
 
         app.use(express.json());
         app.use(useragent.express());
-        app.use(fileupload());
         app.use(express.urlencoded());
         app.use(express.static('./public/pages'));
         app.set('view engine', 'ejs');
