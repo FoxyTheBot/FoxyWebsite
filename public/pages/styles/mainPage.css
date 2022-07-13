@@ -30,6 +30,11 @@ main .right-content .foxy-image {
     margin-left: -27%;
 }
 
+main .page-image {
+    margin-left: 148%;
+    margin-top: -32%;
+}
+
 footer {
     margin-top: 14%;
     margin-left: 85%;
