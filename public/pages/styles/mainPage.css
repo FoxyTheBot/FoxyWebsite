@@ -1,3 +1,5 @@
+@import"https://fonts.googleapis.com/css?family=Roboto:500";
+
 * {
     margin: 0;
     padding: 0;
@@ -91,17 +93,26 @@ main a {
 }
 
 main a button {
-    animation: float 5s ease-in-out infinite;
-    color: #fff;
-    background-color: #1d9ae4;
-    font-family: Montserrat;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
     border: none;
-    margin: 20px 5px 10px 5px;
-    transition-duration: 0.5s;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    min-width: 36px;
+    margin-left: 1.5%;
+    padding: .55rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #3ba55c;
+    animation: float 5s ease-in-out infinite;
 }
 
 .title {
@@ -111,15 +122,26 @@ main a button {
 }
 
 main a .discord__button {
-    color: #fff;
-    background-color: #5865F2;
-    font-family: Montserrat;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
     border: none;
-    transition-duration: 0.5s;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    min-width: 36px;
+    margin-left: 1.5%;
+    padding: .55rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #5865f2;
+    animation: float 5s ease-in-out infinite;
 }
 
 main input {
@@ -159,10 +181,20 @@ main a .discord__button .button__image {
 }
 
 main a button:hover {
-    background-color: #047cd6;
+    background-color: #359553;
     transition-duration: 0.5s;
 }
 
+main a .discord__button:hover {
+    background-color: #4752c4;
+    transition-duration: 0.5s;
+}
+
+main a .discord__button:disabled {
+    opacity: .5;
+    background-color: #4752c4;
+    cursor: not-allowed;
+}
 
 @keyframes cardAnimation {
     0% {
