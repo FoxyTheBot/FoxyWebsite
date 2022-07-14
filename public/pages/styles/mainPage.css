@@ -5,7 +5,8 @@
 }
 
 body {
-    background-image: url("../assets/images/DiscordBackground.png"), linear-gradient(269deg, #9744BD, #9744BD);
+    background-image: url("../assets/images/DiscordBackground.png");
+    background-color: #36393f;
 }
 
 main {
