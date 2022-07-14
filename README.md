@@ -1,41 +1,38 @@
 # Foxy Website
 
-## ⚠ | Documentation is in Portuguese
+### ✨ | Requirements
+- NodeJS v16.x or higher
+- Git
+- npm
 
-## Clonando o repositório do Website
-<p>Para isso você irá precisar do <a href="https://git-scm.com/">git</a></p>
+### Configuring the environment
 
-```bash
-git clone https://github.com/FoxyTheBot/FoxyWebsite
-```
+<p> You need to install <a href="https://code.visualstudio.com">Visual Studio Code</a> or another IDE
 
-## Configurando o ambiente de desenvolvimento
+> Configuring .env
 
-<p> Para isso você irá precisar do <a href="https://code.visualstudio.com">Visual Studio Code</a>
-
-> Configurando .env
-
-<p> Crie um arquivo chamado .env com as seguintes informações:</p>
+<p>Create a .env file with these values:</p>
 
 ```
-CLIENT_SECRET=<seu-client-secret-do-discord>
-MONGO_URI=<seu-uri-do-mongodb>
+CLIENT_SECRET=<your-bot-secret>
+MONGO_URI=<your-mongodb-uri>
+BOT_TOKEN=<your-bot-token>
 ```
 
-## Executando o servidor
+## Running the server
 
-<p>Instale o tsc no seu computador</p>
+<p>Install TSC in your computer</p>
 
 ```bash
 $ npm install -g typescript
 ```
-<p>Instale as dependências:</p>
+<p>Install all website dependencies</p>
 
 ```bash
 $ npm install
 ```
 
-<p>No arquivo start.ts insira uma porta de preferência por padrão usamos a porta 8081:</p>
+<p>In start.ts you can change the HTTP port, but I prefer 8081</p>
 
 ```ts
 import { App } from './client/app';
@@ -43,11 +40,11 @@ const client = new App(8081);
 client.start();
 ```
 
-<p> Execute o servidor:</p>
+<p>Run the server</p>
 
 ```bash
 $ npm run start
 ```
 
-⚠ | **Lembrando que o website usa ts-node por padrão, caso você queira compilar por si só lembre-se de configurar o tsconfig.json, package.json e lembre-se de mover os arquivos Non-TS para a pasta onde está os arquivos compilados**
+⚠ | **This website uses ts-node, if you want to compile by yourself you need to move Non-TS files to build folder**
 
