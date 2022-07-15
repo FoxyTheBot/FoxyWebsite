@@ -2,12 +2,10 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/pages.css">
-    <link rel="stylesheet" href="../styles/footer.css">
+    <title>Foxy | Reportar</title>
     <link rel="icon" href="../assets/images/foxycake.png">
-    <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete" autoplay></audio>
-    <title>Foxy | Dashboard</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/header.css">
 </head>
 
 <body>
@@ -61,9 +59,8 @@
                     <a href="/dashboard" id="login-button"><img
                             src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
                         line-height: 0px;
-                        width: 40px;
                         height: 40px;
-
+                        width: 40px;
                         position: absolute;
                         top: 3px;
                         border-radius: 100%;">
@@ -94,28 +91,22 @@
         </div>
     </div>
     <main>
-        <img class="main__image" src="<%= img %>" alt="dashboard">
-        <h1>
-            <%= h1 %>
-        </h1>
-        <br>
-        <h2>
-            <strong id="coins">
-                <%= coins %>
-            </strong> FoxCoins
-        </h2>
-        <br>
-        <h3>Agora você possui <%= dbCoins %> FoxCoins
-                <br>
-                <%= h3 %>
-        </h3>
+        <h1>Reportar</h1>
+        <h3>Reporte um bug ou envie uma sugestão direta para o meu desenvolvedor :3</h3>
+        <form action="/send" method="post">
+            <select name="type" id="type" required>
+                <option value="suggestion">Sugestão</option>
+                <option value="report">Reportar Bug</option>
+            </select>
+            <input type="text" name="content" placeholder="Foxy muito fofa :3" required>
+            <button type="submit">Enviar</button>
+        </form>
+        <h3>Não insira dados pessoais como telefone, cartão de crédito, etc</h3>
         <br>
         <div class="main__buttons">
             <a href="/dashboard" id="default"><button class="default-button">Voltar</button></a>
         </div>
     </main>
-
 </body>
-<script src="../js/HeaderMobile.js"></script>
 
 </html>

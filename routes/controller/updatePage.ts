@@ -3,6 +3,7 @@ const router = express.Router();
 const config = require('../../config.json');
 const user = require('../../database/mongoConnect');
 const key = require('../../database/keyModel');
+import { sendReport } from '../../client/WebhookManager';
 
 router.use(require("express-session")(config.session));
 
@@ -56,6 +57,25 @@ router.get("/about", (req, res) => {
         res.status(200).render("../public/pages/logged/about.ejs", {
             user: req.session.user_info,
         });
+    }
+});
+
+router.get("/report", async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect('/login');
+    } else {
+        res.status(200).render("../public/pages/logged/report.ejs", {
+            user: req.session.user_info
+        })
+    }
+});
+
+router.post('/send', async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect('/login');
+    } else {
+        sendReport(req.session.user_info, req.body);
+        await res.redirect('/report');
     }
 });
 
