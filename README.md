@@ -17,6 +17,8 @@
 CLIENT_SECRET=<your-bot-secret>
 MONGO_URI=<your-mongodb-uri>
 BOT_TOKEN=<your-bot-token>
+REPORT=<your-report-webhook>
+SUGGESTION=<your-suggestion-webhook>
 ```
 
 ## Running the server
