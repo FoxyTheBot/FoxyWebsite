@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Oswald&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:500&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Muli&display=swap);
 
 * {
     box-sizing: border-box;
@@ -14,7 +15,6 @@
     height: 46px;
     position: fixed;
     opacity: 0.9;
-    text-transform: uppercase;
     text-shadow: 0 1px rgb(0 0 0 / 20%);
     font-family: Montserrat, Impact, Arial, sans-serif;
     line-height: 1;
@@ -116,9 +116,8 @@ nav.navigation-bar {
     width: 100%;
     height: 46px;
     opacity: 100%;
-    text-transform: uppercase;
     text-shadow: 0 1px rgb(0 0 0 / 20%);
-    font-family: 'Segoe UI', Impact, Arial, sans-serif;
+    font-family: 'Muli', Impact, Arial, sans-serif;
     line-height: 1;
     z-index: 999;
     display: flex;
