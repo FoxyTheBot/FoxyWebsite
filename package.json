@@ -4,8 +4,8 @@
   "description": "Website da Foxy feito em TypeScript, JavaScript, ExpressJS e EJS",
   "main": "start.ts",
   "scripts": {
-    "start": "ts-node start.ts",
-    "debug": "ts-node-dev start.ts"
+    "build": "npx tsc",
+    "start": "node build/start.js"
   },
   "repository": {
     "type": "git",

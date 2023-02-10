@@ -41,12 +41,14 @@ import { App } from './client/app';
 const client = new App(8081);
 client.start();
 ```
+<p>Compile the server</p>
+
+```bash
+$ npm run build
+```
 
 <p>Run the server</p>
 
 ```bash
 $ npm run start
 ```
-
-⚠ | **This website uses ts-node, if you want to compile by yourself you need to move Non-TS files to build folder**
-

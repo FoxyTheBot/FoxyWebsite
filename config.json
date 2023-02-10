@@ -1,7 +1,7 @@
 {
     "url": "http://localhost:8081/",
     "oauth": {
-        "clientId": "737044809650274325",
+        "clientId": "1006520438865801296",
         "ownerId": "687867247116812378",
         "callbackURL": "http://localhost:8081/login/callback",
         "scopes": [
