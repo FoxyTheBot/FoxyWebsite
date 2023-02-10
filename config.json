@@ -1,9 +1,9 @@
 {
-    "url": "http://localhost:8081/",
+    "url": "https://foxybot.win/",
     "oauth": {
         "clientId": "1006520438865801296",
         "ownerId": "687867247116812378",
-        "callbackURL": "http://localhost:8081/login/callback",
+        "callbackURL": "https://foxybot.win/login/callback",
         "scopes": [
             "identify"
         ]
