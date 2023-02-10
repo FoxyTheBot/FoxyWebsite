@@ -11,5 +11,8 @@
             "src": "/(.*)",
             "dest": "build/start.js"
         }
-    ]
+    ],
+    "installCommand": "npx npm install",
+    "outputDirectory": "build",
+    "buildCommand": "npx npm run build"
 }
