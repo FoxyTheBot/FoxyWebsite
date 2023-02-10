@@ -1,0 +1,12 @@
+{
+    "installCommand": "npm install",
+    "cleanUrls": true,
+    "version": 2,
+    "title": "Foxy Website",
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "client/app.ts"
+        }
+    ]
+}
