@@ -244,6 +244,7 @@ main a .discord__button:disabled {
     background-color: #36393f;
     border-color: #000;
     position: relative;
+    text-align: center;
 }
 
 .features .title {
@@ -268,7 +269,7 @@ main a .discord__button:disabled {
 
 .features .feature h1 {
     font-family: Montserrat;
-    font-size: 170%;
+    font-size: 160%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
@@ -293,7 +294,7 @@ main a .discord__button:disabled {
 
 .features .feature h2 {
     font-family: Montserrat;
-    font-size: 130%;
+    font-size: 110%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
