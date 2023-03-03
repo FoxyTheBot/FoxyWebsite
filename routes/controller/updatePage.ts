@@ -79,22 +79,12 @@ router.post('/send', async (req, res) => {
     }
 });
 
-router.get("/privacy", (req, res) => {
+router.get("/terms", (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/privacy.ejs");
     } else {
         res.status(200).render("../public/pages/logged/privacy.ejs", {
             user: req.session.user_info,
-        });
-    }
-});
-
-router.get("/radio", (req, res) => {
-    if (!req.session.bearer_token) {
-        res.status(200).render("../public/pages/logged-off/radio.ejs");
-    } else {
-        res.status(200).render("../public/pages/logged/radio.ejs", {
-            user: req.session.user_info
         });
     }
 });
@@ -107,7 +97,6 @@ router.get("/dashboard", async (req, res) => {
 
         const userData = await user.findOne({ _id: userId });
         var aboutMe: String = await userData.aboutme;
-        var premium: String = await userData.premium;
         const timeout = 43200000;
         const daily = await userData.lastDaily;
         const userBanned: Boolean = await userData.isBanned;
@@ -118,34 +107,6 @@ router.get("/dashboard", async (req, res) => {
             aboutMe = aboutme.join("\n");
         }
 
-        if (premium) {
-            premium = "🔑";
-        } else {
-            premium = null;
-        }
-
-        var type;
-
-        if (await userData.premiumType) {
-            switch (await userData.premiumType) {
-                case "INFINITY_PRO": {
-                    type = "Foxy Infinity Pro";
-                    break;
-                }
-                case "INFINITY_ESSENTIALS": {
-                    type = "Foxy Infinity Essentials";
-                    break;
-                }
-                case "INFINITY_TURBO": {
-                    type = "Foxy Infinity Turbo";
-                    break;
-                }
-                case "VETERAN": {
-                    type = "Foxy Veteran";
-                    break;
-                }
-            }
-        }
         if (userBanned) {
             res.status(401).render("../public/pages/logged/banned.ejs");
         }
@@ -156,8 +117,6 @@ router.get("/dashboard", async (req, res) => {
                 user: req.session.user_info,
                 db: userData,
                 aboutme: aboutMe,
-                premium: premium,
-                type: type,
                 agent: req.useragent.source
             });
         } else {
@@ -166,8 +125,6 @@ router.get("/dashboard", async (req, res) => {
                 user: req.session.user_info,
                 db: userData,
                 aboutme: aboutMe,
-                premium: premium,
-                type: type,
                 agent: req.useragent.source
             });
         }
@@ -290,25 +247,6 @@ router.post("/submit", async (req, res) => {
         userData.aboutme = req.body.aboutme;
         userData.save().catch(err => console.log(err));
         return res.redirect('/dashboard');
-    }
-})
-router.get('/team', (req, res) => {
-    if (!req.session.bearer_token) {
-        res.status(200).render("../public/pages/logged-off/team.ejs");
-    } else {
-        res.status(200).render("../public/pages/logged/team.ejs", {
-            user: req.session.user_info
-        });
-    }
-});
-
-router.get('/commands', (req, res) => {
-    if (!req.session.bearer_token) {
-        res.status(200).render("../public/pages/logged-off/commands.ejs");
-    } else {
-        res.status(200).render("../public/pages/logged/commands.ejs", {
-            user: req.session.user_info
-        });
     }
 });
 

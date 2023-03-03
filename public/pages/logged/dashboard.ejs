@@ -157,17 +157,13 @@
                             data-preload-link-activated="true">
                             Suporte
                         </a></div>
-                    <div class="entry"><a href="/privacy" class="menu" data-preload-link="true"
+                    <div class="entry"><a href="/terms" class="menu" data-preload-link="true"
                             data-preload-link-activated="true">
                             Termos
                         </a></div>
                     <div class="entry"><a href="https://github.com/FoxyTheBot" class="extras" data-preload-link="true"
                             data-preload-link-activated="true">
                             GitHub
-                        </a></div>
-                    <div class="entry"><a href="/team" class="menu" data-preload-link="true"
-                            data-preload-link-activated="true">
-                            Equipe
                         </a></div>
                     <div class="entry"><a href="/report" class="blog" data-preload-link="true"
                             data-preload-link-activated="true">
@@ -215,12 +211,10 @@
         <div id="mobile__menu" class="overlay">
             <a class="close">&times;</a>
             <div class="overlay__content">
-                <a href="/team">Equipe</a>
-                <a href="/github">GitHub</a>
+                    <a href="/github">GitHub</a>
                 <a href="/discord">Suporte</a>
-                <a href="/privacy">Termos de uso</a>
-                <a href="/radio">Rádio</a>
-                <a href="/dashboard">Dashboard</a>
+                <a href="/terms">Termos de uso</a>
+                    <a href="/dashboard">Dashboard</a>
             </div>
         </div>
         <main>
@@ -230,7 +224,6 @@
             <div class="user__statistics">
                 <h1 class="username">
                     <%= user.username %>#<%=user.discriminator %>
-                            <%= premium %>
                 </h1>
 
                 <div class="user-status">
@@ -255,12 +248,6 @@
                             <% } %>
                                 <a class="action__btn" href="/aboutme"><button class="btn primary">Sobre
                                         mim</button></a>
-                                <% if (!db.premium) { %>
-                                    <a class="action__btn" href="/premium"><button
-                                            class="btn success">Premium</button></a>
-                                    <% } else {%>
-                                        <a class="action__btn"><button class="btn success" disabled>Premium</button></a>
-                                        <% } %>
                                             <a class="action__btn" href="/logout"><button
                                                     class="btn danger">Sair</button></a>
                                             <br>
@@ -273,12 +260,6 @@
                 <h3 class="aboutme-title">Sobre mim: <br><br>
                     <%= aboutme %>
                 </h3>
-
-                <% if (type) {%>
-                    <h3 class="premium">Assinatura: <strong id="value">
-                            <%= type %>
-                        </strong></h3>
-                    <% } %>
             </div>
         </main>
     </body>
