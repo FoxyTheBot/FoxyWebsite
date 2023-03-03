@@ -33,9 +33,13 @@ main .right-content .foxy-image {
     margin-left: -27%;
 }
 
-main .page-image {
-    margin-left: 148%;
-    margin-top: -32%;
+main .foxy {
+    margin-left: 135%;
+    margin-top: -34%;
+    margin-bottom: -1%;
+    width: 65%;
+    height: 65%; 
+    display: inline;  
 }
 
 footer {
@@ -93,6 +97,29 @@ main a {
 }
 
 main a button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    min-width: 36px;
+    margin-left: 1.5%;
+    padding: .55rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #3ba55c;
+    animation: float 5s ease-in-out infinite;
+}
+
+.footer-add a button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -210,6 +237,123 @@ main a .discord__button:disabled {
     }
 }
 
+
+.features {
+    padding: 30px;
+    opacity: inherit;
+    background-color: #36393f;
+    border-color: #000;
+    position: relative;
+}
+
+.features .title {
+    font-family: Montserrat;
+    font-size: 200%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    color: #e7385d;
+}
+
+.features .feature {
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #36393f;
+    border-color: #000;
+    position: relative;
+}
+
+.features .feature h1 {
+    font-family: Montserrat;
+    font-size: 170%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    color: #e7385d;
+}
+
+ .footer-add h2 {
+    font-family: Montserrat;
+    font-size: 130%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+    margin-top: 10px;
+    color: #e7385d;
+}
+
+.inline-emoji {
+    height: 1.5em;
+    position: relative;
+    top: 0.3em;
+}
+
+.features .feature h2 {
+    font-family: Montserrat;
+    font-size: 130%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    color: white;
+}
+
+.features .feature__title {
+    font-family: Montserrat;
+    font-size: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.features .description {
+    font-family: Montserrat;
+    text-align: center;
+    color: #fff;
+}
+
+.features .card-row {
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+.features .card-row .card {
+    width: 80%;
+    max-width: 250px;
+    padding: 35px 20px 35px 20px;
+    background-color: #221f1f;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.features .card-row .card p {
+    font-family: Montserrat;
+    font-size: 15px;
+    color: #fff;
+    margin-left: auto;
+}
+
+footer {
+    padding: 1em 2em;
+}
+
+footer {
+    z-index: 1;
+    background-color: #29a6fe;
+    color: white;
+    padding: 16px 72px;
+    box-shadow: 0 0 15px rgb(0 0 0 / 30%);
+    overflow: hidden;
+}
+
 @media only screen and (max-width: 320px) {
     main a button {
         color: #fff;
@@ -222,6 +366,10 @@ main a .discord__button:disabled {
         border: none;
         margin: 20px 5px 10px 5px;
         transition-duration: 0.5s;
+    }
+
+    .foxy {
+        display: none;
     }
 }
 
@@ -262,6 +410,9 @@ main a .discord__button:disabled {
         transition-duration: 0.5s;
     }
 
+    .foxy {
+        display: none;
+    }
     main {
         text-align: center;
         margin-top: 40%;

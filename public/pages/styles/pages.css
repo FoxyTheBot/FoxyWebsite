@@ -17,6 +17,94 @@ main {
     text-align: center;
 }
 
+main  .action__btn .btn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    min-width: 36px;
+    margin-left: 1.5%;
+    padding: .5rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #7289da;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+main .store_image {
+    width: 50%;
+    height: 40%;
+    text-align: center;
+    margin-top: -5%;
+}
+
+main h1 {
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    font-family: Montserrat;
+    animation-duration: 4s;
+    margin-top: 5%; 
+}
+
+main .products {
+    display: flex;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    margin-left: -30%;
+    margin-right: 30%;
+    max-width: 100%;
+    flex-direction: row;
+
+}
+
+.product {
+    width: 50%;
+    height: 200px;
+    max-width: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 1rem;
+}
+main  .action__btn .btn.primary {
+    background: #5865f2;
+}
+
+main  .action__btn .btn.primary:disabled {
+    background: #4752c4;
+    opacity: .5;
+    cursor: not-allowed
+}
+
+main  .action__btn .btn.primary:hover {
+    background: #4752c4;
+}
+
+main  .action__btn .btn.success {
+    background: #3ba55c;
+}
+
+main  .action__btn .btn.success:hover {
+    background: #359553;
+}
+
+main  .action__btn .btn.success:disabled {
+    opacity: .5;
+    background-color: #359553;
+    cursor: not-allowed;
+}
+
 main .main__image {
     margin-top: -25%;
     margin-bottom: 5%;
@@ -86,7 +174,7 @@ main h2 {
     margin-top: 5px;
 }
 
-main .main__buttons #default .default-button {
+main  #default .default-button {
     color: #fff;
     background-color: #047cd6;
     font-family: Montserrat;
@@ -106,7 +194,7 @@ main .main__buttons #default .default-button {
     top: 0.3em;
 }
 
-main .main__buttons .action__btn .danger_btn {
+main  .action__btn .danger_btn {
     color: #fff;
     background-color: rgb(224, 72, 72);
     font-family: Montserrat;

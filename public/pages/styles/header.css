@@ -14,7 +14,7 @@
   width: 100%;
   height: 46px;
   position: fixed;
-  background-color: #CF5EFF;
+  background-color: #e7385d;
   box-shadow: 0 0 15px rgb(0 0 0 / 30%);
   text-shadow: 0 1px rgb(0 0 0 / 20%);
   font-family: Montserrat, Impact, Arial, sans-serif;
@@ -121,7 +121,7 @@ nav.navigation-bar {
   top: 0px;
   width: 100%;
   height: 46px;
-  background-color: #CF5EFF;
+  background-color: #e7385d;
   box-shadow: 0 0 15px rgb(0 0 0 / 30%);
   text-shadow: 0 1px rgb(0 0 0 / 20%);
   font-family: Muli, Impact, Arial, sans-serif;
