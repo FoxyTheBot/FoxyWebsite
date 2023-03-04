@@ -49,9 +49,9 @@ footer {
     text-align: center;
 }
 
-/* main .main__image {
+main .main__image {
     animation: float 1s ease-in-out infinite;
-} */
+}
 
 footer .terms a {
     font-size: 17px;
