@@ -16,9 +16,16 @@ main {
     transition-duration: 0.5s;
 }
 
+h2 {
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-family: Montserrat;
+}
+
 a {
     text-decoration: none;
-    color: rgb(54, 54, 252);
+    color: rgb(120, 120, 255);
 }
 
 .example {
@@ -86,9 +93,29 @@ a {
 main h1 {
     color: #fff;
     font-size: 40px;
+    margin-bottom: 5%;
     font-family: Montserrat;
 }
 
+main .tos {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    transition-duration: 0.5s;
+}
+main .tos .term h2 {
+    color: #fff;
+    font-size: 25px;
+    font-family: Montserrat;
+    margin-bottom: 1%;  
+}
+main .tos .term h3 {
+    color: #fff;
+    font-size: 18px;
+    font-family: Montserrat;
+    margin-bottom: 2%;
+}
 p {
     font-family: Montserrat;
     color: #fff;
