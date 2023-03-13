@@ -18,6 +18,7 @@ main {
     margin-left: -25%;
     transition-duration: 0.5s;
     text-align: center;
+    cursor: default;
 }
 
 main .right-content {
