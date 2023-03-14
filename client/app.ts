@@ -20,7 +20,16 @@ export class App {
         app.use('/', require("../routes/controller/updatePage"));
         app.use('/', require("../routes/controller/redirectPage"));
         app.use('/', require("../routes/auth/oauthDiscord"));
-
+        
+        app.get('*', (req, res) => {
+            if (!req.session.bearer_token) {
+                res.status(200).render("../public/pages/logged-off/404.ejs");
+            } else {
+                res.status(200).render("../public/pages/logged/404.ejs", {
+                    user: req.session.user_info,
+                });
+            }
+        });
 
         app.listen(this.port, () => {
             console.log(`[APP] Servidor iniciado na porta ${this.port}`);

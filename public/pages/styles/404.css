@@ -6,6 +6,13 @@
 
 body {
     background-image: url('../assets/images/DiscordBackground.png');
+    background-color: #36393f;
+}
+
+main .main__image {
+    margin-top: -25%;
+    margin-bottom: 5%;
+
 }
 
 main {
@@ -35,21 +42,30 @@ main a {
 }
 
 main a button {
-    color: #fff;
-    background-color: #0099ff;
-    font-family: Montserrat;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
     border: none;
-    margin: 20px 5px 10px 5px;
-    animation: float 12s ease-in-out infinite;
-    transition-duration: 0.5s;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    margin-top: 2%;
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    min-width: 36px;
+    margin-left: 1.5%;
+    padding: .55rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #5865f2;
+    animation: float 5s ease-in-out infinite;
 }
-
 main a button:hover {
-    background-color: #25aff3;
+    background-color: #4752c4;
     transition-duration: 0.5s;
 }
 
