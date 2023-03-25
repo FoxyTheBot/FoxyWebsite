@@ -3,7 +3,6 @@
 <h1>💻 Foxy Website</h1>
 
 <br>
-<br>
 
 ### ✨ | Requirements
 - NodeJS v16.x or higher
