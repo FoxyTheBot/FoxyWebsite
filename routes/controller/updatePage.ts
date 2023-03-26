@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 
 router.get("/premium", async (req, res) => {
     const userData = await user.findOne({ _id: req.session.user_info.id });
-    if (!req.session.bearer_token) {
+    if (!req.session.bearer_token && !userData) {
         res.redirect("/login");
     } else if (await userData.premium) {
         res.send("<script>alert('Você não está qualificado para este recurso');window.location.href='/dashboard'</script>");
