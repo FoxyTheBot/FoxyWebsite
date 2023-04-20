@@ -17,8 +17,8 @@ router.get('/support', (req, res) => {
     res.redirect('https://discord.gg/6mG2xDtuZD');
 });
 
-router.get('/donate', (req, res) => {
-    res.redirect('https://ko-fi.com/wing4merbr');
+router.get("/translate", (req, res) => {
+    res.redirect("https://translate.foxybot.win");
 });
 
 router.get('/upvote', (req, res) => {
