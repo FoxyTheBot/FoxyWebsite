@@ -97,6 +97,23 @@ main h1 {
     font-family: Montserrat;
 }
 
+main .title {
+    color: #e7385d;
+    font-size: 25px;
+    margin-bottom: 1%;
+    font-family: Montserrat;
+}
+
+main li {
+    margin-bottom: 0.5%;
+}
+
+main .description {
+    color: #fff;
+    font-size: 17px;
+    margin-bottom: 2%;
+    font-family: Montserrat;
+}
 main .tos {
     padding-left: 5%;
     padding-right: 5%;
