@@ -1,4 +1,4 @@
-import { WebhookClient, MessageEmbed } from 'discord.js';
+import { WebhookClient, EmbedBuilder } from 'discord.js';
 
 export function sendReport(data: any, body: any) {
     var type = body.type;
@@ -8,7 +8,7 @@ export function sendReport(data: any, body: any) {
     } else if (type === 'report') {
         webhook = new WebhookClient({ url: process.env.REPORT });
     }
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
         .addFields(
             { name: '💁‍♀️ | Usuário', value: `\`${data.username}#${data.discriminator} / ${data.id}\`` },
             { name: '✨ | Conteúdo', value: body.content }
