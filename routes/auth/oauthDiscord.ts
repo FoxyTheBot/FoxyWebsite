@@ -1,43 +1,43 @@
-const express = require('express');
-const config = require('../../config.json');
-const fetch = require("node-fetch-commonjs");
-const router = express.Router();
-const user = require('../../database/mongoConnect.js')
+import express from 'express';
+import fetch from 'node-fetch-commonjs';
+import config from '../../config.json';
+import user from '../../database/mongoConnect.js';
 
+const router = express.Router();
 router.get('/login/callback', async (req, res) => {
     const code = await req.query.code;
 
     if (code) {
         try {
-            const oauth = await fetch(`https://discord.com/api/oauth2/token`, {
+            const oauth: any = await fetch(`https://discord.com/api/oauth2/token`, {
                 method: 'POST',
+                // @ts-ignore
                 body: new URLSearchParams({
                     client_id: config.oauth.clientId,
                     client_secret: process.env.CLIENT_SECRET,
                     code: code,
                     grant_type: 'authorization_code',
                     redirect_uri: config.oauth.callbackURL,
-                    scope: config.oauth.scope,
+                    scope: config.oauth.scopes,
                 }),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 }
             });
 
-            const oauthData = await oauth.json();
+            const oauthData: any = await oauth.json();
 
             const userResult = await fetch('https://discord.com/api/users/@me', {
                 headers: {
                     authorization: `${oauthData.token_type} ${oauthData.access_token}`,
                 },
             });
-            const result = await userResult.json();
-
-            const userData = await user.findOne({ _id: result.id });
+            const result: any = await userResult.json();
+            const userData = await user.findOne({ _id: await result.id });
 
             if (!userData) {
                 new user({
-                    _id: result.id,
+                    _id: await result.id,
                     userCreationTimestamp: Date.now(),
                     premium: false,
                     premiumDate: null,
@@ -54,7 +54,6 @@ router.get('/login/callback', async (req, res) => {
                     backgrounds: ["default"],
                     language: "pt-BR",
                     premiumType: null,
-                    language: String,
                     mask: null,
                     masks: [],
                     layout: "default"
