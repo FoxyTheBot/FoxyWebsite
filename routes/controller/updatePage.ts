@@ -4,7 +4,6 @@ const config = require('../../config.json');
 const user = require('../../database/mongoConnect');
 const key = require('../../database/keyModel');
 import { sendReport } from '../../client/WebhookManager';
-import { tos } from '../../locales/pt-BR/pages.json';
 
 router.use(require("express-session")(config.session));
 
@@ -82,14 +81,9 @@ router.post('/send', async (req, res) => {
 
 router.get("/terms", (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../public/pages/logged-off/privacy.ejs", {
-            locale: tos,
-        });
+        res.status(200).render("../public/pages/logged-off/privacy.ejs");
     } else {
-        res.status(200).render("../public/pages/logged/privacy.ejs", {
-            user: req.session.user_info,
-            locale: tos,
-        });
+        res.status(200).render("../public/pages/logged/privacy.ejs");
     }
 });
 
