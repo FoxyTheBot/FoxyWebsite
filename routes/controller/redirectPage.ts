@@ -20,8 +20,13 @@ router.get('/support', (req, res) => {
 router.get('/privacy', (req, res) => {
     res.redirect('https://foxybot.win/terms');    
 });
+
 router.get("/translate", (req, res) => {
     res.redirect("https://translate.foxybot.win");
+});
+
+router.get("/status", (req, res) => {
+    res.redirect("https://foxybot.statuspage.io/");
 });
 
 router.get('/upvote', (req, res) => {
