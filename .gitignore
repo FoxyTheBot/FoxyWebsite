@@ -16,3 +16,4 @@ build
 
 ## Secret files
 .env
+yarn.lock
