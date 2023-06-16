@@ -66,7 +66,7 @@ router.get('/login/callback', async (req, res) => {
             req.session.bearer_token = oauthData.access_token;
             req.session.db_info = userData;
 
-            console.log(`[LOGIN] Usuário ${result.username}#${result.discriminator} fez login no website!`);
+            console.log(`[LOGIN] Usuário ${result.username} / ${result.id} fez login no website!`);
         } catch (err) {
             console.log(err);
             res.redirect('/error');
