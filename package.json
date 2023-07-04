@@ -11,13 +11,6 @@
     "type": "git",
     "url": "git+https://github.com/WinG4merBR/BotFoxy.github.io.git"
   },
-  "keywords": [
-    "express",
-    "ejs",
-    "discord-authentication",
-    "foxy",
-    "seu-servidor"
-  ],
   "author": "WinG4merBR",
   "license": "AGPL-3.0",
   "bugs": {
@@ -25,29 +18,22 @@
   },
   "homepage": "https://github.com/WinG4merBR/BotFoxy.github.io#readme",
   "dependencies": {
-    "@types/express": "^4.17.13",
-    "@types/express-fileupload": "^1.2.2",
-    "@types/express-useragent": "^1.0.2",
+    "@types/express": "^4.17.17",
     "@types/multer": "^1.4.7",
-    "@types/node": "^17.0.6",
-    "axios": "^0.27.2",
-    "body-parser": "^1.19.1",
-    "discord.js": "^14.9.0",
-    "dotenv": "^10.0.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.2",
-    "express-session": "^1.17.2",
-    "express-useragent": "^1.0.15",
-    "formidable": "^2.0.1",
-    "mongoose": "^6.0.12",
+    "@types/node": "^20.3.3",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "formidable": "^3.5.0",
+    "mongoose": "^7.3.1",
     "multer": "^1.4.5-lts.1",
-    "node-fetch": "^3.0.0",
-    "node-fetch-commonjs": "^3.1.1",
-    "path": "^0.12.7",
-    "rf-logger": "^4.0.0",
-    "sharp": "^0.30.6",
-    "ts-node": "^10.8.2",
-    "ts-node-dev": "^2.0.0",
-    "uuid": "^8.3.2"
+    "node-fetch": "^3.3.1",
+    "node-fetch-commonjs": "^3.3.1",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0"
   }
 }
