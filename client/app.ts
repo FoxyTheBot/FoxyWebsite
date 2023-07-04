@@ -1,5 +1,4 @@
 import express, { Application } from 'express';
-import useragent from 'express-useragent';
 require('dotenv').config();
 
 export class App {
@@ -12,7 +11,6 @@ export class App {
         const app: Application = express();
 
         app.use(express.json());
-        app.use(useragent.express());
         app.use(express.urlencoded());
         app.use(express.static('./public/pages'));
         app.set('view engine', 'ejs');
@@ -32,7 +30,7 @@ export class App {
         });
 
         app.listen(this.port, () => {
-            console.log(`[APP] Servidor iniciado na porta ${this.port}`);
+            console.log(`[APP] Server started at port: ${this.port}`);
         });
 
     }
