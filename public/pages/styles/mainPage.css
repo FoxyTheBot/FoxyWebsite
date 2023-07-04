@@ -248,6 +248,18 @@ main a .discord__button:disabled {
     text-align: center;
 }
 
+.features .arrow {
+    color: #e7385d;
+    position: absolute;
+    margin-top: -100px;
+    text-align: center;
+    bottom: 100;
+    right: 48%;
+    font-size: 3.5em;
+    -webkit-animation: arrow-move 1s infinite alternate;
+    animation: arrow-move 1s infinite alternate;
+    overflow: hidden;
+}
 .features .title {
     font-family: Montserrat;
     font-size: 200%;
@@ -258,6 +270,15 @@ main a .discord__button:disabled {
     color: #e7385d;
 }
 
+
+@keyframes arrow-move {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+@-webkit-keyframes arrow-move {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
 .features .feature {
     flex-direction: column;
     margin: 20px;
