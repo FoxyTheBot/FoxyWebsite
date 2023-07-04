@@ -63,7 +63,9 @@ router.get("/terms", (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/logged-off/privacy.ejs");
     } else {
-        res.status(200).render("../public/pages/logged/privacy.ejs");
+        res.status(200).render("../public/pages/logged/privacy.ejs", {
+            user: req.session.user_info,
+        });
     }
 });
 
