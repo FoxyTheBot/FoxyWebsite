@@ -5,7 +5,8 @@
         "ownerId": "687867247116812378",
         "callbackURL": "http://localhost:3000/login/callback",
         "scopes": [
-            "identify"
+            "identify",
+            "guilds"
         ]
     },
     "session": {
