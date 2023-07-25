@@ -1,12 +1,12 @@
 import express from 'express';
 import fetch from 'node-fetch-commonjs';
 import config from '../../config.json';
-import user from '../../database/mongoConnect.js';
+import { database } from '../../client/app';
 
 const router = express.Router();
+
 router.get('/login/callback', async (req, res) => {
     const code = await req.query.code;
-
     if (code) {
         try {
             const oauth: any = await fetch(`https://discord.com/api/oauth2/token`, {
@@ -32,40 +32,14 @@ router.get('/login/callback', async (req, res) => {
                     authorization: `${oauthData.token_type} ${oauthData.access_token}`,
                 },
             });
+
             const result: any = await userResult.json();
-            const userData = await user.findOne({ _id: await result.id });
-
-            if (!userData) {
-                new user({
-                    _id: await result.id,
-                    userCreationTimestamp: Date.now(),
-                    premium: false,
-                    premiumDate: null,
-                    isBanned: false,
-                    banData: null,
-                    banReason: null,
-                    aboutme: null,
-                    balance: 0,
-                    lastDaily: null,
-                    marriedWith: null,
-                    repCount: 0,
-                    lastRep: null,
-                    background: "default",
-                    backgrounds: ["default"],
-                    language: "pt-BR",
-                    premiumType: null,
-                    mask: null,
-                    masks: [],
-                    layout: "default"
-                }).save().catch(err => console.log(err));
-
-                console.log(`[MONGO] Usuário: ${result.username} foi salvo no banco de dados!`);
-            }
-
+            const userData: any = await database.getUser(await result.id);
+           
             req.session.user_info = result;
             req.session.bearer_token = oauthData.access_token;
+            req.session.oauth_type = oauthData.token_type;
             req.session.db_info = userData;
-
             console.log(`[LOGIN] Usuário ${result.username} / ${result.id} fez login no website!`);
         } catch (err) {
             console.log(err);
