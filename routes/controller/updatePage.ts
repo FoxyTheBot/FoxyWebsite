@@ -1,8 +1,7 @@
 import * as express from 'express';
 const router = express.Router();
 const config = require('../../config.json');
-const user = require('../../database/mongoConnect');
-const key = require('../../database/keyModel');
+import { database } from '../../client/app';
 
 router.use(require("express-session")(config.session));
 
@@ -13,39 +12,6 @@ router.get("/", (req, res) => {
         res.status(200).render("../public/pages/logged/index.ejs", {
             user: req.session.user_info,
         });
-    }
-});
-
-router.get("/premium", async (req, res) => {
-    const userData = await user.findOne({ _id: req.session.user_info.id });
-    if (!req.session.bearer_token && !userData) {
-        res.redirect("/login");
-    } else if (await userData.premium) {
-        res.send("<script>alert('Você não está qualificado para este recurso');window.location.href='/dashboard'</script>");
-    } else {
-        res.status(200).render("../public/pages/logged/premium.ejs", {
-            user: req.session.user_info,
-        });
-    }
-});
-
-router.post("/activate", async (req, res) => {
-    if (!req.session.bearer_token) {
-        res.redirect("/login");
-    } else {
-        const userData = await user.findOne({ _id: req.session.user_info.id });
-        const keyData = await key.findOne({ key: req.body.key });
-
-        if (!keyData) return res.send("<script>alert('Invalid key');window.location.href='/premium';</script>");
-        if (keyData.activated) return res.send("<script>alert('Key already activated');window.location.href='/dashboard';</script>");
-        if (keyData._id !== userData._id) return res.send("<script>alert('This key is not yours');</script>");
-        if (userData.premium) return res.send("<script>alert('You already have premium');</script>");
-
-        userData.premium = true;
-        userData.premiumDate = new Date();
-        userData.premiumType = "INFINITY_PRO";
-        userData.save();
-        return res.send("<script>alert('Premium activated');window.location.href='/dashboard';</script>");
     }
 });
 
@@ -69,14 +35,150 @@ router.get("/terms", (req, res) => {
     }
 });
 
+router.get('/servers', async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect('/login')
+    } else {
+        const user = await req.session.user_info;
+        const guildsResult = await fetch('https://discord.com/api/users/@me/guilds', {
+            headers: {
+                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
+            }
+        });
+        const guilds: any = await guildsResult.json();
+        const guildsArray: any = [];
+        function hasRequiredPermissions(permissions: number): boolean {
+            return (permissions & (8 | 32)) !== 0;
+        }
+
+        for (let i = 0; i < guilds.length; i++) {
+            const guild = guilds[i];
+
+            if (hasRequiredPermissions(Number(guild.permissions))) {
+                guildsArray.push({
+                    id: guild.id,
+                    name: guild.name,
+                    icon: guild.icon,
+                    permissions: guild.permissions,
+                })
+            }
+        }
+
+        res.status(200).render("../public/pages/logged/servers.ejs", {
+            user: user,
+            guilds: guildsArray
+        });
+    }
+});
+
+router.get("/servers/:id", async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect('/login');
+    } else {
+        const user = await req.session.user_info;
+        const guildsResult = await fetch(`https://discord.com/api/users/@me/guilds`, {
+            headers: {
+                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
+            }
+        });
+        const guilds: any = await guildsResult.json();
+        const guildsArray: any = [];
+
+        function hasRequiredPermissions(permissions: number): boolean {
+            return (permissions & (8 | 32)) !== 0;
+        }
+
+        for (let i = 0; i < guilds.length; i++) {
+            const guild = guilds[i];
+
+            if (hasRequiredPermissions(Number(guild.permissions))) {
+                guildsArray.push({
+                    id: guild.id,
+                    name: guild.name,
+                    icon: guild.icon,
+                    permissions: guild.permissions,
+                })
+            }
+        }
+
+        const guild = await guildsArray.find((x: any) => x.id === req.params.id);
+        const guildIcon = await guild.icon;
+        const guildInfo = await database.getGuild(req.params.id);
+        if (!guildInfo) {
+            return res.redirect("/add");
+        }
+
+        const guildChannels = await fetch(`https://discord.com/api/guilds/${guild.id}/channels`, {
+            headers: {
+                authorization: `Bot ${process.env.BOT_TOKEN}`,
+            }
+        });
+
+        const guildChannelsJson = await guildChannels.json();
+        const guildRoles = await fetch(`https://discord.com/api/guilds/${guild.id}/roles`, {
+            headers: {
+                authorization: `Bot ${process.env.BOT_TOKEN}`,
+            }
+        });
+
+        const guildRolesJson = await guildRoles.json();
+        let icon;
+
+        if (guildIcon) {
+            icon = `https://cdn.discordapp.com/icons/${guild.id}/${guildIcon}.png`;
+        } else {
+            icon = `https://cdn.discordapp.com/attachments/1068525425963302936/1132369142780014652/top-10-cutest-cat-photos-of-all-time.jpg`
+        }
+        if (!guild) return res.redirect("/servers");
+
+        res.status(200).render("../public/pages/logged/server.ejs", {
+            user: user,
+            guilds: guildsArray,
+            guild: guild,
+            icon: icon,
+            channels: guildChannelsJson,
+            roles: guildRolesJson,
+            guildInfoFromDB: guildInfo,
+        });
+    }
+});
+
+router.post("/inviteblocker/save/:id", async (req, res) => {
+    try {
+        if (!req.session.bearer_token) {
+            res.redirect('/login');
+        }
+        const body = req.body;
+
+        const guildInfo = await database.getGuild(req.params.id);
+
+        guildInfo.InviteBlockerModule.isEnabled = body.inviteblocker;
+        guildInfo.InviteBlockerModule.whitelistedChannels = Array.isArray(body.selectedChannels)
+            ? body.selectedChannels
+            : [];
+        guildInfo.InviteBlockerModule.whitelistedRoles = Array.isArray(body.selectedRoles)
+            ? body.selectedRoles
+            : [];
+        guildInfo.InviteBlockerModule.blockMessage = body.blockmessage.trim();
+
+        await guildInfo.save();
+
+        res.redirect(`/servers/${req.params.id}`);
+    } catch (error) {
+        console.error("Erro ao salvar as configurações:", error);
+        res.redirect(`/servers/${req.params.id}?error=1`);
+    }
+});
+
+
 router.get("/dashboard", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
-        const userId: String = req.session.user_info.id;
+        const userId: string = req.session.user_info.id;
 
-        const userData = await user.findOne({ _id: userId });
-        var aboutMe: String = await userData.aboutme;
+        const userData: any = await database.getUser(userId);
+        var aboutMe: string = await userData.aboutme;
         const timeout = 43200000;
         const daily = await userData.lastDaily;
         const userBanned: Boolean = await userData.isBanned;
@@ -114,7 +216,7 @@ router.get('/daily', async (req, res) => {
         res.redirect('/login');
     } else {
         const userId = req.session.user_info.id;
-        const userData = await user.findOne({ _id: userId });
+        const userData: any = await database.getUser(userId);
 
         let amount = Math.floor(Math.random() * 8000);
         amount = Math.round(amount / 10) * 10;
@@ -148,8 +250,8 @@ router.get('/delete', async (req, res) => {
         res.redirect('/login');
     } else {
         const userId = req.session.user_info.id;
-        const userData = await user.findOne({ _id: userId });
-        const marriedData = await user.findOne({ marriedWith: userId });
+        const userData: any = await database.getUser(userId);
+        const marriedData: any = await database.getUser(userId);
 
         marriedData.marriedWith = null;
         marriedData.save()
@@ -164,7 +266,7 @@ router.get('/confirm', async (req, res) => {
         res.redirect('/login');
     } else {
         const userId = req.session.user_info.id;
-        const userData = await user.findOne({ _id: userId });
+        const userData = await database.getUser(userId);
         res.status(200).render("../public/pages/logged/confirm.ejs", {
             user: req.session.user_info,
             db: userData
@@ -177,7 +279,7 @@ router.get("/aboutme", async (req, res) => {
         res.redirect('/login');
     } else {
         const userId = req.session.user_info.id;
-        const userData = await user.findOne({ _id: userId });
+        const userData: any = await database.getUser(userId);
 
         res.status(200).render("../public/pages/logged/aboutMe.ejs", {
             user: req.session.user_info,
@@ -190,7 +292,7 @@ router.post("/submit", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
-        const userData = await user.findOne({ _id: req.session.user_info.id });
+        const userData: any = await database.getUser(req.session.user_info.id);
         userData.aboutme = req.body.aboutme;
         userData.save().catch(err => console.log(err));
         return res.redirect('/dashboard');
