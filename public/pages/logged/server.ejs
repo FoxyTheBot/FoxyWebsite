@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="icon" href="../assets/images/foxycake.png">
+    <title>
+        <%= guild.name %>
+    </title>
+    <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
+</head>
+
+<body>
+    <header>
+        <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
+            <div class="left-side-entries">
+                <div class="entry foxy-navbar-logo">
+                    <a href="/"><img src="../assets/images/Foxy.png" style="font-size: 0px;
+                        line-height: 0px;
+                        width: 40px;
+                        height: 40px;
+                        position: absolute;
+                        top: 3px;
+                        border-radius: 100%;">
+                    </a>
+                </div>
+                <div class="entry">
+                    <a href="/support" class="menu" data-preload-link="true"
+                        data-preload-link-activated="true">Suporte</a>
+                </div>
+                <div class="entry">
+                    <a href="/terms" class="menu" data-preload-link="true" data-preload-link-activated="true">Termos</a>
+                </div>
+                <div class="entry">
+                    <a href="https://github.com/FoxyTheBot" class="extras" data-preload-link="true"
+                        data-preload-link-activated="true">GitHub</a>
+                </div>
+                <div class="entry">
+                    <a href="/about" class="menu">Sobre</a>
+                </div>
+                <div class="entry">
+                    <a href="/upvote" class="menu">Votar</a>
+                </div>
+            </div>
+            <div class="right-side-entries">
+                <div class="entry">
+                    <a class="theme-changer" id="theme-changer-button">
+                        <span></span>
+                        <span style="display: none;"></span>
+                    </a>
+                </div>
+                <div class="entry" id="locale-changer-button" style="cursor: default;"></div>
+                <div class="entry">
+                    <a href="/dashboard" id="login-button">
+                        <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="font-size: 0px;
+                            line-height: 0px;
+                            width: 40px;
+                            height: 40px;
+                            position: absolute;
+                            top: 3px;
+                            border-radius: 100%;">
+                        <div style="font-size: 0px;
+                            line-height: 0px;
+                            width: 40px;
+                            visibility: hidden;
+                            height: 0px;
+                            display: inline-block;"></div>
+                        <span style="padding-left: 4px;">
+                            <%= user.global_name %>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <button id="menu" class="mobile">Menu</button>
+    </header>
+
+    <div id="mobile__menu" class="overlay">
+        <a class="close">&times;</a>
+        <div class="overlay__content">
+            <a href="/github">GitHub</a>
+            <a href="/discord">Suporte</a>
+            <a href="/terms">Termos de uso</a>
+            <a href="/dashboard">Dashboard</a>
+        </div>
+    </div>
+
+    <main>
+        <div class="right-menu">
+            <img class="guild_icon"
+                src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png?size=1024"
+                onerror="this.src='https://cdn.discordapp.com/attachments/1068525425963302936/1132377114755211284/Sem_titulo.png'">
+
+            <div class="guild_name">
+                <%= guild.name %>
+            </div>
+        </div>
+
+        <form id="inviteBlockerForm" action="/inviteblocker/save/<%= guild.id %>" method="POST"
+            data-guild-id="<%= guild.id %>">
+            <h3 class="input-text">Ativar módulo?</h3>
+            <label class="switch">
+                <input type="checkbox" id="switch" name="inviteblocker" class="switch" default-switch="<%= guildInfoFromDB.InviteBlockerModule.isEnabled %>">
+                <span class="slider round"></span>
+            </label>
+            <br>
+
+            <h3 class="input-text">Mensagem quando um convite for enviado</h3>
+            <% var blockMessage=guildInfoFromDB.InviteBlockerModule.blockMessage; var message=blockMessage !==null ?
+                blockMessage.trim() : '' ; %>
+                <textarea id="messageTextArea" name="blockmessage" rows="6"
+                    cols="50"><%- message !== '' ? message : 'Eii {user} não envie convites aqui!' %></textarea>
+
+                <h3 class="form-text">Canais onde são permitidos o envio de convites</h3>
+                <select name="channels" id="channels">
+                    <% channels.forEach(channel=> { %>
+                        <% if (channel.type===0) { %>
+                            <option value="<%= channel.id %>">
+                                <%= channel.name %>
+                            </option>
+                            <% } %>
+                                <% }) %>
+                </select>
+
+                <button type="button" id="addChannelButton">Adicionar Canal</button>
+                <h3 class="form-text">Cargos que podem enviar convites em qualquer lugar</h3>
+                <select name="roles" id="roles">
+                    <% roles.forEach(role=> { %>
+                        <option value="<%= role.id %>">
+                            <%= role.name %>
+                        </option>
+                        <% }) %>
+                </select>
+                <div class="notification error" id="notificationError">
+                    <span id="notificationErrorText"></span>
+                </div>
+                <div class="notification" id="notification">
+                    <span id="notificationText"></span>
+                </div>
+                <button type="button" id="addRoleButton">Adicionar Cargo</button>
+                <input type="hidden" name="selectedChannels" id="selectedChannelsInput" value="">
+                <input type="hidden" name="selectedRoles" id="selectedRolesInput" value="">
+                <input id="save" type="submit" value="Salvar">
+        </form>
+    </main>
+
+    <script type="application/json" id="channels-data">
+        <%= JSON.stringify(channels) %>
+    </script>
+
+    <script type="application/json" id="roles-data">
+        <%= JSON.stringify(roles) %>
+    </script>
+
+    <script>
+        const checkbox = document.getElementById('switch');
+        const defaultValue = checkbox.getAttribute('default-switch');
+
+        checkbox.checked = defaultValue === 'true' ? true : false;
+    </script>
+    <script src="../js/inviteblockerform.js"></script>
+</body>
+
+</html>
