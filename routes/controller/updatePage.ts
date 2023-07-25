@@ -220,7 +220,7 @@ router.get('/daily', async (req, res) => {
 
         let amount = Math.floor(Math.random() * 8000);
         amount = Math.round(amount / 10) * 10;
-
+        if (amount < 1000) amount = 1000;
         const timeout = 43200000;
         const daily = await userData.lastDaily;
 
@@ -237,9 +237,9 @@ router.get('/daily', async (req, res) => {
             req.session.dbCoins = userData.balance;
             res.status(200).render("../public/pages/logged/daily.ejs", {
                 user: req.session.user_info,
-                coins: req.session.coins,
+                coins: req.session.coins.toLocaleString('pt-BR'),
                 img: img,
-                dbCoins: req.session.dbCoins
+                dbCoins: req.session.dbCoins.toLocaleString('pt-BR')
             });
         }
     }
