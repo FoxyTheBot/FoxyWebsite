@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
 require('dotenv').config();
-
+import DatabaseConnection from '../database/DatabaseConnection';
 export class App {
     port: number;
     constructor(port) {
@@ -9,7 +9,6 @@ export class App {
 
     startServer(): void {
         const app: Application = express();
-
         app.use(express.json());
         app.use(express.urlencoded());
         app.use(express.static('./public/pages'));
@@ -18,7 +17,7 @@ export class App {
         app.use('/', require("../routes/controller/updatePage"));
         app.use('/', require("../routes/controller/redirectPage"));
         app.use('/', require("../routes/auth/oauthDiscord"));
-        
+
         app.get('*', (req, res) => {
             if (!req.session.bearer_token) {
                 res.status(200).render("../public/pages/logged-off/404.ejs");
@@ -35,3 +34,6 @@ export class App {
 
     }
 }
+
+const database = new DatabaseConnection();
+export { database };
