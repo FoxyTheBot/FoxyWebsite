@@ -7,3 +7,7 @@ declare global {
         }
     }
 }
+
+export function Router() {
+    return express.Router();
+}
