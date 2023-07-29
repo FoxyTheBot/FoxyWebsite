@@ -88,19 +88,27 @@
     </div>
 
     <main>
-        <div class="right-menu">
-            <img class="guild_icon"
-                src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png?size=1024"
-                onerror="this.src='https://cdn.discordapp.com/attachments/1068525425963302936/1132377114755211284/Sem_titulo.png'">
+        <!-- <div class="left-menu">
+            
 
             <div class="guild_name">
                 <%= guild.name %>
             </div>
-        </div>
 
+            <div class="server-features">
+                <div class="server-feature">
+                    <a href="#" class="server-feature-link" id="autoRoleLink">Auto Role</a>
+                                </div>    
+            </div>
+        </div> -->
+        
+        <div class="invite-blocker-section">
+            <h2 class="feature-title">Bloqueador de convites</h2>
+        <h3 class="feature-description">Utilize esse recurso para bloquear convites indesejados em seu servidor!</h3>
         <form id="inviteBlockerForm" action="/inviteblocker/save/<%= guild.id %>" method="POST"
             data-guild-id="<%= guild.id %>">
             <h3 class="input-text">Ativar módulo?</h3>
+            <h4 class="input-description">Ative para que eu possa bloquear convites em seu servidor</h4>
             <label class="switch">
                 <input type="checkbox" id="switch" name="inviteblocker" class="switch"
                     default-switch="<%= guildInfoFromDB.InviteBlockerModule.isEnabled %>">
@@ -109,12 +117,14 @@
             <br>
 
             <h3 class="input-text">Mensagem quando um convite for enviado</h3>
+            <h4 class="input-description">Edite a mensagem que será enviada para o usuário quando um convite for detecado</h4>
             <% var blockMessage=guildInfoFromDB.InviteBlockerModule.blockMessage; var message=blockMessage !==null ?
                 blockMessage.trim() : '' ; %>
                 <textarea id="messageTextArea" name="blockmessage" rows="6"
                     cols="50"><%- message !== '' ? message : 'Eii {user} não envie convites aqui!' %></textarea>
 
                 <h3 class="form-text">Canais onde são permitidos o envio de convites</h3>
+                <h4 class="input-description">Selecione os canais onde os usuários podem enviar convites</h4>
                 <select name="channels" id="channels">
                     <% channels.forEach(channel=> { %>
                         <% if (channel.type===0) { %>
@@ -127,6 +137,7 @@
 
                 <button type="button" id="addChannelButton">Adicionar Canal</button>
                 <h3 class="form-text">Cargos que podem enviar convites em qualquer lugar</h3>
+                <h4 class="input-description">Selecione os cargos que podem enviar convites em qualquer lugar</h4>
                 <select name="roles" id="roles">
                     <% roles.forEach(role=> { %>
                         <option value="<%= role.id %>">
@@ -145,6 +156,7 @@
                 <input type="hidden" name="selectedRoles" id="selectedRolesInput" value="">
                 <input id="save" type="submit" value="Salvar">
         </form>
+        </div>
     </main>
 
     <script type="application/json" id="channels-data">
@@ -153,6 +165,14 @@
 
     <script type="application/json" id="roles-data">
         <%= JSON.stringify(roles) %>
+    </script>
+
+    <script>
+        const autoRoleLink = document.getElementById('autoRoleLink');
+        autoRoleLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.replace('/');
+        });
     </script>
 
     <script>
