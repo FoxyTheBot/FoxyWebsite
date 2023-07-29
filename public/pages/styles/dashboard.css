@@ -337,8 +337,8 @@ input:checked+.slider:before {
 }
 textarea {
     display: block;
-    width: 60%; /* Reduzi o valor de 80% para 60% */
-    height: 80px; /* Reduzi o valor de 100px para 80px */
+    width: 60%;
+    height: 80px;
     padding: 10px 10px;
     border-radius: 5px;
     background-color: #fff;
