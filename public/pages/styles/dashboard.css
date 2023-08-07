@@ -93,6 +93,26 @@ main .username {
     margin-top: -27%;
 }
 
+.guild-join-section {
+    margin-left: 40%;
+}
+
+.guild-join-section .feature-title {
+    color: #fff;
+    font-size: 24px;
+    font-family: sans-serif;
+    margin-left: 0%;
+    margin-top: -3%;
+    margin-bottom: -3%;
+}
+.guild-join-section .feature-description {
+    color: #fff;
+    font-size: 13px;
+    font-family: sans-serif;
+    margin-left: 0%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
 
 .guild-name {
     color: rgb(255, 255, 255);
@@ -163,7 +183,8 @@ main #inviteBlockerForm {
     margin-bottom: 5%;
 }
 
-main .input-text, .form-text {
+main .input-text,
+.form-text {
     margin-top: 2%;
     margin-bottom: 1%;
     margin-left: -0.1%;
@@ -176,11 +197,19 @@ main .input-text, .form-text {
     margin-top: -0.5%;
     margin-bottom: 1%;
 }
+
 .form-text {
     margin-top: 1%;
 }
 
 .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.guild-module-checkbox, .guild-leave-module-checkbox {
     position: relative;
     display: inline-block;
     width: 60px;
@@ -220,8 +249,13 @@ main .input-text, .form-text {
 }
 
 @keyframes fadeOut {
-    0% { opacity: 1; }
-    100% { opacity: 0; }
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 
@@ -264,7 +298,7 @@ input:focus+.slider {
     font-family: sans-serif;
     margin-left: 40%;
     margin-top: -3%;
-    margin-bottom: -3%;   
+    margin-bottom: -3%;
 }
 
 .feature-description {
@@ -292,6 +326,21 @@ input:checked+.slider:before {
 }
 
 #addChannelButton {
+    display: block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #5865F2;
+    border: none;
+    outline: none;
+    font-family: Montserrat;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #fff;
+}
+
+#addJoinChannel, addLeaveChannel {
     display: block;
     padding: 10px 20px;
     border-radius: 5px;
@@ -335,6 +384,7 @@ input:checked+.slider:before {
     box-sizing: border-box;
     cursor: pointer;
 }
+
 textarea {
     display: block;
     width: 60%;

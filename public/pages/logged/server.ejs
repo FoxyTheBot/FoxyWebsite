@@ -101,61 +101,138 @@
                                 </div>    
             </div>
         </div> -->
-        
+
         <div class="invite-blocker-section">
             <h2 class="feature-title">Bloqueador de convites</h2>
-        <h3 class="feature-description">Utilize esse recurso para bloquear convites indesejados em seu servidor!</h3>
-        <form id="inviteBlockerForm" action="/inviteblocker/save/<%= guild.id %>" method="POST"
-            data-guild-id="<%= guild.id %>">
-            <h3 class="input-text">Ativar módulo?</h3>
-            <h4 class="input-description">Ative para que eu possa bloquear convites em seu servidor</h4>
-            <label class="switch">
-                <input type="checkbox" id="switch" name="inviteblocker" class="switch"
-                    default-switch="<%= guildInfoFromDB.InviteBlockerModule.isEnabled %>">
-                <span class="slider round"></span>
-            </label>
-            <br>
+            <h3 class="feature-description">Utilize esse recurso para bloquear convites indesejados em seu servidor!
+            </h3>
+            <form id="inviteBlockerForm" action="/inviteblocker/save/<%= guild.id %>" method="POST"
+                data-guild-id="<%= guild.id %>">
+                <h3 class="input-text">Ativar módulo?</h3>
+                <h4 class="input-description">Ative para que eu possa bloquear convites em seu servidor</h4>
+                <label class="switch">
+                    <input type="checkbox" id="switch" name="inviteblocker" class="switch"
+                        default-switch="<%= guildInfoFromDB.InviteBlockerModule.isEnabled %>">
+                    <span class="slider round"></span>
+                </label>
+                <br>
 
-            <h3 class="input-text">Mensagem quando um convite for enviado</h3>
-            <h4 class="input-description">Edite a mensagem que será enviada para o usuário quando um convite for detecado</h4>
-            <% var blockMessage=guildInfoFromDB.InviteBlockerModule.blockMessage; var message=blockMessage !==null ?
-                blockMessage.trim() : '' ; %>
-                <textarea id="messageTextArea" name="blockmessage" rows="6"
-                    cols="50"><%- message !== '' ? message : 'Eii {user} não envie convites aqui!' %></textarea>
+                <h3 class="input-text">Mensagem quando um convite for enviado</h3>
+                <h4 class="input-description">Edite a mensagem que será enviada para o usuário quando um convite for
+                    detecado</h4>
+                <% var blockMessage=guildInfoFromDB.InviteBlockerModule.blockMessage; var message=blockMessage !==null ?
+                    blockMessage.trim() : '' ; %>
+                    <textarea id="messageTextArea" name="blockmessage" rows="6"
+                        cols="50"><%- message !== '' ? message : 'Eii {user} não envie convites aqui!' %></textarea>
 
-                <h3 class="form-text">Canais onde são permitidos o envio de convites</h3>
-                <h4 class="input-description">Selecione os canais onde os usuários podem enviar convites</h4>
-                <select name="channels" id="channels">
-                    <% channels.forEach(channel=> { %>
-                        <% if (channel.type===0) { %>
-                            <option value="<%= channel.id %>">
-                                <%= channel.name %>
+                    <h3 class="form-text">Canais onde são permitidos o envio de convites</h3>
+                    <h4 class="input-description">Selecione os canais onde os usuários podem enviar convites</h4>
+                    <select name="channels" id="channels">
+                        <% channels.forEach(channel=> { %>
+                            <% if (channel.type===0) { %>
+                                <option value="<%= channel.id %>">
+                                    <%= channel.name %>
+                                </option>
+                                <% } %>
+                                    <% }) %>
+                    </select>
+
+                    <button type="button" id="addChannelButton">Adicionar Canal</button>
+                    <h3 class="form-text">Cargos que podem enviar convites em qualquer lugar</h3>
+                    <h4 class="input-description">Selecione os cargos que podem enviar convites em qualquer lugar</h4>
+                    <select name="roles" id="roles">
+                        <% roles.forEach(role=> { %>
+                            <option value="<%= role.id %>">
+                                <%= role.name %>
                             </option>
-                            <% } %>
-                                <% }) %>
-                </select>
+                            <% }) %>
+                    </select>
+                    <div class="notification error" id="notificationError">
+                        <span id="notificationErrorText"></span>
+                    </div>
+                    <div class="notification" id="notification">
+                        <span id="notificationText"></span>
+                    </div>
+                    <button type="button" id="addRoleButton">Adicionar Cargo</button>
+                    <input type="hidden" name="selectedChannels" id="selectedChannelsInput" value="">
+                    <input type="hidden" name="selectedRoles" id="selectedRolesInput" value="">
+                    <input id="save" type="submit" value="Salvar">
+            </form>
+        </div>
 
-                <button type="button" id="addChannelButton">Adicionar Canal</button>
-                <h3 class="form-text">Cargos que podem enviar convites em qualquer lugar</h3>
-                <h4 class="input-description">Selecione os cargos que podem enviar convites em qualquer lugar</h4>
-                <select name="roles" id="roles">
-                    <% roles.forEach(role=> { %>
-                        <option value="<%= role.id %>">
-                            <%= role.name %>
-                        </option>
-                        <% }) %>
-                </select>
-                <div class="notification error" id="notificationError">
-                    <span id="notificationErrorText"></span>
-                </div>
-                <div class="notification" id="notification">
-                    <span id="notificationText"></span>
-                </div>
-                <button type="button" id="addRoleButton">Adicionar Cargo</button>
-                <input type="hidden" name="selectedChannels" id="selectedChannelsInput" value="">
-                <input type="hidden" name="selectedRoles" id="selectedRolesInput" value="">
-                <input id="save" type="submit" value="Salvar">
-        </form>
+        <div class="guild-join-section">
+            <h2 class="feature-title">Avisar quando um usuário entrar ou sair do servidor</h2>
+            <h3 class="feature-description">Utilize esse recurso para avisar quando um usuário entrar ou sair do
+                servidor!</h3>
+
+            <form id="guildJoinForm" action="/guildjoin/save/<%= guild.id %>" method="POST"
+                data-guild-id="<%= guild.id %>">
+
+                <h3 class="input-text">Ativar módulo?</h3>
+                <h4 class="input-description">Ative para que eu posso notificar quando um usuário entra e sai do seu
+                    servidor </h4>
+                <label class="guild-module-checkbox">
+                    <input type="checkbox" id="guild-module-checkbox" name="guildjoin" class="switch"
+                        default-switch="<%= guildInfoFromDB.GuildJoinLeaveModule.isEnabled %>">
+                    <span class="slider round"></span>
+                </label>
+                <br>
+                <h3 class="input-text">Avisar quando um usuário sair do servidor</h3>
+                <h4 class="input-description">Caso esteja ativado eu irei avisar quando um usuário sair do servidor</h4>
+                <label class="guild-leave-module-checkbox">
+                    <input type="checkbox" id="guild-leave-module-checkbox" name="guildjoin" class="switch"
+                        default-switch="<%= guildInfoFromDB.GuildJoinLeaveModule.alertWhenUserLeaves %>">
+                    <span class="slider round"></span>
+                </label>
+                <br>
+
+                <h3 class="input-text">Mensagem quando um usuário entrar no servidor</h3>
+                <% var joinMessage=guildInfoFromDB.GuildJoinLeaveModule.joinMessage; var message=joinMessage !==null ?
+                    joinMessage.trim() : '' ; %>
+                    <textarea id="messageTextArea" name="message" rows="6"
+                        cols="50"><%- message !== '' ? message : '😀 {user} entrou no servidor!' %></textarea>
+
+                    <h3 class="input-text">Mensagem quando um usuário sair do servidor</h3>
+                    <% var leaveMessage=guildInfoFromDB.GuildJoinLeaveModule.leaveMessage; var message=leaveMessage
+                        !==null ? leaveMessage.trim() : '' ; %>
+                        <textarea id="messageTextArea" name="message" rows="6"
+                            cols="50"><%- message !== '' ? message : '🙁 {user} saiu do servidor' %></textarea>
+
+
+                        <h3 class="form-text">Canal onde irei anunciar que alguém entrou no servidor</h3>
+                        <select name="channels" id="channels">
+                            <% channels.forEach(channel=> { %>
+                                <% if (channel.type===0) { %>
+                                    <option value="<%= channel.id %>">
+                                        <%= channel.name %>
+                                    </option>
+                                    <% } %>
+                                        <% }) %>
+                        </select>
+
+                        <button type="button" id="addJoinChannel">Adicionar Canal</button>
+
+                        <h3 class="form-text">Canal onde irei anunciar que alguém saiu do servidor</h3>
+                        <select name="channels" id="channels">
+                            <% channels.forEach(channel=> { %>
+                                <% if (channel.type===0) { %>
+                                    <option value="<%= channel.id %>">
+                                        <%= channel.name %>
+                                    </option>
+                                    <% } %>
+                                        <% }) %>
+                        </select>
+
+                        <button type="button" id="addJoinChannel">Adicionar Canal</button>
+                        <div class="notification error" id="notificationError">
+                            <span id="notificationErrorText"></span>
+                        </div>
+                        <div class="notification" id="notification">
+                            <span id="notificationText"></span>
+                        </div>
+                        <input id="save" type="submit" value="Salvar">
+                        <br>
+            </form>
         </div>
     </main>
 
@@ -169,7 +246,7 @@
 
     <script>
         const autoRoleLink = document.getElementById('autoRoleLink');
-        autoRoleLink.addEventListener('click', function(event) {
+        autoRoleLink.addEventListener('click', function (event) {
             event.preventDefault();
             window.location.replace('/');
         });
@@ -180,6 +257,14 @@
         const defaultValue = checkbox.getAttribute('default-switch');
 
         checkbox.checked = defaultValue === 'true' ? true : false;
+
+        const guildModule = document.getElementById('guild-module-checkbox');
+        const guildModuleDefaultValue = guildModule.getAttribute('default-switch');
+        const guildLeaveModule = document.getElementById('guild-leave-module-checkbox');
+        const guildLeaveModuleDefaultValue = guildLeaveModule.getAttribute('default-switch');
+
+        guildLeaveModule.checked = guildLeaveModuleDefaultValue === 'true' ? true : false;
+        guildModule.checked = guildModuleDefaultValue === 'true' ? true : false;
     </script>
     <script src="../js/inviteblockerform.js"></script>
 </body>
