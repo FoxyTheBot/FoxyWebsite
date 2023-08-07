@@ -15,7 +15,7 @@ export default class DatabaseConnection {
         });
         console.info("[DATABASE] - Connected successfully to the database");
 
-       const userSchema = new mongoose.Schema({
+        const userSchema = new mongoose.Schema({
             _id: String,
             userCreationTimestamp: Date,
             premium: Boolean,
@@ -58,6 +58,14 @@ export default class DatabaseConnection {
             AutoRoleModule: {
                 isEnabled: Boolean,
                 roles: Array,
+            },
+            GuildJoinLeaveModule: {
+                isEnabled: Boolean,
+                joinMessage: String,
+                alertWhenUserLeaves: Boolean,
+                leaveMessage: String,
+                joinChannel: String,
+                leaveChannel: String,
             }
         }, { versionKey: false, id: false });
         this.user = mongoose.model('user', userSchema);
@@ -128,6 +136,14 @@ export default class DatabaseConnection {
                 AutoRoleModule: {
                     isEnabled: false,
                     roles: [],
+                },
+                GuildJoinLeaveModule: {
+                    isEnabled: false,
+                    joinMessage: null,
+                    alertWhenUserLeaves: false,
+                    leaveMessage: null,
+                    joinChannel: null,
+                    leaveChannel: null,
                 }
             }).save();
         }
