@@ -7,9 +7,11 @@ router.use(require("express-session")(config.session));
 
 router.get("/", (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../public/pages/logged-off/index.ejs");
+        res.status(200).render("../public/pages/index.ejs", {
+            user: null,
+        });
     } else {
-        res.status(200).render("../public/pages/logged/index.ejs", {
+        res.status(200).render("../public/pages/index.ejs", {
             user: req.session.user_info,
         });
     }
@@ -17,9 +19,11 @@ router.get("/", (req, res) => {
 
 router.get("/about", (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../public/pages/logged-off/about.ejs");
+        res.status(200).render("../public/pages/about.ejs", {
+            user: null,
+        });
     } else {
-        res.status(200).render("../public/pages/logged/about.ejs", {
+        res.status(200).render("../public/pages/about.ejs", {
             user: req.session.user_info,
         });
     }
@@ -27,9 +31,11 @@ router.get("/about", (req, res) => {
 
 router.get("/terms", (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../public/pages/logged-off/privacy.ejs");
+        res.status(200).render("../public/pages/privacy.ejs", {
+            user: null,
+        });
     } else {
-        res.status(200).render("../public/pages/logged/privacy.ejs", {
+        res.status(200).render("../public/pages/privacy.ejs", {
             user: req.session.user_info,
         });
     }
@@ -64,7 +70,7 @@ router.get('/servers', async (req, res) => {
             }
         }
 
-        res.status(200).render("../public/pages/logged/servers.ejs", {
+        res.status(200).render("../public/pages/servers.ejs", {
             user: user,
             guilds: guildsArray
         });
@@ -131,7 +137,7 @@ router.get("/servers/:id", async (req, res) => {
         }
         if (!guild) return res.redirect("/servers");
 
-        res.status(200).render("../public/pages/logged/server.ejs", {
+        res.status(200).render("../public/pages/server.ejs", {
             user: user,
             guilds: guildsArray,
             guild: guild,
@@ -190,18 +196,18 @@ router.get("/dashboard", async (req, res) => {
         }
 
         if (userBanned) {
-            res.status(401).render("../public/pages/logged/banned.ejs");
+            res.status(401).render("../public/pages/banned.ejs");
         }
 
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
-            return res.status(200).render("../public/pages/logged/dashboard.ejs", {
+            return res.status(200).render("../public/pages/dashboard.ejs", {
                 allowed: false,
                 user: req.session.user_info,
                 db: userData,
                 aboutme: aboutMe,
             });
         } else {
-            res.status(200).render("../public/pages/logged/dashboard.ejs", {
+            res.status(200).render("../public/pages/dashboard.ejs", {
                 allowed: true,
                 user: req.session.user_info,
                 db: userData,
@@ -235,7 +241,7 @@ router.get('/daily', async (req, res) => {
 
             req.session.coins = amount;
             req.session.dbCoins = userData.balance;
-            res.status(200).render("../public/pages/logged/daily.ejs", {
+            res.status(200).render("../public/pages/daily.ejs", {
                 user: req.session.user_info,
                 coins: req.session.coins.toLocaleString('pt-BR'),
                 img: img,
@@ -257,7 +263,7 @@ router.get('/delete', async (req, res) => {
         marriedData.save()
         userData.remove().catch(err => console.log(err));
         req.session.destroy();
-        return res.status(200).render("../public/pages/logged-off/deletedUser.ejs");
+        return res.status(200).render("../public/pages/deletedUser.ejs");
     }
 });
 
@@ -267,7 +273,7 @@ router.get('/confirm', async (req, res) => {
     } else {
         const userId = req.session.user_info.id;
         const userData = await database.getUser(userId);
-        res.status(200).render("../public/pages/logged/confirm.ejs", {
+        res.status(200).render("../public/pages/confirm.ejs", {
             user: req.session.user_info,
             db: userData
         });
@@ -281,7 +287,7 @@ router.get("/aboutme", async (req, res) => {
         const userId = req.session.user_info.id;
         const userData: any = await database.getUser(userId);
 
-        res.status(200).render("../public/pages/logged/aboutMe.ejs", {
+        res.status(200).render("../public/pages/aboutMe.ejs", {
             user: req.session.user_info,
             db: userData
         })
@@ -301,9 +307,11 @@ router.post("/submit", async (req, res) => {
 
 router.get('/error', (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../public/pages/logged-off/error.ejs");
+        res.status(200).render("../public/pages/error.ejs", {
+            user: null,
+        });
     } else {
-        res.status(200).render("../public/pages/logged/error.ejs", {
+        res.status(200).render("../public/pages/error.ejs", {
             user: req.session.user_info
         });
     }
@@ -311,9 +319,11 @@ router.get('/error', (req, res) => {
 
 router.get('/404', (req, res) => {
     if (!req.session.bearer_token) {
-        res.status(200).render("../public/pages/logged-off/404.ejs");
+        res.status(200).render("../public/pages/404.ejs", {
+            user: null,
+        });
     } else {
-        res.status(200).render("../public/pages/logged/404.ejs", {
+        res.status(200).render("../public/pages/404.ejs", {
             user: req.session.user_info
         });
     }

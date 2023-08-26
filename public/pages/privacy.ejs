@@ -13,27 +13,35 @@
     <link rel="stylesheet" href="styles/header.css" type="text/css">
     <link rel="stylesheet" href="styles/footer.css" type="text/css">
     <link rel="stylesheet" href="styles/readonly.css" type="text/css">
-    <link rel="icon" href="/assets/images/foxycake.png">
-    <title>Foxy | Termos</title>
+    <link rel="icon" href="./assets/images/foxycake.png">
+
+    <meta property="og:type" content="website">
+    <meta content="Foxy" property="og:title" />
+    <meta property="og:site_name" content="Foxy Website">
+    <meta content="Termos de Serviço" property="og:description" />
+    <meta content="https://foxybot.win" property="og:url" />
+    <meta content="#e7385d" data-react-helmet="true" name="theme-color" />
+    <meta content="/assets/images/Foxy.png" property="og:image" />
+    <title>Foxy | Termos de Serviço</title>
 </head>
 
 <body>
     <header>
         <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
             <div class="left-side-entries">
-                <div class="entry foxy-navbar-logo"><a href="/"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
-                    line-height: 0px;
-                    width: 40px;
-                    height: 40px;
-
-                    position: absolute;
-                    top: 3px;
-                    border-radius: 100%;"></a></a></div>
+                <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
+                        line-height: 0px;
+                        width: 40px;
+                        height: 40px;
+    
+                        position: absolute;
+                        top: 3px;
+                        border-radius: 100%;"></a></div>
                 <div class="entry"><a href="/support" class="menu" data-preload-link="true"
                         data-preload-link-activated="true">
                         Suporte
                     </a></div>
-                <div class="entry"><a href="/terms" class="menu" data-preload-link="true"
+                <div class="entry"><a href="/terms" class="commands" data-preload-link="true"
                         data-preload-link-activated="true">
                         Termos
                     </a></div>
@@ -42,7 +50,6 @@
                         data-preload-link-activated="true">
                         GitHub
                     </a></div>
-
 
                 <div class="entry"><a href="/about" class="about">
                         Sobre
@@ -56,26 +63,42 @@
                 <div class="entry" id="locale-changer-button" style="cursor: default;">
                     </span>
                 </div>
-                <div class="entry">
-                    <a href="/dashboard" id="login-button"><img
-                            src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
-                        line-height: 0px;
-                        width: 40px;
-                        height: 40px;
+                <% if (user) { %>
+                    <div class="entry">
+                        <a href="/dashboard" id="login-button"><img
+                                src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
+                      line-height: 0px;
+                      width: 40px;
+                      height: 40px;
+    
+                      position: absolute;
+                      top: 3px;
+                      border-radius: 100%;">
+                            <div style="    font-size: 0px;
+                      line-height: 0px;
+                      width: 40px;
+                      visibility: hidden;
+                      height: 0px;
+                      display: inline-block;"></div><span style="padding-left: 4px;">
+                                <%= user.global_name %>
+                            </span>
+                        </a>
+                    </div>
 
-                        position: absolute;
-                        top: 3px;
-                        border-radius: 100%;">
-                        <div style="    font-size: 0px;
-                        line-height: 0px;
-                        width: 40px;
-                        visibility: hidden;
-                        height: 0px;
-                        display: inline-block;"></div><span style="padding-left: 4px;">
-                            <%= user.global_name %>
-                        </span>
-                    </a>
-                </div>
+                    <% } else { %>
+                        <div class="entry">
+                            <a href="/dashboard" id="login-button">
+                                <div style="    font-size: 0px;
+                                    line-height: 0px;
+                                    width: 40px;
+                                    visibility: hidden;
+                                    height: 0px;
+                                    display: inline-block;"></div><span style="padding-left: 4px;">
+                                    Entrar
+                                </span>
+                            </a>
+                        </div>
+                        <% } %>
             </div>
             </div>
         </nav>
@@ -86,8 +109,8 @@
         <div class="overlay__content">
             <a href="/github">GitHub</a>
             <a href="/discord">Suporte</a>
-            <a href="/terms">Termos de uso</a>
-            <a href="/dashboard">Dashboard</a>
+            <a href="/terms">Termos de Serviço</a>
+            <a href="/login">Entrar</a>
         </div>
     </div>
     <main>
@@ -302,7 +325,8 @@
         <h3 class="description">O uso de qualquer um de nossos serviços afirma que o licenciado leu este contrato, o
             compreendeu e concorda em ficar vinculado a seu conteúdo.</h3>
     </main>
+    <script src="../js/HeaderMobile.js"></script>
+
 </body>
-<script src="../js/HeaderMobile.js"></script>
 
 </html>

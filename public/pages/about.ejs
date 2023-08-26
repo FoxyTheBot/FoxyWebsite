@@ -6,26 +6,26 @@
     <link rel="stylesheet" href="../styles/readonly.css">
     <link rel="stylesheet" href="../styles/header.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header>
         <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
             <div class="left-side-entries">
-                <div class="entry foxy-navbar-logo"><a href="/"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
-                    line-height: 0px;
-                    width: 40px;
-                    height: 40px;
-
-                    position: absolute;
-                    top: 3px;
-                    border-radius: 100%;"></a></a></div>
+                <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
+                        line-height: 0px;
+                        width: 40px;
+                        height: 40px;
+    
+                        position: absolute;
+                        top: 3px;
+                        border-radius: 100%;"></a></div>
                 <div class="entry"><a href="/support" class="menu" data-preload-link="true"
                         data-preload-link-activated="true">
                         Suporte
                     </a></div>
-                <div class="entry"><a href="/terms" class="menu" data-preload-link="true"
+                <div class="entry"><a href="/terms" class="commands" data-preload-link="true"
                         data-preload-link-activated="true">
                         Termos
                     </a></div>
@@ -34,7 +34,6 @@
                         data-preload-link-activated="true">
                         GitHub
                     </a></div>
-
 
                 <div class="entry"><a href="/about" class="about">
                         Sobre
@@ -48,12 +47,42 @@
                 <div class="entry" id="locale-changer-button" style="cursor: default;">
                     </span>
                 </div>
-                <div class="entry">
-                    <a href="/login" id="login-button"><img </div><span style="padding-left: 4px;">
-                            Entrar
-                        </span>
-                    </a>
-                </div>
+                <% if (user) { %>
+                    <div class="entry">
+                        <a href="/dashboard" id="login-button"><img
+                                src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
+                      line-height: 0px;
+                      width: 40px;
+                      height: 40px;
+    
+                      position: absolute;
+                      top: 3px;
+                      border-radius: 100%;">
+                            <div style="    font-size: 0px;
+                      line-height: 0px;
+                      width: 40px;
+                      visibility: hidden;
+                      height: 0px;
+                      display: inline-block;"></div><span style="padding-left: 4px;">
+                                <%= user.global_name %>
+                            </span>
+                        </a>
+                    </div>
+
+                    <% } else { %>
+                        <div class="entry">
+                            <a href="/dashboard" id="login-button">
+                                <div style="    font-size: 0px;
+                                    line-height: 0px;
+                                    width: 40px;
+                                    visibility: hidden;
+                                    height: 0px;
+                                    display: inline-block;"></div><span style="padding-left: 4px;">
+                                    Entrar
+                                </span>
+                            </a>
+                        </div>
+                        <% } %>
             </div>
             </div>
         </nav>

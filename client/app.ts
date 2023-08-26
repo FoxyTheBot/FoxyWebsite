@@ -11,7 +11,7 @@ export class App {
         const app: Application = express();
         app.use(express.json());
         app.use(express.urlencoded());
-        app.use(express.static('./public/pages'));
+        app.use(express.static('./public'));
         app.set('view engine', 'ejs');
 
         app.use('/', require("../routes/controller/updatePage"));

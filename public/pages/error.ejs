@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/js/autoPlay.js"></script>
@@ -20,7 +20,7 @@
     <meta property="og:type" content="website">
     <meta content="Foxy" property="og:title" />
     <meta property="og:site_name" content="Foxy Website">
-    <meta content="Olá, Eu sou a Foxy! Um bot de economia e entretenimento para o seu servidor do Discord!"
+    <meta content="Oiii!! Meu nome é Foxy, eu sou um bot de economia para o Discord mas também tenho outras funções :D"
         property="og:description" />
     <meta content="https://foxybot.win" property="og:url" />
     <meta content="#e7385d" data-react-helmet="true" name="theme-color" />
@@ -33,18 +33,18 @@
         <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
             <div class="left-side-entries">
                 <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
-                    line-height: 0px;
-                    width: 40px;
-                    height: 40px;
-
-                    position: absolute;
-                    top: 3px;
-                    border-radius: 100%;"></a></div>
+                        line-height: 0px;
+                        width: 40px;
+                        height: 40px;
+    
+                        position: absolute;
+                        top: 3px;
+                        border-radius: 100%;"></a></div>
                 <div class="entry"><a href="/support" class="menu" data-preload-link="true"
                         data-preload-link-activated="true">
                         Suporte
                     </a></div>
-                <div class="entry"><a href="/terms" class="menu" data-preload-link="true"
+                <div class="entry"><a href="/terms" class="commands" data-preload-link="true"
                         data-preload-link-activated="true">
                         Termos
                     </a></div>
@@ -53,7 +53,6 @@
                         data-preload-link-activated="true">
                         GitHub
                     </a></div>
-
 
                 <div class="entry"><a href="/about" class="about">
                         Sobre
@@ -67,38 +66,55 @@
                 <div class="entry" id="locale-changer-button" style="cursor: default;">
                     </span>
                 </div>
-                <div class="entry">
-                    <a href="/dashboard" id="login-button"><img
-                            src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
-                        line-height: 0px;
-                        width: 40px;
-                        height: 40px;
+                <% if (user) { %>
+                    <div class="entry">
+                        <a href="/dashboard" id="login-button"><img
+                                src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
+                      line-height: 0px;
+                      width: 40px;
+                      height: 40px;
+    
+                      position: absolute;
+                      top: 3px;
+                      border-radius: 100%;">
+                            <div style="    font-size: 0px;
+                      line-height: 0px;
+                      width: 40px;
+                      visibility: hidden;
+                      height: 0px;
+                      display: inline-block;"></div><span style="padding-left: 4px;">
+                                <%= user.global_name %>
+                            </span>
+                        </a>
+                    </div>
 
-                        position: absolute;
-                        top: 3px;
-                        border-radius: 100%;">
-                        <div style="    font-size: 0px;
-                        line-height: 0px;
-                        width: 40px;
-                        visibility: hidden;
-                        height: 0px;
-                        display: inline-block;"></div><span style="padding-left: 4px;">
-                            <%= user.global_name %>
-                        </span>
-                    </a>
-                </div>
+                    <% } else { %>
+                        <div class="entry">
+                            <a href="/dashboard" id="login-button">
+                                <div style="    font-size: 0px;
+                                    line-height: 0px;
+                                    width: 40px;
+                                    visibility: hidden;
+                                    height: 0px;
+                                    display: inline-block;"></div><span style="padding-left: 4px;">
+                                    Entrar
+                                </span>
+                            </a>
+                        </div>
+                        <% } %>
             </div>
             </div>
         </nav>
+        <button id="menu" class="mobile">Menu</button>
     </header>
     <main>
         <h1>Ocorreu um erro!</h1>
-        <h2>Algo extremamente errado aconteceu, me desculpe pela inconveniência!</h2>
+        <h3>Algo extremamente errado aconteceu, me desculpe pela inconveniência!</h3>
 
 
     </main>
+    <script src="../js/HeaderMobile.js"></script>
 
 </body>
-<script src="../js/HeaderMobile.js"></script>
 
 </html>

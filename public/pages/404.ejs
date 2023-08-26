@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        crossorigin="anonymous"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,8 +12,8 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="styles/header.css" type="text/css">
     <link rel="stylesheet" href="styles/404.css" type="text/css">
-    <link rel="icon" href="../assets/images/foxycake.png">
-    <title>Foxy | 404</title>
+    <link rel="icon" href="/assets/images/foxycake.png">
+    <title>Foxy | Not Found</title>
 </head>
 
 <body>
@@ -21,18 +21,18 @@
         <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
             <div class="left-side-entries">
                 <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
-                    line-height: 0px;
-                    width: 40px;
-                    height: 40px;
-
-                    position: absolute;
-                    top: 3px;
-                    border-radius: 100%;"></a></div>
+                        line-height: 0px;
+                        width: 40px;
+                        height: 40px;
+    
+                        position: absolute;
+                        top: 3px;
+                        border-radius: 100%;"></a></div>
                 <div class="entry"><a href="/support" class="menu" data-preload-link="true"
                         data-preload-link-activated="true">
                         Suporte
                     </a></div>
-                <div class="entry"><a href="/terms" class="menu" data-preload-link="true"
+                <div class="entry"><a href="/terms" class="commands" data-preload-link="true"
                         data-preload-link-activated="true">
                         Termos
                     </a></div>
@@ -41,7 +41,6 @@
                         data-preload-link-activated="true">
                         GitHub
                     </a></div>
-
 
                 <div class="entry"><a href="/about" class="about">
                         Sobre
@@ -55,25 +54,42 @@
                 <div class="entry" id="locale-changer-button" style="cursor: default;">
                     </span>
                 </div>
-                <div class="entry">
-                    <a href="/dashboard" id="login-button"><img
-                            src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
-                        line-height: 0px;
-                        width: 40px;
-                        height: 40px;
-                        position: absolute;
-                        top: 3px;
-                        border-radius: 100%;">
-                        <div style="    font-size: 0px;
-                        line-height: 0px;
-                        width: 40px;
-                        visibility: hidden;
-                        height: 0px;
-                        display: inline-block;"></div><span style="padding-left: 4px;">
-                            <%= user.global_name %>
-                        </span>
-                    </a>
-                </div>
+                <% if (user) { %>
+                    <div class="entry">
+                        <a href="/dashboard" id="login-button"><img
+                                src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
+                      line-height: 0px;
+                      width: 40px;
+                      height: 40px;
+    
+                      position: absolute;
+                      top: 3px;
+                      border-radius: 100%;">
+                            <div style="    font-size: 0px;
+                      line-height: 0px;
+                      width: 40px;
+                      visibility: hidden;
+                      height: 0px;
+                      display: inline-block;"></div><span style="padding-left: 4px;">
+                                <%= user.global_name %>
+                            </span>
+                        </a>
+                    </div>
+
+                    <% } else { %>
+                        <div class="entry">
+                            <a href="/dashboard" id="login-button">
+                                <div style="    font-size: 0px;
+                                    line-height: 0px;
+                                    width: 40px;
+                                    visibility: hidden;
+                                    height: 0px;
+                                    display: inline-block;"></div><span style="padding-left: 4px;">
+                                    Entrar
+                                </span>
+                            </a>
+                        </div>
+                        <% } %>
             </div>
             </div>
         </nav>
@@ -85,11 +101,11 @@
             <a href="/github">GitHub</a>
             <a href="/discord">Suporte</a>
             <a href="/terms">Termos de uso</a>
-            <a href="/dashboard">Dashboard</a>
+            <a href="/login">Entrar</a>
         </div>
     </div>
     <main>
-        <img class ="main__image" src="../assets/images/foxymedu.png" alt="404">
+        <img class="main__image" src="../assets/images/foxymedu.png" alt="404">
         <h1>Oxe cadê a página?</h1>
         <h3>
             <br>
@@ -98,7 +114,7 @@
         </h3>
         <a href="/"><button>Voltar a página inicial</button></a>
     </main>
+    <script src="../js/HeaderMobile.js"></script>
 </body>
-<script src="../js/HeaderMobile.js"></script>
 
 </html>

@@ -1,4 +1,4 @@
-@import"https://fonts.googleapis.com/css?family=Roboto:500";
+@import url("https://fonts.googleapis.com/css?family=Roboto:500");
 @import url(https://fonts.googleapis.com/css2?family=Oswald&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:500&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Muli&display=swap);
@@ -40,6 +40,13 @@ main .right-content .foxy-image {
     margin-left: -27%;
 }
 
+.features p {
+    font-family: Montserrat;
+    font-size: 15px;
+    color: #fff;
+    margin-left: auto;
+}
+
 main .foxy {
     margin-left: 135%;
     margin-top: -34%;
@@ -49,21 +56,16 @@ main .foxy {
     display: inline;
 }
 
-footer {
-    margin-top: 14%;
-    margin-left: 85%;
-    transition-duration: 0.5s;
-    text-align: center;
+
+footer .navigation-footer {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    gap: 1em;
 }
 
 main .main__image {
     animation: float 1s ease-in-out infinite;
-}
-
-footer .terms a {
-    font-size: 17px;
-    font-family: sans-serif;
-    text-decoration: none;
 }
 
 main .title {
@@ -387,13 +389,37 @@ footer {
     padding: 1em 2em;
 }
 
+footer .social-networks {
+    gap: 0.25em;
+    display: flex;
+    justify-content: center;
+    font-size: 3em;
+}
+
+footer a {
+    color: white;
+}
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+    font-size: inherit;
+    color: inherit;
+    vertical-align: -0.125em;
+}
+
 footer {
     z-index: 1;
-    background-color: #29a6fe;
+    background-color: #e7385d;
     color: white;
     padding: 16px 72px;
     box-shadow: 0 0 15px rgb(0 0 0 / 30%);
     overflow: hidden;
+    font-family: Arial;
 }
 
 @media only screen and (max-width: 320px) {
