@@ -2,34 +2,32 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
-        crossorigin="anonymous"></script>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/playAudio.js"></script>
-    <link rel="icon" href="../assets/images/foxycake.png">
-    <link rel="stylesheet" href="/styles/mainHeader.css" type="text/css">
-    <link rel="stylesheet" href="/styles/footer.css" type="text/css">
-    <link rel="stylesheet" href="/styles/mainPage.css" type="text/css">
-    <title>Foxy | Home</title>
+  <meta charset="UTF-8">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/playAudio.js"></script>
+  <script src="../js/updateTheme.js"></script>
+  <link rel="icon" href="../assets/images/foxycake.png">
+  <link rel="stylesheet" href="/styles/header.css" type="text/css">
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css">
+  <link rel="stylesheet" href="/styles/main.css" type="text/css">
+  <title>Simples bot multiuso para o Discord</title>
 
-    <meta property="og:type" content="website">
-    <meta content="Foxy" property="og:title" />
-    <meta property="og:site_name" content="Foxy Website">
-    <meta content="Olá, Eu sou a Foxy! Um bot de economia e entretenimento para o seu servidor do Discord!"
-        property="og:description" />
-    <meta content="https://foxybot.win" property="og:url" />
-    <meta content="#e7385d" data-react-helmet="true" name="theme-color" />
-    <meta content="/assets/images/Foxy.png" property="og:image" />
-
+  <meta property="og:type" content="website">
+  <meta content="Foxy" property="og:title" />
+  <meta property="og:site_name" content="Foxy Website">
+  <meta content="Olá, Eu sou a Foxy! Um bot de economia e entretenimento para o seu servidor do Discord!" property="og:description" />
+  <meta content="https://foxybot.win" property="og:url" />
+  <meta content="#e7385d" data-react-helmet="true" name="theme-color" />
+  <meta content="/assets/images/Foxy.png" property="og:image" />
 </head>
 
 <body>
-    <header>
-        <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
-            <div class="left-side-entries">
-                <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
+  <header>
+    <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
+      <div class="left-side-entries">
+        <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
                     line-height: 0px;
                     width: 40px;
                     height: 40px;
@@ -37,130 +35,125 @@
                     position: absolute;
                     top: 3px;
                     border-radius: 100%;"></a></div>
-                <div class="entry"><a href="/support" class="menu" data-preload-link="true"
-                        data-preload-link-activated="true">
-                        Suporte
-                    </a></div>
-                <div class="entry"><a href="/terms" class="commands" data-preload-link="true"
-                        data-preload-link-activated="true">
-                        Termos
-                    </a></div>
+        <div class="entry"><a href="/support" class="menu" data-preload-link="true" data-preload-link-activated="true">
+            Suporte
+          </a></div>
+        <div class="entry"><a href="/terms" class="commands" data-preload-link="true" data-preload-link-activated="true">
+            Termos
+          </a></div>
 
-                <div class="entry"><a href="https://github.com/FoxyTheBot" class="extras" data-preload-link="true"
-                        data-preload-link-activated="true">
-                        GitHub
-                    </a></div>
+        <div class="entry"><a href="https://github.com/FoxyTheBot" class="extras" data-preload-link="true" data-preload-link-activated="true">
+            GitHub
+          </a></div>
 
-                <div class="entry"><a href="/about" class="about">
-                        Sobre
-                    </a></div>
-                <div class="entry"><a href="/upvote" class="menu">
-                        Votar
-                    </a></div>
-            </div>
-            <div class="right-side-entries">
+        <div class="entry"><a href="/about" class="about">
+            Sobre
+          </a></div>
+        <div class="entry"><a href="/upvote" class="menu">
+            Votar
+          </a></div>
+      </div>
+      <div class="right-side-entries">
 
-                <div class="entry" id="locale-changer-button" style="cursor: default;">
-                    </span>
-                </div>
-                <div class="entry">
-                    <a href="/dashboard" id="login-button">
-                        <div style="    font-size: 0px;
+        <div class="entry" id="locale-changer-button" style="cursor: default;">
+          </span>
+        </div>
+        <div class="entry">
+          <a href="/dashboard" id="login-button">
+            <div style="    font-size: 0px;
                         line-height: 0px;
                         width: 40px;
                         visibility: hidden;
                         height: 0px;
                         display: inline-block;"></div><span style="padding-left: 4px;">
-                            Entrar
-                        </span>
-                    </a>
-                </div>
-                <div class=" entry" id="hamburger-menu-button" style="display: block;">
-                </div>
-            </div>
-        </nav>
-        <button id="menu" class="mobile">Menu</button>
-    </header>
-    <div id="mobile__menu" class="overlay">
-        <a class="close">&times;</a>
-        <div class="overlay__content">
-            <a href="/github">GitHub</a>
-            <a href="/discord">Suporte</a>
-            <a href="/terms">Termos de uso</a>
-            <a href="/login">Entrar</a>
+              Entrar
+            </span>
+          </a>
         </div>
+        <div class=" entry" id="hamburger-menu-button" style="display: block;">
+        </div>
+      </div>
+    </nav>
+    <button id="menu" class="mobile">Menu</button>
+  </header>
+  <div id="mobile__menu" class="overlay">
+    <a class="close">&times;</a>
+    <div class="overlay__content">
+      <a href="/github">GitHub</a>
+      <a href="/discord">Suporte</a>
+      <a href="/terms">Termos de uso</a>
+      <a href="/login">Entrar</a>
     </div>
-    <main>
-        <img class="main__image" src="../assets/images/foxycake.png">
-        <h1 class="title">Foxy</h1>
-        <br>
-        <h3>Oii, eu sou a Foxy! Um bot de economia e entretenimento 100% brasileiro para seu servidor do Discord!</h3>
-        <br>
-        <a href="/add"><button>Adicionar</button></a>
-        <a href="/discord"><button class="discord__button">Suporte</button></a>
-        <br>
-        <br>
-        <a href="/dashboard"><button class="discord__button">Dashboard</button></a>
-        <img class="foxy" src="../assets/images/page.png" onclick="playAudio('../assets/audios/boop.mp3')">
+  </div>
+  <main>
+    <img class="main__image" src="../assets/images/foxycake.png">
+    <h1 class="title">Foxy</h1>
+    <br>
+    <h3>Oii, eu sou a Foxy! Um bot de economia e entretenimento 100% brasileiro para seu servidor do Discord!</h3>
+    <br>
+    <a href="/add"><button>Adicionar</button></a>
+    <a href="/discord"><button class="discord__button">Suporte</button></a>
+    <br>
+    <br>
+    <a href="/dashboard"><button class="discord__button">Dashboard</button></a>
+    <img class="foxy" src="../assets/images/page.png" onclick="playAudio('../assets/audios/boop.mp3')">
 
-    </main>
-    <div class="features">
-        <div class="arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                class="icon icon-chevron-down">
-                <path
-                    d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z">
-                </path>
-            </svg></div>
-        <br>
-        <h1 class="title">Funcionalidades</h1>
+  </main>
+  <div class="features">
+    <div class="arrow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon icon-chevron-down">
+        <path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z">
+        </path>
+      </svg></div>
+    <br>
+    <h1 class="title">Funcionalidades</h1>
 
-        <div class="feature">
-            <h1>Economia</h1>
-            <h2>Com a moeda da Foxy (cakes) você pode comprar backgrounds para o seu perfil e máscaras para o seu
-                avatar, você também pode transferir para seu amigo ou fazer sorteio</h2>
-        </div>
-
-        <div class="feature">
-            <h1>Entretenimento</h1>
-            <h2>Foxy é um bot focado em entretenimento, você pode jogar alguns jogos como cara ou coroa e pedra papel e
-                tesoura, Foxy também possui comandos relacionados a modificação de imagem como stonks e error e muito
-                mais!</h2>
-        </div>
-
-        <div class="feature">
-            <h1>Autorole</h1>
-            <h2>Você pode usar o sistema de auto-role da Foxy para adicionar cargos quando um membro novo entrar em seu
-                servidor</h2>
-        </div>
-
-        <div class="feature">
-            <h1>Bloqueio de convites</h1>
-            <h2>Você pode usar o sistema de bloqueio de convites da Foxy para bloquear convites indesejados no seu
-                servidor, você também pode permitir cargos, usuários e canais específicos para mandar convites de
-                servidores e você também pode customizar a mensagem de aviso quando um convite é enviado</h2>
-        </div>
-
-        <div class="feature">
-            <h1>Perfil Customizável</h1>
-            <h2>A Foxy possui um sistema de perfil bem customizável, onde você pode trocar seu background, layout, e
-                máscaras de perfil</h2>
-        </div>
-
-        <div class="feature">
-            <h1>Reputações</h1>
-            <h2>Com o sistema de reputações da Foxy você pode dar reputações para alguem, trocar com seu amigo ou vender
-                reputações</h2>
-        </div>
-
-        <div class="feature" style="text-align: center;">
-            <h1>E muito mais!</h1>
-        </div>
-
-        <div class="footer-add" style="text-align: center;">
-            <h2>Gostou? Me adicione no seu servidor e divirta-se! :3</h2>
-            <a href="/add"><button>Adicionar</button></a>
-        </div>
+    <div class="feature">
+      <h1>Economia</h1>
+      <h2>Com a moeda da Foxy (cakes) você pode comprar backgrounds para o seu perfil e máscaras para o seu
+        avatar, você também pode transferir para seu amigo ou fazer sorteio</h2>
     </div>
+
+    <div class="feature">
+      <h1>Entretenimento</h1>
+      <h2>Foxy é um bot focado em entretenimento, você pode jogar alguns jogos como cara ou coroa e pedra papel e
+        tesoura, Foxy também possui comandos relacionados a modificação de imagem como stonks e error e muito
+        mais!</h2>
+    </div>
+
+    <div class="feature">
+      <h1>Autorole</h1>
+      <h2>Você pode usar o sistema de auto-role da Foxy para adicionar cargos quando um membro novo entrar em seu
+        servidor</h2>
+    </div>
+
+    <div class="feature">
+      <h1>Bloqueio de convites</h1>
+      <h2>Você pode usar o sistema de bloqueio de convites da Foxy para bloquear convites indesejados no seu
+        servidor, você também pode permitir cargos, usuários e canais específicos para mandar convites de
+        servidores e você também pode customizar a mensagem de aviso quando um convite é enviado</h2>
+    </div>
+
+    <div class="feature">
+      <h1>Perfil Customizável</h1>
+      <h2>A Foxy possui um sistema de perfil bem customizável, onde você pode trocar seu background, layout, e
+        máscaras de perfil</h2>
+    </div>
+
+    <div class="feature">
+      <h1>Reputações</h1>
+      <h2>Com o sistema de reputações da Foxy você pode dar reputações para alguem, trocar com seu amigo ou vender
+        reputações</h2>
+    </div>
+
+    <div class="feature" style="text-align: center;">
+      <h1>E muito mais!</h1>
+    </div>
+
+    <div class="footer-add" style="text-align: center;">
+      <h2>Gostou? Me adicione no seu servidor e divirta-se! :3</h2>
+      <a href="/add"><button>Adicionar</button></a>
+    </div>
+  </div>
 </body>
 <script src="../js/HeaderMobile.js"></script>
 

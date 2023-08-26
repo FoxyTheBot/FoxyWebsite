@@ -1,3 +1,10 @@
+@import"https://fonts.googleapis.com/css?family=Roboto:500";
+@import url(https://fonts.googleapis.com/css2?family=Oswald&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Muli&display=swap);
+
+/* Main page */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,22 +12,84 @@
 }
 
 body {
-    background-image: url("../assets/images/DiscordBackground.png");
+    background-image: url('../assets/images/DiscordBackground.png');
     background-color: #36393f;
 }
 
+
 main {
-    padding-left: 28%;
-    padding-right: 30%;
-    margin-top: 5%;
+    padding-left: 30%;
+    padding-right: 50%;
+    margin-top: 15%;
+    margin-left: -25%;
+    transition-duration: 0.5s;
+    text-align: center;
+    cursor: default;
+}
+
+main .right-content {
+    justify-content: space-between;
+    margin-top: -50%;
+    margin-left: 160%;
+}
+
+main .right-content .foxy-image {
+    position: absolute;
+    bottom: 0;
+    height: 92.5vh;
+    margin-left: -27%;
+}
+
+main .foxy {
+    margin-left: 135%;
+    margin-top: -34%;
+    margin-bottom: -1%;
+    width: 65%;
+    height: 65%;
+    display: inline;
+}
+
+footer {
+    margin-top: 14%;
+    margin-left: 85%;
     transition-duration: 0.5s;
     text-align: center;
 }
 
-main h1 {
-    color: #fff;
+main .main__image {
+    animation: float 1s ease-in-out infinite;
+}
+
+footer .terms a {
+    font-size: 17px;
+    font-family: sans-serif;
+    text-decoration: none;
+}
+
+main .title {
+    color: #047cd6;
     font-size: 50px;
+    margin-bottom: 1%;
     font-family: Montserrat;
+}
+
+main .title {
+
+    text-align: center;
+
+    background: linear-gradient(to right, #FFF 20%, #7289da 40%, #1d9ae4 60%, #FFF 80%);
+    background-size: 200% auto;
+
+    color: #000;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes shine {
+    to {
+        background-position: 50% top;
+    }
 }
 
 main h3 {
@@ -35,16 +104,49 @@ main a {
 }
 
 main a button {
-    color: #fff;
-    background-color: #1d9ae4;
-    font-family: Montserrat;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
     border: none;
-    margin: 20px 5px 10px 5px;
-    transition-duration: 0.5s;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    min-width: 36px;
+    margin-left: 1.5%;
+    padding: .55rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #3ba55c;
+    animation: float 5s ease-in-out infinite;
+}
+
+.footer-add a button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    min-width: 36px;
+    margin-left: 1.5%;
+    padding: .55rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #3ba55c;
+    animation: float 5s ease-in-out infinite;
 }
 
 .title {
@@ -54,30 +156,6 @@ main a button {
 }
 
 main a .discord__button {
-    color: #fff;
-    background-color: #5865F2;
-    font-family: Montserrat;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    transition-duration: 0.5s;
-}
-
-main input {
-    color: rgb(0, 0, 0);
-    background-color: #ffffff;
-    font-family: Montserrat;
-    font-size: 20px;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    margin: 20px 5px 10px 5px;
-    transition-duration: 0.5s;
-}
-
-main a .home_button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -100,20 +178,7 @@ main a .home_button {
     animation: float 5s ease-in-out infinite;
 }
 
-main form button {
-    color: #fff;
-    background-color: #7289da;
-    font-family: Montserrat;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    margin: 20px 5px 10px 5px;
-    transition-duration: 0.5s;
-}
-
-main form select {
+main input {
     color: rgb(0, 0, 0);
     background-color: #ffffff;
     font-family: Montserrat;
@@ -125,8 +190,17 @@ main form select {
     transition-duration: 0.5s;
 }
 
-option {
+main form button {
+    color: #fff;
+    background-color: #7289da;
     font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    transition-duration: 0.5s;
 }
 
 main a .button__image {
@@ -141,23 +215,131 @@ main a .discord__button .button__image {
 }
 
 main a button:hover {
-    background-color: #047cd6;
+    background-color: #359553;
     transition-duration: 0.5s;
 }
+
+main a .discord__button:hover {
+    background-color: #4752c4;
+    transition-duration: 0.5s;
+}
+
+main a .discord__button:disabled {
+    opacity: .5;
+    background-color: #4752c4;
+    cursor: not-allowed;
+}
+
+@keyframes cardAnimation {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    50% {
+        transform: translate(0, 15px);
+    }
+
+    100% {
+        transform: translate(0, -0px);
+    }
+}
+
 
 .features {
     padding: 30px;
     opacity: inherit;
+    background-color: #36393f;
+    border-color: #000;
+    position: relative;
+    text-align: center;
+}
+
+.features .arrow {
+    color: #e7385d;
+    position: absolute;
+    margin-top: -100px;
+    text-align: center;
+    bottom: 100;
+    right: 48%;
+    font-size: 3.5em;
+    -webkit-animation: arrow-move 1s infinite alternate;
+    animation: arrow-move 1s infinite alternate;
+    overflow: hidden;
 }
 
 .features .title {
     font-family: Montserrat;
-    font-size: 150%;
+    font-size: 200%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
-    color: rgb(255, 255, 255);
+    margin-top: 10px;
+    color: #e7385d;
+}
+
+
+@keyframes arrow-move {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@-webkit-keyframes arrow-move {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+.features .feature {
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #36393f;
+    border-color: #000;
+    position: relative;
+}
+
+.features .feature h1 {
+    font-family: Montserrat;
+    font-size: 160%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    color: #e7385d;
+}
+
+.footer-add h2 {
+    font-family: Montserrat;
+    font-size: 130%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+    margin-top: 10px;
+    color: #e7385d;
+}
+
+.inline-emoji {
+    height: 1.5em;
+    position: relative;
+    top: 0.3em;
+}
+
+.features .feature h2 {
+    font-family: Montserrat;
+    font-size: 110%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    color: white;
 }
 
 .features .feature__title {
@@ -201,18 +383,17 @@ main a button:hover {
     margin-left: auto;
 }
 
-@keyframes cardAnimation {
-    0% {
-        transform: translate(0, 0px);
-    }
+footer {
+    padding: 1em 2em;
+}
 
-    50% {
-        transform: translate(0, 15px);
-    }
-
-    100% {
-        transform: translate(0, -0px);
-    }
+footer {
+    z-index: 1;
+    background-color: #29a6fe;
+    color: white;
+    padding: 16px 72px;
+    box-shadow: 0 0 15px rgb(0 0 0 / 30%);
+    overflow: hidden;
 }
 
 @media only screen and (max-width: 320px) {
@@ -228,6 +409,10 @@ main a button:hover {
         margin: 20px 5px 10px 5px;
         transition-duration: 0.5s;
     }
+
+    main .foxy {
+        display: none;
+    }
 }
 
 .features .card-row .card img {
@@ -242,7 +427,7 @@ main a button:hover {
     font-family: Montserrat;
 }
 
-.features .card-row .card :left p {
+.features .card-row .card p {
     text-align: left;
     color: rgb(150, 150, 150);
     cursor: default;
@@ -250,15 +435,7 @@ main a button:hover {
     transition-duration: 0.5s;
 }
 
-.features .card-row .card :right p {
-    text-align: right;
-    color: rgb(150, 150, 150);
-    cursor: default;
-    font-family: Montserrat;
-    transition-duration: 0.5s;
-}
-
-.features .card-row .card :right :left p:hover {
+.features .card-row .card p:hover {
     cursor: default;
     color: #fff;
     transition-duration: 0.5s;
@@ -275,9 +452,13 @@ main a button:hover {
         transition-duration: 0.5s;
     }
 
+    main .foxy {
+        display: none;
+    }
+
     main {
         text-align: center;
-        margin-top: 40%;
+        margin-top: 10%;
         margin-bottom: 15%;
         margin-right: 5%;
         margin-left: 5%;
@@ -348,5 +529,19 @@ main a button:hover {
 
     100% {
         background-position: 0% 50%
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: rotate(3deg);
+    }
+
+    50% {
+        transform: rotate(-3deg);
+    }
+
+    100% {
+        transform: rotate(3deg);
     }
 }

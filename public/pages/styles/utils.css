@@ -1,13 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-image: url("/assets/images/DiscordBackground.png");
-    background-color: #36393f;
-}
 
 main {
     padding-left: 28%;

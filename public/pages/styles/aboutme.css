@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("../assets/images/DiscordBackground.png");
+    background-color: #36393f;
+}
+
+main {
+    padding-left: 28%;
+    padding-right: 30%;
+    margin-top: 5%;
+    transition-duration: 0.5s;
+    text-align: center;
+}
+
+main h1 {
+    color: #fff;
+    font-size: 50px;
+    font-family: Montserrat;
+}
+
+main h3 {
+    color: #fff;
+    font-size: 18px;
+    font-family: sans-serif;
+    margin-left: 5px;
+}
+
+main a {
+    list-style: none;
+}
+
+main a button {
+    color: #fff;
+    background-color: #1d9ae4;
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    transition-duration: 0.5s;
+}
+
+.title {
+    font-family: Montserrat;
+    color: rgb(0, 183, 255);
+    margin-top: 20px;
+}
+
+main a .discord__button {
+    color: #fff;
+    background-color: #5865F2;
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    transition-duration: 0.5s;
+}
+
+main input {
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    font-family: Montserrat;
+    font-size: 20px;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    transition-duration: 0.5s;
+}
+
+main a .home_button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    min-width: 36px;
+    margin-left: 1.5%;
+    padding: .55rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #5865f2;
+    animation: float 5s ease-in-out infinite;
+}
+
+main form button {
+    color: #fff;
+    background-color: #7289da;
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    transition-duration: 0.5s;
+}
+
+main form select {
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    font-family: Montserrat;
+    font-size: 20px;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    transition-duration: 0.5s;
+}
+
+option {
+    font-family: Montserrat;
+}
+
+main a .button__image {
+    width: 20px;
+    height: 20px;
+}
+
+main a .discord__button .button__image {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+main a button:hover {
+    background-color: #047cd6;
+    transition-duration: 0.5s;
+}
+
+.features {
+    padding: 30px;
+    opacity: inherit;
+}
+
+.features .title {
+    font-family: Montserrat;
+    font-size: 150%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.features .feature__title {
+    font-family: Montserrat;
+    font-size: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.features .description {
+    font-family: Montserrat;
+    text-align: center;
+    color: #fff;
+}
+
+.features .card-row {
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+.features .card-row .card {
+    width: 80%;
+    max-width: 250px;
+    padding: 35px 20px 35px 20px;
+    background-color: #221f1f;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.features .card-row .card p {
+    font-family: Montserrat;
+    font-size: 15px;
+    color: #fff;
+    margin-left: auto;
+}
+
+@keyframes cardAnimation {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    50% {
+        transform: translate(0, 15px);
+    }
+
+    100% {
+        transform: translate(0, -0px);
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    main a button {
+        color: #fff;
+        background-color: #1d9ae4;
+        font-family: Montserrat;
+        font-size: 12px;
+        cursor: pointer;
+        padding: 10px 12px 10px 12px;
+        border-radius: 5px;
+        border: none;
+        margin: 20px 5px 10px 5px;
+        transition-duration: 0.5s;
+    }
+}
+
+.features .card-row .card img {
+    width: 100%;
+}
+
+.features .card-row .card h1 {
+    text-align: left;
+    color: rgb(96, 172, 248);
+    cursor: default;
+    margin-bottom: 10px;
+    font-family: Montserrat;
+}
+
+.features .card-row .card :left p {
+    text-align: left;
+    color: rgb(150, 150, 150);
+    cursor: default;
+    font-family: Montserrat;
+    transition-duration: 0.5s;
+}
+
+.features .card-row .card :right p {
+    text-align: right;
+    color: rgb(150, 150, 150);
+    cursor: default;
+    font-family: Montserrat;
+    transition-duration: 0.5s;
+}
+
+.features .card-row .card :right :left p:hover {
+    cursor: default;
+    color: #fff;
+    transition-duration: 0.5s;
+}
+
+.features * {
+    cursor: default;
+}
+
+@media only screen and (max-width: 800px) {
+    header {
+        padding-left: 5%;
+        padding-right: 5%;
+        transition-duration: 0.5s;
+    }
+
+    main {
+        text-align: center;
+        margin-top: 40%;
+        margin-bottom: 15%;
+        margin-right: 5%;
+        margin-left: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        transition-duration: 0.5;
+    }
+
+    main h1 {
+        font-size: 10vw;
+        text-align: center;
+    }
+
+    main h3 {
+        font-size: 4vw;
+    }
+
+    main a button {
+        font-size: 5vw;
+    }
+
+    main a .discord__button {
+        font-size: 5vw;
+    }
+
+    .features .card-row .card {
+        text-align: center;
+        margin-left: 5em;
+    }
+}
+
+@-webkit-keyframes gradient-button {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes gradient-button {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes gradient-button {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
