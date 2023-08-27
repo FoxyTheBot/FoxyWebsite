@@ -51,11 +51,10 @@ main .foxy {
     margin-left: 135%;
     margin-top: -61%;
     margin-bottom: -1%;
-    width: 55%;
-    height: 55%;
+    width: 61%;
+    height: 65%;
     display: inline;
 }
-
 
 footer .navigation-footer {
     display: flex;
@@ -76,18 +75,26 @@ main .title {
 }
 
 main .title {
-
     text-align: center;
-
-    background: linear-gradient(to right, #FFF 20%, #7289da 40%, #1d9ae4 60%, #FFF 80%);
-    background-size: 200% auto;
-
-    color: #000;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #e7385d;
+    margin-top: -5px;
 }
 
+main .meeting {
+    color: #fff;
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+main .meeting-2 {
+    color: #fff;
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-left: 5px;
+    margin-top: 5px;
+}
 @keyframes shine {
     to {
         background-position: 50% top;

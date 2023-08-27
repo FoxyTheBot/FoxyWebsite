@@ -2,8 +2,15 @@ import * as express from 'express';
 const router = express.Router();
 const config = require('../../config.json');
 import { database } from '../../client/app';
-
-router.use(require("express-session")(config.session));
+import session from 'express-session';
+router.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: process.env.SESSION_TOKEN,
+    cookie: {
+        maxAge: config.session.cookie.maxAge
+    }
+}));
 
 router.get("/", (req, res) => {
     if (!req.session.bearer_token) {

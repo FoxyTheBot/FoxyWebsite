@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="../js/playAudio.js"></script>
   <script src="../js/updateTheme.js"></script>
+  <script src="../js/clickListener.js"></script>
   <link rel="icon" href="../assets/images/foxycake.png">
   <link rel="stylesheet" href="/styles/header.css" type="text/css">
   <link rel="stylesheet" href="/styles/footer.css" type="text/css">
@@ -117,17 +118,20 @@
     </div>
   </div>
   <main>
-    <img class="main__image" src="../assets/images/foxycake.png">
+    <img class="main__image" src="../assets/images/foxycake.png" id="clickableImage">
+    <audio id="backgroundMusic" loop>
+      <source src="../assets/audios/dori.mp3" type="audio/mpeg">
+  </audio>
+    <h2 class="meeting">Olá eu sou a</h2>
     <h1 class="title">Foxy</h1>
-    <br>
-    <h3>Oii, eu sou a Foxy! Um bot de economia e entretenimento 100% brasileiro para seu servidor do Discord!</h3>
+    <h2 class="meeting-2">Um bot multiuso para o seu servidor do Discord</h2>
     <br>
     <a href="/add"><button>Adicionar</button></a>
     <a href="/discord"><button class="discord__button">Suporte</button></a>
     <br>
     <br>
     <a href="/dashboard"><button class="discord__button">Dashboard</button></a>
-    <img class="foxy" src="../assets/images/page.png" onclick="playAudio('../assets/audios/boop.mp3')">
+    <img class="foxy" src="../assets/images/page.png" onclick="playAudio('../assets/audios/boop.mp3')" alt="não clique no meu nariz">
 
   </main>
   <div class="features">
@@ -146,7 +150,7 @@
       <h2>Além disso sou simples e fácil de usar, e caso você precise de ajuda pode contar com o meu suporte</h2>
     </div>
     <div class="feature">
-      <h1>Divertindo e movimentando seu servidor</h1>
+      <h1>Divertindo seu servidor</h1>
       <h2>O meu principal objetivo sempre foi ajudar a engajar seu servidor e entreter os membros dos servidores em que
         eu estou <br><br>Por isso possuo vários comandos diferentes com o foco de entreter o seu servidor! Possuo alguns
         jogos para seus membros jogarem entre si, comandos de modificação de imagem e muito mais!</h2>

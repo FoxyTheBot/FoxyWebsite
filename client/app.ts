@@ -1,6 +1,9 @@
 import express, { Application } from 'express';
 require('dotenv').config();
 import DatabaseConnection from '../database/DatabaseConnection';
+import session from 'express-session';
+import bodyParser from 'body-parser';
+
 export class App {
     port: number;
     constructor(port) {
@@ -10,8 +13,14 @@ export class App {
     startServer(): void {
         const app: Application = express();
         app.use(express.json());
-        app.use(express.urlencoded());
         app.use(express.static('./public'));
+        app.use(bodyParser.urlencoded({ extended: true }));
+        app.use(session({
+            resave: true,
+            saveUninitialized: true,
+            secret: process.env.SESSION_TOKEN,
+        }));
+
         app.set('view engine', 'ejs');
 
         app.use('/', require("../routes/controller/updatePage"));

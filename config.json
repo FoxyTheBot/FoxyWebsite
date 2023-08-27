@@ -10,7 +10,6 @@
         ]
     },
     "session": {
-        "secret": "foxy",
         "cookie": {
             "maxAge": 604800000
         }

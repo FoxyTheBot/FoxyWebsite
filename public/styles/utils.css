@@ -1,4 +1,7 @@
-
+body {
+    background-image: url("../assets/images/DiscordBackground.png");
+    background-color: #36393f;
+}
 main {
     padding-left: 28%;
     padding-right: 30%;
