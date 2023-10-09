@@ -24,6 +24,18 @@ router.get("/", (req, res) => {
     }
 });
 
+router.get('/premium', (req, res) => {
+    if (!req.session.bearer_token) {
+        res.status(200).render("../public/pages/premium.ejs", {
+            user: null,
+        });
+    } else {
+        res.status(200).render("../public/pages/premium.ejs", {
+            user: req.session.user_info,
+        });
+    }
+});
+
 router.get("/about", (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/about.ejs", {
