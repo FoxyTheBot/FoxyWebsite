@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../assets/images/foxycake.png">
+  <link rel="stylesheet" href="/styles/header.css" type="text/css">
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css">
+  <link rel="stylesheet" href="/styles/store.css" type="text/css">
+  <title>Foxy | Premium</title>
+
+  <meta property="og:type" content="website">
+  <meta content="Foxy" property="og:title" />
+  <meta property="og:site_name" content="Foxy | Premium">
+  <meta content="Me ajude a ficar online comprando cakes ou assinando o meu premium!" property="og:description" />
+  <meta content="https://foxybot.win" property="og:url" />
+  <meta content="#e7385d" data-react-helmet="true" name="theme-color" />
+  <meta content="/assets/images/Foxy.png" property="og:image" />
+</head>
+
+<body>
+  <header>
+    <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
+      <div class="left-side-entries">
+        <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
+                    line-height: 0px;
+                    width: 40px;
+                    height: 40px;
+
+                    position: absolute;
+                    top: 3px;
+                    border-radius: 100%;"></a></div>
+        <div class="entry"><a href="/support" class="menu" data-preload-link="true" data-preload-link-activated="true">
+            Suporte
+          </a></div>
+        <div class="entry"><a href="/terms" class="commands" data-preload-link="true" data-preload-link-activated="true">
+            Termos
+          </a></div>
+
+        <div class="entry"><a href="https://github.com/FoxyTheBot" class="extras" data-preload-link="true" data-preload-link-activated="true">
+            GitHub
+          </a></div>
+
+        <div class="entry"><a href="/about" class="about">
+            Sobre
+          </a></div>
+        <div class="entry"><a href="/upvote" class="menu">
+            Votar
+          </a></div>
+        <div class="entry"><a href="/premium" class="menu">
+            Premium
+          </a></div>
+      </div>
+      <div class="right-side-entries">
+
+        <div class="entry" id="locale-changer-button" style="cursor: default;">
+          </span>
+        </div>
+        <% if (user) { %>
+        <div class="entry">
+          <a href="/dashboard" id="login-button"><img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
+                  line-height: 0px;
+                  width: 40px;
+                  height: 40px;
+
+                  position: absolute;
+                  top: 3px;
+                  border-radius: 100%;">
+            <div style="    font-size: 0px;
+                  line-height: 0px;
+                  width: 40px;
+                  visibility: hidden;
+                  height: 0px;
+                  display: inline-block;"></div><span style="padding-left: 4px;">
+              <%= user.global_name %>
+            </span>
+          </a>
+        </div>
+
+        <% } else { %>
+        <div class="entry">
+          <a href="/dashboard" id="login-button">
+            <div style="    font-size: 0px;
+                                line-height: 0px;
+                                width: 40px;
+                                visibility: hidden;
+                                height: 0px;
+                                display: inline-block;"></div><span style="padding-left: 4px;">
+              Entrar
+            </span>
+          </a>
+        </div>
+        <% } %>
+      </div>
+      </div>
+    </nav>
+    <button id="menu" class="mobile">Menu</button>
+  </header>
+  <div id="mobile__menu" class="overlay">
+    <a class="close">&times;</a>
+    <div class="overlay__content">
+      <a href="/github">GitHub</a>
+      <a href="/discord">Suporte</a>
+      <a href="/terms">Termos de uso</a>
+      <% if (user) { %>
+      <a href="/dashboard">Dashboard</a>
+      <% } else { %>
+      <a href="/login">Login</a>
+      <% } %>
+    </div>
+  </div>
+  <main>
+    <h1 class="title">Lojinha da Foxy</h1>
+    <br>
+    <h2>Ei! Eu preciso da sua ajuda!</h2>
+
+    <p>Eu preciso de ajuda para ficar online, é muito difícil me manter online, sem contar os outros gastos usados para investir em novidades que você pode usar</p>
+    <p>Quer me ajudar a continuar online? Que tal assinar o premium ou comprar cakes :3</p>
+    <p>Se você não puder comprar o premium ou cakes, tudo bem! Você pode utilizar meus comandos mesmo assim</a></p>
+  
+    <img class="store_image" src="../assets/images/store.png">
+
+    <div class="items">
+            <div class="item">
+                <div class="item__info">
+                    <h1 class="plan-title">Foxy Essentials</h1>
+                    <h1 class="price">R$ 15,00/mês</h3>
+                    <div class="perks">
+                        <h3>✅ 100.000 Cakes</h3>
+                        <h3>✅ Badge exclusíva no perfil</h3>
+                        <h3>✅ 1.25x Daily</h3>
+                        <h3>❌ Key premium para o seu servidor</h3>
+                        <h3>❌ Todas as decorações de avatar desbloqueadas</h3>
+                        <h3>❌ Seu próprio background</h3>
+                        <h3>❌ Reputação dobrada</h3>
+                    </div>
+                </div>
+                <div class="item__buttons">
+                    <a href="https://payments.foxybot.win/b/fZebM49nm9xEbD24gh" class="item__button"><b>Quero esse!</b></a>
+                </div>
+            </div>
+            <div class="item-rec">
+                <div class="recommended-flag">Recomendado</div>
+                <div class="item__info">
+                    <h1 class="plan-title">Foxy Pro</h1>
+                    <h1 class="price">R$ 30,00/mês</h3>
+                    <div class="perks">
+                        <h3>✅ 300.000 Cakes</h3>
+                        <h3>✅ Badge exclusíva no perfil</h3>
+                        <h3>✅ 1.5x Daily</h3>
+                        <h3>✅ Key premium para o seu servidor</h3>
+                        <h3>✅ Desconto nas decorações de avatar</h3>
+                        <h3>❌ Seu próprio background</h3>
+                        <h3>❌ Reputação dobrada</h3>
+                    </div>
+                </div>
+                <div class="item__buttons">
+                    <a href="https://payments.foxybot.win/b/28o3fy8ji9xEgXmaEG" class="item__button"><b>Quero esse!</b></a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item__info">
+                    <h1 class="plan-title">Foxy Turbo</h1>
+                    <h1 class="price">R$ 50,00/mês</h3>
+                    <div class="perks">
+                        <h3>✅ 500.000 Cakes</h3>
+                        <h3>✅ Badge exclusíva no perfil</h3>
+                        <h3>✅ 2x Daily</h3>
+                        <h3>✅ Key premium para o seu servidor</h3>
+                        <h3>✅ Todas as decorações de avatar desbloqueadas</h3>
+                        <h3>✅ Seu próprio background</h3>
+                        <h3>✅ Reputação dobrada</h3>
+                    </div>
+                </div>
+                <div class="item__buttons">
+                    <a href="https://payments.foxybot.win/b/00g2bubvueRY0YoeUX" class="item__button"><b>Quero esse!</b></a>
+                </div>
+            </div>
+            </div>
+            <div class="items-2">
+                <div class="item">
+                    <div class="item__info">
+                        <h1 class="plan-title">100.000 Cakes</h1>
+                        <h1 class="price">R$ 9,99</h1>
+                    </div>
+                    <div class="item__buttons">
+                        <a href="https://payments.foxybot.win/b/eVa5nG0QQ7pw8qQ4gk" class="item__button"><b>Quero esse!</b></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item__info">
+                        <h1 class="plan-title">300.000 Cakes</h1>
+                        <h1 class="price">R$ 19,99</h1>
+                    </div>
+                    <div class="item__buttons">
+                        <a href="https://payments.foxybot.win/b/fZe2bu9nm118gXmdQV" class="item__button"><b>Quero esse!</b></a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item__info">
+                        <h1 class="plan-title">1.000.000 Cakes</h1>
+                        <h1 class="price">R$ 49,99</h1>
+                    </div>
+                    <div class="item__buttons">
+                        <a href="https://payments.foxybot.win/b/fZe8zS2YY4dkdLa3ci" class="item__button"><b>Quero esse!</b></a>
+                    </div>
+                </div>
+    </div>
+</main>
+</body>
+<script src="../js/HeaderMobile.js"></script>
+
+</html>
