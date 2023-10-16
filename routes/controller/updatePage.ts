@@ -1,7 +1,7 @@
 import * as express from 'express';
 const router = express.Router();
 const config = require('../../config.json');
-import { database } from '../../client/app';
+import { bot, database } from '../../client/app';
 import session from 'express-session';
 router.use(session({
     resave: true,
@@ -100,6 +100,13 @@ router.get("/servers/:id", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
+        const id = req.params.id;
+        try {
+            await bot.helpers.getGuild(id);
+        } catch (err) {
+            return res.redirect(`https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=${id}`)
+        }
+
         const user = await req.session.user_info;
         const guildsResult = await fetch(`https://discord.com/api/users/@me/guilds`, {
             headers: {

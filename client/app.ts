@@ -3,7 +3,7 @@ require('dotenv').config();
 import DatabaseConnection from '../database/DatabaseConnection';
 import session from 'express-session';
 import bodyParser from 'body-parser';
-
+import { bot } from '../structures/discord/FoxyClient';
 export class App {
     port: number;
     constructor(port) {
@@ -47,4 +47,4 @@ export class App {
 }
 
 const database = new DatabaseConnection();
-export { database };
+export { database, bot };
