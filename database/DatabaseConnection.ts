@@ -43,6 +43,10 @@ export default class DatabaseConnection {
         const commandsSchema = new mongoose.Schema({
             commandName: String,
             commandUsageCount: Number,
+            description: String,
+            isInactive: Boolean,
+            subcommands: Array,
+            usage: Array
         }, { versionKey: false, id: false });
 
         const guildSchema = new mongoose.Schema({
