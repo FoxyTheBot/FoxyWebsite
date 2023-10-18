@@ -252,6 +252,22 @@ router.get('/daily', async (req, res) => {
 
         let amount = Math.floor(Math.random() * 8000);
         amount = Math.round(amount / 10) * 10;
+        switch (userData.premiumType) {
+            case "1": {
+                amount = amount * 1.25;
+                break;
+            }
+
+            case "2": {
+                amount = amount * 1.5;
+                break;
+            }
+
+            case "3": {
+                amount = amount * 2;
+                break;
+            }
+        }
         if (amount < 1000) amount = 1000;
         const timeout = 43200000;
         const daily = await userData.lastDaily;
