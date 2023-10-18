@@ -243,8 +243,6 @@ router.get("/dashboard", async (req, res) => {
     }
 });
 
-// TO DO: daily multiplicado para usuários premium com strings diferentes para cada plano
-
 router.get('/daily', async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
