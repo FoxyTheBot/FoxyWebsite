@@ -297,7 +297,6 @@ router.get("/commands", async (req, res) => {
     const commandsList = await database.getAllCommands();
     // @ts-ignore Property filter doesn't exist on type void
     const commands = commandsList.filter(command => command.description && command.commandName !== "foxytools");
-    console.log(commands);
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/commands.ejs", {
             user: null,
