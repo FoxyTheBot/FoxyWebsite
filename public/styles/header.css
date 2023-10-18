@@ -29,7 +29,7 @@
     text-decoration: none;
 }
 
-.navigation-bar .left-side-entries {
+.navigation-bar .left-entries {
     display: flex;
     justify-content: space-evenly;
     flex-grow: 1;
@@ -38,7 +38,7 @@
     overflow: hidden;
 }
 
-.navigation-bar .right-side-entries {
+.navigation-bar .right-entries {
     display: flex;
     margin-left: auto;
     justify-content: flex-end;
@@ -85,7 +85,7 @@ nav.navigation-bar.fixed {
     position: fixed;
 }
 
-nav.navigation-bar .left-side-entries {
+nav.navigation-bar .left-entries {
     display: flex;
     flex-grow: 1;
     flex-flow: wrap;
