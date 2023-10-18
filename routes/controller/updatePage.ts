@@ -243,6 +243,8 @@ router.get("/dashboard", async (req, res) => {
     }
 });
 
+// TO DO: daily multiplicado para usuários premium com strings diferentes para cada plano
+
 router.get('/daily', async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
@@ -290,6 +292,24 @@ router.get('/delete', async (req, res) => {
         userData.remove().catch(err => console.log(err));
         req.session.destroy();
         return res.status(200).render("../public/pages/deletedUser.ejs");
+    }
+});
+
+router.get("/commands", async (req, res) => {
+    const commandsList = await database.getAllCommands();
+    // @ts-ignore Property filter doesn't exist on type void
+    const commands = commandsList.filter(command => command.description && command.commandName !== "foxytools");
+    console.log(commands);
+    if (!req.session.bearer_token) {
+        res.status(200).render("../public/pages/commands.ejs", {
+            user: null,
+            commands
+        });
+    } else {
+        res.status(200).render("../public/pages/commands.ejs", {
+            user: req.session.user_info,
+            commands
+        });
     }
 });
 
