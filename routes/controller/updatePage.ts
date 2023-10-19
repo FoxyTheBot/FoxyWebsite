@@ -327,17 +327,6 @@ router.get('/:lang/confirm', async (req, res) => {
     }
 });
 
-router.get('/:lang/extras', async (req, res) => {
-    if (!req.session.bearer_token) {
-        res.status(200).render("../public/pages/extras.ejs", {
-            user: null,
-        });
-    } else {
-        res.status(200).render("../public/pages/extras.ejs", {
-            user: req.session.user_info,
-        });
-    }
-});
 
 router.get('/:lang/support', async (req, res) => {
     if (!req.session.bearer_token) {
