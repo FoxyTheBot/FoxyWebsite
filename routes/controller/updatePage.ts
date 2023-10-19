@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
     }
 });
 
-router.get('/premium', (req, res) => {
+router.get('/:lang/premium', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/premium.ejs", {
             user: null,
@@ -36,19 +36,7 @@ router.get('/premium', (req, res) => {
     }
 });
 
-router.get("/about", (req, res) => {
-    if (!req.session.bearer_token) {
-        res.status(200).render("../public/pages/about.ejs", {
-            user: null,
-        });
-    } else {
-        res.status(200).render("../public/pages/about.ejs", {
-            user: req.session.user_info,
-        });
-    }
-});
-
-router.get("/terms", (req, res) => {
+router.get("/:lang/terms", (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/privacy.ejs", {
             user: null,
@@ -60,7 +48,7 @@ router.get("/terms", (req, res) => {
     }
 });
 
-// router.get('/servers', async (req, res) => {
+// router.get('/:lang/servers', async (req, res) => {
 //     if (!req.session.bearer_token) {
 //         res.redirect('/login')
 //     } else {
@@ -96,7 +84,7 @@ router.get("/terms", (req, res) => {
 //     }
 // });
 
-// router.get("/servers/:id", async (req, res) => {
+// router.get("/:lang/servers/:id", async (req, res) => {
 //     if (!req.session.bearer_token) {
 //         res.redirect('/login');
 //     } else {
@@ -175,7 +163,7 @@ router.get("/terms", (req, res) => {
 //     }
 // });
 
-// router.post("/inviteblocker/save/:id", async (req, res) => {
+// router.post("/:lang/inviteblocker/save/:id", async (req, res) => {
 //     try {
 //         if (!req.session.bearer_token) {
 //             res.redirect('/login');
@@ -203,7 +191,7 @@ router.get("/terms", (req, res) => {
 // });
 
 
-router.get("/dashboard", async (req, res) => {
+router.get("/:lang/dashboard", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
@@ -243,7 +231,7 @@ router.get("/dashboard", async (req, res) => {
     }
 });
 
-router.get('/daily', async (req, res) => {
+router.get('/:lang/daily', async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
@@ -293,7 +281,7 @@ router.get('/daily', async (req, res) => {
     }
 });
 
-router.get('/delete', async (req, res) => {
+router.get('/:lang/delete', async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
@@ -309,7 +297,7 @@ router.get('/delete', async (req, res) => {
     }
 });
 
-router.get("/commands", async (req, res) => {
+router.get("/:lang/commands", async (req, res) => {
     const commandsList = await database.getAllCommands();
     // @ts-ignore Property filter doesn't exist on type void
     const commands = commandsList.filter(command => command.description && command.commandName !== "foxytools");
@@ -326,7 +314,7 @@ router.get("/commands", async (req, res) => {
     }
 });
 
-router.get('/confirm', async (req, res) => {
+router.get('/:lang/confirm', async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
@@ -339,7 +327,43 @@ router.get('/confirm', async (req, res) => {
     }
 });
 
-router.get("/aboutme", async (req, res) => {
+router.get('/:lang/extras', async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.status(200).render("../public/pages/extras.ejs", {
+            user: null,
+        });
+    } else {
+        res.status(200).render("../public/pages/extras.ejs", {
+            user: req.session.user_info,
+        });
+    }
+});
+
+router.get('/:lang/support', async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.status(200).render("../public/pages/support.ejs", {
+            user: null,
+        });
+    } else {
+        res.status(200).render("../public/pages/support.ejs", {
+            user: req.session.user_info,
+        });
+    }
+});
+
+router.get('/:lang/support/ban-appeal', async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.status(200).render("../public/pages/banAppeal.ejs", {
+            user: null,
+        });
+    } else {
+        res.status(200).render("../public/pages/banAppeal.ejs", {
+            user: req.session.user_info,
+        });
+    }
+});
+
+router.get("/:lang/aboutme", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
@@ -353,7 +377,7 @@ router.get("/aboutme", async (req, res) => {
     }
 });
 
-router.post("/submit", async (req, res) => {
+router.post("/:lang/submit", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
     } else {
@@ -364,7 +388,7 @@ router.post("/submit", async (req, res) => {
     }
 });
 
-router.get('/error', (req, res) => {
+router.get('/:lang/error', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/error.ejs", {
             user: null,
@@ -376,7 +400,7 @@ router.get('/error', (req, res) => {
     }
 });
 
-router.get('/404', (req, res) => {
+router.get('/:lang/404', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/404.ejs", {
             user: null,
