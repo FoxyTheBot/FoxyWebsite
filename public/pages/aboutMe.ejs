@@ -6,6 +6,7 @@
         crossorigin="anonymous"></script> crossorigin="anonymous"></script>
     <title>Foxy | Sobre Mim</title>
     <link rel="icon" href="../assets/images/foxycake.png">
+    <link rel="stylesheet" href="../styles/dashboard.css">
     <link rel="stylesheet" href="../styles/aboutme.css">
     <link rel="stylesheet" href="../styles/header.css">
 </head>
@@ -39,7 +40,7 @@
                 <div class="entry"><a href="/br/commands" class="menu">
                         Comandos
                     </a></div>
-                </div>
+            </div>
             <div class="right-entries">
 
                 <div class="entry" id="locale-changer-button" style="cursor: default;">
@@ -78,16 +79,57 @@
             <a href="/br/dashboard">Dashboard</a>
         </div>
     </div>
-    <main class="aboutme-body">
-        <h1>Sobre mim</h1>
-        <h3>Altere seu sobre mim direto pelo website</h3>
-        <form action="/submit" method="post">
-            <input type="text" name="aboutme" placeholder="Foxy muito fofa :3" required>
-            <button type="submit">Salvar</button>
-        </form>
-        <h3>Não insira dados pessoais como telefone, cartão de crédito, etc</h3>
-        <br>
-        <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
+    <main>
+        <div class="aboutme-body">
+            <h1>Sobre mim</h1>
+            <h3>Altere seu sobre mim direto pelo website</h3>
+            <form action="/submit" method="post">
+                <input type="text" name="aboutme" placeholder="Foxy muito fofa :3" required>
+                <button type="submit">Salvar</button>
+            </form>
+            <h3>Não insira dados pessoais como telefone, cartão de crédito, etc</h3>
+            <br>
+            <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
+        </div>
+
+        <div class="left-sidebar">
+            <div class="entries">
+                <hr class="separator">
+                <h2 class="section-title">Perfil</h2>
+                <a href="/br/dashboard">
+                    <div class="entry">
+                        Estatísticas
+                    </div>
+                    <hr class="separator">
+                    <h2 class="section-title">Servidores</h2>
+                    <a href="/br/servers">
+                        <div class="entry">
+                            Configurar um servidor
+                        </div>
+                        <hr class="separator">
+                        <h2 class="section-title">Opções do usuário</h2>
+
+                        <a href="/br/aboutme">
+                            <div class="entry">
+                                Alterar sobre mim
+                            </div>
+                        </a>
+
+                        <a href="/br/daily">
+                            <div class="entry">
+                                Daily
+                            </div>
+                        </a>
+
+                        <hr class="separator">
+                        <h2 class="section-title">Extras</h2>
+                        <a href="/br/premium">
+                            <div class="entry">
+                                Assinaturas ou loja de cakes
+                            </div>
+                        </a>
+            </div>
+        </div>
     </main>
 </body>
 <script src="../js/HeaderMobile.js"></script>

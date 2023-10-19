@@ -237,33 +237,36 @@ router.get('/:lang/daily', async (req, res) => {
     } else {
         const userId = req.session.user_info.id;
         const userData: any = await database.getUser(userId);
-
-        let amount = Math.floor(Math.random() * 8000);
-        amount = Math.round(amount / 10) * 10;
-        switch (userData.premiumType) {
-            case "1": {
-                amount = amount * 1.25;
-                break;
-            }
-
-            case "2": {
-                amount = amount * 1.5;
-                break;
-            }
-
-            case "3": {
-                amount = amount * 2;
-                break;
-            }
-        }
-        if (amount < 1000) amount = 1000;
         const timeout = 43200000;
         const daily = await userData.lastDaily;
 
+        var allowed = true;
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
-            return res.redirect("/dashboard");
-        } else {
-            var img = "../assets/images/foxyoculos.png";
+            allowed = false;
+        }
+        var img = "../assets/images/foxyoculos.png";
+
+        if (allowed) {
+
+            let amount = Math.floor(Math.random() * 8000);
+            amount = Math.round(amount / 10) * 10;
+            switch (userData.premiumType) {
+                case "1": {
+                    amount = amount * 1.25;
+                    break;
+                }
+
+                case "2": {
+                    amount = amount * 1.5;
+                    break;
+                }
+
+                case "3": {
+                    amount = amount * 2;
+                    break;
+                }
+            }
+            if (amount < 1000) amount = 1000;
 
             userData.balance += amount;
             userData.lastDaily = Date.now();
@@ -271,13 +274,15 @@ router.get('/:lang/daily', async (req, res) => {
 
             req.session.coins = amount;
             req.session.dbCoins = userData.balance;
-            res.status(200).render("../public/pages/daily.ejs", {
-                user: req.session.user_info,
-                coins: req.session.coins.toLocaleString('pt-BR'),
-                img: img,
-                dbCoins: req.session.dbCoins.toLocaleString('pt-BR')
-            });
         }
+
+        res.status(200).render("../public/pages/daily.ejs", {
+            user: req.session.user_info,
+            coins: req.session.coins.toLocaleString('pt-BR'),
+            img: img,
+            dbCoins: req.session.dbCoins.toLocaleString('pt-BR'),
+            allowed
+        });
     }
 });
 

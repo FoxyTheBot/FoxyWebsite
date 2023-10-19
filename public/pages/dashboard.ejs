@@ -103,28 +103,44 @@
                 <br>
             </div>
         </div>
-        <div class="dashboard_section">
-            <div class="main__buttons">
-                <% if (allowed===true) { %>
-                    <a class="action__btn" href="/daily"><button class="btn primary">Daily</button></a>
-                    <% } else { %>
-                        <a class="action__btn" href="/daily"><button class="btn primary" disabled>Daily</button></a>
-                        <% } %>
-                            <a class="action__btn" href="/aboutme"><button class="btn primary">Sobre
-                                    mim</button></a>
-                            <!-- <a class="action__btn" href="/servers"><button class="btn primary">Gerenciar
-                                    servidores</button></a> -->
-                            <a class="action__btn" href="/logout"><button class="btn danger">Sair</button></a>
-                            <br>
-                            <a class="action__btn" href="/confirm"><button class="btn danger">Deletar
-                                    Conta</button></a>
 
+        <div class="left-sidebar">
+            <div class="entries">
+                <hr class="separator">
+                <h2 class="section-title">Perfil</h2>
+                <a href="/br/dashboard">
+                    <div class="entry">
+                        Estatísticas
+                    </div>
+                    <hr class="separator">
+                    <h2 class="section-title">Servidores</h2>
+                    <a href="/br/servers">
+                        <div class="entry">
+                            Configurar um servidor
+                        </div>
+                        <hr class="separator">
+                        <h2 class="section-title">Opções do usuário</h2>
+
+                        <a href="/br/aboutme">
+                            <div class="entry">
+                                Alterar sobre mim
+                            </div>
+                        </a>
+
+                        <a href="/br/daily">
+                            <div class="entry">
+                                Daily
+                            </div>
+                        </a>
+
+                        <hr class="separator">
+                        <h2 class="section-title">Extras</h2>
+                        <a href="/br/premium">
+                            <div class="entry">
+                                Assinaturas ou loja de cakes
+                            </div>
+                        </a>
             </div>
-        </div>
-        <div class="aboutme-session">
-            <h3 class="aboutme-title">Sobre mim: <br><br>
-                <%= aboutme %>
-            </h3>
         </div>
     </main>
 </body>

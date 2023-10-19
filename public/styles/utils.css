@@ -98,10 +98,17 @@ main  .action__btn .btn.success:disabled {
     cursor: not-allowed;
 }
 
+main .daily_image {
+    width: 40%;
+    height: 30%;
+    text-align: center;
+    margin-top: -50%;
+}
 
-main .main__image {
-    margin-top: -25%;
-    margin-bottom: 5%;
+main .daily-page {
+    text-align: center;
+    margin-left: 50%;
+    margin-top: -10%;
 }
 
 main .user__avatar {

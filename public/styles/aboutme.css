@@ -14,7 +14,6 @@ main {
     padding-right: 30%;
     margin-top: 5%;
     transition-duration: 0.5s;
-    text-align: center;
 }
 
 main h1 {
@@ -51,6 +50,10 @@ main a button {
     font-family: Montserrat;
     color: rgb(0, 183, 255);
     margin-top: 20px;
+}
+
+.aboutme-body {
+    text-align: center;
 }
 
 main a .discord__button {
