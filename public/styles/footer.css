@@ -49,4 +49,6 @@ footer {
     padding: 16px 72px;
     overflow: hidden;
     font-family: Arial;
+    position: relative;
+    margin-top: auto;
 }
