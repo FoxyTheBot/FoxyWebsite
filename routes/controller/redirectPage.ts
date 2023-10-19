@@ -13,12 +13,8 @@ router.get('/discord', (req, res) => {
     res.redirect('https://discord.gg/6mG2xDtuZD');
 });
 
-router.get('/support', (req, res) => {
-    res.redirect('https://discord.gg/6mG2xDtuZD');
-});
-
 router.get('/privacy', (req, res) => {
-    res.redirect('https://foxybot.win/terms');    
+    res.redirect('https://foxybot.win/br/terms');    
 });
 
 router.get("/translate", (req, res) => {
