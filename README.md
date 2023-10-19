@@ -18,11 +18,10 @@
 <p>Create a .env file with these values:</p>
 
 ```
-CLIENT_SECRET=<your-bot-secret>
-MONGO_URI=<your-mongodb-uri>
-BOT_TOKEN=<your-bot-token>
-REPORT=<your-report-webhook>
-SUGGESTION=<your-suggestion-webhook>
+BOT_TOKEN=your-discord-bot-token
+SESSION_TOKEN=your-session-token
+MONGO_URI=your-mongodb-uri
+CLIENT_SECRET=your-discord-application-client-secret
 ```
 
 ## Running the server
