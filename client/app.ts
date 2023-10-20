@@ -29,11 +29,11 @@ export class App {
 
         app.get('*', (req, res) => {
             if (!req.session.bearer_token) {
-                res.status(200).render("../public/pages/404.ejs", {
+                res.status(200).render("../public/pages/errors/404.ejs", {
                     user: null,
                 });
             } else {
-                res.status(200).render("../public/pages/404.ejs", {
+                res.status(200).render("../public/pages/errors/404.ejs", {
                     user: req.session.user_info,
                 });
             }

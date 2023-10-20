@@ -4,12 +4,13 @@
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../styles/header.css">
-    <link rel="icon" href="../assets/images/foxycake.png">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="icon" href="/assets/images/foxycake.png">
     <title>
         <%= guild.name %>
     </title>
     <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
+    <link rel="stylesheet" href="/styles/footer.css" type="text/css">
 </head>
 
 <body>
@@ -17,7 +18,7 @@
         <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
             <div class="left-entries">
                 <div class="entry foxy-navbar-logo">
-                    <a href="/"><img src="../assets/images/Foxy.png" style="font-size: 0px;
+                    <a href="/"><img src="/assets/images/Foxy.png" style="font-size: 0px;
                         line-height: 0px;
                         width: 40px;
                         height: 40px;
@@ -31,7 +32,8 @@
                         data-preload-link-activated="true">Suporte</a>
                 </div>
                 <div class="entry">
-                    <a href="/br/terms" class="menu" data-preload-link="true" data-preload-link-activated="true">Termos</a>
+                    <a href="/br/terms" class="menu" data-preload-link="true"
+                        data-preload-link-activated="true">Termos</a>
                 </div>
                 <div class="entry">
                     <a href="/upvote" class="menu">Votar</a>
@@ -158,80 +160,6 @@
                     <input id="save" type="submit" value="Salvar">
             </form>
         </div>
-
-        <div class="guild-join-section">
-            <h2 class="feature-title">Avisar quando um usuário entrar ou sair do servidor</h2>
-            <h3 class="feature-description">Utilize esse recurso para avisar quando um usuário entrar ou sair do
-                servidor!</h3>
-
-            <form id="guildJoinForm" action="/guildjoin/save/<%= guild.id %>" method="POST"
-                data-guild-id="<%= guild.id %>">
-
-                <h3 class="input-text">Ativar módulo?</h3>
-                <h4 class="input-description">Ative para que eu posso notificar quando um usuário entra e sai do seu
-                    servidor </h4>
-                <label class="guild-module-checkbox">
-                    <input type="checkbox" id="guild-module-checkbox" name="guildjoin" class="switch"
-                        default-switch="<%= guildInfoFromDB.GuildJoinLeaveModule.isEnabled %>">
-                    <span class="slider round"></span>
-                </label>
-                <br>
-                <h3 class="input-text">Avisar quando um usuário sair do servidor</h3>
-                <h4 class="input-description">Caso esteja ativado eu irei avisar quando um usuário sair do servidor</h4>
-                <label class="guild-leave-module-checkbox">
-                    <input type="checkbox" id="guild-leave-module-checkbox" name="guildjoin" class="switch"
-                        default-switch="<%= guildInfoFromDB.GuildJoinLeaveModule.alertWhenUserLeaves %>">
-                    <span class="slider round"></span>
-                </label>
-                <br>
-
-                <h3 class="input-text">Mensagem quando um usuário entrar no servidor</h3>
-                <% var joinMessage=guildInfoFromDB.GuildJoinLeaveModule.joinMessage; var message=joinMessage !==null ?
-                    joinMessage.trim() : '' ; %>
-                    <textarea id="messageTextArea" name="message" rows="6"
-                        cols="50"><%- message !== '' ? message : '😀 {user} entrou no servidor!' %></textarea>
-
-                    <h3 class="input-text">Mensagem quando um usuário sair do servidor</h3>
-                    <% var leaveMessage=guildInfoFromDB.GuildJoinLeaveModule.leaveMessage; var message=leaveMessage
-                        !==null ? leaveMessage.trim() : '' ; %>
-                        <textarea id="messageTextArea" name="message" rows="6"
-                            cols="50"><%- message !== '' ? message : '🙁 {user} saiu do servidor' %></textarea>
-
-
-                        <h3 class="form-text">Canal onde irei anunciar que alguém entrou no servidor</h3>
-                        <select name="channels" id="channels">
-                            <% channels.forEach(channel=> { %>
-                                <% if (channel.type===0) { %>
-                                    <option value="<%= channel.id %>">
-                                        <%= channel.name %>
-                                    </option>
-                                    <% } %>
-                                        <% }) %>
-                        </select>
-
-                        <button type="button" id="addJoinChannel">Adicionar Canal</button>
-
-                        <h3 class="form-text">Canal onde irei anunciar que alguém saiu do servidor</h3>
-                        <select name="channels" id="channels">
-                            <% channels.forEach(channel=> { %>
-                                <% if (channel.type===0) { %>
-                                    <option value="<%= channel.id %>">
-                                        <%= channel.name %>
-                                    </option>
-                                    <% } %>
-                                        <% }) %>
-                        </select>
-
-                        <button type="button" id="addJoinChannel">Adicionar Canal</button>
-                        <div class="notification error" id="notificationError">
-                            <span id="notificationErrorText"></span>
-                        </div>
-                        <div class="notification" id="notification">
-                            <span id="notificationText"></span>
-                        </div>
-                        <input id="save" type="submit" value="Salvar">
-                        <br>
-            </form>
         </div>
     </main>
 
@@ -266,6 +194,47 @@
         guildModule.checked = guildModuleDefaultValue === 'true' ? true : false;
     </script>
     <script src="../js/inviteblockerform.js"></script>
+
+    <div class="left-sidebar">
+        <div class="entries">
+            <hr class="separator">
+            <h2 class="section-title">Automações</h2>
+            <a href="/br/servers/<%= guild.id %>/inviteblocker">
+                <div class="entry" id="selected">
+                    Bloqueador de Convites
+                </div>
+            </a>
+            <a href="/br/servers/<%= guild.id %>/autorole">
+                <div class="entry">
+                    Autorole
+                </div>
+            </a>
+            <a href="/br/servers/<%= guild.id %>/welcome">
+                <div class="entry">
+                    Mensagem de entrada/saída
+                </div>
+            </a>
+            <hr class="separator">
+            <h2 class="section-title">Miscelâneas</h2>
+
+            <a href="/br/servers/<%= guild.id %>/premium">
+                <div class="entry">
+                    Gerenciar chaves premium
+                </div>
+            </a>
+
+            <a href="/br/servers/<%= guild.id %>/command-manager">
+                <div class="entry">
+                    Gerenciador de comandos
+                </div>
+                <hr class="separator">
+                <a href="/logout">
+                    <div class="entry">
+                        Sair
+                    </div>
+                </a>
+        </div>
+    </div>
 </body>
 <script src="../js/HeaderMobile.js"></script>
 

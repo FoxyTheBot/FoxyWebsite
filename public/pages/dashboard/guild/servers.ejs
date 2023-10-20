@@ -96,10 +96,54 @@
                             </h1>
                         </div>
                         <div class="server__buttons">
-                            <a href="/servers/<%= guild.id %>" class="server__button">Gerenciar</a>
+                            <a href="/br/servers/<%= guild.id %>" class="server__button">Gerenciar</a>
                         </div>
                     </div>
                     <% }) %>
+        </div>
+        <div class="left-sidebar">
+            <div class="entries">
+                <hr class="separator">
+                <h2 class="section-title">Perfil</h2>
+                <a href="/br/dashboard">
+                    <div class="entry">
+                        Estatísticas
+                    </div>
+                    <hr class="separator">
+                    <h2 class="section-title">Servidores</h2>
+                    <a href="/br/servers">
+                        <div class="entry" id="selected">
+                            Configurar um servidor
+                        </div>
+                        <hr class="separator">
+                        <h2 class="section-title">Opções do usuário</h2>
+
+                        <a href="/br/aboutme">
+                            <div class="entry">
+                                Alterar sobre mim
+                            </div>
+                        </a>
+
+                        <a href="/br/daily">
+                            <div class="entry">
+                                Daily
+                            </div>
+                        </a>
+
+                        <hr class="separator">
+                        <h2 class="section-title">Extras</h2>
+                        <a href="/br/premium">
+                            <div class="entry">
+                                Assinaturas ou loja de cakes
+                            </div>
+                        </a>
+                        <hr class="separator">
+                        <a href="/logout">
+                            <div class="entry">
+                                Sair
+                            </div>
+                        </a>
+            </div>
         </div>
     </main>
 </body>

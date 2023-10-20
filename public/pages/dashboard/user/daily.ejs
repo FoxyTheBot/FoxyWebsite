@@ -4,11 +4,13 @@
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
         crossorigin="anonymous"></script> crossorigin="anonymous"></script>
-    <title>Foxy | Sobre Mim</title>
-    <link rel="icon" href="../assets/images/foxycake.png">
-    <link rel="stylesheet" href="../styles/dashboard.css">
-    <link rel="stylesheet" href="../styles/aboutme.css">
     <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/utils.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="icon" href="../assets/images/foxycake.png">
+    <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete" autoplay></audio>
+    <title>Foxy | Daily</title>
 </head>
 
 <body>
@@ -50,8 +52,9 @@
                     <a href="/br/dashboard" id="login-button"><img
                             src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
                         line-height: 0px;
-                        height: 40px;
                         width: 40px;
+                        height: 40px;
+
                         position: absolute;
                         top: 3px;
                         border-radius: 100%;">
@@ -80,16 +83,29 @@
         </div>
     </div>
     <main>
-        <div class="aboutme-body">
-            <h1>Sobre mim</h1>
-            <h3>Altere seu sobre mim direto pelo website</h3>
-            <form action="/submit" method="post">
-                <input type="text" name="aboutme" placeholder="Foxy muito fofa :3" required>
-                <button type="submit">Salvar</button>
-            </form>
-            <h3>Não insira dados pessoais como telefone, cartão de crédito, etc</h3>
-            <br>
-            <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
+        <div class="daily-page">
+            <% if (allowed) { %>
+                <img class="daily_image" src="../assets/images/foxyoculos.png" alt="dashboard">
+                <h1>Você recebeu seu prêmio diário e...</h1>
+                <br>
+                <h2>
+                    Ganhou
+                    <strong id="coins">
+                        <%= coins %>
+                    </strong> Cakes
+                </h2>
+                <br>
+                <h3>Agora você possui <%= dbCoins %> Cakes
+                        <br>
+                </h3>
+                <br>
+                <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
+                <% } else { %>
+                    <img class="daily_image" src="../assets/images/foxycry.png" alt="dashboard">
+                    <h1>Você já pegou seu prêmio diário</h1>
+                    <br>
+                    <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
+                    <% } %>
         </div>
 
         <div class="left-sidebar">
@@ -116,7 +132,7 @@
                         </a>
 
                         <a href="/br/daily">
-                            <div class="entry">
+                            <div class="entry" id="selected">
                                 Daily
                             </div>
                         </a>
@@ -128,9 +144,16 @@
                                 Assinaturas ou loja de cakes
                             </div>
                         </a>
+                        <hr class="separator">
+                        <a href="/logout">
+                            <div class="entry">
+                                Sair
+                            </div>
+                        </a>
             </div>
         </div>
     </main>
+
 </body>
 <script src="../js/HeaderMobile.js"></script>
 
