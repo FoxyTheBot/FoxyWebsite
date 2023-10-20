@@ -44,7 +44,7 @@ main h1 {
     color: rgb(255, 255, 255);
     font-size: 25px;
     font-family: Montserrat;
-    animation-duration: 4s;
+    
     margin-top: 5%; 
 }
 
@@ -146,7 +146,7 @@ main h1 {
     color: rgb(255, 255, 255);
     font-size: 25px;
     font-family: Montserrat;
-    animation-duration: 4s;
+    
 }
 
 main #coins {

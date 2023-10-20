@@ -17,6 +17,12 @@ body {
 }
 
 
+.logo {
+    width: 20%;
+    height: 100%;
+    margin-top: 2%;
+    transition-duration: 0.5s;
+}
 main {
     padding-left: 30%;
     padding-right: 50%;
