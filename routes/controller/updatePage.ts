@@ -24,6 +24,18 @@ router.get("/", (req, res) => {
     }
 });
 
+router.get("/:lang/guidelines", (req, res) => {
+    if (!req.session.bearer_token) {
+        res.status(200).render("../public/pages/info/guidelines.ejs", {
+            user: null,
+        });
+    } else {
+        res.status(200).render("../public/pages/info/guidelines.ejs", {
+            user: req.session.user_info,
+        });
+    }
+});
+
 router.get('/:lang/premium', (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/info/premium.ejs", {
