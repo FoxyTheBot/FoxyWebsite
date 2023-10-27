@@ -14,7 +14,7 @@ router.get('/discord', (req, res) => {
 });
 
 router.get('/privacy', (req, res) => {
-    res.redirect('https://foxybot.win/br/terms');    
+    res.redirect('https://foxybot.win/br/support/terms');    
 });
 
 router.get("/translate", (req, res) => {

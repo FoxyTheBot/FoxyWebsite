@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
     }
 });
 
-router.get("/:lang/guidelines", (req, res) => {
+router.get("/:lang/support/guidelines", (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/info/guidelines.ejs", {
             user: null,
@@ -48,7 +48,7 @@ router.get('/:lang/premium', (req, res) => {
     }
 });
 
-router.get("/:lang/terms", (req, res) => {
+router.get("/:lang/support/terms", (req, res) => {
     if (!req.session.bearer_token) {
         res.status(200).render("../public/pages/info/privacy.ejs", {
             user: null,

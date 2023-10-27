@@ -27,7 +27,7 @@
                         data-preload-link-activated="true">
                         Suporte
                     </a></div>
-                <div class="entry"><a href="/br/terms" class="commands" data-preload-link="true"
+                <div class="entry"><a href="/br/support/terms" class="commands" data-preload-link="true"
                         data-preload-link-activated="true">
                         Termos
                     </a></div>
@@ -93,7 +93,7 @@
         <div class="overlay__content">
             <a href="/github">GitHub</a>
             <a href="/discord">Suporte</a>
-            <a href="/br/terms">Termos de uso</a>
+            <a href="/br/support/terms">Termos de uso</a>
             <% if (user) { %>
                 <a href="/br/dashboard">Dashboard</a>
                 <% } else { %>
@@ -111,6 +111,40 @@
             faça novas amizades</h3>
         <a href="/discord"><img class="support-server"
                 src="https://discordapp.com/api/guilds/768267522670723094/widget.png?style=banner2" width="300"></a>
+
+        <div class="left-sidebar">
+            <div class="entries">
+                <hr class="separator">
+                <h2 class="section-title">Suporte</h2>
+                <a href="/br/support/ban-appeal">
+                    <div class="entry">
+                        Apelo de Banimento
+                    </div>
+                </a>
+                <a href="/br/support/guidelines">
+                    <div class="entry">
+                        Diretrizes da Comunidade
+                    </div>
+                </a>
+
+                <a href="/br/support/terms">
+                    <div class="entry">
+                        Termos de Uso e Privacidade
+                    </div>
+                </a>
+                <a href="/br/support">
+                    <div class="entry"  id="selected">
+                        Página de Suporte
+                    </div>
+                </a>
+                <a href="/br/commands">
+                    <div class="entry">
+                        Comandos
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
     </main>
     <footer>
         <div>
@@ -148,10 +182,10 @@
                     </svg></a></div>
             <nav class="navigation-footer">
                 <br>
-                    <p style="text-align: center;">© WinG4merBR
-                        </svg> 2020-2023 — Todos os direitos reservados
-                    </p>
-                    
+                <p style="text-align: center;">© WinG4merBR
+                    </svg> 2020-2023 — Todos os direitos reservados
+                </p>
+
     </footer>
 </body>
 <script src="../js/HeaderMobile.js"></script>
