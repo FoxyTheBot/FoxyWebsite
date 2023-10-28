@@ -331,6 +331,10 @@ main a {
         transition-duration: 0.5s;
     }
 
+    .left-sidebar {
+        display: none;
+    }
+    
     main {
         text-align: center;
         margin-top: 40%;
