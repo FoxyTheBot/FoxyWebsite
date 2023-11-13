@@ -60,146 +60,146 @@ router.get("/:lang/support/terms", (req, res) => {
     }
 });
 
-router.get('/:lang/servers', async (req, res) => {
-    if (!req.session.bearer_token) {
-        res.redirect('/login')
-    } else {
-        const user = await req.session.user_info;
-        const guildsResult = await fetch('https://discord.com/api/users/@me/guilds', {
-            headers: {
-                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
-            }
-        });
-        const guilds: any = await guildsResult.json();
-        const guildsArray: any = [];
-        function hasRequiredPermissions(permissions: number): boolean {
-            return (permissions & (8 | 32)) !== 0;
-        }
+// router.get('/:lang/servers', async (req, res) => {
+//     if (!req.session.bearer_token) {
+//         res.redirect('/login')
+//     } else {
+//         const user = await req.session.user_info;
+//         const guildsResult = await fetch('https://discord.com/api/users/@me/guilds', {
+//             headers: {
+//                 authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
+//             }
+//         });
+//         const guilds: any = await guildsResult.json();
+//         const guildsArray: any = [];
+//         function hasRequiredPermissions(permissions: number): boolean {
+//             return (permissions & (8 | 32)) !== 0;
+//         }
 
-        for (let i = 0; i < guilds.length; i++) {
-            const guild = guilds[i];
+//         for (let i = 0; i < guilds.length; i++) {
+//             const guild = guilds[i];
 
-            if (hasRequiredPermissions(Number(guild.permissions))) {
-                guildsArray.push({
-                    id: guild.id,
-                    name: guild.name,
-                    icon: guild.icon,
-                    permissions: guild.permissions,
-                })
-            }
-        }
+//             if (hasRequiredPermissions(Number(guild.permissions))) {
+//                 guildsArray.push({
+//                     id: guild.id,
+//                     name: guild.name,
+//                     icon: guild.icon,
+//                     permissions: guild.permissions,
+//                 })
+//             }
+//         }
 
-        res.status(200).render("../public/pages/dashboard/guild/servers.ejs", {
-            user: user,
-            guilds: guildsArray
-        });
-    }
-});
+//         res.status(200).render("../public/pages/dashboard/guild/servers.ejs", {
+//             user: user,
+//             guilds: guildsArray
+//         });
+//     }
+// });
 
-router.get("/:lang/servers/:id", async (req, res) => {
-    if (!req.session.bearer_token) {
-        res.redirect('/login');
-    } else {
-        const id = req.params.id;
-        try {
-            await bot.helpers.getGuild(id);
-        } catch (err) {
-            return res.redirect(`https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=${id}`)
-        }
+// router.get("/:lang/servers/:id", async (req, res) => {
+//     if (!req.session.bearer_token) {
+//         res.redirect('/login');
+//     } else {
+//         const id = req.params.id;
+//         try {
+//             await bot.helpers.getGuild(id);
+//         } catch (err) {
+//             return res.redirect(`https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=${id}`)
+//         }
 
-        const user = await req.session.user_info;
-        const guildsResult = await fetch(`https://discord.com/api/users/@me/guilds`, {
-            headers: {
-                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
-            }
-        });
-        const guilds: any = await guildsResult.json();
-        const guildsArray: any = [];
+//         const user = await req.session.user_info;
+//         const guildsResult = await fetch(`https://discord.com/api/users/@me/guilds`, {
+//             headers: {
+//                 authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
+//             }
+//         });
+//         const guilds: any = await guildsResult.json();
+//         const guildsArray: any = [];
 
-        function hasRequiredPermissions(permissions: number): boolean {
-            return (permissions & (8 | 32)) !== 0;
-        }
+//         function hasRequiredPermissions(permissions: number): boolean {
+//             return (permissions & (8 | 32)) !== 0;
+//         }
 
-        for (let i = 0; i < guilds.length; i++) {
-            const guild = guilds[i];
+//         for (let i = 0; i < guilds.length; i++) {
+//             const guild = guilds[i];
 
-            if (hasRequiredPermissions(Number(guild.permissions))) {
-                guildsArray.push({
-                    id: guild.id,
-                    name: guild.name,
-                    icon: guild.icon,
-                    permissions: guild.permissions,
-                })
-            }
-        }
+//             if (hasRequiredPermissions(Number(guild.permissions))) {
+//                 guildsArray.push({
+//                     id: guild.id,
+//                     name: guild.name,
+//                     icon: guild.icon,
+//                     permissions: guild.permissions,
+//                 })
+//             }
+//         }
 
-        const guild = await guildsArray.find((x: any) => x.id === req.params.id);
-        const guildIcon = await guild.icon;
-        const guildInfo = await database.getGuild(req.params.id);
-        if (!guildInfo) {
-            return res.redirect("/add");
-        }
+//         const guild = await guildsArray.find((x: any) => x.id === req.params.id);
+//         const guildIcon = await guild.icon;
+//         const guildInfo = await database.getGuild(req.params.id);
+//         if (!guildInfo) {
+//             return res.redirect("/add");
+//         }
 
-        const guildChannels = await fetch(`https://discord.com/api/guilds/${guild.id}/channels`, {
-            headers: {
-                authorization: `Bot ${process.env.BOT_TOKEN}`,
-            }
-        });
+//         const guildChannels = await fetch(`https://discord.com/api/guilds/${guild.id}/channels`, {
+//             headers: {
+//                 authorization: `Bot ${process.env.BOT_TOKEN}`,
+//             }
+//         });
 
-        const guildChannelsJson = await guildChannels.json();
-        const guildRoles = await fetch(`https://discord.com/api/guilds/${guild.id}/roles`, {
-            headers: {
-                authorization: `Bot ${process.env.BOT_TOKEN}`,
-            }
-        });
+//         const guildChannelsJson = await guildChannels.json();
+//         const guildRoles = await fetch(`https://discord.com/api/guilds/${guild.id}/roles`, {
+//             headers: {
+//                 authorization: `Bot ${process.env.BOT_TOKEN}`,
+//             }
+//         });
 
-        const guildRolesJson = await guildRoles.json();
-        let icon;
+//         const guildRolesJson = await guildRoles.json();
+//         let icon;
 
-        if (guildIcon) {
-            icon = `https://cdn.discordapp.com/icons/${guild.id}/${guildIcon}.png`;
-        } else {
-            icon = `https://cdn.discordapp.com/attachments/1068525425963302936/1132369142780014652/top-10-cutest-cat-photos-of-all-time.jpg`
-        }
-        if (!guild) return res.redirect("/servers");
+//         if (guildIcon) {
+//             icon = `https://cdn.discordapp.com/icons/${guild.id}/${guildIcon}.png`;
+//         } else {
+//             icon = `https://cdn.discordapp.com/attachments/1068525425963302936/1132369142780014652/top-10-cutest-cat-photos-of-all-time.jpg`
+//         }
+//         if (!guild) return res.redirect("/servers");
 
-        res.status(200).render("../public/pages/dashboard/guild/server.ejs", {
-            user: user,
-            guilds: guildsArray,
-            guild: guild,
-            icon: icon,
-            channels: guildChannelsJson,
-            roles: guildRolesJson,
-            guildInfoFromDB: guildInfo,
-        });
-    }
-});
+//         res.status(200).render("../public/pages/dashboard/guild/server.ejs", {
+//             user: user,
+//             guilds: guildsArray,
+//             guild: guild,
+//             icon: icon,
+//             channels: guildChannelsJson,
+//             roles: guildRolesJson,
+//             guildInfoFromDB: guildInfo,
+//         });
+//     }
+// });
 
-router.post("/:lang/inviteblocker/save/:id", async (req, res) => {
-    try {
-        if (!req.session.bearer_token) {
-            res.redirect('/login');
-        }
-        const body = req.body;
+// router.post("/:lang/inviteblocker/save/:id", async (req, res) => {
+//     try {
+//         if (!req.session.bearer_token) {
+//             res.redirect('/login');
+//         }
+//         const body = req.body;
 
-        const guildInfo = await database.getGuild(req.params.id);
+//         const guildInfo = await database.getGuild(req.params.id);
 
-        guildInfo.InviteBlockerModule.isEnabled = body.inviteblocker;
-        guildInfo.InviteBlockerModule.whitelistedChannels = Array.isArray(body.selectedChannels)
-            ? body.selectedChannels
-            : [];
-        guildInfo.InviteBlockerModule.whitelistedRoles = Array.isArray(body.selectedRoles)
-            ? body.selectedRoles
-            : [];
-        guildInfo.InviteBlockerModule.blockMessage = body.blockmessage.trim();
+//         guildInfo.InviteBlockerModule.isEnabled = body.inviteblocker;
+//         guildInfo.InviteBlockerModule.whitelistedChannels = Array.isArray(body.selectedChannels)
+//             ? body.selectedChannels
+//             : [];
+//         guildInfo.InviteBlockerModule.whitelistedRoles = Array.isArray(body.selectedRoles)
+//             ? body.selectedRoles
+//             : [];
+//         guildInfo.InviteBlockerModule.blockMessage = body.blockmessage.trim();
 
-        await guildInfo.save();
+//         await guildInfo.save();
 
-        res.redirect(`/br/servers/${req.params.id}`);
-    } catch (error) {
-        res.redirect(`/br/servers/${req.params.id}?error=1`);
-    }
-});
+//         res.redirect(`/br/servers/${req.params.id}`);
+//     } catch (error) {
+//         res.redirect(`/br/servers/${req.params.id}?error=1`);
+//     }
+// });
 
 
 router.get("/:lang/dashboard", async (req, res) => {
