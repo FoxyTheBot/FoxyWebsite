@@ -2,6 +2,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Oswald&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:500&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Muli&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Cookie&display=swap);
 
 /* Main page */
 
@@ -16,13 +17,6 @@ body {
     background-color: #36393f;
 }
 
-
-.logo {
-    width: 20%;
-    height: 100%;
-    margin-top: 2%;
-    transition-duration: 0.5s;
-}
 main {
     padding-left: 30%;
     padding-right: 50%;
@@ -82,19 +76,27 @@ main .title {
 
 main .meeting {
     color: #fff;
-    font-size: 20px;
-    font-family: sans-serif;
+    font-size: 40px;
+    font-family: 'Cookie';
     margin-left: 5px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 main .meeting-2 {
     color: #fff;
-    font-size: 20px;
-    font-family: sans-serif;
+    font-size: 40px;
+    font-family: 'Cookie';
     margin-left: 5px;
-    margin-top: 5px;
+    margin-top: 1px;
 }
+
+.logo {
+    width: 30%;
+    height: 100%;
+    margin-top: 2%;
+    transition-duration: 0.5s;
+}
+
 @keyframes shine {
     to {
         background-position: 50% top;

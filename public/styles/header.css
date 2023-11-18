@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css2?family=Oswald&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:500&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Muli&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Pacifico&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
 
 * {
     box-sizing: border-box;
@@ -17,7 +19,7 @@
     background-color: #e7385d;
     opacity: 0.9;
     text-shadow: 0 1px rgb(0 0 0 / 20%);
-    font-family: Montserrat, Impact, Arial, sans-serif;
+    font-family: Pacifico, Impact, Arial, sans-serif !important;
     line-height: 1;
     z-index: 999;
     display: flex;
@@ -118,7 +120,7 @@ nav.navigation-bar {
     height: 46px;
     opacity: 100%;
     text-shadow: 0 1px rgb(0 0 0 / 20%);
-    font-family: 'Muli', Impact, Arial, sans-serif;
+    font-family: Pacifico, Impact, Arial, sans-serif;
     line-height: 1;
     z-index: 999;
     display: flex;
@@ -215,47 +217,5 @@ nav.navigation-bar {
 
     .mobile {
         display: initial;
-    }
-}
-
-@-webkit-keyframes gradient-button {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@-moz-keyframes gradient-button {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@keyframes gradient-button {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
     }
 }
