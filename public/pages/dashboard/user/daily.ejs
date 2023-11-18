@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../styles/dashboard.css">
     <link rel="stylesheet" href="../styles/footer.css">
     <link rel="icon" href="../assets/images/foxycake.png">
-    <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete" autoplay></audio>
     <title>Foxy | Daily</title>
 </head>
 
@@ -85,6 +84,7 @@
     <main>
         <div class="daily-page">
             <% if (allowed) { %>
+                <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete" autoplay></audio>
                 <img class="daily_image" src="../assets/images/foxyoculos.png" alt="dashboard">
                 <h1>Você recebeu seu prêmio diário e...</h1>
                 <br>
@@ -111,48 +111,41 @@
         <div class="left-sidebar">
             <div class="entries">
                 <hr class="separator">
-                <h2 class="section-title">Perfil</h2>
-                <a href="/br/dashboard">
-                    <div class="entry">
-                        Estatísticas
-                    </div></a>
-                    <!-- <hr class="separator">
                     <h2 class="section-title">Servidores</h2>
-                    <a href="/br/servers">
+                    <a href="/br/dashboard">
                         <div class="entry">
                             Configurar um servidor
-                        </div></a> -->
-                        <h2 class="section-title">Opções do usuário</h2>
+                        </div></a>
+                <h2 class="section-title">Opções do usuário</h2>
 
-                        <a href="/br/aboutme">
-                            <div class="entry">
-                                Alterar sobre mim
-                            </div>
-                        </a>
+                <a href="/br/aboutme">
+                    <div class="entry">
+                        Alterar sobre mim
+                    </div>
+                </a>
 
-                        <a href="/br/daily">
-                            <div class="entry" id="selected">
-                                Daily
-                            </div>
-                        </a>
+                <a href="/br/daily">
+                    <div class="entry" id="selected">
+                        Daily
+                    </div>
+                </a>
 
-                        <hr class="separator">
-                        <h2 class="section-title">Extras</h2>
-                        <a href="/br/premium">
-                            <div class="entry">
-                                Assinaturas ou loja de cakes
-                            </div>
-                        </a>
-                        <hr class="separator">
-                        <a href="/logout">
-                            <div class="entry">
-                                Sair
-                            </div>
-                        </a>
+                <hr class="separator">
+                <h2 class="section-title">Extras</h2>
+                <a href="/br/premium">
+                    <div class="entry">
+                        Assinaturas ou loja de cakes
+                    </div>
+                </a>
+                <hr class="separator">
+                <a href="/logout">
+                    <div class="entry">
+                        Sair
+                    </div>
+                </a>
             </div>
         </div>
     </main>
-
 </body>
 <script src="../js/HeaderMobile.js"></script>
 
