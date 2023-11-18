@@ -171,32 +171,8 @@ router.get("/:lang/servers/:id", async (req, res) => {
             channels: guildChannelsJson,
             roles: guildRolesJson,
             guildInfoFromDB: guildInfo,
+            blockMessage: guildInfo.InviteBlockerModule.blockMessage ?? "Você não pode enviar convites aqui!",
         });
-    }
-});
-
-router.post("/:lang/inviteblocker/save/:id", async (req, res) => {
-    try {
-        if (!req.session.bearer_token) {
-            res.redirect('/login');
-        }
-        const body = req.body;
-
-        const guildInfo = await database.getGuild(req.params.id);
-
-        guildInfo.InviteBlockerModule.isEnabled = body.inviteblocker.replace("on", "true").replace("off", "false");
-        guildInfo.InviteBlockerModule.whitelistedChannels = Array.isArray(body.selectedChannels)
-            ? body.selectedChannels
-            : [];
-        guildInfo.InviteBlockerModule.whitelistedRoles = Array.isArray(body.selectedRoles)
-            ? body.selectedRoles
-            : [];
-        guildInfo.InviteBlockerModule.blockMessage = body.blockmessage.trim();
-        await guildInfo.save();
-
-        res.redirect(`/br/servers/${req.params.id}`);
-    } catch (error) {
-        res.redirect(`/br/servers/${req.params.id}?error=1`);
     }
 });
 

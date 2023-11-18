@@ -169,7 +169,7 @@
         const switchElement = document.getElementById("inviteblocker-switch");
         const textareaElement = document.getElementById("messageTextArea");
         switchElement.checked = "<%= guildInfoFromDB.InviteBlockerModule.isEnabled %>" === "true";
-        const blockMessage = `<%= guildInfoFromDB.InviteBlockerModule.blockMessage.replace(/\n/g, '') %>`;
+        const blockMessage = `<%= blockMessage.replace(/\n/g, '') %>`;
         function decodeHtml(html) {
             var txt = document.createElement("textarea");
             txt.innerHTML = html;
