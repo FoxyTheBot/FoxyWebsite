@@ -166,31 +166,6 @@ main a .discord__button {
     animation: float 5s ease-in-out infinite;
 }
 
-main input {
-    color: rgb(0, 0, 0);
-    background-color: #ffffff;
-    font-family: Montserrat;
-    font-size: 20px;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    margin: 20px 5px 10px 5px;
-    transition-duration: 0.5s;
-}
-
-main form button {
-    color: #fff;
-    background-color: #7289da;
-    font-family: Montserrat;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    margin: 20px 5px 10px 5px;
-    transition-duration: 0.5s;
-}
-
 main a .button__image {
     width: 20px;
     height: 20px;
@@ -207,10 +182,21 @@ main a button:hover {
     transition-duration: 0.5s;
 }
 
+main a button:not(:hover) {
+    background-color: #3ba55c;
+    transition-duration: 0.5s;
+}
+
 main a .discord__button:hover {
     background-color: #4752c4;
     transition-duration: 0.5s;
 }
+
+main a .discord__button:not(:hover) {
+    background-color: #5865f2;
+    transition-duration: 0.5s;
+}
+
 
 main a .discord__button:disabled {
     opacity: .5;

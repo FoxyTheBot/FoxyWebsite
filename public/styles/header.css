@@ -36,13 +36,11 @@
     justify-content: space-evenly;
     flex-grow: 1;
     flex-flow: wrap;
-    margin-left: 6%;
     overflow: hidden;
 }
 
 .navigation-bar .right-entries {
     display: flex;
-    margin-left: auto;
     justify-content: flex-end;
 }
 
@@ -60,9 +58,14 @@
     position: relative;
 }
 
-.navigation-bar .entry a:hover {
-    transition-duration: 0.5s;
-    color: black !important;
+.navigation-bar .entry a {
+    transition: 0.3s;
+    color: white !important;
+ }
+ 
+ .navigation-bar .entry a:hover {
+    color: rgb(221, 221, 221) !important;
+    text-decoration: none;
 }
 
 .fab {
