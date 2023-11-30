@@ -28,6 +28,19 @@ a {
     color: rgb(120, 120, 255);
 }
 
+.connection-logo {
+    width: 50%;
+    height: 50%;
+    margin-left: 15%;
+    margin-right: 10%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    text-align: center;
+    display: block;
+    transition-duration: 0.5s;
+
+}
+
 .example {
     border-radius: 2%;
     animation: float 6s ease-in-out infinite;
