@@ -53,6 +53,26 @@ main .username {
     margin-right: -40%;
 }
 
+main .title {
+    color: #fff;
+    font-size: 40px;
+    font-family: Montserrat;
+    margin-left: 50%;
+    text-align: center;
+    margin-top: -30%;
+    margin-right: -1%;
+    margin-bottom: -1%;
+}
+
+main .description {
+    color: #fff;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 50%;
+    text-align: center;
+    margin-top: 3.5%;
+    margin-bottom: -3%;
+}
 .server {
     box-sizing: border-box;
     margin: 10px;
@@ -185,7 +205,7 @@ main .username {
     text-align: center;
 }
 
-main #inviteBlockerForm {
+main .feature-settings {
     margin-top: 7%;
     margin-left: 40%;
     margin-right: -40%;
@@ -568,6 +588,7 @@ main .main__buttons .action__btn .btn {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+ 
 
 #selected {
     background-color: #2f3136;
