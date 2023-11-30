@@ -197,28 +197,6 @@ main a .discord__button:not(:hover) {
     transition-duration: 0.5s;
 }
 
-
-main a .discord__button:disabled {
-    opacity: .5;
-    background-color: #4752c4;
-    cursor: not-allowed;
-}
-
-@keyframes cardAnimation {
-    0% {
-        transform: translate(0, 0px);
-    }
-
-    50% {
-        transform: translate(0, 15px);
-    }
-
-    100% {
-        transform: translate(0, -0px);
-    }
-}
-
-
 .features {
     padding: 30px;
     opacity: inherit;
@@ -226,19 +204,6 @@ main a .discord__button:disabled {
     border-color: #000;
     position: relative;
     text-align: center;
-}
-
-.features .arrow {
-    color: #e7385d;
-    position: absolute;
-    margin-top: -100px;
-    text-align: center;
-    bottom: 100;
-    right: 48%;
-    font-size: 3.5em;
-    -webkit-animation: arrow-move 1s infinite alternate;
-    animation: arrow-move 1s infinite alternate;
-    overflow: hidden;
 }
 
 .features .title {
@@ -249,27 +214,6 @@ main a .discord__button:disabled {
     margin-right: auto;
     margin-top: 10px;
     color: #e7385d;
-}
-
-
-@keyframes arrow-move {
-    0% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(-10px);
-    }
-}
-
-@-webkit-keyframes arrow-move {
-    0% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(-10px);
-    }
 }
 
 .features .feature {
@@ -450,48 +394,6 @@ main a .discord__button:disabled {
     .features .card-row .card {
         text-align: center;
         margin-left: 5em;
-    }
-}
-
-@-webkit-keyframes gradient-button {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@-moz-keyframes gradient-button {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@keyframes gradient-button {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
     }
 }
 

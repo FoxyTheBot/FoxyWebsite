@@ -14,7 +14,7 @@ p {
     font-size: 17px;
     font-family: Montserrat;
     margin-left: 5px;
-    margin-top: 30px;
+    margin-top: 13px;
 }
 
 main .title {
@@ -25,9 +25,10 @@ main .title {
 }
 
 main {
-    padding-left: 28%;
-    padding-right: 30%;
-    margin-top: 5%;
+    padding-left: 20%;
+    padding-right: 25%;
+    margin-top: 6%;
+    margin-left: 10%;
     transition-duration: 0.5s;
     text-align: center;
 }
@@ -57,8 +58,8 @@ main  .action__btn .btn {
 }
 
 main .store_image {
-    width: 50%;
-    height: 40%;
+    width: 60%;
+    height: 50%;
     text-align: left;
     margin-left: -160%;
     margin-top: -130%;
@@ -69,7 +70,7 @@ main .store_image {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 10%;
-    margin-left: -40%;
+    margin-left: -50%;
     margin-bottom: 5%;
     cursor: default;
     margin-right: -40%;
@@ -99,7 +100,7 @@ main .store_image {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 10%;
-    margin-left: -40%;
+    margin-left: -50%;
     margin-bottom: 5%;
     margin-right: -40%;
     cursor: default;
