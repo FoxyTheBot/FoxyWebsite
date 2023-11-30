@@ -96,6 +96,32 @@ router.get('/:lang/dashboard', async (req, res) => {
     }
 });
 
+router.get("/riot/connection/status=:status", (req, res) => {
+    const status = req.params.status;
+    let message, description;
+    if (status === "200") {
+        message = "Sua conta da Riot Games foi conectada a Foxy",
+            description = "Pode fechar esta página e voltar para o Discord"
+    } else {
+        message = "Sua conta da Riot Games não foi conectada a Foxy",
+            description = "Desculpe, mas ocorreu um problema estranho ao conectar sua conta da Riot Games a Foxy. Tente novamente mais tarde."
+    }
+
+    if (!req.session.bearer_token) {
+        res.status(200).render("../public/pages/info/riotAccountConnected.ejs", {
+            user: null,
+            message,
+            description
+        });
+    } else {
+        res.status(200).render("../public/pages/info/riotAccountConnected.ejs", {
+            user: req.session.user_info,
+            message,
+            description
+        });
+    }
+});
+
 router.get("/:lang/servers/:id", async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');

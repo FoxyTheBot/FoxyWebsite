@@ -88,10 +88,10 @@
     </div>
 
     <main>
-        <div class="invite-blocker-section">
-            <h2 class="feature-title">Bloqueador de convites</h2>
-            <h3 class="feature-description">Utilize esse recurso para bloquear convites indesejados em seu servidor!
-            </h3>
+        <h1 class="title">Bloqueador de convites</h1>
+        <h3 class="description">Utilize esse recurso para bloquear convites indesejados em seu servidor!
+        </h3>
+        <div class="feature-settings">
             <form id="inviteBlockerForm" action="/inviteblocker/save/<%= guild.id %>" method="POST"
                 data-guild-id="<%= guild.id %>">
                 <h3 class="input-text">Ativar módulo?</h3>
@@ -339,7 +339,7 @@
             <hr class="separator">
             <h2 class="section-title">Miscelâneas</h2>
 
-            <a href="/br/servers/<%= guild.id %>/premium">
+            <a href="/br/servers/<%= guild.id %>/keys">
                 <div class="entry">
                     Gerenciar chaves premium
                 </div>
