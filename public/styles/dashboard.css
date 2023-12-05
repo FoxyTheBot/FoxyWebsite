@@ -64,6 +64,91 @@ main .title {
     margin-bottom: -1%;
 }
 
+main .key-manager__add__input {
+    display: block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    font-family: sans-serif;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+main .current-key__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+main .current-key__content__key, .current-key__content__expires {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #fff;
+}
+
+main .current-key__no-key {
+    font-family: sans-serif;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    margin-left: 50%;
+    margin-top: 20%;
+}
+
+main .current-key__no-key__image {
+    width: 15%;
+    height: 15%;
+    margin-top: 1%;
+    margin-left: 50%;
+    margin-bottom: -17%;
+    filter: grayscale(100%); 
+}
+
+main .user-avaliable-keys__no-key__image {
+    width: 15%;
+    height: 19%;
+    margin-top: 1%;
+    margin-left: 67%;
+    margin-bottom: -17%;  
+    filter: grayscale(100%); 
+}
+
+main .user-avaliable-keys__no-key {
+    font-family: sans-serif;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    margin-left: 50%;
+    margin-top: 20%;
+
+}
+
+
+main .current-key {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+main .key-manager__add__submit {
+    display: block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #7289da;
+    border: none;
+    outline: none;
+    font-family: sans-serif;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #fff;
+}
+
 main .description {
     color: #fff;
     font-size: 16px;
@@ -252,6 +337,23 @@ main .input-text,
     height: 0;
 }
 
+main .field-title {
+    color: #fff;
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-top: 5%;
+    margin-right: 9%;
+    margin-bottom: 1%;
+}
+
+main .page-separator {
+    height: 1px;
+    width: 100%;
+    background-color: #2f3136;
+    margin: 10px 0;
+    margin-top: 1%;
+    margin-left: 25%;
+}
 .notification {
     position: fixed;
     bottom: 20px;

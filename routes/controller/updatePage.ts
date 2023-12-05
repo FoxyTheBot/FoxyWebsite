@@ -225,6 +225,21 @@ router.post("/inviteblocker/save/:id", async (req, res) => {
     }
 });
 
+router.get('/:lang/servers/:id/keys', async (req, res) => {
+    if (!req.session.bearer_token) {
+        res.redirect('/login');
+    } else {
+        const userData: any = await database.getUser(req.session.user_info.id);
+        const guildInfo = await database.getGuild(req.params.id);
+
+        res.status(200).render('../public/pages/dashboard/guild/keyManager.ejs', {
+            guild: guildInfo,
+            userInfo: userData,
+            user: req.session.user_info
+        });
+    }
+});
+
 router.get('/:lang/daily', async (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/login');
