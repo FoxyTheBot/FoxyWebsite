@@ -15,6 +15,21 @@ export default class DatabaseConnection {
         });
         console.info("[DATABASE] - Connected successfully to the database");
 
+        const keySchema = new mongoose.Schema({
+            key: String,
+            used: Boolean,
+            expiresAt: Date,
+            pType: Number,
+            guild: String,
+        }, { versionKey: false, id: false });
+        const trasactionSchema = new mongoose.Schema({
+            to: String,
+            from: String,
+            quantity: Number,
+            date: Date,
+            received: Boolean,
+            type: String,
+        }, { versionKey: false, id: false });
         const userSchema = new mongoose.Schema({
             _id: String,
             userCreationTimestamp: Date,
@@ -37,7 +52,16 @@ export default class DatabaseConnection {
             language: String,
             mask: String,
             masks: Array,
-            layout: String
+            layout: String,
+            transactions: [trasactionSchema],
+            riotAccount: {
+                isLinked: Boolean,
+                puuid: String,
+                isPrivate: Boolean,
+                region: String,
+                access_token: String,
+            },
+            premiumKeys: [keySchema]
         }, { versionKey: false, id: false });
 
         const commandsSchema = new mongoose.Schema({
@@ -103,7 +127,16 @@ export default class DatabaseConnection {
                 language: 'pt-BR',
                 mask: null,
                 masks: [],
-                layout: "default"
+                layout: "default",
+                transactions: [],
+                premiumKeys: [],
+                riotAccount: {
+                    isLinked: false,
+                    puuid: null,
+                    isPrivate: false,
+                    region: null,
+                    access_token: null,
+                }
             }).save();
         }
 
