@@ -117,6 +117,10 @@ nav#navigation-bar .icon {
     filter: drop-shadow(0 1px rgba(0, 0, 0, 0.2));
 }
 
+#login-button {
+    display: none;
+}
+
 nav.navigation-bar {
     top: 0px;
     width: 100%;
