@@ -1,0 +1,572 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Um bot multiuso para o seu servidor do Discord">
+	<header>
+		<nav
+			class="navigation-bar fixed"
+			data-preload-persist="true"
+			id="navigation-bar"
+		>
+			<div class="left-entries">
+				<div class="entry foxy-navbar-logo">
+					<a href="/"
+						><img
+							src="Foxy.png"
+							style="    font-size: 0px;
+						line-height: 0px;
+						width: 40px;
+						height: 40px;
+	
+						position: absolute;
+						top: 3px;
+						border-radius: 100%;"
+						/></a
+					>
+				</div>
+				<div class="entry">
+					<a
+						href="/br/support"
+						class="menu"
+						data-preload-link="true"
+						data-preload-link-activated="true"
+					>
+						Suporte
+					</a>
+				</div>
+				<div class="entry">
+					<a
+						href="/br/support/terms"
+						class="commands"
+						data-preload-link="true"
+						data-preload-link-activated="true"
+					>
+						Termos
+					</a>
+				</div>
+
+				<div class="entry">
+					<a href="/upvote" class="menu"> Votar</a>
+				</div>
+				<div class="entry">
+					<a href="/br/premium" class="menu"> Premium</a>
+				</div>
+				<div class="entry">
+					<a href="/br/commands" class="menu"> Comandos</a>
+				</div>
+			</div>
+			<div class="right-entries">
+				<div
+					class="entry"
+					id="locale-changer-button"
+					style="cursor: default;"
+				>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+		<h2 class="meeting">Olá eu sou a</h2>
+		<img class="logo" src="/logo.png" />
+		<h2 class="meeting-2">
+			Um bot multiuso para o seu servidor do Discord
+		</h2>
+		<br />
+		<a href="/add"><button>Adicionar</button></a>
+		<a href="/br/support"
+			><button class="discord__button">Suporte</button></a
+		>
+		<br />
+		<br />
+		<img class="foxy" src="foxy-fullbody.png" />
+	</main>
+	<div class="features">
+		<h1 class="title">Me deixe ajudar você com o seu servidor</h1>
+		<div class="feature">
+			<h2>
+				Eu posso ajudar seu servidor e quebrando um galho para você
+				entretendo os membros do seu servidor, protegendo seu servidor
+				contra convites indesejados e adicionando cargos novos a novos
+				membros do seu servidor!
+			</h2>
+			<br />
+			<h2>
+				Além disso sou simples e fácil de usar, e caso você precise de
+				ajuda pode contar com o meu suporte
+			</h2>
+		</div>
+		<div class="feature">
+			<h1>Divertindo seu servidor</h1>
+			<h2>
+				O meu principal objetivo sempre foi ajudar a engajar seu
+				servidor e entreter os membros dos servidores em que eu estou <br
+				/><br />Por isso possuo vários comandos diferentes com o foco de
+				entreter o seu servidor! Possuo alguns jogos para seus membros
+				jogarem entre si, comandos de modificação de imagem e muito
+				mais!
+			</h2>
+		</div>
+
+		<div class="feature">
+			<h1>Moderação</h1>
+			<h2>
+				Seu servidor suas regras, posso auxiliar na proteção do seu
+				servidor bloqueando convites indesejados e adicionando cargos
+				para novos usuários do servidor, assim você pode descansar
+				tranquilamente em quanto estou cuidando dessa parte no seu
+				servidor!
+			</h2>
+		</div>
+
+		<div class="feature">
+			<h1>Customização</h1>
+			<h2>
+				Customize seu perfil de diversas maneiras, trocando layout,
+				chapéus e backgrounds que estão na minha loja, e caso você
+				queira sugerir um background ou um chapéu também conhecido como
+				máscara você pode sugerir no meu servidor de suporte :3
+			</h2>
+		</div>
+
+		<div class="feature">
+			<h1>Reputação e Economia</h1>
+			<h2>
+				Você pode utilizar meu sistema de economia para vender coisas em
+				seu servidor (Vendas de Nitro, conteúdo NSFW, etc são
+				proibidas), você não é taxado em nada ao utilizar a minha moeda,
+				é imposto 0! Você também pode dar reputação para outra pessoa
+				para agradecer algum favor que ela te fez ou se ela é uma boa
+				pessoa!
+			</h2>
+		</div>
+
+		<div class="feature">
+			<h1>VALORANT</h1>
+			<h2>
+				Veja informações de partidas ou de um jogador de VALORANT
+				diretamente pelo Discord através dos meus comandos integrados ao
+				VALORANT!
+			</h2>
+		</div>
+		<div class="feature">
+			<h1>Suporte e Comunidade</h1>
+			<h2>
+				Que tal ir na minha cafeteria para tomar um café ou chá com bolo
+				comigo e com os membros do meu servidor de suporte? <br /><br
+				/>Lá você pode publicar fanarts minhas e caso você crie um
+				background você receberá cakes por cada venda de background<br
+				/>Apenas pessoas incríveis estão na minha cafeteria, eu sei que
+				você é uma pessoa incrível o que acha de se juntar com a gente? <br
+				/><br />Caso tenha dúvidas a minha equipe está lá para te ajudar
+				:3
+			</h2>
+		</div>
+
+		<div class="footer-add" style="text-align: center;">
+			<h2>Gostou? Me adicione no seu servidor e divirta-se! :3</h2>
+			<a href="/add"><button>Adicionar</button></a>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	@import url(https://fonts.googleapis.com/css?family=Montserrat:500&display=swap);
+	@import url(https://fonts.googleapis.com/css2?family=Muli&display=swap);
+	@import url(https://fonts.googleapis.com/css2?family=Cookie&display=swap);
+
+	/* Main page */
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	main {
+		padding-left: 30%;
+		padding-right: 50%;
+		margin-top: 15%;
+		margin-left: -25%;
+		transition-duration: 0.5s;
+		text-align: center;
+		cursor: default;
+	}
+
+	main .right-content {
+		justify-content: space-between;
+		margin-top: -50%;
+		margin-left: 160%;
+	}
+
+	main .right-content .foxy-image {
+		position: absolute;
+		bottom: 0;
+		height: 92.5vh;
+		margin-left: -27%;
+	}
+
+	.features p {
+		font-family: Montserrat;
+		font-size: 15px;
+		color: #fff;
+		margin-left: auto;
+	}
+
+	main .foxy {
+		margin-left: 135%;
+		margin-top: -61%;
+		margin-bottom: -1%;
+		width: 61%;
+		height: 65%;
+		display: inline;
+	}
+
+	main .main__image {
+		animation: float 1s ease-in-out infinite;
+	}
+
+	main .title {
+		color: #047cd6;
+		font-size: 50px;
+		margin-bottom: 1%;
+		font-family: Montserrat;
+	}
+
+	main .title {
+		text-align: center;
+		color: #e7385d;
+		margin-top: -5px;
+	}
+
+	main .meeting {
+		color: #fff;
+		font-size: 40px;
+		font-family: "Cookie";
+		margin-left: 5px;
+		margin-top: 5px;
+	}
+
+	main .meeting-2 {
+		color: #fff;
+		font-size: 40px;
+		font-family: "Cookie";
+		margin-left: 5px;
+		margin-top: 1px;
+	}
+
+	.logo {
+		width: 30%;
+		height: 100%;
+		margin-top: 2%;
+		transition-duration: 0.5s;
+	}
+
+	main h3 {
+		color: #fff;
+		font-size: 18px;
+		font-family: sans-serif;
+		margin-left: 5px;
+	}
+
+	main a {
+		list-style: none;
+	}
+
+	main a button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		align-items: center;
+		justify-content: center;
+		border: none;
+		outline: none;
+		font-family: Roboto, sans-serif;
+		line-height: 20px;
+		font-size: 17px;
+		color: #fff;
+		min-width: 36px;
+		margin-left: 1.5%;
+		padding: 0.55rem 1rem;
+		box-sizing: border-box;
+		border-radius: 4px;
+		cursor: pointer;
+		text-decoration: none;
+		background: #3ba55c;
+		animation: float 5s ease-in-out infinite;
+	}
+
+	.title {
+		font-family: Montserrat;
+		color: rgb(0, 183, 255);
+		margin-top: 20px;
+	}
+
+	main a .discord__button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		align-items: center;
+		justify-content: center;
+		border: none;
+		outline: none;
+		font-family: Roboto, sans-serif;
+		line-height: 20px;
+		font-size: 17px;
+		color: #fff;
+		min-width: 36px;
+		margin-left: 1.5%;
+		padding: 0.55rem 1rem;
+		box-sizing: border-box;
+		border-radius: 4px;
+		cursor: pointer;
+		text-decoration: none;
+		background: #5865f2;
+		animation: float 5s ease-in-out infinite;
+	}
+
+	main a .button__image {
+		width: 20px;
+		height: 20px;
+	}
+
+	main a .discord__button .button__image {
+		width: 16px;
+		height: 16px;
+		margin-right: 5px;
+	}
+
+	main a button:hover {
+		background-color: #359553;
+		transition-duration: 0.5s;
+	}
+
+	main a button:not(:hover) {
+		background-color: #3ba55c;
+		transition-duration: 0.5s;
+	}
+
+	main a .discord__button:hover {
+		background-color: #4752c4;
+		transition-duration: 0.5s;
+	}
+
+	main a .discord__button:not(:hover) {
+		background-color: #5865f2;
+		transition-duration: 0.5s;
+	}
+
+	.features {
+		padding: 30px;
+		opacity: inherit;
+		border-color: #000;
+		position: relative;
+		text-align: center;
+	}
+
+	.features .title {
+		font-family: Montserrat;
+		font-size: 200%;
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 10px;
+		color: #e7385d;
+	}
+
+	.features .feature {
+		flex-direction: column;
+		margin: 20px;
+		padding: 20px;
+		border-radius: 10px;
+		background-color: #36393f;
+		border-color: #000;
+		position: relative;
+	}
+
+	.features .feature h1 {
+		font-family: Montserrat;
+		font-size: 160%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 10px;
+		color: #e7385d;
+	}
+
+	.inline-emoji {
+		height: 1.5em;
+		position: relative;
+		top: 0.3em;
+	}
+
+	.features .feature h2 {
+		font-family: Montserrat;
+		font-size: 110%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 10px;
+		color: white;
+	}
+
+	.features .feature__title {
+		font-family: Montserrat;
+		font-size: 20px;
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 20px;
+		color: rgb(255, 255, 255);
+	}
+
+	.features .description {
+		font-family: Montserrat;
+		text-align: center;
+		color: #fff;
+	}
+
+	.features .card-row {
+		margin-top: 10px;
+		text-align: center;
+		display: flex;
+		justify-content: space-between;
+		flex-flow: wrap;
+	}
+
+	.features .card-row .card {
+		width: 80%;
+		max-width: 250px;
+		padding: 35px 20px 35px 20px;
+		background-color: #221f1f;
+		border-radius: 10px;
+		margin-top: 5%;
+		margin-bottom: 5%;
+	}
+
+	.features .card-row .card p {
+		font-family: Montserrat;
+		font-size: 15px;
+		color: #fff;
+		margin-left: auto;
+	}
+
+	.icon {
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+		stroke-width: 0;
+		stroke: currentColor;
+		fill: currentColor;
+		font-size: inherit;
+		color: inherit;
+		vertical-align: -0.125em;
+	}
+
+	@media only screen and (max-width: 320px) {
+		main a button {
+			color: #fff;
+			background-color: #1d9ae4;
+			font-family: Montserrat;
+			font-size: 12px;
+			cursor: pointer;
+			padding: 10px 12px 10px 12px;
+			border-radius: 5px;
+			border: none;
+			margin: 20px 5px 10px 5px;
+			transition-duration: 0.5s;
+		}
+
+		main .foxy {
+			display: none;
+		}
+	}
+
+	.features .card-row .card img {
+		width: 100%;
+	}
+
+	.features .card-row .card h1 {
+		text-align: left;
+		color: rgb(96, 172, 248);
+		cursor: default;
+		margin-bottom: 10px;
+		font-family: Montserrat;
+	}
+
+	.features .card-row .card p {
+		text-align: left;
+		color: rgb(150, 150, 150);
+		cursor: default;
+		font-family: Montserrat;
+		transition-duration: 0.5s;
+	}
+
+	.features .card-row .card p:hover {
+		cursor: default;
+		color: #fff;
+		transition-duration: 0.5s;
+	}
+
+	.features * {
+		cursor: default;
+	}
+
+	@media only screen and (max-width: 800px) {
+		header {
+			padding-left: 5%;
+			padding-right: 5%;
+			transition-duration: 0.5s;
+		}
+
+		main .foxy {
+			display: none;
+		}
+
+		main {
+			text-align: center;
+			margin-top: 10%;
+			margin-bottom: 15%;
+			margin-right: 5%;
+			margin-left: 5%;
+			padding-left: 5%;
+			padding-right: 5%;
+			transition-duration: 0.5;
+		}
+
+		main h1 {
+			font-size: 10vw;
+			text-align: center;
+		}
+
+		main h3 {
+			font-size: 4vw;
+		}
+
+		main a button {
+			font-size: 5vw;
+		}
+
+		main a .discord__button {
+			font-size: 5vw;
+		}
+
+		.features .card-row .card {
+			text-align: center;
+			margin-left: 5em;
+		}
+	}
+
+	@keyframes float {
+		0% {
+			transform: rotate(3deg);
+		}
+
+		50% {
+			transform: rotate(-3deg);
+		}
+
+		100% {
+			transform: rotate(3deg);
+		}
+	}
+</style>

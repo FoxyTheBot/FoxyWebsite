@@ -1,40 +1,22 @@
 {
-  "name": "foxy-website",
-  "version": "3.0.0",
-  "description": "Website da Foxy feito em TypeScript, JavaScript, ExpressJS e EJS",
-  "main": "build/start.js",
+  "name": "foxywebsite",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "build": "npx tsc",
-    "start": "node build/start.js"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WinG4merBR/BotFoxy.github.io.git"
-  },
-  "author": "WinG4merBR",
-  "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/WinG4merBR/BotFoxy.github.io/issues"
-  },
-  "homepage": "https://github.com/WinG4merBR/BotFoxy.github.io#readme",
   "dependencies": {
-    "@types/express": "^4.17.17",
-    "@types/multer": "^1.4.7",
-    "@types/node": "^20.3.3",
-    "body-parser": "^1.20.2",
-    "discordeno": "^18.0.1",
-    "dotenv": "^16.3.1",
-    "ejs": "^3.1.9",
-    "express": "^4.18.2",
-    "express-session": "^1.17.3",
-    "formidable": "^3.5.0",
-    "mongoose": "^7.3.1",
-    "multer": "^1.4.5-lts.1",
-    "node-fetch": "^3.3.1",
-    "node-fetch-commonjs": "^3.3.1",
-    "ts-node": "^10.9.1"
-  },
-  "devDependencies": {
-    "ts-node-dev": "^2.0.0"
+    "@astrojs/check": "^0.3.2",
+    "@astrojs/react": "3.0.7",
+    "@types/react": "18.2.45",
+    "@types/react-dom": "18.2.17",
+    "astro": "^4.0.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "^5.3.3"
   }
 }
