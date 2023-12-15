@@ -2,7 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import SuccessRiotConnection from "../../../components/SuccessRiotConnection.jsx";
 import ErrorRiotConnection from "../../../components/ErrorRiotConnection.jsx";
-import '../../styles/readonly.css';
+import "../../styles/readonly.css";
 
 export const getStaticPaths = (() => {
     const codes = ["200"];
@@ -22,6 +22,7 @@ console.log(code);
 ---
 
 <Layout title="Foxy | Vincular conta">
-    <main>    {code === "200" ? <SuccessRiotConnection client:load /> : <ErrorRiotConnection client:load />}
+    <main>
+        {code === "200" ? <SuccessRiotConnection /> : <ErrorRiotConnection />}
     </main>
 </Layout>
