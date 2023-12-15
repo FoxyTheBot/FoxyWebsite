@@ -1,14 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import DiscordLoginComponent from "../components/Login";
 ---
 
 <Layout title="Um bot multiuso para o seu servidor do Discord">
 	<header>
-		<nav
-			class="navigation-bar fixed"
+		<nav class="navigation-bar fixed"
 			data-preload-persist="true"
-			id="navigation-bar"
-		>
+			id="navigation-bar">
 			<div class="left-entries">
 				<div class="entry foxy-navbar-logo">
 					<a href="/"
@@ -63,6 +62,7 @@ import Layout from "../layouts/Layout.astro";
 					style="cursor: default;"
 				>
 				</div>
+				<DiscordLoginComponent client:load>
 			</div>
 		</nav>
 	</header>
