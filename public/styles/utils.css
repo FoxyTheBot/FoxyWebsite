@@ -1,0 +1,246 @@
+body {
+    background-image: url("../assets/images/DiscordBackground.png");
+    background-color: #36393f;
+}
+main {
+    padding-left: 28%;
+    padding-right: 30%;
+    margin-top: 15%;
+    transition-duration: 0.5s;
+    text-align: center;
+}
+
+main  .action__btn .btn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    min-width: 36px;
+    margin-left: 1.5%;
+    padding: .5rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #7289da;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+main .store_image {
+    width: 50%;
+    height: 40%;
+    text-align: center;
+    margin-top: -5%;
+}
+
+main h1 {
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    font-family: Montserrat;
+    
+    margin-top: 5%; 
+}
+
+main .products {
+    display: flex;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    margin-left: -30%;
+    margin-right: 30%;
+    max-width: 100%;
+    flex-direction: row;
+
+}
+
+.product {
+    width: 50%;
+    height: 200px;
+    max-width: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 1rem;
+}
+main  .action__btn .btn.primary {
+    background: #5865f2;
+}
+
+main  .action__btn .btn.primary:disabled {
+    background: #4752c4;
+    opacity: .5;
+    cursor: not-allowed
+}
+
+main  .action__btn .btn.primary:hover {
+    background: #4752c4;
+}
+
+main  .action__btn .btn.success {
+    background: #3ba55c;
+}
+
+main  .action__btn .btn.success:hover {
+    background: #359553;
+}
+
+main  .action__btn .btn.success:disabled {
+    opacity: .5;
+    background-color: #359553;
+    cursor: not-allowed;
+}
+
+main .daily_image {
+    width: 40%;
+    height: 30%;
+    text-align: center;
+    margin-top: -50%;
+}
+
+main .daily-page {
+    text-align: center;
+    margin-left: 50%;
+    margin-top: -10%;
+}
+
+main .user__avatar {
+    width: 45%;
+    height: 45%;
+    border-radius: 50%;
+    margin-top: -30%;
+    margin-bottom: 5%;
+}
+
+main a .home_button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    font-family: Roboto, sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    min-width: 36px;
+    margin-left: 1.5%;
+    padding: .55rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #5865f2;
+    animation: float 5s ease-in-out infinite;
+}
+
+main h1 {
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    font-family: Montserrat;
+    
+}
+
+main #coins {
+    background: linear-gradient(to right, #6666ff, #0099ff , #003cff, #7124ff, #6666ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 6s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+@keyframes rainbow_animation {
+    0%,100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}
+
+main h3 {
+    color: #fff;
+    font-size: 18px;
+    font-family: sans-serif;
+    margin-left: 5px;
+}
+
+main h4 {
+    color: #fff;
+    font-size: 15px;
+    font-family: sans-serif;
+    margin-left: 5px;
+}
+
+main a {
+    list-style: none;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    background: rgb(56, 56, 56);
+    border-radius: 300px;
+    position: relative;
+    background-size: 100%;
+    left: 50%;
+}
+
+main a button:hover {
+    background-color: #4752c4;
+    transition-duration: 0.5s;
+}
+
+.action__buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+main h2 {
+    color: #fff;
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-top: 5px;
+}
+
+main  #default .default-button {
+    color: #fff;
+    background-color: #047cd6;
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    animation: float 6s ease-in-out infinite;
+    transition-duration: 0.5s;
+}
+
+.inline-emoji {
+    height: 1.5em;
+    position: relative;
+    top: 0.3em;
+}
+
+main  .action__btn .danger_btn {
+    color: #fff;
+    background-color: rgb(224, 72, 72);
+    font-family: Montserrat;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    animation: float 6s ease-in-out infinite;
+    transition-duration: 0.5s;
+}
