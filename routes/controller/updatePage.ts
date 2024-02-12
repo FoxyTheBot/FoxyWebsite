@@ -27,18 +27,18 @@ router.get("/", (req, res) => {
 
 router.get("/:lang/rso/login", (req, res) => {
     const data = {
-      puuid: req.query.puuid,
-      gameName: req.query.gameName,
-      tagLine: req.query.tagLine,
-      authCode: req.query.key
+        puuid: req.query.puuid,
+        gameName: req.query.gameName,
+        tagLine: req.query.tagLine,
+        authCode: req.query.key
     };
-  
+
     res.status(200).render("../public/pages/utils/rso.ejs", {
-      user: null,
-      body: data
+        user: null,
+        body: data
     });
-  });
-  
+});
+
 
 router.get("/:lang/support/guidelines", (req, res) => {
     if (!req.session.bearer_token) {
