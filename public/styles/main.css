@@ -13,13 +13,14 @@
 }
 
 body {
-    background-image: url('../assets/images/DiscordBackground.png');
-    background-color: #36393f;
+    background-color: #0f1923;
+
 }
 
 #login-btn {
-display: none;
+    display: none;
 }
+
 main {
     padding-left: 30%;
     padding-right: 50%;
@@ -41,6 +42,7 @@ main .right-content .foxy-image {
     bottom: 0;
     height: 92.5vh;
     margin-left: -27%;
+    margin-top: -10%;
 }
 
 .features p {
@@ -117,87 +119,11 @@ main a {
     list-style: none;
 }
 
-main a button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    outline: none;
-    font-family: Roboto, sans-serif;
-    line-height: 20px;
-    font-size: 17px;
-    color: #fff;
-    min-width: 36px;
-    margin-left: 1.5%;
-    padding: .55rem 1rem;
-    box-sizing: border-box;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    background: #3ba55c;
-    animation: float 5s ease-in-out infinite;
-}
 
 .title {
     font-family: Montserrat;
     color: rgb(0, 183, 255);
     margin-top: 20px;
-}
-
-main a .discord__button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    outline: none;
-    font-family: Roboto, sans-serif;
-    line-height: 20px;
-    font-size: 17px;
-    color: #fff;
-    min-width: 36px;
-    margin-left: 1.5%;
-    padding: .55rem 1rem;
-    box-sizing: border-box;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    background: #5865f2;
-    animation: float 5s ease-in-out infinite;
-}
-
-main a .button__image {
-    width: 20px;
-    height: 20px;
-}
-
-main a .discord__button .button__image {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
-}
-
-main a button:hover {
-    background-color: #359553;
-    transition-duration: 0.5s;
-}
-
-main a button:not(:hover) {
-    background-color: #3ba55c;
-    transition-duration: 0.5s;
-}
-
-main a .discord__button:hover {
-    background-color: #4752c4;
-    transition-duration: 0.5s;
-}
-
-main a .discord__button:not(:hover) {
-    background-color: #5865f2;
-    transition-duration: 0.5s;
 }
 
 .features {
@@ -207,6 +133,44 @@ main a .discord__button:not(:hover) {
     border-color: #000;
     position: relative;
     text-align: center;
+}
+
+.shadow__btn {
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    font-weight: 700;
+    transition: 0.5s;
+    margin-left: 5px;
+    font-family: Montserrat;
+    transition-property: box-shadow;
+    cursor: pointer;
+}
+
+.shadow__btn {
+    background: rgb(0, 140, 255);
+    box-shadow: 0 0 25px rgb(0, 140, 255);
+}
+
+#add {
+    background: rgb(68, 192, 57);
+    box-shadow: 0 0 25px rgb(68, 192, 57);
+}
+
+#add:hover {
+    box-shadow: 0 0 5px rgb(68, 192, 57),
+        0 0 25px rgb(68, 192, 57),
+        0 0 50px rgb(68, 192, 57),
+        0 0 100px rgb(68, 192, 57);
+}
+
+.shadow__btn:hover {
+    box-shadow: 0 0 5px rgb(0, 140, 255),
+        0 0 25px rgb(0, 140, 255),
+        0 0 50px rgb(0, 140, 255),
+        0 0 100px rgb(0, 140, 255);
 }
 
 .features .title {
@@ -307,18 +271,6 @@ main a .discord__button:not(:hover) {
 }
 
 @media only screen and (max-width: 320px) {
-    main a button {
-        color: #fff;
-        background-color: #1d9ae4;
-        font-family: Montserrat;
-        font-size: 12px;
-        cursor: pointer;
-        padding: 10px 12px 10px 12px;
-        border-radius: 5px;
-        border: none;
-        margin: 20px 5px 10px 5px;
-        transition-duration: 0.5s;
-    }
 
     main .foxy {
         display: none;
@@ -384,14 +336,6 @@ main a .discord__button:not(:hover) {
 
     main h3 {
         font-size: 4vw;
-    }
-
-    main a button {
-        font-size: 5vw;
-    }
-
-    main a .discord__button {
-        font-size: 5vw;
     }
 
     .features .card-row .card {
