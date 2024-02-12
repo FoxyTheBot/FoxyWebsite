@@ -1,15 +1,16 @@
 {
-    "url": "http://localhost:3000/",
+    "url": "https://foxybot.win/",
     "oauth": {
         "clientId": "1006520438865801296",
         "ownerId": "687867247116812378",
-        "callbackURL": "http://localhost:3000/login/callback",
+        "callbackURL": "https://foxybot.win/login/callback",
         "scopes": [
             "identify",
             "guilds"
         ]
     },
     "session": {
+        "secret": "foxy",
         "cookie": {
             "maxAge": 604800000
         }

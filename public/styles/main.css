@@ -1,0 +1,359 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:500");
+@import url(https://fonts.googleapis.com/css2?family=Oswald&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Muli&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Cookie&display=swap);
+
+/* Main page */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0f1923;
+
+}
+
+#login-btn {
+    display: none;
+}
+
+main {
+    padding-left: 30%;
+    padding-right: 50%;
+    margin-top: 15%;
+    margin-left: -25%;
+    transition-duration: 0.5s;
+    text-align: center;
+    cursor: default;
+}
+
+main .right-content {
+    justify-content: space-between;
+    margin-top: -50%;
+    margin-left: 160%;
+}
+
+main .right-content .foxy-image {
+    position: absolute;
+    bottom: 0;
+    height: 92.5vh;
+    margin-left: -27%;
+    margin-top: -10%;
+}
+
+.features p {
+    font-family: Montserrat;
+    font-size: 15px;
+    color: #fff;
+    margin-left: auto;
+}
+
+main .foxy {
+    margin-left: 135%;
+    margin-top: -61%;
+    margin-bottom: -1%;
+    width: 61%;
+    height: 65%;
+    display: inline;
+}
+
+
+main .main__image {
+    animation: float 1s ease-in-out infinite;
+}
+
+main .title {
+    color: #047cd6;
+    font-size: 50px;
+    margin-bottom: 1%;
+    font-family: Montserrat;
+}
+
+main .title {
+    text-align: center;
+    color: #e7385d;
+    margin-top: -5px;
+}
+
+main .meeting {
+    color: #fff;
+    font-size: 40px;
+    font-family: 'Cookie';
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+main .meeting-2 {
+    color: #fff;
+    font-size: 40px;
+    font-family: 'Cookie';
+    margin-left: 5px;
+    margin-top: 1px;
+}
+
+.logo {
+    width: 30%;
+    height: 100%;
+    margin-top: 2%;
+    transition-duration: 0.5s;
+}
+
+@keyframes shine {
+    to {
+        background-position: 50% top;
+    }
+}
+
+main h3 {
+    color: #fff;
+    font-size: 18px;
+    font-family: sans-serif;
+    margin-left: 5px;
+}
+
+main a {
+    list-style: none;
+}
+
+
+.title {
+    font-family: Montserrat;
+    color: rgb(0, 183, 255);
+    margin-top: 20px;
+}
+
+.features {
+    padding: 30px;
+    opacity: inherit;
+    background-color: #36393f;
+    border-color: #000;
+    position: relative;
+    text-align: center;
+}
+
+.shadow__btn {
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    font-weight: 700;
+    transition: 0.5s;
+    margin-left: 5px;
+    font-family: Montserrat;
+    transition-property: box-shadow;
+    cursor: pointer;
+}
+
+.shadow__btn {
+    background: rgb(0, 140, 255);
+    box-shadow: 0 0 25px rgb(0, 140, 255);
+}
+
+#add {
+    background: rgb(68, 192, 57);
+    box-shadow: 0 0 25px rgb(68, 192, 57);
+}
+
+#add:hover {
+    box-shadow: 0 0 5px rgb(68, 192, 57),
+        0 0 25px rgb(68, 192, 57),
+        0 0 50px rgb(68, 192, 57),
+        0 0 100px rgb(68, 192, 57);
+}
+
+.shadow__btn:hover {
+    box-shadow: 0 0 5px rgb(0, 140, 255),
+        0 0 25px rgb(0, 140, 255),
+        0 0 50px rgb(0, 140, 255),
+        0 0 100px rgb(0, 140, 255);
+}
+
+.features .title {
+    font-family: Montserrat;
+    font-size: 200%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    color: #e7385d;
+}
+
+.features .feature {
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #36393f;
+    border-color: #000;
+    position: relative;
+}
+
+.features .feature h1 {
+    font-family: Montserrat;
+    font-size: 160%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    color: #e7385d;
+}
+
+.inline-emoji {
+    height: 1.5em;
+    position: relative;
+    top: 0.3em;
+}
+
+.features .feature h2 {
+    font-family: Montserrat;
+    font-size: 110%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    color: white;
+}
+
+.features .feature__title {
+    font-family: Montserrat;
+    font-size: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.features .description {
+    font-family: Montserrat;
+    text-align: center;
+    color: #fff;
+}
+
+.features .card-row {
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+.features .card-row .card {
+    width: 80%;
+    max-width: 250px;
+    padding: 35px 20px 35px 20px;
+    background-color: #221f1f;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.features .card-row .card p {
+    font-family: Montserrat;
+    font-size: 15px;
+    color: #fff;
+    margin-left: auto;
+}
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+    font-size: inherit;
+    color: inherit;
+    vertical-align: -0.125em;
+}
+
+@media only screen and (max-width: 320px) {
+
+    main .foxy {
+        display: none;
+    }
+}
+
+.features .card-row .card img {
+    width: 100%;
+}
+
+.features .card-row .card h1 {
+    text-align: left;
+    color: rgb(96, 172, 248);
+    cursor: default;
+    margin-bottom: 10px;
+    font-family: Montserrat;
+}
+
+.features .card-row .card p {
+    text-align: left;
+    color: rgb(150, 150, 150);
+    cursor: default;
+    font-family: Montserrat;
+    transition-duration: 0.5s;
+}
+
+.features .card-row .card p:hover {
+    cursor: default;
+    color: #fff;
+    transition-duration: 0.5s;
+}
+
+.features * {
+    cursor: default;
+}
+
+@media only screen and (max-width: 800px) {
+    header {
+        padding-left: 5%;
+        padding-right: 5%;
+        transition-duration: 0.5s;
+    }
+
+    main .foxy {
+        display: none;
+    }
+
+    main {
+        text-align: center;
+        margin-top: 10%;
+        margin-bottom: 15%;
+        margin-right: 5%;
+        margin-left: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        transition-duration: 0.5;
+    }
+
+    main h1 {
+        font-size: 10vw;
+        text-align: center;
+    }
+
+    main h3 {
+        font-size: 4vw;
+    }
+
+    .features .card-row .card {
+        text-align: center;
+        margin-left: 5em;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: rotate(3deg);
+    }
+
+    50% {
+        transform: rotate(-3deg);
+    }
+
+    100% {
+        transform: rotate(3deg);
+    }
+}

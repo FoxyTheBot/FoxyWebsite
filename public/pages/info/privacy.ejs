@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css">
+    <link rel="stylesheet" href="/styles/footer.css" type="text/css">
+    <link rel="stylesheet" href="/styles/readonly.css" type="text/css">
+    <link rel="icon" href="/assets/images/foxycake.png">
+
+    <meta property="og:type" content="website">
+    <meta content="Foxy" property="og:title" />
+    <meta property="og:site_name" content="Foxy Website">
+    <meta content="Termos de Serviço" property="og:description" />
+    <meta content="https://foxybot.win" property="og:url" />
+    <meta content="#e7385d" data-react-helmet="true" name="theme-color" />
+    <meta content="/assets/images/Foxy.png" property="og:image" />
+    <title>Foxy | Termos de Serviço</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
+            <div class="left-entries">
+                <div class="entry foxy-navbar-logo"><a href="/"><img src="/assets/images/Foxy.png" style="    font-size: 0px;
+                        line-height: 0px;
+                        width: 40px;
+                        height: 40px;
+    
+                        position: absolute;
+                        top: 3px;
+                        border-radius: 100%;"></a></div>
+                <div class="entry"><a href="/br/support" class="menu" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        Suporte
+                    </a></div>
+                <div class="entry"><a href="/br/support/terms" class="commands" data-preload-link="true"
+                        data-preload-link-activated="true">
+                        Termos
+                    </a></div>
+                <div class="entry"><a href="/upvote" class="menu">
+                        Votar
+                    </a></div>
+                <div class="entry"><a href="/br/premium" class="menu">
+                        Premium
+                    </a></div>
+                <div class="entry"><a href="/br/commands" class="menu">
+                        Comandos
+                    </a></div>
+            </div>
+            <div class="right-entries">
+
+                <div class="entry" id="locale-changer-button" style="cursor: default;">
+                    </span>
+                </div>
+                <% if (user) { %>
+                    <div class="entry">
+                        <a href="/br/dashboard" id="login-button"><img
+                                src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
+                      line-height: 0px;
+                      width: 40px;
+                      height: 40px;
+    
+                      position: absolute;
+                      top: 3px;
+                      border-radius: 100%;">
+                            <div style="    font-size: 0px;
+                      line-height: 0px;
+                      width: 40px;
+                      visibility: hidden;
+                      height: 0px;
+                      display: inline-block;"></div><span style="padding-left: 4px;">
+                                <%= user.global_name %>
+                            </span>
+                        </a>
+                    </div>
+
+                    <% } else { %>
+                        <div class="entry">
+                            <a href="/br/dashboard" id="login-button">
+                                <div style="    font-size: 0px;
+                                    line-height: 0px;
+                                    width: 40px;
+                                    visibility: hidden;
+                                    height: 0px;
+                                    display: inline-block;"></div><span style="padding-left: 4px;">
+                                    Entrar
+                                </span>
+                            </a>
+                        </div>
+                        <% } %>
+            </div>
+            </div>
+        </nav>
+        <button id="menu" class="mobile">Menu</button>
+    </header>
+    <div id="mobile__menu" class="overlay">
+        <a class="close">&times;</a>
+        <div class="overlay__content">
+            <a href="/github">GitHub</a>
+            <a href="/discord">Suporte</a>
+            <a href="/br/support/terms">Termos de Serviço</a>
+            <a href="/login">Entrar</a>
+        </div>
+    </div>
+    <main>
+        <a href="#tos">
+            <h1 align="center" class="tos-title">Termos de Serviço e Privacidade</h1>
+        </a>
+
+        <h3 class="description">Última alteração em: 19 de Novembro de 2023</h3>
+        <h2 class="title">Introdução e aceitação dos Termos</h2>
+        <h3 class="description">Estes Termos de Serviço ("termos"), que incluem e por meio deste incorporam a Política
+            de Privacidade em foxybot.win/terms ou foxybot.win/privacy ("Política de Privacidade"), são um acordo legal
+            entre a Foxy e ao seu criador ("WinG4merBR" ou "nós"). Ao utilizar a Foxy (o "Bot") ou o
+            site localizado em https://foxybot.win, são referidos coletivamente como o "serviço", você concorda (i) que
+            tem 13 anos de idade ou mais, (ii) se você for maior de idade em sua jurisdição ou mais, que você leu,
+            entendeu e aceita estar vinculado aos termos, e (iii) se você tem entre 13 e a maioridade em sua jurisdição,
+            que seu responsável legal revisou e concorda com estes termos.
+            Nos reservamos no direito e a nosso critério de alterar, adicionar ou remover partes ou revisar estes termos
+            a qualquer momento, e você concorda em ficar vinculado a tais modificações ou revisões. Qualquer alteração
+            ou modificação entrará em vigor cinco (5) dias após a publicação no Serviço, e seu uso continuado do Serviço
+            após a data efetiva constituirá sua aceitação e concordância com tais alterações ou modificações. Se você se
+            opuser a qualquer alteração ou modificação, seu único recurso será parar de usar o Serviço.
+            <br>
+            <br>
+            Este documento se aplica a Foxy ("FoxyBot", "Foxy Discord Bot", "FoxyDBot", "bot", "nosso bot").
+            <br>
+            <br>
+            Ao usar nossos bots, você concorda em ficar vinculado a este contrato. Espera-se que você tenha lido e
+            entendido este acordo. WinG4merBR não é responsável por qualquer dano causado aos servidores por nosso
+            bot, desde que nenhum desenvolvedor seja culpado.
+        </h3>
+
+        <h2 style="font-size: 19;" class="title">Direitos de uso do serviço</h2>
+        <h3 class="description">
+
+            O serviço fornece uma extensão para a plataforma social online de bate-papo móvel Discord por meio do
+            aplicativo Discord e serviços de internet relacionados.
+            O serviço pode permitir que você utilize recursos de mensagens para se comunicar com outros usuários do
+            Serviço. Sujeito à sua conformidade com estes termos, o serviço concede
+            a você uma licença limitada, revogável, não exclusiva, intransferível e não sublicenciável para usar e
+            acessar o serviço, exclusivamente para seu uso pessoal e não comercial.
+            <br>
+            <br>
+            Você concorda em não (e não tentar) (i) usar o serviço para qualquer uso ou finalidade que não seja
+            expressamente permitido por estes termos ou (ii) copiar, adaptar, modificar, preparar trabalhos derivados
+            baseados em, distribuir, licenciar, vender, transferir, exibir publicamente, executar publicamente,
+            transmitir, transmitir, difundir ou explorar de outra forma o serviço ou qualquer parte do serviço, exceto
+            conforme expressamente permitido nestes termos. Nenhuma licença ou direito é concedido a você por implicação
+            ou de outra forma sob quaisquer direitos de propriedade intelectual pertencentes ou controlados pelo Serviço
+            ou seus licenciadores, exceto pelas permissões e direitos expressamente concedidos nestes termos.
+            <br>
+            <br>
+            o criador reserva-se o direito de modificar ou descontinuar, temporária ou permanentemente, o serviço (ou
+            qualquer parte dele) com ou sem aviso prévio. o serviço reserva-se o direito de recusar o acesso de qualquer
+            usuário aos serviços sem aviso prévio por qualquer motivo, incluindo, entre outros, uma violação dos termos.
+            <br>
+            <br>
+            Se você violar estes termos, o criador reserva-se o direito de emitir um aviso sobre a violação ou encerrar
+            ou suspender imediatamente qualquer ou todas as contas que você criou usando o serviço e reserva-se o
+            direito de também encerrar ou suspender outras contas em outros serviços. Você concorda que o criador não
+            precisa notificá-lo antes de encerrar ou suspender sua(s) conta(s), mas pode fazê-lo.
+        </h3>
+
+        <h2 class="title">Tarifas</h2>
+        <h3 class="description">
+            Não cobraremos uma taxa para usar a funcionalidade básica do serviço. No entanto, você pode ter que pagar
+            uma taxa para usar certos recursos do serviço ou para obter Moeda Virtual ou Bens Virtuais (conforme
+            definido e discutido mais abaixo).
+            <br><br>
+            O preço para utilizar esses recursos ou obter tal Moeda Virtual ou Bens Virtuais será exibido no Aplicativo
+            ou no Bot. Também podemos exigir que você pague quaisquer valores devidos por meio de um serviço de
+            pagamento terceirizado. Os pagamentos dessas taxas serão regidos pelos termos da sua loja de aplicativos ou
+            de terceiros aplicáveis às compras no aplicativo. Você concorda em cumprir todos esses termos e outros
+            requisitos de sua loja de aplicativos ou de terceiros.
+            <br><br>
+            Você é responsável por determinar e pagar os impostos, taxas e encargos governamentais apropriados
+            resultantes de uma transação que ocorra por meio do serviço. Não somos responsáveis por coletar, relatar,
+            pagar ou remeter a você quaisquer impostos, taxas ou taxas de serviço, exceto conforme exigido por lei.
+        </h3>
+        <h2 class="title">Seu conteúdo</h2>
+        <h3 class="description">Quaisquer dados, textos e sua seleção e arranjo e quaisquer outros materiais carregados
+            no Serviço por você são "Seu Conteúdo"
+            Você declara e garante que Seu Conteúdo é original para você e que você possui exclusivamente os direitos de
+            tal conteúdo, incluindo o direito de conceder todos os direitos e licenças nestes termos sem que o serviço
+            incorra em quaisquer obrigações ou responsabilidades de terceiros decorrentes de sua exercício de tais
+            direitos e licenças.
+            Todo o seu conteúdo é de sua exclusiva responsabilidade e o serviço não é responsável por nenhum material
+            que você carregue, publique ou disponibilize de outra forma.
+            <br>
+            <br>
+            Ao fazer upload, distribuir, transmitir ou usar Seu Conteúdo com o serviço, você nos concede uma licença
+            perpétua, não exclusiva, transferível, isenta de royalties, sublicenciável e mundial para usar, hospedar,
+            reproduzir, modificar, adaptar, publicar, traduzir, criar trabalhos derivados, distribuir, executar e exibir
+            Seu Conteúdo em conexão com a operação e fornecimento do serviço.
+            <br>
+            <br>
+            o criador não garante a precisão, qualidade ou integridade de qualquer conteúdo do usuário postado. Ao usar
+            o serviço, você reconhece e aceita que pode ser exposto a material que considera ofensivo ou censurável.
+            Você concorda que o serviço não será, em nenhuma circunstância, responsável por qualquer conteúdo do
+            usuário, incluindo, entre outros, erros em qualquer conteúdo do usuário ou qualquer perda ou dano incorrido
+            pelo uso do conteúdo do usuário.
+            <br>
+            <br>
+            o serviço se reserva o direito de remover e excluir permanentemente Seu Conteúdo do serviço com ou sem aviso
+            prévio por qualquer motivo ou sem motivo.
+        </h3>
+        <h2 class="title">Conteúdo salvo:</h2>
+        <h3 class="description">
+            <li>Comandos Executados: Quando você utiliza um comando o uso é registrado para podermos saber quais são os
+                comandos mais utilizados e para garantir a segurança da própria Foxy para evitar que pessoas mal
+                intencionadas façam algo que prejudique a Foxy de alguma forma</li>
+            <li>A ID do seu usuário: Essa informação é pública e utilizamos ela para a criação do seu perfil na Foxy
+            </li>
+            <li>A ID do seu servidor: Salvamos a ID do seu servidor para que você possa utilizar os comandos de
+                moderação dela</li>
+        </h3>
+
+        <h2 class="title">Conteúdo que temos acesso porém não é salvo</h2>
+        <h3 class="description">
+            <li>Cargos e Canais: Para recursos de auto moderação precisamos de acessos aos canais e cargos do seu
+                servidor, porém você pode optar quais canais a Foxy pode salvar</li>
+            <li>Conteúdo de mensagem: A Foxy possui acesso ao conteúdo da mensagens de servidores, não salvamos suas
+                mensagens apenas utilizamos essa informação em recursos que realmente precisam da informação para
+                funcionar corretamente</li>
+        </h3>
+
+        <h2 class="title">Cookies</h2>
+        <h3 class="description">Utilizamos os cookies para saber se você está logado ou não para você conseguir ter
+            acesso ao painel de controle da Foxy pelo website</h3>
+
+
+        <h2 class="title">Moeda virtual e bens virtuais</h2>
+        <h3 class="description">O Serviço pode incluir uma oportunidade de obter moeda virtual ("Moeda Virtual") ou bens
+            virtuais ("Bens Virtuais") que podem exigir que você pague uma taxa usando moeda legal (ou seja, "dinheiro
+            real") para obter a Moeda Virtual ou Bens Virtuais. Sua compra de Moeda Virtual é final e não é
+            reembolsável, permutável ou transferível, exceto a critério exclusivo da Empresa ou do provedor da
+            plataforma. Você não pode comprar, vender ou trocar Moeda Virtual fora do serviço. Fazer isso é uma violação
+            dos termos e pode resultar no encerramento de sua Conta com o serviço e/ou ação legal. A Empresa se reserva
+            o direito de modificar, gerenciar, controlar e/ou eliminar a Moeda Virtual e/ou Bens Virtuais a seu
+            exclusivo critério. Os preços e a disponibilidade dos Bens Virtuais estão sujeitos a alterações sem aviso
+            prévio. Não teremos nenhuma responsabilidade perante você ou qualquer terceiro pelo exercício de tais
+            direitos. Você deve ter uma permissão limitada, pessoal, intransferível e não sublicenciável para usar
+            exclusivamente dentro do serviço Bens Virtuais e Moeda Virtual que você ganhou, comprou ou obteve de outra
+            forma autorizada pela Empresa. Você não tem nenhum outro direito, título ou interesse em ou para tais Bens
+            Virtuais ou Moeda Virtual que aparecem ou se originam no Serviço.
+            <br><br>
+            Na ocasião de um estorno, o serviço reserva-se o direito de emitir um aviso sobre a violação ou encerrar ou
+            suspender imediatamente qualquer ou todas as Contas que você criou usando o serviço e reserva-se o direito
+            de também encerrar ou suspender outras contas em outros serviços.
+        </h3>
+        <h2 class="title">Integração com a Riot Games</h2>
+        <h3 class="description">Caso esteja utilizando o serviço com a intenção de usar funcionalidades integradas aos
+            serviços da Riot Games como VALORANT
+            você deve primeiro se inscrever no recurso para exibir suas estatísticas/dados de jogo. Se você não se
+            inscrever no recurso, suas informações não
+            serão disponibilizadas a outros jogadores por meio de nossos serviços, caso se inscreva no recurso você
+            possui total liberdade para optar de exibir
+            ou ocultar suas estatísticas/dados de jogo.
+
+            <br>Ao se inscrever no recurso você afirma que leu e concordou com estes termos e os termos da Riot Games
+        </h3>
+        <h2 class="title">Administração de dados</h2>
+        <h3 class="description">Todos os dados podem ser acessados apenas por Vitor (WinG4merBR#4282 -
+            687867247116812378), que concordou em
+            não compartilhar/vender/distribuir qualquer um dos dados armazenados com terceiros, com exceção da
+            Plataforma Discord e das autoridades caso seja necessário.<br><br>
+            Se necessário nos reservamos o direito e dever de contatar a Discord ou as autoridades para alertar sobre o
+            que você está fazendo</h3>
+        </h3>
+
+        <h2 class="title">Deleção das suas informações</h2>
+        <h3 class="description">Você pode deletar as suas informações da Foxy, é fácil! Você precisa fazer login no
+            website ir para o painel de controle e clicar em "deletar conta" <br>Para deletar as informações do seu
+            servidor, basta remover a Foxy de seu servidor!</h3>
+
+        <h2 class="title">Direitos de properiedade</h2>
+        <h3 class="description">O nome "Foxy" é um nome público e de livre uso, porém as imagens
+            utilizadas pelo serviço são propriedade do mesmo, para utilizar as imagens você precisa da autorização de
+            WinG4merBR ou do criador da imagem e você é obrigado a dar os créditos ao serviço e ao criador da imagem!
+            Utilizar as imagens junto com o nome "Foxy" sem autorização é plágio e de acordo com o <a
+                href="https://www.planalto.gov.br/ccivil_03/leis/2003/l10.695.htm">Art. 184</a> do código penal
+            Brasileiro: "Violar direitos de autor e os que lhe são conexos: Pena - detenção, de 3 (três) meses a 1 (um)"
+            <br>
+            <br>
+            Você pode utilizar o nome "Foxy" sem as imagens do serviço.
+            O código do serviço é licenciado com a <a
+                href="https://github.com/FoxyTheBot/Foxy/blob/development/LICENSE">AGPL-3.0</a>, você pode utilizar o
+            código do serviço
+            para qualquer fim
+            você não pode vender o código do serviço, você pode modificar o código mas você é obrigado a deixar o código
+            público e dar os créditos ao serviço e ao proprietário do serviço (WinG4merBR),
+        </h3>
+        <h2 class="title">Isenção de garantia</h2>
+        <h3 class="description">OS SERVIÇOS E OS MATERIAIS DE SERVIÇO SÃO FORNECIDOS "COMO ESTÃO" SEM GARANTIAS DE
+            QUALQUER TIPO, EXPRESSAS OU IMPLÍCITAS, INCLUINDO, SEM LIMITAÇÃO, GARANTIAS IMPLÍCITAS DE COMERCIABILIDADE,
+            ADEQUAÇÃO A UM DETERMINADO FIM, TÍTULO E NÃO VIOLAÇÃO. ALÉM DISSO, ENQUANTO A EMPRESA TENTA FORNECER UMA BOA
+            EXPERIÊNCIA AO USUÁRIO, NÃO PODEMOS E NÃO REPRESENTAMOS OU GARANTIMOS QUE OS SERVIÇOS SEMPRE SERÃO SEGUROS
+            OU LIVRES DE ERROS OU QUE OS SERVIÇOS SEMPRE FUNCIONARÃO SEM ATRASOS, INTERRUPÇÕES OU IMPERFEIÇÕES. AS
+            RENÚNCIAS PRECEDENTES SERÃO APLICADAS ATÉ O LIMITE PERMITIDO PELA LEI APLICÁVEL.</h3>
+
+        <h2 class="title">Limitação de responsabilidade</h2>
+        <h3 class="description">
+            NA MÁXIMA EXTENSÃO PERMITIDA POR LEI, EM NENHUM CASO A EMPRESA SERÁ RESPONSÁVEL PERANTE VOCÊ OU TERCEIROS
+            POR QUAISQUER DANOS CONSEQUENTES, INCIDENTAIS, ESPECIAIS, PUNITIVOS OU OUTROS INDIRETOS, INCLUINDO PERDA DE
+            LUCROS OU DADOS, DECORRENTES DO SEU USO DO SERVIÇO OU OUTROS MATERIAIS, ACESSADOS ATRAVÉS OU BAIXADOS DO
+            SERVIÇO, SEJA COM BASE EM GARANTIA, CONTRATO, ILÍCITO OU QUALQUER OUTRA TEORIA LEGAL, E INDEPENDENTEMENTE A
+            EMPRESA FOI AVISADA DA POSSIBILIDADE DESSES DANOS.
+
+            A COMPANHIA NÃO SERÁ RESPONSÁVEL PERANTE VOCÊ POR MAIS DO QUE (A) O VALOR QUE VOCÊ PAGOU PARA NÓS DE ACORDO
+            COM ESTES TERMOS NOS TRÊS (3) MESES IMEDIATAMENTE ANTERIORES À DATA EM QUE VOCÊ APRESENTOU PELA PRIMEIRA
+            REIVINDICAÇÃO OU (B ) $100.. AS LIMITAÇÕES E ISENÇÕES DE RESPONSABILIDADE NESTE TERMO NÃO SIGNIFICAM LIMITAR
+            A RESPONSABILIDADE OU ALTERAR DIREITOS QUE NÃO PODEM SER EXCLUÍDOS PELA LEI APLICÁVEL. ALGUMAS JURISDIÇÕES
+            NÃO PERMITEM A EXCLUSÃO DE GARANTIAS IMPLÍCITAS OU A LIMITAÇÃO DE RESPONSABILIDADE POR DANOS INCIDENTAIS OU
+            CONSEQUENTES, O QUE SIGNIFICA QUE ALGUMAS DAS ISENÇÕES E LIMITAÇÕES ACIMA PODEM NÃO SE APLICAR A VOCÊ.
+            NESSAS JURISDIÇÕES, A RESPONSABILIDADE DA DISCORD SERÁ LIMITADA AO MÁXIMO PERMITIDO POR LEI.
+            <br>
+            <br>
+            Você reconhece especificamente que o criador não será responsável pelo conteúdo do usuário, incluindo, sem
+            limitação, o Seu Conteúdo, ou a conduta difamatória, ofensiva ou ilegal de terceiros e que o risco de dano
+            ou dano do precedente recai inteiramente sobre você.
+        </h3>
+
+        <h2 class="title">Ciência</h2>
+        <h3 class="description">O uso de qualquer um de nossos serviços afirma que o licenciado leu este contrato, o
+            compreendeu e concorda em ficar vinculado a seu conteúdo.</h3>
+
+        <div class="left-sidebar">
+            <div class="entries">
+                <hr class="separator">
+                <h2 class="section-title">Suporte</h2>
+                <a href="/br/support/ban-appeal">
+                    <div class="entry">
+                        Apelo de Banimento
+                    </div>
+                </a>
+                <a href="/br/support/guidelines">
+                    <div class="entry">
+                        Diretrizes da Comunidade
+                    </div>
+                </a>
+
+                <a href="/br/support/terms">
+                    <div class="entry" id="selected">
+                        Termos de Uso e Privacidade
+                    </div>
+                </a>
+                <a href="/br/support">
+                    <div class="entry">
+                        Página de Suporte
+                    </div>
+                </a>
+                <a href="/br/commands">
+                    <div class="entry">
+                        Comandos
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+    </main>
+    <script src="../js/HeaderMobile.js"></script>
+
+    <footer>
+        <div>
+            <div class="social-networks"><a href="https://twitter.com/FoxyDiscordBot"><svg
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon icon-twitter">
+                        <path
+                            d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+                        </path>
+                    </svg></a><a href="https://instagram.com/foxydiscordbot"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512" class="icon icon-instagram">
+                        <path
+                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
+                        </path>
+                    </svg></a><a href="https://youtube.com/@foxydiscordbot"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 576 512" class="icon icon-youtube">
+                        <path
+                            d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z">
+                        </path>
+                    </svg></a><a href="https://www.tiktok.com/@foxydiscordbot"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512" class="icon icon-tiktok">
+                        <path
+                            d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z">
+                        </path>
+                    </svg></a><a href="https://github.com/FoxyTheBot"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 496 512" class="icon icon-github">
+                        <path
+                            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                        </path>
+                    </svg></a>
+                </svg></a><a href="https://discord.gg/6mG2xDtuZD"><svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 640 512" class="icon icon-discord">
+                        <path
+                            d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z" />
+                        </path>
+                    </svg></a></div>
+            <nav class="navigation-footer">
+                <br>
+                <p style="text-align: center;">© WinG4merBR
+                    </svg> 2020-2024 — Todos os direitos reservados
+                </p>
+
+    </footer>
+</body>
+<script src="../js/HeaderMobile.js"></script>
+
+</html>

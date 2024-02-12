@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vinculação de conta</title>
+    <link rel="icon" href="/assets/images/foxycake.png">
+    <link rel="stylesheet" href="/styles/readonly.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        crossorigin="anonymous"></script>
+    <script>
+        function copyToClipboard(text) {
+            var inputc = document.body.appendChild(document.createElement("input"));
+            inputc.value = text;
+            inputc.focus();
+            inputc.select();
+            document.execCommand('copy');
+            inputc.parentNode.removeChild(inputc);
+        }
+    </script>
+</head>
+
+<body>
+    <main>
+        <div class="connection-successfully">
+            <img class="connection-logo" src="/assets/images/foxyriot.png">
+            <h2 style="text-align: center; margin-right: 20%; margin-top: -5%;">Olá <%= body.gameName %>#<%= body.tagLine %>!
+                        Seu código de verificação é</h2>
+            <h3 style="text-align: center; margin-right: 20%; margin-top: 1%; color: #e7385d; cursor: pointer"
+                onclick="copyToClipboard('<%= body.authCode %>')">
+                <p style="color: #e7385d">
+                    <%= body.authCode %>
+                </p>
+            </h3>
+            <h3 style="text-align: center; margin-right: 20%; margin-top: 1%;">Por favor, utilize o comando <p style="
+            color: #e7385d;
+            opacity: 1;
+            ">/valorant verify:
+                    <%= body.authCode %>
+                </p> na Foxy pelo Discord.
+            </h3>
+            <h3 style="text-align: center; margin-right: 20%; margin-top: 1%;">Não compartilhe este código com ninguém!
+            </h3>
+    </main>
+</body>
+<script src="../js/HeaderMobile.js"></script>
+
+</html>
