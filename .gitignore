@@ -17,3 +17,4 @@ build
 ## Secret files
 .env
 yarn.lock
+package.json
