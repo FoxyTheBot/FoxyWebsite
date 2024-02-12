@@ -5,9 +5,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="../js/playAudio.js"></script>
-  <script src="../js/updateTheme.js"></script>
-  <script src="../js/clickListener.js"></script>
   <link rel="icon" href="../assets/images/foxycake.png">
   <link rel="stylesheet" href="/styles/header.css" type="text/css">
   <link rel="stylesheet" href="/styles/footer.css" type="text/css">
@@ -18,8 +15,7 @@
   <meta property="og:type" content="website">
   <meta content="Foxy" property="og:title" />
   <meta property="og:site_name" content="Foxy Website">
-  <meta content="Olá, Eu sou a Foxy! Um bot de economia e entretenimento para o seu servidor do Discord!"
-    property="og:description" />
+  <meta content="Olá, Eu sou a Foxy! Um bot multiuso e o melhor bot de VALORANT para o seu servidor do Discord!" property="og:description" />
   <meta content="https://foxybot.win" property="og:url" />
   <meta content="#e7385d" data-react-helmet="true" name="theme-color" />
   <meta content="/assets/images/Foxy.png" property="og:image" />
@@ -55,6 +51,7 @@
         <div class="entry"><a href="/br/commands" class="menu">
             Comandos
           </a></div>
+        </a>
       </div>
       <div class="right-entries">
 
@@ -115,16 +112,16 @@
     <img class="logo" src="../assets/images/logo.png">
     <h2 class="meeting-2">Um bot multiuso para o seu servidor do Discord</h2>
     <br>
-    <a href="/add"><button>Adicionar</button></a>
-    <a href="/br/support"><button class="discord__button">Suporte</button></a>
+    <a href="/add"><button class="shadow__btn" id="add">Adicionar</button></a>
+    <a href="/br/support"><button class="shadow__btn">Suporte</button></a>
     <br>
     <br>
-    <img class="foxy" src="../assets/images/foxy-fullbody.png" onclick="playAudio('../assets/audios/boop.mp3')"
-      alt="não clique no meu nariz">
+    <img class="foxy" src="../assets/images/foxy-fullbody.png">
 
   </main>
   <div class="features">
-    <h1 class="title">Me deixe ajudar você com o seu servidor</h1>
+    <h1 class="title">
+      Me deixe ajudar você com o seu servidor</h1>
     <div class="feature">
       <h2>Eu posso ajudar seu servidor e quebrando um galho para você entretendo os membros do seu servidor, protegendo
         seu
@@ -133,51 +130,57 @@
       <h2>Além disso sou simples e fácil de usar, e caso você precise de ajuda pode contar com o meu suporte</h2>
     </div>
     <div class="feature">
-      <h1>Divertindo seu servidor</h1>
+      <h1> <img class="inline-emoji" src="../assets/images/features/valorant.png">
+        Recursos para VALORANT</h1>
+      <h2>Transforme seu servidor de VALORANT em um paraíso de jogadores com meu sistema exclusivo de cargos por ranque!
+        Desfrute de comandos personalizados que revelam informações detalhadas sobre partidas e jogadores, elevando a
+        experiência de todos para um novo patamar!</h2>
+    </div>
+    <div class="feature">
+      <h1> <img class="inline-emoji" src="../assets/images/features/entertainment.png">
+        Divertindo seu servidor</h1>
       <h2>O meu principal objetivo sempre foi ajudar a engajar seu servidor e entreter os membros dos servidores em que
         eu estou <br><br>Por isso possuo vários comandos diferentes com o foco de entreter o seu servidor! Possuo alguns
         jogos para seus membros jogarem entre si, comandos de modificação de imagem e muito mais!</h2>
     </div>
 
     <div class="feature">
-      <h1>Moderação</h1>
+      <h1> <img class="inline-emoji" src="../assets/images/features/automod.png">
+        Moderação</h1>
       <h2>Seu servidor suas regras, posso auxiliar na proteção do seu servidor bloqueando convites indesejados e
         adicionando cargos para novos usuários do servidor, assim você pode descansar tranquilamente em quanto estou
         cuidando dessa parte no seu servidor!</h2>
     </div>
 
     <div class="feature">
-      <h1>Customização</h1>
+      <h1> <img class="inline-emoji" src="../assets/images/features/profile.png">
+        Customização</h1>
       <h2>Customize seu perfil de diversas maneiras, trocando layout, chapéus e backgrounds que estão na minha loja, e
         caso você queira sugerir um background ou um chapéu também conhecido como máscara você pode sugerir no meu
         servidor de suporte :3</h2>
     </div>
 
     <div class="feature">
-      <h1>Reputação e Economia</h1>
+      <h1> <img class="inline-emoji" src="../assets/images/features/economy.png">
+        Reputação e Economia</h1>
       <h2>Você pode utilizar meu sistema de economia para vender coisas em seu servidor (Vendas de Nitro, conteúdo NSFW,
         etc são proibidas), você não é taxado em nada ao utilizar a minha moeda, é imposto 0! Você também pode dar
         reputação para outra pessoa para agradecer algum favor que ela te fez ou se ela é uma boa pessoa!</h2>
     </div>
 
     <div class="feature">
-      <h1>VALORANT</h1>
-      <h2>Veja informações de partidas ou de um jogador de VALORANT diretamente pelo Discord através dos meus comandos
-        integrados ao VALORANT!</h2>
-    </div>
-    <div class="feature">
-      <h1>Suporte e Comunidade</h1>
+      <h1> <img class="inline-emoji" src="../assets/images/features/your-server.png"> Suporte e Comunidade</h1>
       <h2>Que tal ir na minha cafeteria para tomar um café ou chá com bolo comigo e com os membros do meu servidor de
         suporte? <br><br>Lá você pode publicar fanarts minhas e caso você crie um background você receberá cakes por
         cada venda de background<br>Apenas pessoas incríveis estão na minha cafeteria, eu sei que você é uma pessoa
         incrível o que acha de se juntar com a gente? <br><br>Caso tenha dúvidas a minha equipe está lá para te ajudar
         :3</h2>
     </div>
-    <div class="feature" style="text-align: center;">
+    <div class="feature">
       <h1>E muito mais!</h1>
     </div>
 
-    <div class="footer-add" style="text-align: center;">
+    <div class="footer-add">
       <h2>Gostou? Me adicione no seu servidor e divirta-se! :3</h2>
       <a href="/add"><button>Adicionar</button></a>
     </div>
@@ -219,8 +222,10 @@
           </svg></a></div>
       <nav class="navigation-footer">
         <br>
-        <p style="text-align: center;">© WinG4merBR
-          </svg> 2020-2024 — Todos os direitos reservados
+        <p style="text-align: center;">© WinG4merBR & CakeyFox
+          2020-2024 — Todos os direitos reservados
+        </p>
+        </svg>
         </p>
 
   </footer>
