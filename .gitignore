@@ -1,0 +1,19 @@
+## Node files
+node_modules
+package-lock.json
+
+## Visual Studio Code
+.vscode
+
+## Assets
+assets/content/backgrounds
+
+## Build
+build
+
+## IntelliJ Files
+.idea
+
+## Secret files
+.env
+yarn.lock
