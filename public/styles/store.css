@@ -4,9 +4,11 @@
     box-sizing: border-box;
 }
 
-body {
-    background-image: url("/assets/images/DiscordBackground.png");
-    background-color: #36393f;
+html {
+    background-image: url("../assets/images/background.png"), linear-gradient(90deg, #0f1923, #0f1923);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 }
 
 p {
