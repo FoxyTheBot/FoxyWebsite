@@ -411,6 +411,14 @@
 
     </footer>
 </body>
+<script>
+    ScrollReveal().reveal('.left-sidebar', { delay: 300, origin: 'left', distance: '30px', reset: true });
+    const entries = document.querySelectorAll('.entry');
+    entries.forEach((entry, index) => {
+      const delay = 300 + index * 100;
+      ScrollReveal().reveal(entry, { origin: 'left', distance: '30px', delay: delay, reset: true });
+    });
+  </script>
 <script src="../js/HeaderMobile.js"></script>
 
 </html>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../styles/footer.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 
 <body>
@@ -188,6 +189,14 @@
 
     </footer>
 </body>
+<script>
+  ScrollReveal().reveal('.left-sidebar', { delay: 200, origin: 'left', distance: '30px', reset: true });
+  const entries = document.querySelectorAll('.entry');
+  entries.forEach((entry, index) => {
+    const delay = 200 + index * 100;
+    ScrollReveal().reveal(entry, { origin: 'left', distance: '30px', delay: delay, reset: true });
+  });
+</script>
 <script src="../js/HeaderMobile.js"></script>
 
 </html>
