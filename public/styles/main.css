@@ -345,6 +345,9 @@ main a {
     transition-duration: 0.5s;
 }
 
+.server-card {
+    margin-bottom: 5%;
+}
 .features * {
     cursor: default;
 }
