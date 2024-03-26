@@ -15,7 +15,6 @@
     top: 0;
     width: 100%;
     height: 46px;
-    position: fixed;
     background-color: #ff4655;
     opacity: 0.9;
     text-shadow: 0 1px rgb(0 0 0 / 20%);
@@ -84,10 +83,6 @@
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
-}
-
-nav.navigation-bar.fixed {
-    position: fixed;
 }
 
 nav.navigation-bar .left-entries {
