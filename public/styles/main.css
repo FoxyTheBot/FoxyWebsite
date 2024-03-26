@@ -19,6 +19,46 @@ html {
     height: 100%;
 }
 
+.server-card {
+    width: 200px;
+    height: 200px;
+    background-color: #7289da;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: top;
+    transition: transform 0.3s;
+}
+
+.server-card:hover {
+    transform: scale(1.1);
+}
+
+.server-card:last-child {
+    margin-right: 0;
+}
+
+.server-card img {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.server-card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.server-card p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
 #login-btn {
     display: none;
 }
@@ -113,7 +153,7 @@ main .meeting-2 {
 main h3 {
     color: #fff;
     font-size: 18px;
-    font-family: sans-serif;
+    font-family: Montserrat;
     margin-left: 5px;
 }
 
