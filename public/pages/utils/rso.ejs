@@ -4,7 +4,7 @@
 <head>
     <title>Vinculação de conta</title>
     <link rel="icon" href="/assets/images/foxycake.png">
-    <link rel="stylesheet" href="/styles/readonly.css">
+    <link rel="stylesheet" href="/styles/rso.css">
     <link rel="stylesheet" href="/styles/header.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
@@ -25,23 +25,16 @@
     <main>
         <div class="connection-successfully">
             <img class="connection-logo" src="/assets/images/foxyriot.png">
-            <h2 style="text-align: center; margin-right: 20%; margin-top: -5%;">Olá <%= body.gameName %>#<%= body.tagLine %>!
-                        Seu código de verificação é</h2>
-            <h3 style="text-align: center; margin-right: 20%; margin-top: 1%; color: #e7385d; cursor: pointer"
-                onclick="copyToClipboard('<%= body.authCode %>')">
-                <p style="color: #e7385d">
-                    <%= body.authCode %>
-                </p>
+            <h2 class="connection-title">Olá, <%= body.gameName %>! Seu código de verificação é:</h2>
+            <h3 class="connection-code">
+                <%=body.authCode %>
             </h3>
-            <h3 style="text-align: center; margin-right: 20%; margin-top: 1%;">Por favor, utilize o comando <p style="
-            color: #e7385d;
-            opacity: 1;
-            ">/valorant verify:
-                    <%= body.authCode %>
-                </p> na Foxy pelo Discord.
-            </h3>
-            <h3 style="text-align: center; margin-right: 20%; margin-top: 1%;">Não compartilhe este código com ninguém!
-            </h3>
+
+            <br>
+            <br>
+            <h3 class="description">Use <strong>/valorant verify</strong> e cole este código na Foxy pelo Discord</h3>
+            <h3 class="warning">Não compartilhe este código com ninguém!</h3>
+            <img class="jett" src="https://cakey.foxybot.win/valorant/agents/jett.png">
     </main>
 </body>
 <script src="../js/HeaderMobile.js"></script>
