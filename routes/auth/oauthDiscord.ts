@@ -2,8 +2,18 @@ import express from 'express';
 import fetch from 'node-fetch-commonjs';
 import config from '../../config.json';
 import { database } from '../../client/app';
+import session from 'express-session';
 
 const router = express.Router();
+
+router.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: process.env.SESSION_TOKEN,
+    cookie: {
+        maxAge: config.session.cookie.maxAge
+    }
+}));
 
 router.get('/login/callback', async (req, res) => {
     const code = await req.query.code;
@@ -64,7 +74,6 @@ router.get('/logout', (req, res) => {
         req.session.destroy();
         res.redirect('/');
     }
-})
-
+});
 
 module.exports = router;
