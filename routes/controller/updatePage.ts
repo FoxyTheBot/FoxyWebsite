@@ -56,7 +56,7 @@ router.get("/:lang/store", isAuthenticated, async (req, res, next) => {
     try {
         const userData = await database.getUser(req.session.user_info.id);
         const backgrounds = await database.getAllBackgrounds();
-        res.status(200).render("../public/pages/dashboard/user/store.ejs", {
+        res.status(200).render("../public/pages/dashboard/user/store/background.ejs", {
             user: req.session.user_info,
             userBackgrounds: userData.userProfile.backgroundList,
             storeContent: {
@@ -68,15 +68,22 @@ router.get("/:lang/store", isAuthenticated, async (req, res, next) => {
     }
 });
 
+// Soon
+
 router.get("/:lang/store/layout", isAuthenticated, async (req, res, next) => {
+    res.send(200).send("Soon");
+});
+
+router.get("/:lang/store/decorations", isAuthenticated, async (req, res, next) => {
     try {
         const userData = await database.getUser(req.session.user_info.id);
-        const layouts = await database.getAllLayouts();
-        res.status(200).render("../public/pages/dashboard/user/layoutStore.ejs", {
+        const decorations = await database.getAllDecorations();
+        
+        res.status(200).render("../public/pages/dashboard/user/store/decoration.ejs", {
             user: req.session.user_info,
-            userLayouts: userData.userProfile.layoutList,
+            userDecorations: userData.userProfile.decorationList,
             storeContent: {
-                layouts: layouts
+                decorations: decorations
             }
         });
     } catch (error) {
@@ -84,17 +91,36 @@ router.get("/:lang/store/layout", isAuthenticated, async (req, res, next) => {
     }
 });
 
-router.get("/:lang/store/decoration", isAuthenticated, async (req, res, next) => {
+router.post("/:lang/store/decorations/confirm/:id", isAuthenticated, async (req, res, next) => {
     try {
-        const userData = await database.getUser(req.session.user_info.id);
-        const decorations = await database.getAllDecorations();
-        res.status(200).render("../public/pages/dashboard/user/decorationStore.ejs", {
-            user: req.session.user_info,
-            userDecorations: userData.userProfile.decorationList,
-            storeContent: {
-                decorations: decorations
-            }
+        const userId = req.session.user_info.id;
+        const userData = await database.getUser(userId);
+        const decoration = await database.getDecoration(req.params.id);
+        if (!decoration) {
+            return res.status(404).send("<script>alert('Esta decoração não existe'); window.location.href = '/br/store';</script>")
+        }
+
+        if (userData.userCakes.balance < decoration.cakes) {
+            return res.status(200).send("<script>alert('Você não tem cakes suficientes para comprar esta decoração'); window.location.href = '/br/store';</script>");
+        }
+
+        if (userData.userProfile.decorationList.includes(decoration.id)) {
+            return res.status(200).send("<script>alert('Você já possui esta decoração'); window.location.href = '/br/store';</script>");
+        }
+
+        userData.userProfile.decoration = decoration.id;
+        userData.userProfile.decorationList.push(decoration.id);
+        userData.userCakes.balance -= decoration.cakes;
+        userData.userTransactions.push({
+            to: String(bot.id),
+            from: req.session.user_info.id,
+            quantity: Number(decoration.cakes),
+            date: new Date(Date.now()),
+            received: false,
+            type: 'store'
         });
+        userData.save().catch(err => console.log(err));
+        return res.redirect("/br/store");
     } catch (error) {
         next(error);
     }
@@ -156,6 +182,27 @@ router.get("/:lang/background/change/:id", isAuthenticated, async (req, res, nex
     }
 });
 
+router.get("/:lang/decorations/change/:id", isAuthenticated, async (req, res, next) => {
+    try {
+        const userId = req.session.user_info.id;
+        const userData = await database.getUser(userId);
+        const decoration = await database.getDecoration(req.params.id);
+        if (!decoration) {
+            return res.status(404).send("<script>alert('Esta decoração não existe'); window.location.href = '/br/store';</script>")
+        }
+
+        if (!userData.userProfile.decorationList.includes(decoration.id)) {
+            return res.status(200).send("<script>alert('Você não possui esta decoração'); window.location.href = '/br/store';</script>");
+        }
+
+        userData.userProfile.decoration = decoration.id;
+        userData.save().catch(err => console.log(err));
+        return res.redirect("/br/user/decorations");
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.get("/:lang/user/backgrounds", isAuthenticated, async (req, res, next) => {
     try {
         const userId = req.session.user_info.id;
@@ -173,6 +220,30 @@ router.get("/:lang/user/backgrounds", isAuthenticated, async (req, res, next) =>
             currentBackground: userData.userProfile.background,
             storeContent: {
                 backgrounds: backgrounds
+            }
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get("/:lang/user/decorations", isAuthenticated, async (req, res, next) => {
+    try {
+        const userId = req.session.user_info.id;
+        const userData = await database.getUser(userId);
+        const decorations = await database.getAllDecorations();
+        const userDecorations = [];
+        for (let i = 0; i < userData.userProfile.decorationList.length; i++) {
+            const decoration = await database.getDecoration(userData.userProfile.decorationList[i]);
+            userDecorations.push(decoration);
+        }
+
+        res.status(200).render("../public/pages/dashboard/user/decorations.ejs", {
+            user: req.session.user_info,
+            userDecorations: userDecorations,
+            currentDecoration: userData.userProfile.decoration,
+            storeContent: {
+                decorations: decorations
             }
         });
     } catch (error) {
