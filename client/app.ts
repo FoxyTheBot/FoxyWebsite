@@ -46,5 +46,5 @@ export class App {
     }
 }
 
-const database = new DatabaseConnection();
+const database = new DatabaseConnection(bot);
 export { database, bot };
