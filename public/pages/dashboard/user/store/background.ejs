@@ -1,0 +1,72 @@
+<DOCTYPE! html>
+    <html>
+
+    <head>
+        <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://lotus.cakeyfox.live/styles/header.css" type="text/css">
+        <link rel="icon" href="/assets/images/foxycake.png">
+        <title>Foxy | Loja</title>
+        <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
+    </head>
+
+    <body>
+        <%- include('../../../global/header') %>
+        
+        <main>
+            <div class="itens">
+                <% storeContent.backgrounds.forEach(background=> { %>
+                    <% if (background.cakes==0 || background.inactive) { return; } %>
+                        <div class="item <%= userBackgrounds.includes(background.id) ? " disabled" : "" %>"
+                            <% if (!userBackgrounds.includes(background.id)) { %>
+                                onclick="showPopup('<%= background.id %>')"
+                                    <% } %>>
+                                        <div class="item__icon">
+                                            <img class="background"
+                                                src="https://orchid.cakeyfox.live/assets/backgrounds/<%=background.filename%>">
+                                        </div>
+                                        <div class="server__info">
+                                            <h1>
+                                                <%= background.name %>
+                                            </h1>
+                                            <p>
+                                                <%= background.cakes.toLocaleString("pt-br") %> Cakes
+                                            </p>
+                                        </div>
+                        </div>
+                        <% }); %>
+            </div>
+            <%- include('../../sidebar') %>
+        </main>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" onclick="hidePopup()">&times;</span>
+                <h2>Confirmar compra</h2>
+                <h3>Ao comprar esse background ele será definido automaticamente no seu perfil</h3>
+                <form id="purchaseForm" method="POST">
+                    <input type="hidden" name="backgroundId" id="backgroundId">
+                    <input class="server__button" id="save" type="submit" value="Comprar">
+                </form>
+            </div>
+        </div>
+
+        <script>
+            function showPopup(backgroundId) {
+                document.getElementById('backgroundId').value = backgroundId;
+                document.getElementById('popup').style.display = 'block';
+            }
+
+            document.getElementById('purchaseForm').addEventListener('submit', function (event) {
+                var backgroundId = document.getElementById('backgroundId').value;
+                this.action = "/br/store/confirm/" + backgroundId;
+            });
+
+            function hidePopup() {
+                document.getElementById('popup').style.display = 'none';
+            }
+        </script>
+    </body>
+    <script src="../js/HeaderMobile.js"></script>
+
+    </html>

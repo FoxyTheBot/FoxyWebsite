@@ -1,0 +1,46 @@
+<DOCTYPE! html>
+    <html>
+
+    <head>
+        <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://lotus.cakeyfox.live/styles/header.css" type="text/css">
+        <link rel="icon" href="/assets/images/foxycake.png">
+        <title>Foxy | Loja</title>
+        <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
+    </head>
+
+    <body>
+        <%- include('../../global/header') %>
+        <main>
+            <div class="itens">
+                <% userDecorations.forEach(decoration=> { %>
+                    <div class="item <%= currentDecoration === decoration.id ? 'disabled' : ''  %>" <% if
+                        (userDecorations !==decoration.id) { %>
+                        onclick="change('<%= decoration.id %>')"
+                            <% } %>>
+                                <div class="item__icon">
+                                    <img class="background"
+                                        src="https://orchid.cakeyfox.live/assets/masks/<%=decoration.filename%>">
+                                </div>
+                                <div class="server__info">
+                                    <h1>
+                                        <%= decoration.name %>
+                                    </h1>
+                                </div>
+                    </div>
+                    <% }); %>
+            </div>
+            <%- include('../sidebar') %>
+        </main>
+
+        <script>
+            function change(backgroundId) {
+                window.location.href = "/br/decorations/change/" + backgroundId;
+            }
+        </script>
+    </body>
+    <script src="../js/HeaderMobile.js"></script>
+
+    </html>
