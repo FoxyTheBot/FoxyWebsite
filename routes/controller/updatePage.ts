@@ -2,6 +2,7 @@ import express from 'express';
 import session from 'express-session';
 import config from '../../config.json';
 import { bot, database } from '../../client/app';
+import { GuildResponse } from '../../types/guildResponse';
 
 const router = express.Router();
 
@@ -259,7 +260,7 @@ router.get('/:lang/dashboard', isAuthenticated, async (req, res, next) => {
                 authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
             }
         });
-        const guilds = await guildsResult.json();
+        const guilds: GuildResponse[] = await guildsResult.json();
         const guildsArray = [];
         function hasRequiredPermissions(permissions) {
             return (permissions & (8 | 32)) !== 0;
@@ -274,6 +275,7 @@ router.get('/:lang/dashboard', isAuthenticated, async (req, res, next) => {
                     name: guild.name,
                     icon: guild.icon,
                     permissions: guild.permissions,
+                    owner: guild.owner,
                 })
             }
         }
@@ -316,15 +318,16 @@ router.get("/riot/connection/status=:status", (req, res) => {
 router.get("/:lang/servers/:id", isAuthenticated, async (req, res, next) => {
     try {
         const id = req.params.id;
-        await bot.helpers.getGuild(id);
-
+        const guildInfo = await database.getGuild(id);
+        if (!guildInfo) return res.redirect("/add");
+        
         const user = await req.session.user_info;
         const guildsResult = await fetch(`https://discord.com/api/users/@me/guilds`, {
             headers: {
                 authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
             }
         });
-        const guilds = await guildsResult.json();
+        const guilds: GuildResponse[] = await guildsResult.json();
         const guildsArray = [];
 
         function hasRequiredPermissions(permissions) {
@@ -339,17 +342,15 @@ router.get("/:lang/servers/:id", isAuthenticated, async (req, res, next) => {
                     id: guild.id,
                     name: guild.name,
                     icon: guild.icon,
+                    owner: guild.owner,
                     permissions: guild.permissions,
+                    permissions_new: guild.permissions_new,
+                    features: guild.features
                 })
             }
         }
-
-        const guild = await guildsArray.find((x) => x.id === req.params.id);
+        const guild: GuildResponse = await guildsArray.find((x) => x.id === req.params.id);
         const guildIcon = await guild.icon;
-        const guildInfo = await database.getGuild(req.params.id);
-        if (!guildInfo) {
-            return res.redirect("/add");
-        }
 
         const guildChannels = await fetch(`https://discord.com/api/guilds/${guild.id}/channels`, {
             headers: {
@@ -376,7 +377,6 @@ router.get("/:lang/servers/:id", isAuthenticated, async (req, res, next) => {
 
         res.status(200).render("../public/pages/dashboard/guild/inviteBlockerModule.ejs", {
             user: user,
-            guilds: guildsArray,
             guild: guild,
             icon: icon,
             channels: guildChannelsJson,
@@ -393,7 +393,7 @@ router.get('/:lang/daily', isAuthenticated, async (req, res, next) => {
         const userId = req.session.user_info.id;
         const userData = await database.getUser(userId);
         const timeout = 43200000;
-        const daily = await userData.lastDaily;
+        const daily = await userData.userCakes.lastDaily;
 
         var allowed = true;
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
@@ -428,10 +428,10 @@ router.get('/:lang/daily', isAuthenticated, async (req, res, next) => {
             userData.save().catch(err => console.log(err));
 
             req.session.coins = amount;
-            req.session.dbCoins = userData.balance;
+            req.session.dbCoins = userData.userCakes.balance;
         } else {
             req.session.coins = 0;
-            req.session.dbCoins = userData.balance;
+            req.session.dbCoins = userData.userCakes.balance;
         }
 
         res.status(200).render("../public/pages/dashboard/user/daily.ejs", {
