@@ -152,7 +152,7 @@ main h1 {
 }
 
 main #coins {
-    background: linear-gradient(to right, #6666ff, #0099ff , #003cff, #7124ff, #6666ff);
+    background: linear-gradient(to right, #e7385d, #ffffff , #e7385d, #ffffff, #e7385d);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
