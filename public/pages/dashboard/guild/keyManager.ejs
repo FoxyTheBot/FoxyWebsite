@@ -15,87 +15,54 @@
 <body>
     <%- include('../../global/header') %>
 
-    <main>
-        <h1 class="title">Gerenciar chaves</h1>
-        <h3 class="description">Adicione chaves premium para ativar o premium no seu servidor</h3>
+        <main>
+            <h1 class="title">Gerenciar chaves</h1>
+            <h3 class="description">Adicione chaves premium para ativar o premium no seu servidor</h3>
 
-        <div class="current-key">
-            <h3 class="field-title">Chave atual:</h3>
-            <% if (guild.premiumKey) { %>
-                <div class="current-key__content">
-                    <p class="current-key__content__key"><%= guild.premiumKey.content %></p>
-                    <p class="current-key__content__expires">Expira em: <%= guild.premiumKey.expiresAt %></p>
-                </div>
-            <% } else { %>
-                <img class="current-key__no-key__image" src="/assets/images/foxycry.png">
-                <p class="current-key__no-key">Está vazio aqui, o que acha de colocar algo</p>
-            <% } %>
-        </div>
-        <div class="page-separator">
-            <hr>
-        </div>
-        <div class="user-avaliable-keys">
-            <h3 class="field-title" style="
+            <div class="current-key">
+                <h3 class="field-title">Chave atual:</h3>
+                <% if (guild.premiumKey) { %>
+                    <div class="current-key__content">
+                        <p class="current-key__content__key">
+                            <%= guild.premiumKey.content %>
+                        </p>
+                        <p class="current-key__content__expires">Expira em: <%= guild.premiumKey.expiresAt %>
+                        </p>
+                    </div>
+                    <% } else { %>
+                        <img class="current-key__no-key__image" src="/assets/images/foxycry.png">
+                        <p class="current-key__no-key">Está vazio aqui, o que acha de colocar algo</p>
+                        <% } %>
+            </div>
+            <div class="page-separator">
+                <hr>
+            </div>
+            <div class="user-avaliable-keys">
+                <h3 class="field-title" style="
                 text-align: center;
                 margin-left: 7.8%;
                 ">Chaves disponíveis:</h3>
-            <% if (userInfo.premiumKeys.length > 0) { %>
-                <% userInfo.premiumKeys.forEach(key => { %>
-                    <div class="user-avaliable-keys__key">
-                        <p class="user-avaliable-keys__key__content"><%= key.content %></p>
-                        <p class="user-avaliable-keys__key__expires">Expira em: <%= key.expiresAt %></p>
-                        <form action="/br/servers/<%= guild.id %>/keys" method="POST">
-                            <input type="hidden" name="key" value="<%= key.content %>">
-                            <button class="user-avaliable-keys__key__button">Usar</button>
-                        </form>
-                    </div>
-                <% }) %>
-            <% } else { %>
-                <img class="user-avaliable-keys__no-key__image" src="/assets/images/foxycry.png">
-                <p class="user-avaliable-keys__no-key">Está vazio aqui, o que acha de colocar algo</p>
-            <% } %>
-        </div>
-        <div class="left-sidebar">
-            <div class="entries">
-                <hr class="separator">
-                <h2 class="section-title">Automações</h2>
-                <a href="/br/servers/<%= guild.id %>/">
-                    <div class="entry">
-                        Bloqueador de Convites
-                    </div>
-                </a>
-                <a href="/br/servers/<%= guild.id %>/autorole">
-                    <div class="entry">
-                        Autorole
-                    </div>
-                </a>
-                <a href="/br/servers/<%= guild.id %>/welcome">
-                    <div class="entry">
-                        Mensagem de entrada/saída
-                    </div>
-                </a>
-                <hr class="separator">
-                <h2 class="section-title">Miscelâneas</h2>
-
-                <a href="/br/servers/<%= guild.id %>/keys">
-                    <div class="entry" id="selected">
-                        Gerenciar chaves premium
-                    </div>
-                </a>
-
-                <a href="/br/servers/<%= guild.id %>/command-manager">
-                    <div class="entry">
-                        Gerenciador de comandos
-                    </div>
-                    <hr class="separator">
-                    <a href="/logout">
-                        <div class="entry">
-                            Sair
+                <% if (userInfo.premiumKeys.length> 0) { %>
+                    <% userInfo.premiumKeys.forEach(key=> { %>
+                        <div class="user-avaliable-keys__key">
+                            <p class="user-avaliable-keys__key__content">
+                                <%= key.content %>
+                            </p>
+                            <p class="user-avaliable-keys__key__expires">Expira em: <%= key.expiresAt %>
+                            </p>
+                            <form action="/br/servers/<%= guild.id %>/keys" method="POST">
+                                <input type="hidden" name="key" value="<%= key.content %>">
+                                <button class="user-avaliable-keys__key__button">Usar</button>
+                            </form>
                         </div>
-                    </a>
+                        <% }) %>
+                            <% } else { %>
+                                <img class="user-avaliable-keys__no-key__image" src="/assets/images/foxycry.png">
+                                <p class="user-avaliable-keys__no-key">Está vazio aqui, o que acha de colocar algo</p>
+                                <% } %>
             </div>
-        </div>
-    </main>
+            <% - include ('../sidebar') %>
+        </main>
 </body>
 
 </html>

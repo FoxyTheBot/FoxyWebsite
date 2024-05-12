@@ -18,7 +18,7 @@
                     <div class="server">
                         <div class="server__icon">
                             <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png" alt=""
-                                onerror="this.src='https://cdn.discordapp.com/attachments/1068525425963302936/1132377114755211284/Sem_titulo.png'">
+                                onerror="this.src='https://media1.tenor.com/m/BLo6Zi2lLVAAAAAd/softnte-confused-cat.gif'">
                         </div>
                         <div class="server__info">
                             <h1>
@@ -31,65 +31,7 @@
                     </div>
                     <% }) %>
         </div>
-        <div class="left-sidebar">
-            <img class="sidebar-logo" src="/assets/images/logo-white.png">
-            <div class="entries">              
-                <hr class="separator">
-                <h2 class="section-title">Opções do usuário</h2>
-
-                <a href="/br/aboutme">
-                    <div class="entry">
-                        Alterar sobre mim
-                    </div>
-                </a>
-
-                <a href="/br/daily">
-                    <div class="entry">
-                        Daily
-                    </div>
-                </a>
-
-                <a href="/br/user/backgrounds">
-                    <div class="entry">
-                        Seus backgrounds
-                    </div>
-                </a>
-                <hr class="separator">
-                <h2 class="section-title">Lojinha da Foxy</h2>
-                <a href="/br/store">
-                    <div class="entry">
-                        Backgrounds
-                    </div>
-                </a>
-                <a href="/br/store">
-                    <div class="entry">
-                        Layouts de perfil
-                    </div>
-                </a>
-                <a href="/br/store">
-                    <div class="entry">
-                        Decorações de avatar
-                    </div>
-                </a>
-
-                <a href="/br/premium">
-                    <div class="entry">
-                        Premium e Cakes
-                    </div>
-                </a>
-                <hr class="separator">
-                <a href="/logout">
-                    <div class="entry">
-                        Deletar conta
-                    </div>
-                </a>
-                <a href="/logout">
-                    <div class="entry">
-                        Sair
-                    </div>
-                </a>
-            </div>
-        </div>
+        <%- include('../sidebar') %>
     </main>
 </body>
 <script src="../js/HeaderMobile.js"></script>
