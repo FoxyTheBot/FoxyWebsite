@@ -70,15 +70,15 @@ router.get("/:lang/store", isAuthenticated, async (req, res, next) => {
 
 // Soon
 
-router.get("/:lang/store/layout", isAuthenticated, async (req, res, next) => {
-    res.send(200).send("Soon");
+router.get("/:lang/store/layouts", isAuthenticated, async (req, res, next) => {
+    res.status(200).send("Soon");
 });
 
 router.get("/:lang/store/decorations", isAuthenticated, async (req, res, next) => {
     try {
         const userData = await database.getUser(req.session.user_info.id);
         const decorations = await database.getAllDecorations();
-        
+
         res.status(200).render("../public/pages/dashboard/user/store/decoration.ejs", {
             user: req.session.user_info,
             userDecorations: userData.userProfile.decorationList,
@@ -423,8 +423,8 @@ router.get('/:lang/daily', isAuthenticated, async (req, res, next) => {
             }
             if (amount < 1000) amount = 1000;
 
-            userData.balance += amount;
-            userData.lastDaily = Date.now();
+            userData.userCakes.balance += amount;
+            userData.userCakes.lastDaily = Date.now();
             userData.save().catch(err => console.log(err));
 
             req.session.coins = amount;
