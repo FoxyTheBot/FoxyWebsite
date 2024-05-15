@@ -3,7 +3,10 @@ require('dotenv').config();
 import DatabaseConnection from '../database/DatabaseConnection';
 import session from 'express-session';
 import bodyParser from 'body-parser';
-import { bot } from '../structures/discord/FoxyClient';
+import config from '../config.json';
+import RestManager from '../structures/RestManager';
+import { logger } from '../structures/logger';
+
 export class App {
     port: number;
     constructor(port) {
@@ -12,13 +15,18 @@ export class App {
 
     startServer(): void {
         const app: Application = express();
-        app.use(express.json());
+        app.use(express.json({ limit: '10kb' }));
         app.use(express.static('./public'));
-        app.use(bodyParser.urlencoded({ extended: true }));
+        app.use(bodyParser.urlencoded({ limit: '10kb', extended: true }));
         app.use(session({
             resave: true,
             saveUninitialized: true,
             secret: process.env.SESSION_TOKEN,
+            cookie: {
+                maxAge: config.session.cookie.maxAge,
+                httpOnly: true,
+                sameSite: 'strict',
+            }
         }));
 
         app.set('view engine', 'ejs');
@@ -40,11 +48,12 @@ export class App {
         });
 
         app.listen(this.port, () => {
-            console.log(`[APP] Server started at port: ${this.port}`);
+            logger.info(`[SERVER] Server started at port: ${this.port}`);
         });
 
     }
 }
 
-const database = new DatabaseConnection(bot);
-export { database, bot };
+const database = new DatabaseConnection();
+const rest = new RestManager();
+export { database, rest };

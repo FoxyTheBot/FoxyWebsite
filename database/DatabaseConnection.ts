@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 import { User } from 'discordeno/transformers';
 import { Schemas } from './schemas/Schemas';
+import { logger } from '../structures/logger';
+import { createRestManager } from 'discordeno/rest';
+import { createBotConstants } from 'discordeno/*';
+import { rest } from '../client/app';
 export default class DatabaseConnection {
     public key: any;
     public user: any;
@@ -8,16 +12,15 @@ export default class DatabaseConnection {
     public guilds: any;
     public riotAccount: any;
     public backgrounds: any;
-    public client: any;
     public layouts: any;
     public decorations: any;
 
-    constructor(client) {
+    constructor() {
         mongoose.set("strictQuery", true)
         mongoose.connect(String(process.env.MONGO_URI)).catch((error) => {
-            console.error(`Failed to connect to database: `, error);
+            logger.error(`[DATABASE] Failed to connect to database: `, error);
         });
-        console.info(`[DATABASE] Connected to database!`);
+        logger.info(`[DATABASE] Connected to database!`);
 
         this.user = mongoose.model('user', Schemas.userSchema);
         this.commands = mongoose.model('commands', Schemas.commandsSchema);
@@ -27,12 +30,11 @@ export default class DatabaseConnection {
         this.layouts = mongoose.model('layouts', Schemas.layoutSchema);
         this.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
         this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
-        this.client = client;
     }
 
-    async getUser(userId: String): Promise<any> {
+    async getUser(userId: string): Promise<any> {
         if (!userId) null;
-        const user: User = await this.client.helpers.getUser(String(userId));
+        const user: User = await rest.getUser(userId);
         let document = await this.user.findOne({ _id: user.id });
 
         if (!document) {
