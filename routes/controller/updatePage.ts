@@ -1,8 +1,9 @@
 import express from 'express';
 import session from 'express-session';
 import config from '../../config.json';
-import { bot, database } from '../../client/app';
+import { database } from '../../client/app';
 import { GuildResponse } from '../../types/guildResponse';
+import { logger } from '../../structures/logger';
 
 const router = express.Router();
 
@@ -37,7 +38,9 @@ router.use(session({
     saveUninitialized: true,
     secret: process.env.SESSION_TOKEN,
     cookie: {
-        maxAge: config.session.cookie.maxAge
+        maxAge: config.session.cookie.maxAge,
+        httpOnly: true,
+        sameSite: 'strict'
     }
 }));
 
@@ -113,14 +116,14 @@ router.post("/:lang/store/decorations/confirm/:id", isAuthenticated, async (req,
         userData.userProfile.decorationList.push(decoration.id);
         userData.userCakes.balance -= decoration.cakes;
         userData.userTransactions.push({
-            to: String(bot.id),
+            to: config.oauth.clientId,
             from: req.session.user_info.id,
             quantity: Number(decoration.cakes),
             date: new Date(Date.now()),
             received: false,
             type: 'store'
         });
-        userData.save().catch(err => console.log(err));
+        userData.save().catch(err => logger.log(err));
         return res.redirect("/br/store");
     } catch (error) {
         next(error);
@@ -148,14 +151,14 @@ router.post("/:lang/store/confirm/:id", isAuthenticated, async (req, res, next) 
         userData.userProfile.backgroundList.push(background.id);
         userData.userCakes.balance -= background.cakes;
         userData.userTransactions.push({
-            to: String(bot.id),
+            to: config.oauth.clientId,
             from: req.session.user_info.id,
             quantity: Number(background.cakes),
             date: new Date(Date.now()),
             received: false,
             type: 'store'
         });
-        userData.save().catch(err => console.log(err));
+        userData.save().catch(err => logger.log(err));
         return res.redirect("/br/store");
     } catch (error) {
         next(error);
@@ -176,7 +179,7 @@ router.get("/:lang/background/change/:id", isAuthenticated, async (req, res, nex
         }
 
         userData.userProfile.background = background.id;
-        userData.save().catch(err => console.log(err));
+        userData.save().catch(err => logger.log(err));
         return res.redirect("/br/user/backgrounds");
     } catch (error) {
         next(error);
@@ -197,7 +200,7 @@ router.get("/:lang/decorations/change/:id", isAuthenticated, async (req, res, ne
         }
 
         userData.userProfile.decoration = decoration.id;
-        userData.save().catch(err => console.log(err));
+        userData.save().catch(err => logger.log(err));
         return res.redirect("/br/user/decorations");
     } catch (error) {
         next(error);
@@ -425,7 +428,7 @@ router.get('/:lang/daily', isAuthenticated, async (req, res, next) => {
 
             userData.userCakes.balance += amount;
             userData.userCakes.lastDaily = Date.now();
-            userData.save().catch(err => console.log(err));
+            userData.save().catch(err => logger.log(err));
 
             req.session.coins = amount;
             req.session.dbCoins = userData.userCakes.balance;
@@ -454,7 +457,7 @@ router.get('/:lang/delete', isAuthenticated, async (req, res, next) => {
 
         marriedData.marriedWith = null;
         marriedData.save()
-        userData.remove().catch(err => console.log(err));
+        userData.remove().catch(err => logger.error(err));
         req.session.destroy();
         return res.status(200).render("../public/pages/utils/deletedUser.ejs");
     } catch (error) {
@@ -523,7 +526,7 @@ router.post("/:lang/submit", isAuthenticated, async (req, res, next) => {
     try {
         const userData = await database.getUser(req.session.user_info.id);
         userData.aboutme = req.body.aboutme;
-        userData.save().catch(err => console.log(err));
+        userData.save().catch(err => logger.log(err));
         return res.redirect('/dashboard');
     } catch (error) {
         next(error);
