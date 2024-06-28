@@ -1,5 +1,4 @@
 import express from 'express';
-import session from 'express-session';
 import config from '../../config.json';
 import { database } from '../../client/app';
 import { GuildResponse } from '../../types/guildResponse';
@@ -33,22 +32,9 @@ const errorHandler = (err, req, res, next) => {
     res.status(500).send("Internal Server Error");
 };
 
-router.use(session({
-    resave: true,
-    saveUninitialized: true,
-    secret: process.env.SESSION_TOKEN,
-    cookie: {
-        maxAge: config.session.cookie.maxAge,
-        httpOnly: true,
-        sameSite: 'strict'
-    }
-}));
-
 router.use(checkSession);
 
 router.get("/", renderPage("../public/pages/index.ejs"));
-
-router.get("/:lang/rso/login", renderPage("../public/pages/utils/rso.ejs"));
 
 router.get("/:lang/support/guidelines", renderPage("../public/pages/info/guidelines.ejs"));
 
@@ -95,6 +81,20 @@ router.get("/:lang/store/decorations", isAuthenticated, async (req, res, next) =
     }
 });
 
+router.get("/:lang/rso/login", (req, res) => {
+    const data = {
+        puuid: req.query.puuid,
+        gameName: req.query.gameName,
+        tagLine: req.query.tagLine,
+        authCode: req.query.key
+    };
+
+    res.status(200).render("../public/pages/utils/rso.ejs", {
+        user: null,
+        body: data
+    });
+});
+
 router.post("/:lang/store/decorations/confirm/:id", isAuthenticated, async (req, res, next) => {
     try {
         const userId = req.session.user_info.id;
@@ -136,15 +136,15 @@ router.post("/:lang/store/confirm/:id", isAuthenticated, async (req, res, next) 
         const userData = await database.getUser(userId);
         const background = await database.getBackground(req.params.id);
         if (!background) {
-            return res.status(404).send("<script>alert('Este background não existe'); window.location.href = '/br/store';</script>")
+            return res.status(404).send("<script>alert('este item não existe'); window.location.href = '/br/store';</script>")
         }
 
         if (userData.userCakes.balance < background.cakes) {
-            return res.status(200).send("<script>alert('Você não tem cakes suficientes para comprar este background'); window.location.href = '/br/store';</script>");
+            return res.status(200).send("<script>alert('Você não tem cakes suficientes para comprar este item'); window.location.href = '/br/store';</script>");
         }
 
         if (userData.userProfile.backgroundList.includes(background.id)) {
-            return res.status(200).send("<script>alert('Você já possui este background'); window.location.href = '/br/store';</script>");
+            return res.status(200).send("<script>alert('Você já possui este item'); window.location.href = '/br/store';</script>");
         }
 
         userData.userProfile.background = background.id;
@@ -171,11 +171,11 @@ router.get("/:lang/background/change/:id", isAuthenticated, async (req, res, nex
         const userData = await database.getUser(userId);
         const background = await database.getBackground(req.params.id);
         if (!background) {
-            return res.status(404).send("<script>alert('Este background não existe'); window.location.href = '/br/store';</script>")
+            return res.status(404).send("<script>alert('este item não existe'); window.location.href = '/br/store';</script>")
         }
 
         if (!userData.userProfile.backgroundList.includes(background.id)) {
-            return res.status(200).send("<script>alert('Você não possui este background'); window.location.href = '/br/store';</script>");
+            return res.status(200).send("<script>alert('Você não possui este item'); window.location.href = '/br/store';</script>");
         }
 
         userData.userProfile.background = background.id;
@@ -292,6 +292,17 @@ router.get('/:lang/dashboard', isAuthenticated, async (req, res, next) => {
     }
 });
 
+router.get("/:lang/roulette", isAuthenticated, async (req, res, next) => {
+    try {
+        /*
+            TODO: Criar uma lógica para o sistema de roleta,
+            arquivo: /public/pages/dashboard/user/roulette.ejs
+        */
+    } catch (err) {
+        logger.error(err.message);
+    }
+});
+
 router.get("/riot/connection/status=:status", (req, res) => {
     const status = req.params.status;
     let message, description;
@@ -318,12 +329,12 @@ router.get("/riot/connection/status=:status", (req, res) => {
     }
 });
 
-router.get("/:lang/servers/:id", isAuthenticated, async (req, res, next) => {
+router.get("/:lang/server/:id/overview", isAuthenticated, async (req, res, next) => {
     try {
         const id = req.params.id;
         const guildInfo = await database.getGuild(id);
         if (!guildInfo) return res.redirect("/add");
-        
+
         const user = await req.session.user_info;
         const guildsResult = await fetch(`https://discord.com/api/users/@me/guilds`, {
             headers: {
@@ -353,8 +364,8 @@ router.get("/:lang/servers/:id", isAuthenticated, async (req, res, next) => {
             }
         }
         const guild: GuildResponse = await guildsArray.find((x) => x.id === req.params.id);
+        if (!guild) return res.redirect("/br/dashboard");
         const guildIcon = await guild.icon;
-
         const guildChannels = await fetch(`https://discord.com/api/guilds/${guild.id}/channels`, {
             headers: {
                 authorization: `Bot ${process.env.BOT_TOKEN}`,
@@ -376,9 +387,8 @@ router.get("/:lang/servers/:id", isAuthenticated, async (req, res, next) => {
         } else {
             icon = `https://cdn.discordapp.com/attachments/1068525425963302936/1132369142780014652/top-10-cutest-cat-photos-of-all-time.jpg`
         }
-        if (!guild) return res.redirect("/servers");
 
-        res.status(200).render("../public/pages/dashboard/guild/inviteBlockerModule.ejs", {
+        res.status(200).render("../public/pages/dashboard/guild/dashboard.ejs", {
             user: user,
             guild: guild,
             icon: icon,
@@ -465,13 +475,62 @@ router.get('/:lang/delete', isAuthenticated, async (req, res, next) => {
     }
 });
 
-router.get("/:lang/commands", async (req, res, next) => {
+const categoryTranslation = {
+    br: {
+        roleplay: "Roleplay",
+        fun: "Diversão",
+        games: "Jogos",
+        economy: "Economia",
+        image: "Imagens",
+        noCategory: "Sem Categoria",
+        social: "Social",
+        util: "Utilitários",
+    },
+    en: {
+        roleplay: "Roleplay",
+        fun: "Fun",
+        games: "Games",
+        economy: "Economy",
+        noCategory: "No Category",
+        image: "Images",
+        social: "Social",
+        util: "Utilities",
+    }
+};
+
+function translate(categoryId, lang) {
+    const langTranslations = categoryTranslation[lang] || categoryTranslation['en'];
+    return langTranslations[categoryId] || categoryId;
+}
+
+router.get("/:lang/commands/", async (req, res, next) => {
     try {
         const commandsList = await database.getAllCommands();
-        const commands = commandsList.filter(command => command.description && command.commandName !== "foxytools");
-        res.status(200).render("../public/pages/info/commands.ejs", {
+        const allCommands = commandsList.filter(command =>
+            command.description && command.commandName !== "foxytools"
+        );
+
+        res.status(200).render("../public/pages/info/commands/allCommands.ejs", {
             user: req.session.user_info,
-            commands
+            allCommands
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get("/:lang/commands/:category", async (req, res, next) => {
+    try {
+        const category = req.params.category;
+
+        const commandsList = await database.getAllCommands();
+        const commands = commandsList.filter(command => command.category === category);
+        const filteredCommands = commandsList.filter(command => command.description && command.commandName !== "foxytools");
+        res.status(200).render("../public/pages/info/commands/category.ejs", {
+            user: req.session.user_info,
+            commands,
+            category: translate(category, req.params.lang),
+            allCommands: filteredCommands
         });
     } catch (error) {
         next(error);
