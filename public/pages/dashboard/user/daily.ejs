@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../styles/utils.css">
     <link rel="stylesheet" href="../styles/dashboard.css">
     <link rel="stylesheet" href="../styles/footer.css">
-    <link rel="icon" href="../assets/images/foxycake.png">
+    <link rel="icon" href="/assets/images/foxycake.png">
     <title>Foxy | Daily</title>
 </head>
 <style>
@@ -19,34 +19,34 @@
 
 <body>
     <%- include('../../global/header') %>
-    <main>
-        <div class="daily-page">
-            <% if (allowed) { %>
-                <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete" autoplay></audio>
-                <img class="daily_image" src="../assets/images/foxyoculos.png" alt="dashboard">
-                <h1>Você recebeu seu prêmio diário e...</h1>
-                <br>
-                <h2>
-                    Ganhou
-                    <strong id="coins">
-                        <%= coins %>
-                    </strong> Cakes
-                </h2>
-                <br>
-                <h3>Agora você possui <%= dbCoins %> Cakes
-                        <br>
-                </h3>
-                <br>
-                <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
-                <% } else { %>
-                    <img class="daily_image" src="../assets/images/foxycry.png" alt="dashboard">
-                    <h1>Você já pegou seu prêmio diário</h1>
+        <main>
+            <div class="daily-page">
+                <% if (allowed) { %>
+                    <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete" autoplay></audio>
+                    <img class="daily_image" src="../assets/images/foxyoculos.png" alt="dashboard">
+                    <h1>Você recebeu seu prêmio diário e...</h1>
+                    <br>
+                    <h2>
+                        Ganhou
+                        <strong id="coins">
+                            <%= coins %>
+                        </strong> Cakes
+                    </h2>
+                    <br>
+                    <h3>Agora você possui <%= dbCoins %> Cakes
+                            <br>
+                    </h3>
                     <br>
                     <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
-                    <% } %>
-        </div>
-        <%- include('../sidebar') %>
-    </main>
+                    <% } else { %>
+                        <img class="daily_image" src="../assets/images/foxycry.png" alt="dashboard">
+                        <h1>Você já pegou seu prêmio diário</h1>
+                        <br>
+                        <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
+                        <% } %>
+            </div>
+            <%- include('../sidebar') %>
+        </main>
 </body>
 <script src="../js/HeaderMobile.js"></script>
 
