@@ -2,21 +2,12 @@ import express from 'express';
 import fetch from 'node-fetch-commonjs';
 import config from '../../config.json';
 import { database } from '../../client/app';
-import session from 'express-session';
 import { logger } from '../../structures/logger';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const router = express.Router();
-
-router.use(session({
-    resave: true,
-    saveUninitialized: true,
-    secret: process.env.SESSION_TOKEN,
-    cookie: {
-        maxAge: config.session.cookie.maxAge,
-        httpOnly: true,
-        sameSite: 'strict',
-    }
-}));
 
 router.get('/login/callback', async (req, res) => {
     try {
@@ -24,14 +15,13 @@ router.get('/login/callback', async (req, res) => {
         if (!code) {
             throw new Error('Código de autorização ausente');
         }
-        
+
         const validCode = /^[a-zA-Z0-9-_]+$/;
-        // @ts-ignore
-        if (!validCode.test(code)) {
+        if (!validCode.test(String(code))) {
             throw new Error('Código de autorização inválido');
         }
 
-        const oauth = await fetch(`https://discord.com/api/oauth2/token`, {
+        const oauth = await fetch('https://discord.com/api/oauth2/token', {
             method: 'POST',
             // @ts-ignore
             body: new URLSearchParams({
@@ -40,15 +30,14 @@ router.get('/login/callback', async (req, res) => {
                 code: code,
                 grant_type: 'authorization_code',
                 redirect_uri: config.oauth.callbackURL,
-                scope: config.oauth.scopes,
+                scope: config.oauth.scopes.join(' '),
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-            }
+            },
         });
 
         const oauthData: any = await oauth.json();
-
         const userResult = await fetch('https://discord.com/api/users/@me', {
             headers: {
                 authorization: `${oauthData.token_type} ${oauthData.access_token}`,
@@ -59,24 +48,23 @@ router.get('/login/callback', async (req, res) => {
         const userData = await database.getUser(result.id);
 
         req.session.user_info = {
-            id: escape(result.id),
-            username: escape(result.username),
-            global_name: escape(result.global_name),
-            avatar: escape(result.avatar),
+            id: result.id,
+            username: result.username,
+            global_name: result.global_name,
+            avatar: result.avatar,
         };
-        req.session.bearer_token = escape(oauthData.access_token);
-        req.session.oauth_type = escape(oauthData.token_type);
-        req.session.db_info = escape(userData);
-
-        logger.log(`[LOGIN] Usuário ${escape(result.username)} / ${escape(result.id)} fez login no website!`);
+        req.session.bearer_token = oauthData.access_token;
+        req.session.oauth_type = oauthData.token_type;
+        req.session.db_info = userData;
+        req.session.save();
         
+        logger.log(`[LOGIN] Usuário ${result.username} / ${result.id} fez login no website!`);
         res.redirect('/');
     } catch (err) {
         logger.error(err);
         res.redirect('/error');
     }
 });
-
 
 router.get('/login', (req, res) => {
     res.redirect(`https://discord.com/api/oauth2/authorize` +
@@ -89,8 +77,12 @@ router.get('/logout', (req, res) => {
     if (!req.session.bearer_token) {
         res.redirect('/');
     } else {
-        req.session.destroy();
-        res.redirect('/');
+        req.session.destroy(err => {
+            if (err) {
+                logger.error('Erro ao destruir sessão:', err);
+            }
+            res.redirect('/');
+        });
     }
 });
 
