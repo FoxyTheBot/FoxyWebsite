@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="../assets/images/foxycake.png">
-  <link rel="stylesheet" href="https://lotus.cakeyfox.live/styles/header.css" type="text/css">
-  <link rel="stylesheet" href="https://lotus.cakeyfox.live/styles/footer.css" type="text/css">
+  <link rel="stylesheet" href="/styles/header.css" type="text/css">
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css">
   <link rel="stylesheet" href="/styles/main.css" type="text/css">
   <title>Um simples bot multiuso para o Discord</title>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
@@ -176,28 +176,28 @@
   </footer>
 </body>
 <script>
-  ScrollReveal().reveal('.logo', { delay: 400, origin: 'bottom', distance: '30px', reset: true });
-  ScrollReveal().reveal('.navigation-bar', { delay: 200, origin: 'top', distance: '30px', reset: true });
-  ScrollReveal().reveal('.meeting', { delay: 300, origin: 'bottom', distance: '30px', reset: true });
-  ScrollReveal().reveal('.meeting-2', { delay: 500, origin: 'bottom', distance: '30px', reset: true });
-  ScrollReveal().reveal('.shadow__btn', { delay: 600, origin: 'bottom', distance: '30px', reset: true });
-  ScrollReveal().reveal('.foxy', { delay: 700, origin: 'bottom', distance: '30px', reset: true });
-  ScrollReveal().reveal('.feature', { delay: 300, origin: 'bottom', distance: '30px', reset: true });
+  ScrollReveal().reveal('.logo', { delay: 400, origin: 'bottom', distance: '30px', reset: false });
+  ScrollReveal().reveal('.navigation-bar', { delay: 200, origin: 'top', distance: '30px', reset: false });
+  ScrollReveal().reveal('.meeting', { delay: 300, origin: 'bottom', distance: '30px', reset: false });
+  ScrollReveal().reveal('.meeting-2', { delay: 500, origin: 'bottom', distance: '30px', reset: false });
+  ScrollReveal().reveal('.shadow__btn', { delay: 600, origin: 'bottom', distance: '30px', reset: false });
+  ScrollReveal().reveal('.foxy', { delay: 700, origin: 'bottom', distance: '30px', reset: false });
+  ScrollReveal().reveal('.feature', { delay: 300, origin: 'bottom', distance: '30px', reset: false });
   const headerEntries = document.querySelectorAll('.entry');
 
   headerEntries.forEach((entry, index) => {
     const delay = 300 + index * 100;
-    ScrollReveal().reveal(entry, { origin: 'left', distance: '30px', delay: delay, reset: true });
+    ScrollReveal().reveal(entry, { origin: 'left', distance: '30px', delay: delay, reset: false });
   });
 
-  ScrollReveal().reveal('.footer-add', { delay: 300, origin: 'bottom', distance: '30px', reset: true });
+  ScrollReveal().reveal('.footer-add', { delay: 300, origin: 'bottom', distance: '30px', reset: false });
 
   const serverCards = document.querySelectorAll('.server-card');
   serverCards.forEach((card, index) => {
     const delay = 300 + index * 100;
-    ScrollReveal().reveal(card, { origin: 'right', distance: '30px', delay: delay, reset: true });
+    ScrollReveal().reveal(card, { origin: 'right', distance: '30px', delay: delay, reset: false });
   });
-  ScrollReveal().reveal('.footer-add', { delay: 300, origin: 'bottom', distance: '30px', reset: true });
+  ScrollReveal().reveal('.footer-add', { delay: 300, origin: 'bottom', distance: '30px', reset: false });
 </script>
 <script src="../js/HeaderMobile.js"></script>
 

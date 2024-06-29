@@ -5,7 +5,7 @@
         <script async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
             crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://lotus.cakeyfox.live/styles/header.css" type="text/css">
+        <link rel="stylesheet" href="/styles/header.css" type="text/css">
         <link rel="icon" href="/assets/images/foxycake.png">
         <title>Foxy | Loja</title>
         <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
@@ -23,7 +23,8 @@
                                     <% } %>>
                                         <div class="item__icon">
                                             <img class="background"
-                                                src="https://orchid.cakeyfox.live/assets/masks/<%=decoration.filename%>">
+                                                src="https://orchid.cakeyfox.live/assets/masks/<%=decoration.filename%>"
+                                                onerror="this.src='https://cakey.foxybot.win/assets/masks/<%=decoration.filename%>'">
                                         </div>
                                         <div class="server__info">
                                             <h1>
@@ -42,7 +43,7 @@
             <div class="popup-content">
                 <span class="close" onclick="hidePopup()">&times;</span>
                 <h2>Confirmar compra</h2>
-                <h3>Ao comprar esse background ele será definido automaticamente no seu perfil</h3>
+                <h3>Ao comprar esse item ele será definido automaticamente no seu perfil</h3>
                 <form id="purchaseForm" method="POST">
                     <input type="hidden" name="backgroundId" id="backgroundId">
                     <input class="server__button" id="save" type="submit" value="Comprar">

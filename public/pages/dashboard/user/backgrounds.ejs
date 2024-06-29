@@ -5,7 +5,7 @@
         <script async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
             crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://lotus.cakeyfox.live/styles/header.css" type="text/css">
+        <link rel="stylesheet" href="/styles/header.css" type="text/css">
         <link rel="icon" href="/assets/images/foxycake.png">
         <title>Foxy | Loja</title>
         <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
@@ -13,33 +13,29 @@
 
     <body>
         <%- include('../../global/header') %>
-        <main>
-            <div class="itens">
-                <% userBackgrounds.forEach(background=> { %>
-                    <div class="item <%= currentBackground === background.id ? 'disabled' : ''  %>" <% if
-                        (currentBackground !==background.id) { %>
-                        onclick="change('<%= background.id %>')"
-                            <% } %>>
-                                <div class="item__icon">
-                                    <img class="background"
-                                        src="https://orchid.cakeyfox.live/assets/backgrounds/<%=background.filename%>">
-                                </div>
-                                <div class="server__info">
-                                    <h1>
-                                        <%= background.name %>
-                                    </h1>
-                                </div>
-                    </div>
-                    <% }); %>
-            </div>
-            <%- include('../sidebar') %>
-        </main>
+            <main>
+                <div class="itens">
+                    <% userBackgrounds.forEach(background=> { %>
+                        <div class="item <%= currentBackground === background.id ? 'disabled' : ''  %>" <% if
+                            (currentBackground !==background.id) { %>
+                            onclick="change('<%= background.id %>')"
+                                <% } %>>
+                                    <div class="item__icon">
+                                        <img class="background"
+                                            src="https://orchid.cakeyfox.live/assets/backgrounds/<%=background.filename%>"
+                                            onerror="this.src='https://cakey.foxybot.win/assets/backgrounds/<%=background.filename%>'">
+                                    </div>
+                        </div>
+                        <% }); %>
+                </div>
+                <%- include('../sidebar') %>
+            </main>
 
-        <script>
-            function change(backgroundId) {
-                window.location.href = "/br/background/change/" + backgroundId;
-            }
-        </script>
+            <script>
+                function change(backgroundId) {
+                    window.location.href = "/br/background/change/" + backgroundId;
+                }
+            </script>
     </body>
     <script src="../js/HeaderMobile.js"></script>
 
