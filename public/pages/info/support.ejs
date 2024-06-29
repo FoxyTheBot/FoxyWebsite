@@ -4,9 +4,10 @@
 <head>
     <title>Foxy | Suporte</title>
     <link rel="icon" href="../assets/images/foxycake.png">
-    <link rel="stylesheet" href="../styles/readonly.css">
-    <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="/styles/readonly.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/invite.css"/>
+    <link rel="stylesheet" href="/styles/footer.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
@@ -23,41 +24,16 @@
         <h2 class="server-title">Servidor de suporte</h2>
         <h3 class="server-description">Precisa de ajuda? Entre no meu servidor de suporte e tire suas dúvidas, também
             faça novas amizades</h3>
-        <a href="/discord"><img class="support-server"
-                src="https://discordapp.com/api/guilds/768267522670723094/widget.png?style=banner2" width="300"></a>
-
-        <div class="left-sidebar">
-            <div class="entries">
-                <hr class="separator">
-                <h2 class="section-title">Suporte</h2>
-                <a href="/br/support/ban-appeal">
-                    <div class="entry">
-                        Apelo de Banimento
-                    </div>
-                </a>
-                <a href="/br/support/guidelines">
-                    <div class="entry">
-                        Diretrizes da Comunidade
-                    </div>
-                </a>
-
-                <a href="/br/support/terms">
-                    <div class="entry">
-                        Termos de Uso e Privacidade
-                    </div>
-                </a>
-                <a href="/br/support">
-                    <div class="entry" id="selected">
-                        Página de Suporte
-                    </div>
-                </a>
-                <a href="/br/commands">
-                    <div class="entry">
-                        Comandos
-                    </div>
-                </a>
-            </div>
-        </div>
+            <div class="discord-invite-wrapper">
+                <div class="discord-invite-title">Você foi convidado(a) a entrar em um servidor</div>
+                <div class="discord-server-details">
+                <div class="discord-server-icon"><img src="../assets/icons/supportserver.png"></div>
+                <div class="discord-server-info">
+                <div class="discord-server-name">Cafeteria da Foxy ☕</div>
+                </div>
+                <a href="https://discord.gg/6mG2xDtuZD" target="_blank" class="discord-server-button">Juntar-se</a></div>
+                </div>
+            <%- include("InfoSidebar.ejs"); %>
         </div>
     </main>
     <footer>
