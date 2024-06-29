@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
 html {
     background-image: url("../assets/images/background.png"), linear-gradient(90deg, #0f1923, #0f1923);
     background-size: cover;
@@ -45,7 +47,7 @@ main .store_image {
 main h1 {
     color: rgb(255, 255, 255);
     font-size: 25px;
-    font-family: Montserrat;
+    font-family: "Poppins";
     
     margin-top: 5%; 
 }
@@ -101,8 +103,8 @@ main  .action__btn .btn.success:disabled {
 }
 
 main .daily_image {
-    width: 40%;
-    height: 30%;
+    width: 30%;
+    height: 20%;
     text-align: center;
     margin-top: -50%;
 }
@@ -147,12 +149,10 @@ main a .home_button {
 main h1 {
     color: rgb(255, 255, 255);
     font-size: 25px;
-    font-family: Montserrat;
-    
 }
 
 main #coins {
-    background: linear-gradient(to right, #e7385d, #ffffff , #e7385d, #ffffff, #e7385d);
+    background: linear-gradient(to right, #e7385d, #a6ff7d , #e7385d, #f185ff, #e7385d);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -172,14 +172,13 @@ main #coins {
 main h3 {
     color: #fff;
     font-size: 18px;
-    font-family: sans-serif;
     margin-left: 5px;
 }
 
 main h4 {
     color: #fff;
     font-size: 15px;
-    font-family: sans-serif;
+    font-family: "Poppins";
     margin-left: 5px;
 }
 
@@ -210,14 +209,17 @@ main a button:hover {
 main h2 {
     color: #fff;
     font-size: 20px;
-    font-family: sans-serif;
     margin-top: 5px;
+}
+
+h1, h2, h3 {
+    font-family: "Poppins" !important;
 }
 
 main  #default .default-button {
     color: #fff;
     background-color: #047cd6;
-    font-family: Montserrat;
+    font-family: "Poppins";
     font-size: 20px;
     cursor: pointer;
     padding: 10px 12px 10px 12px;
@@ -237,7 +239,7 @@ main  #default .default-button {
 main  .action__btn .danger_btn {
     color: #fff;
     background-color: rgb(224, 72, 72);
-    font-family: Montserrat;
+    font-family: "Poppins";
     font-size: 20px;
     cursor: pointer;
     padding: 10px 12px 10px 12px;
