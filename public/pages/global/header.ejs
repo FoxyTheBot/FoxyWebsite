@@ -78,8 +78,17 @@
 <div id="mobile__menu" class="overlay">
     <a class="close">&times;</a>
     <div class="overlay__content">
-        <a href="/github">GitHub</a>
-        <a href="/discord">Suporte</a>
+        <a href="/br/support">Suporte</a>
         <a href="/br/support/terms">Termos de uso</a>
+        <a href="/upvote">Votar</a>
+        <a href="/br/premium">Premium</a>
+        <a href="/br/commands">Comandos</a>
+        <% if (user) { %>
+            <a id="login-button" href="/br/dashboard">Dashboard</a>
+            <% } else { %>
+                <a id="login-button" href="/br/dashboard">Entrar</a>
+                <% } %>
     </div>
 </div>
+
+<script src="/js/HeaderMobile.js"></script>
