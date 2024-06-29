@@ -25,15 +25,14 @@ export class App {
             cookie: {
                 maxAge: config.session.cookie.maxAge,
                 httpOnly: true,
-                sameSite: 'strict',
             }
         }));
 
         app.set('view engine', 'ejs');
 
+        app.use('/', require("../routes/auth/oauthDiscord"));
         app.use('/', require("../routes/controller/updatePage"));
         app.use('/', require("../routes/controller/redirectPage"));
-        app.use('/', require("../routes/auth/oauthDiscord"));
 
         app.get('*', (req, res) => {
             if (!req.session.bearer_token) {
