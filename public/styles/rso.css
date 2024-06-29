@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +18,7 @@ main {
     padding-right: 5%;
     margin-top: 10%;
     transition-duration: 0.5s;
-    font-family: Montserrat;
+    font-family: "Poppins";
 }
 
 strong,
@@ -36,7 +38,7 @@ h2 {
     color: #fff;
     font-size: 25px;
     margin-bottom: 10px;
-    font-family: Montserrat;
+    font-family: "Poppins";
 }
 
 a {
@@ -69,18 +71,18 @@ main h1 {
     color: #fff;
     font-size: 40px;
     margin-bottom: 5%;
-    font-family: Montserrat;
+    font-family: "Poppins";
 }
 
 p {
-    font-family: Montserrat;
+    font-family: "Poppins";
     color: #fff;
 }
 
 main h3 {
     color: #fff;
     font-size: 18px;
-    font-family: Montserrat;
+    font-family: "Poppins";
 }
 
 @media only screen and (max-width: 800px) {
