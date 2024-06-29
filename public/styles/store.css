@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
 * {
     margin: 0;
     padding: 0;
@@ -11,10 +13,17 @@ html {
     height: 100%;
 }
 
+.store-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: -10%;
+    margin-left: -10%;
+}
+
 p {
     color: #fff;
     font-size: 17px;
-    font-family: Montserrat;
+    font-family: "Poppins";
     margin-left: 5px;
     margin-top: 13px;
 }
@@ -23,7 +32,7 @@ main .title {
     color: #fff;
     font-size: 40px;
     margin-bottom: 1%;
-    font-family: Montserrat;
+    font-family: "Poppins";
 }
 
 main {
@@ -60,11 +69,11 @@ main  .action__btn .btn {
 }
 
 main .store_image {
-    width: 60%;
-    height: 50%;
+    width: 50%;
+    height: 40%;
     text-align: left;
-    margin-left: -160%;
-    margin-top: -130%;
+    margin-left: -170%;
+    margin-top: -300%;
 }
 
 .items {
@@ -207,7 +216,7 @@ main .store_image {
 main h1 {
     color: rgb(255, 255, 255);
     font-size: 25px;
-    font-family: Montserrat;
+    font-family: "Poppins";
     
     margin-top: 5%; 
 }
@@ -215,7 +224,7 @@ main h1 {
 main h3 {
     color: rgb(255, 255, 255);
     font-size: 20px;
-    font-family: Montserrat;
+    font-family: "Poppins";
     
     margin-top: 5%;
 }
@@ -286,7 +295,7 @@ main .user__avatar {
 main h1 {
     color: rgb(255, 255, 255);
     font-size: 25px;
-    font-family: Montserrat;
+    font-family: "Poppins";
     
 }
 
@@ -342,7 +351,7 @@ main h2 {
 main  #default .default-button {
     color: #fff;
     background-color: #047cd6;
-    font-family: Montserrat;
+    font-family: "Poppins";
     font-size: 20px;
     cursor: pointer;
     padding: 10px 12px 10px 12px;
@@ -362,7 +371,7 @@ main  #default .default-button {
 main  .action__btn .danger_btn {
     color: #fff;
     background-color: rgb(224, 72, 72);
-    font-family: Montserrat;
+    font-family: "Poppins";
     font-size: 20px;
     cursor: pointer;
     padding: 10px 12px 10px 12px;
