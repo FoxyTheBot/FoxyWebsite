@@ -251,39 +251,7 @@
         <h3 class="description">O uso de qualquer um de nossos serviços afirma que o licenciado leu este contrato, o
             compreendeu e concorda em ficar vinculado a seu conteúdo.</h3>
 
-        <div class="left-sidebar">
-            <div class="entries">
-                <hr class="separator">
-                <h2 class="section-title">Suporte</h2>
-                <a href="/br/support/ban-appeal">
-                    <div class="entry">
-                        Apelo de Banimento
-                    </div>
-                </a>
-                <a href="/br/support/guidelines">
-                    <div class="entry">
-                        Diretrizes da Comunidade
-                    </div>
-                </a>
-
-                <a href="/br/support/terms">
-                    <div class="entry" id="selected">
-                        Termos de Uso e Privacidade
-                    </div>
-                </a>
-                <a href="/br/support">
-                    <div class="entry">
-                        Página de Suporte
-                    </div>
-                </a>
-                <a href="/br/commands">
-                    <div class="entry">
-                        Comandos
-                    </div>
-                </a>
-            </div>
-        </div>
-        </div>
+            <%- include("InfoSidebar.ejs"); %>
     </main>
     <script src="../js/HeaderMobile.js"></script>
 
@@ -330,13 +298,13 @@
     </footer>
 </body>
 <script>
-    ScrollReveal().reveal('.left-sidebar', { delay: 300, origin: 'left', distance: '30px', reset: true });
+    ScrollReveal().reveal('.left-sidebar', { delay: 300, origin: 'left', distance: '30px', reset: false });
     const entries = document.querySelectorAll('.entry');
     entries.forEach((entry, index) => {
       const delay = 300 + index * 100;
-      ScrollReveal().reveal(entry, { origin: 'left', distance: '30px', delay: delay, reset: true });
+      ScrollReveal().reveal(entry, { origin: 'left', distance: '30px', delay: delay, reset: false });
     });
   </script>
-<script src="../js/HeaderMobile.js"></script>
+<script src="/js/HeaderMobile.js"></script>
 
 </html>
