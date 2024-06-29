@@ -180,7 +180,7 @@ router.get("/:lang/background/change/:id", isAuthenticated, async (req, res, nex
 
         userData.userProfile.background = background.id;
         userData.save().catch(err => logger.log(err));
-        return res.redirect("/br/user/backgrounds");
+        return res.redirect("/br/dashboard");
     } catch (error) {
         next(error);
     }
@@ -207,7 +207,7 @@ router.get("/:lang/decorations/change/:id", isAuthenticated, async (req, res, ne
     }
 });
 
-router.get("/:lang/user/backgrounds", isAuthenticated, async (req, res, next) => {
+router.get("/:lang/dashboard", isAuthenticated, async (req, res, next) => {
     try {
         const userId = req.session.user_info.id;
         const userData = await database.getUser(userId);
@@ -255,51 +255,62 @@ router.get("/:lang/user/decorations", isAuthenticated, async (req, res, next) =>
     }
 });
 
-router.get('/:lang/dashboard', isAuthenticated, async (req, res, next) => {
-    try {
-        const user = await req.session.user_info;
-        const guildsResult = await fetch('https://discord.com/api/users/@me/guilds', {
-            headers: {
-                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
-            }
-        });
-        const guilds: GuildResponse[] = await guildsResult.json();
-        const guildsArray = [];
-        function hasRequiredPermissions(permissions) {
-            return (permissions & (8 | 32)) !== 0;
+const prizes = [
+    { prize: 1000000, weight: 1 },
+    { prize: 100000, weight: 10 },
+    { prize: 10000, weight: 20 },
+    { prize: 1000, weight: 50 },
+    { prize: 500, weight: 100 },
+    { prize: 250, weight: 150 },
+]
+
+function getRandomPrize(prizes) {
+    const totalWeight = prizes.reduce((acc, prize) => acc + prize.weight, 0);
+    const random = Math.random() * totalWeight;
+    let currentWeight = 0;
+
+    for (const prize of prizes) {
+        currentWeight += prize.weight;
+        if (random < currentWeight) {
+            return prize.prize;
         }
-
-        for (let i = 0; i < guilds.length; i++) {
-            const guild = guilds[i];
-
-            if (hasRequiredPermissions(Number(guild.permissions))) {
-                guildsArray.push({
-                    id: guild.id,
-                    name: guild.name,
-                    icon: guild.icon,
-                    permissions: guild.permissions,
-                    owner: guild.owner,
-                })
-            }
-        }
-
-        res.status(200).render("../public/pages/dashboard/guild/servers.ejs", {
-            user: user,
-            guilds: guildsArray
-        });
-    } catch (error) {
-        next(error);
     }
-});
+}
 
-router.get("/:lang/roulette", isAuthenticated, async (req, res, next) => {
+router.get("/:lang/dashboard/roulette", isAuthenticated, async (req, res, next) => {
     try {
-        /*
-            TODO: Criar uma lógica para o sistema de roleta,
-            arquivo: /public/pages/dashboard/user/roulette.ejs
-        */
+        const userData = await database.getUser(req.session.user_info.id);
+        if (userData.roulette.availableSpins <= 0) {
+            return res.status(200).render("../public/pages/dashboard/user/roulette.ejs", {
+                user: req.session.user_info,
+                db: userData,
+                allowed: false,
+                result: null
+            });
+        } else {
+            userData.roulette.availableSpins -= 1;
+            const prize = getRandomPrize(prizes);
+            userData.userCakes.balance += prize;
+            userData.userTransactions.push({
+                to: req.session.user_info.id,
+                from: config.oauth.clientId,
+                quantity: prize,
+                date: new Date(Date.now()),
+                received: true,
+                type: 'roulette'
+            })
+            await userData.save();
+
+            return res.status(200).render("../public/pages/dashboard/user/roulette.ejs", {
+                user: req.session.user_info,
+                db: userData,
+                allowed: true,
+                result: prize
+            });
+        }
     } catch (err) {
         logger.error(err.message);
+        return res.status(500).send("Erro interno do servidor");
     }
 });
 
@@ -326,78 +337,6 @@ router.get("/riot/connection/status=:status", (req, res) => {
             message,
             description
         });
-    }
-});
-
-router.get("/:lang/server/:id/overview", isAuthenticated, async (req, res, next) => {
-    try {
-        const id = req.params.id;
-        const guildInfo = await database.getGuild(id);
-        if (!guildInfo) return res.redirect("/add");
-
-        const user = await req.session.user_info;
-        const guildsResult = await fetch(`https://discord.com/api/users/@me/guilds`, {
-            headers: {
-                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
-            }
-        });
-        const guilds: GuildResponse[] = await guildsResult.json();
-        const guildsArray = [];
-
-        function hasRequiredPermissions(permissions) {
-            return (permissions & (8 | 32)) !== 0;
-        }
-
-        for (let i = 0; i < guilds.length; i++) {
-            const guild = guilds[i];
-
-            if (hasRequiredPermissions(Number(guild.permissions))) {
-                guildsArray.push({
-                    id: guild.id,
-                    name: guild.name,
-                    icon: guild.icon,
-                    owner: guild.owner,
-                    permissions: guild.permissions,
-                    permissions_new: guild.permissions_new,
-                    features: guild.features
-                })
-            }
-        }
-        const guild: GuildResponse = await guildsArray.find((x) => x.id === req.params.id);
-        if (!guild) return res.redirect("/br/dashboard");
-        const guildIcon = await guild.icon;
-        const guildChannels = await fetch(`https://discord.com/api/guilds/${guild.id}/channels`, {
-            headers: {
-                authorization: `Bot ${process.env.BOT_TOKEN}`,
-            }
-        });
-
-        const guildChannelsJson = await guildChannels.json();
-        const guildRoles = await fetch(`https://discord.com/api/guilds/${guild.id}/roles`, {
-            headers: {
-                authorization: `Bot ${process.env.BOT_TOKEN}`,
-            }
-        });
-
-        const guildRolesJson = await guildRoles.json();
-        let icon;
-
-        if (guildIcon) {
-            icon = `https://cdn.discordapp.com/icons/${guild.id}/${guildIcon}.png`;
-        } else {
-            icon = `https://cdn.discordapp.com/attachments/1068525425963302936/1132369142780014652/top-10-cutest-cat-photos-of-all-time.jpg`
-        }
-
-        res.status(200).render("../public/pages/dashboard/guild/dashboard.ejs", {
-            user: user,
-            guild: guild,
-            icon: icon,
-            channels: guildChannelsJson,
-            roles: guildRolesJson,
-            guildInfoFromDB: guildInfo,
-        });
-    } catch (error) {
-        next(error);
     }
 });
 
@@ -563,18 +502,6 @@ router.get('/:lang/support/ban-appeal', async (req, res, next) => {
     try {
         res.status(200).render("../public/pages/info/banAppeal.ejs", {
             user: req.session.user_info,
-        });
-    } catch (error) {
-        next(error);
-    }
-});
-
-router.get("/:lang/aboutme", isAuthenticated, async (req, res, next) => {
-    try {
-        const userData = await database.getUser(req.session.user_info.id);
-        res.status(200).render("../public/pages/dashboard/user/aboutMe.ejs", {
-            user: req.session.user_info,
-            db: userData
         });
     } catch (error) {
         next(error);
