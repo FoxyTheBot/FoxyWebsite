@@ -74,7 +74,10 @@ const userSchema = new mongoose.Schema({
         isPrivate: Boolean,
         region: String
     },
-    premiumKeys: [keySchema]
+    premiumKeys: [keySchema],
+    roulette: {
+        availableSpins: Number,
+    }
 }, { versionKey: false, id: false });
 
 const riotAccountSchema = new mongoose.Schema({
@@ -129,6 +132,7 @@ const guildSchema = new mongoose.Schema({
 const commandsSchema = new mongoose.Schema({
     commandName: String,
     commandUsageCount: Number,
+    category: String,
     description: String,
     isInactive: Boolean,
     subcommands: Array,
