@@ -1,0 +1,61 @@
+<head>
+    <link rel="stylesheet" href="/styles/sidebar.css">
+</head>
+<div class="left-sidebar">
+    <div class="entries">
+        <h2 class="section-title">Categoria</h2>
+        <a href="/br/commands">
+            <div class="entry">
+                Todos (<%= allCommands.length %>)
+            </div>
+        </a>
+        <% 
+        const translations = {
+        pt: {
+            roleplay: "Roleplay",
+            fun: "Diversão",
+            games: "Jogos",
+            economy: "Economia",
+            image: "Imagens",
+            noCategory: "Sem Categoria",
+            social: "Social",
+            util: "Utilitários",
+        },
+        en: {
+            roleplay: "Roleplay",
+            fun: "Fun",
+            games: "Games",
+            economy: "Economy",
+            noCategory: "No Category",
+            image: "Images",
+            social: "Social",
+            util: "Utilities",
+        }
+    };
+    
+        function translate(categoryId, lang) {
+            const langTranslations = translations[lang] || translations['en'];
+            return langTranslations[categoryId] || categoryId;
+        }
+    
+        const lang = 'pt';
+    
+        const commandsByCategory = allCommands.reduce((acc, command) => {
+            const category = command.category || 'noCategory';
+            if (category === 'noCategory') return acc;
+
+            if (!acc[category]) {
+                acc[category] = [];
+            }
+            acc[category].push(command);
+            return acc;
+        }, {});
+                %> <% Object.keys(commandsByCategory).forEach(categoryId => { %>
+            <a href="/br/commands/<%= categoryId %>">
+                <div class="entry">
+                    <%= translate(categoryId, lang) %> (<%= commandsByCategory[categoryId].length%>)
+                </div>
+            </a>
+            <% }); %>
+    </div>
+</div>
