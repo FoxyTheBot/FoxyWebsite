@@ -31,7 +31,13 @@
                                                 <%= decoration.name %>
                                             </h1>
                                             <p>
-                                                <%= decoration.cakes.toLocaleString("pt-br") %> Cakes
+                                               <% if (userData.userProfile.decorationList.includes(decoration.id)) { %>
+                                                <span class="purchased">💖 Já comprado</span>
+                                                <% } else { %>
+                                                    <span class="cakes">
+                                                        <%= decoration.cakes.toLocaleString("pt-BR") %> Cakes
+                                                    </span>
+                                                    <% } %>
                                             </p>
                                         </div>
                         </div>

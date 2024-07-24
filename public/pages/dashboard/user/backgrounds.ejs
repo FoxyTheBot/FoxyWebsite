@@ -25,6 +25,10 @@
                                             src="https://orchid.cakeyfox.live/assets/backgrounds/<%=background.filename%>"
                                             onerror="this.src='https://cakey.foxybot.win/assets/backgrounds/<%=background.filename%>'">
                                     </div>
+
+                                    <% if (currentBackground===background.id) { %>
+                                        <span class="purchased">Selecionado</span>
+                                        <% } %>
                         </div>
                         <% }); %>
                 </div>

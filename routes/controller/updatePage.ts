@@ -48,6 +48,7 @@ router.get("/:lang/store", isAuthenticated, async (req, res, next) => {
         const backgrounds = await database.getAllBackgrounds();
         res.status(200).render("../public/pages/dashboard/user/store/background.ejs", {
             user: req.session.user_info,
+            userData: userData,
             userBackgrounds: userData.userProfile.backgroundList,
             storeContent: {
                 backgrounds: backgrounds
@@ -72,6 +73,7 @@ router.get("/:lang/store/decorations", isAuthenticated, async (req, res, next) =
         res.status(200).render("../public/pages/dashboard/user/store/decoration.ejs", {
             user: req.session.user_info,
             userDecorations: userData.userProfile.decorationList,
+            userData: userData,
             storeContent: {
                 decorations: decorations
             }
