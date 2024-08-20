@@ -18,7 +18,7 @@
                     <% if (background.cakes==0 || background.inactive) { return; } %>
                         <div class="item <%= userBackgrounds.includes(background.id) ? " disabled" : "" %>"
                             <% if (!userBackgrounds.includes(background.id)) { %>
-                                onclick="showPopup(<%= JSON.stringify(background) %>)"
+                                onclick="showPopup(<%= JSON.stringify(background) %>, <%= JSON.stringify(userData) %>)"
                                     <% } %>>
                                         <div class="item__icon">
                                             <img class="background"
@@ -26,7 +26,7 @@
                                                 onerror="this.src='https://cakey.foxybot.win/assets/backgrounds/<%= background.filename %>'">
                                         </div>
                                         <div class="item_info">
-                                            <h1>
+                                            <h1 class="item-name">
                                                 <%= background.name %>
                                             </h1>
                                             <% if (userData.userProfile.backgroundList.includes(background.id)) { %>
@@ -46,9 +46,12 @@
         <div id="popup" class="popup">
             <div class="popup-content">
                 <span class="close" onclick="hidePopup()">&times;</span>
+                
                 <h2 id="bg-title"></h2>
                 <img id="popup-img" src="">
                 <h3 id="bg-description"></h3>
+                <h3 id="bg-description">Você possui <strong style="color: #e7385d;"><%= userData.userCakes.balance.toLocaleString("pt-BR") %></strong> Cakes</h3>
+
                 <form id="purchaseForm" method="POST">
                     <input type="hidden" name="backgroundId" id="backgroundId">
                     <button class="server__button" id="save" type="submit">
@@ -59,7 +62,7 @@
         </div>
 
         <script>
-            function showPopup(background) {
+            function showPopup(background, userData) {
                 document.getElementById('backgroundId').value = background.id;
                 document.getElementById('popup').style.display = 'block';
                 document.getElementById('bg-title').innerText = background.name;
@@ -68,6 +71,10 @@
                 document.getElementById('popup-img').onerror = function () {
                     this.src = "https://cakey.foxybot.win/assets/backgrounds/" + background.filename;
                 };
+
+                if (userData.userCakes.balance < background.cakes) {
+                    document.getElementById('save').disabled = true;
+                }
             }
 
             document.getElementById('purchaseForm').addEventListener('submit', function (event) {
