@@ -7,7 +7,6 @@ export default class RestManager {
         version: 10,
     });
     public constants = createBotConstants();
-    constructor() { }
 
     async getUser(userId: string) {
         return await this.rest.runMethod(this.rest, "GET", this.constants.routes.USER(userId));
