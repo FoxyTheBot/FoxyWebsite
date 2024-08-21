@@ -25,6 +25,29 @@ REPORT=<your-report-webhook>
 SUGGESTION=<your-suggestion-webhook>
 ```
 
+<p>Create a `config.json` file with these values:</p>
+
+```json
+{
+    "url": "website url (must contains http or https)",
+    "oauth": {
+        "clientId": "bot id",
+        "ownerId": "your discord id",
+        "callbackURL": "http://url/login/callback",
+        "scopes": [
+            "identify",
+            "guilds",
+            "email"
+        ]
+    },
+    "session": {
+        "cookie": {
+            "maxAge": 604800000
+        }
+    }
+}
+```
+
 ## Running the server
 
 <p>Install TSC in your computer</p>

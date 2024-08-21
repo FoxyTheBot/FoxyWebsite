@@ -1,13 +1,96 @@
 @import url(https://lotus.cakeyfox.live/styles/header.css);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 #login-button {
-    display: block;
-    margin-right: 15%;
+    display: contents !important;
 }
 
-.navigation-bar.fixed {
+
+.mobile {
+    display: none;
+    color: #fff;
+    background-color: #1d9ae4;
+    font-family: "Poppins";
+    font-size: 15px;
+    cursor: pointer;
+    padding: 10px 12px 10px 12px;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 5px 10px 5px;
+    transition-duration: 0.5s;
+}
+
+.overlay {
+    height: 100%;
+    width: 0;
     position: fixed;
+    z-index: 1;
+    left: 0;
     top: 0;
+    background-color: #24252a;
+    overflow-x: hidden;
+    transition: all 0.5s ease 0s;
+}
+
+.overlay--active {
     width: 100%;
-    z-index: 1000;
+}
+
+.overlay__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay a {
+    padding: 15px;
+    font-size: 36px;
+    display: block;
+    transition: all 0.3s ease 0s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+    color: #0088a9;
+}
+
+.overlay .close {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: #edf0f1;
+    cursor: pointer;
+}
+
+.overlay__content a {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {
+        font-size: 20px;
+    }
+
+    .overlay .close {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    nav.navigation-bar {
+        display: none;
+    }
+
+    .mobile {
+        display: initial;
+    }
 }

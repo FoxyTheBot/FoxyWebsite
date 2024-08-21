@@ -171,6 +171,21 @@ const avatarDecorationSchema = new mongoose.Schema({
     isMask: Boolean,
 }, { versionKey: false, id: false });
 
+const storeSchema = new mongoose.Schema({
+    itemId: String,
+    itemName: String,
+    price: Number,
+    description: String,
+    isSubscription: Boolean,
+});
+
+const checkoutList = new mongoose.Schema({
+    checkoutId: String,
+    userId: String,
+    itemId: String,
+    date: Date,
+});
+
 export const Schemas = {
     userSchema,
     guildSchema,
@@ -179,7 +194,9 @@ export const Schemas = {
     riotAccountSchema,
     keySchema,
     layoutSchema,
-    avatarDecorationSchema
+    avatarDecorationSchema,
+    storeSchema,
+    checkoutList,
 };
 
 /* End of bot related schemas */

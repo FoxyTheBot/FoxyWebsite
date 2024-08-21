@@ -1,7 +1,6 @@
 import express from 'express';
 import config from '../../config.json';
 import { database } from '../../client/app';
-import { GuildResponse } from '../../types/guildResponse';
 import { logger } from '../../structures/logger';
 
 const router = express.Router();
@@ -63,6 +62,14 @@ router.get("/:lang/store", isAuthenticated, async (req, res, next) => {
 
 router.get("/:lang/store/layouts", isAuthenticated, async (req, res, next) => {
     res.status(200).send("Soon");
+});
+
+router.get("/checkout", isAuthenticated, async (req, res) => {
+    const { itemId } = req.query;
+
+    const checkoutItem = await database.createCheckout(req.session.user_info.id.toString(), itemId.toString());  
+
+    res.status(200).redirect(process.env.FP_LOCAL_URL + "checkout/id/" + checkoutItem.checkoutId);
 });
 
 router.get("/:lang/store/decorations", isAuthenticated, async (req, res, next) => {

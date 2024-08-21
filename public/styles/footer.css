@@ -1,1 +1,74 @@
-@import url(https://lotus.cakeyfox.live/styles/footer.css);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+footer {
+    background-color: #ff4655;
+    color: white;
+    padding: 16px 72px;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    margin-top: auto;
+    text-align: center;
+}
+
+footer .social-networks {
+    display: flex;
+    justify-content: center;
+    gap: 0.25em;
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-add h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3em;
+    margin: 10px auto 1% auto;
+    color: #e7385d;
+}
+
+.footer-add a button {
+    appearance: none;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    line-height: 20px;
+    font-size: 17px;
+    color: #fff;
+    min-width: 36px;
+    margin: 1.5% auto;
+    padding: 0.55rem 1rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #3ba55c;
+    animation: float 5s ease-in-out infinite;
+    display: flex;
+}
+
+footer p {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 16px 24px;
+    }
+
+    .footer-add h2 {
+        font-size: 1.1em;
+    }
+
+    footer .social-networks {
+        font-size: 2em;
+    }
+}

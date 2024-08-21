@@ -14,24 +14,28 @@
     <body>
         <%- include('../../global/header') %>
             <main>
-                <div class="itens">
-                    <% userDecorations.forEach(decoration=> { %>
-                        <div class="item <%= currentDecoration === decoration.id ? 'disabled' : ''  %>" <% if
-                            (userDecorations !==decoration.id) { %>
-                            onclick="change('<%= decoration.id %>')"
-                                <% } %>>
-                                    <div class="item__icon">
-                                        <img class="background"
-                                            src="https://orchid.cakeyfox.live/assets/masks/<%=decoration.filename%>"
-                                            onerror="this.src='https://cakey.foxybot.win/assets/masks/<%=decoration.filename%>'">
-                                    </div>
-
-                                    <% if (currentDecoration===decoration.id) { %>
-                                        <span class="purchased">Selecionado</span>
-                                        <% } %>
-                        </div>
-                        <% }); %>
-                </div>
+                <% if (userDecorations) { %>
+                    <div class="itens">
+                        <% userDecorations.forEach(decoration=> { %>
+                            <div class="item <%= currentDecoration === decoration.id ? 'disabled' : ''  %>" <% if
+                                (userDecorations !==decoration.id) { %>
+                                onclick="change('<%= decoration.id %>')"
+                                    <% } %>>
+                                        <div class="item__icon">
+                                            <img class="background"
+                                                src="https://orchid.cakeyfox.live/assets/masks/<%=decoration.filename%>"
+                                                onerror="this.src='https://cakey.foxybot.win/assets/masks/<%=decoration.filename%>'">
+                                        </div>
+    
+                                        <% if (currentDecoration===decoration.id) { %>
+                                            <span class="purchased">Selecionado</span>
+                                            <% } %>
+                            </div>
+                            <% }); %>
+                    </div>
+                    <% } else { %>
+                        <h1 class="title">Você não possui nenhuma decoração</h1>
+                        <% } %>
                 <%- include('../sidebar') %>
             </main>
 

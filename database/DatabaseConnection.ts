@@ -2,9 +2,8 @@ import mongoose from 'mongoose';
 import { User } from 'discordeno/transformers';
 import { Schemas } from './schemas/Schemas';
 import { logger } from '../structures/logger';
-import { createRestManager } from 'discordeno/rest';
-import { createBotConstants } from 'discordeno/*';
 import { rest } from '../client/app';
+import { randomUUID } from 'crypto';
 export default class DatabaseConnection {
     public key: any;
     public user: any;
@@ -14,6 +13,8 @@ export default class DatabaseConnection {
     public backgrounds: any;
     public layouts: any;
     public decorations: any;
+    public items: any;
+    public checkoutList: any;
 
     constructor() {
         mongoose.set("strictQuery", true)
@@ -30,6 +31,8 @@ export default class DatabaseConnection {
         this.layouts = mongoose.model('layouts', Schemas.layoutSchema);
         this.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
         this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
+        this.items = mongoose.model('storeItems', Schemas.storeSchema);
+        this.checkoutList = mongoose.model('checkoutList', Schemas.checkoutList);
     }
 
     async getUser(userId: string): Promise<any> {
@@ -127,6 +130,29 @@ export default class DatabaseConnection {
         return commandsData.map(command => command.toJSON());
     }
 
+    async getProductFromStore(productId: string): Promise<any> {
+        let document = await this.items.findOne({ itemId: productId });
+        return document;
+    }
+
+    async getCheckout(checkoutId: string): Promise<any> {
+        let document = await this.checkoutList.findOne({ _id: checkoutId });
+        return document;
+    }
+
+    async createCheckout(userId: string, itemId: string): Promise<any> {
+        let document = await this.checkoutList.findOne({ userId });
+        if (document) return document;
+        
+        document = new this.checkoutList({
+            checkoutId: randomUUID(),
+            userId: userId,
+            itemId: itemId,
+        }).save();
+
+        return document;
+    }
+    
     async getCode(code: string): Promise<any> {
         const riotAccount = this.riotAccount.findOne({ authCode: code });
         if (!riotAccount) return null;
