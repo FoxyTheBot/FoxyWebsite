@@ -1,15 +1,15 @@
 <head>
-    <link rel="stylesheet" href="/styles/sidebar.css">
+  <link rel="stylesheet" href="/styles/sidebar.css">
 </head>
 <div class="left-sidebar">
-    <div class="entries">
-        <h2 class="section-title">Categoria</h2>
-        <a href="/br/commands">
-            <div class="entry">
-                Todos (<%= allCommands.length %>)
-            </div>
-        </a>
-        <% 
+  <div class="entries">
+    <h2 class="section-title">Categoria</h2>
+    <a href="/br/commands">
+      <div class="entry">
+        Todos (<%= allCommands.length %>)
+      </div>
+    </a>
+    <% 
         const translations = {
         pt: {
             roleplay: "Roleplay",
@@ -51,11 +51,11 @@
             return acc;
         }, {});
                 %> <% Object.keys(commandsByCategory).forEach(categoryId => { %>
-            <a href="/br/commands/<%= categoryId %>">
-                <div class="entry">
-                    <%= translate(categoryId, lang) %> (<%= commandsByCategory[categoryId].length%>)
-                </div>
-            </a>
-            <% }); %>
-    </div>
+    <a href="/br/commands/<%= categoryId %>">
+      <div class="entry">
+        <%= translate(categoryId, lang) %> (<%= commandsByCategory[categoryId].length%>)
+      </div>
+    </a>
+    <% }); %>
+  </div>
 </div>

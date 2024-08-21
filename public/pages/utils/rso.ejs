@@ -2,40 +2,39 @@
 <html>
 
 <head>
-    <title>Vinculação de conta</title>
-    <link rel="icon" href="/assets/images/foxycake.png">
-    <link rel="stylesheet" href="/styles/rso.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/footer.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
-        crossorigin="anonymous"></script>
-    <script>
-        function copyToClipboard(text) {
-            var inputc = document.body.appendChild(document.createElement("input"));
-            inputc.value = text;
-            inputc.focus();
-            inputc.select();
-            document.execCommand('copy');
-            inputc.parentNode.removeChild(inputc);
-        }
-    </script>
+  <title>Vinculação de conta</title>
+  <link rel="icon" href="/assets/images/foxycake.png">
+  <link rel="stylesheet" href="/styles/rso.css">
+  <link rel="stylesheet" href="/styles/header.css">
+  <link rel="stylesheet" href="/styles/footer.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
+  <script>
+    function copyToClipboard(text) {
+      var inputc = document.body.appendChild(document.createElement("input"));
+      inputc.value = text;
+      inputc.focus();
+      inputc.select();
+      document.execCommand('copy');
+      inputc.parentNode.removeChild(inputc);
+    }
+  </script>
 </head>
 
 <body>
-    <main>
-        <div class="connection-successfully">
-            <img class="connection-logo" src="/assets/images/foxyriot.png">
-            <h2 class="connection-title">Olá, <%= body.gameName %>! Seu código de verificação é:</h2>
-            <h3 class="connection-code">
-                <%=body.authCode %>
-            </h3>
+  <main>
+    <div class="connection-successfully">
+      <img class="connection-logo" src="/assets/images/foxyriot.png">
+      <h2 class="connection-title">Olá, <%= body.gameName %>! Seu código de verificação é:</h2>
+      <h3 class="connection-code">
+        <%=body.authCode %>
+      </h3>
 
-            <br>
-            <br>
-            <h3 class="description">Use o comando <strong>/valorant verify</strong> no Discord, e cole este código para terminar de vincular a sua conta</h3>
-            <h3 class="warning">Não compartilhe este código com ninguém!</h3>
-            <img class="jett" src="https://cakey.foxybot.win/assets/valorant/agents/jett.png">
-    </main>
+      <br>
+      <br>
+      <h3 class="description">Use o comando <strong>/valorant verify</strong> no Discord, e cole este código para terminar de vincular a sua conta</h3>
+      <h3 class="warning">Não compartilhe este código com ninguém!</h3>
+      <img class="jett" src="https://cakey.foxybot.win/assets/valorant/agents/jett.png">
+  </main>
 </body>
 <script src="../js/HeaderMobile.js"></script>
 

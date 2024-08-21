@@ -1,7 +1,7 @@
 <header>
-    <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
-        <div class="left-entries">
-            <div class="entry foxy-navbar-logo"><a href="/"><img src="/assets/images/Foxy.png" style="    font-size: 0px;
+  <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
+    <div class="left-entries">
+      <div class="entry foxy-navbar-logo"><a href="/"><img src="/assets/images/Foxy.png" style="    font-size: 0px;
                     line-height: 0px;
                     width: 40px;
                     height: 40px;
@@ -9,35 +9,32 @@
                     position: absolute;
                     top: 3px;
                     border-radius: 100%;"></a></div>
-            <div class="entry"><a href="/br/support" class="menu" data-preload-link="true"
-                    data-preload-link-activated="true">
-                    Suporte
-                </a></div>
-            <div class="entry"><a href="/br/support/terms" class="commands" data-preload-link="true"
-                    data-preload-link-activated="true">
-                    Termos
-                </a></div>
+      <div class="entry"><a href="/br/support" class="menu" data-preload-link="true" data-preload-link-activated="true">
+          Suporte
+        </a></div>
+      <div class="entry"><a href="/br/support/terms" class="commands" data-preload-link="true" data-preload-link-activated="true">
+          Termos
+        </a></div>
 
-            <div class="entry"><a href="/upvote" class="menu">
-                    Votar
-                </a></div>
-            <div class="entry"><a href="/br/premium" class="menu">
-                    Premium
-                </a></div>
-            <div class="entry"><a href="/br/commands" class="menu">
-                    Comandos
-                </a></div>
-            </a>
-        </div>
-        <div class="right-entries">
+      <div class="entry"><a href="/upvote" class="menu">
+          Votar
+        </a></div>
+      <div class="entry"><a href="/br/premium" class="menu">
+          Premium
+        </a></div>
+      <div class="entry"><a href="/br/commands" class="menu">
+          Comandos
+        </a></div>
+      </a>
+    </div>
+    <div class="right-entries">
 
-            <div class="entry" id="locale-changer-button" style="cursor: default;">
-                </span>
-            </div>
-            <% if (user) { %>
-                <div class="entry">
-                    <a href="/br/dashboard" id="login-button"><img
-                            src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
+      <div class="entry" id="locale-changer-button" style="cursor: default;">
+        </span>
+      </div>
+      <% if (user) { %>
+      <div class="entry">
+        <a href="/br/dashboard" id="login-button"><img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
                   line-height: 0px;
                   width: 40px;
                   height: 40px;
@@ -45,50 +42,50 @@
                   position: absolute;
                   top: 3px;
                   border-radius: 100%;">
-                        <div style="    font-size: 0px;
+          <div style="    font-size: 0px;
                   line-height: 0px;
                   width: 40px;
                   visibility: hidden;
                   height: 0px;
                   display: inline-block;"></div><span style="padding-left: 4px;">
-                            <%= user.global_name %>
-                        </span>
-                    </a>
-                </div>
+            <%= user.global_name %>
+          </span>
+        </a>
+      </div>
 
-                <% } else { %>
-                    <div class="entry">
-                        <a href="/br/dashboard" id="login-button">
-                            <div style="    font-size: 0px;
+      <% } else { %>
+      <div class="entry">
+        <a href="/br/dashboard" id="login-button">
+          <div style="    font-size: 0px;
                                 line-height: 0px;
                                 width: 40px;
                                 visibility: hidden;
                                 height: 0px;
                                 display: inline-block;"></div><span style="padding-left: 4px;">
-                                Entrar
-                            </span>
-                        </a>
-                    </div>
-                    <% } %>
-        </div>
-        </div>
-    </nav>
-    <button id="menu" class="mobile">Menu</button>
+            Entrar
+          </span>
+        </a>
+      </div>
+      <% } %>
+    </div>
+    </div>
+  </nav>
+  <button id="menu" class="mobile">Menu</button>
 </header>
 <div id="mobile__menu" class="overlay">
-    <a class="close">&times;</a>
-    <div class="overlay__content">
-        <a href="/br/support">Suporte</a>
-        <a href="/br/support/terms">Termos de uso</a>
-        <a href="/upvote">Votar</a>
-        <a href="/br/premium">Premium</a>
-        <a href="/br/commands">Comandos</a>
-        <% if (user) { %>
-            <a id="login-button" href="/br/dashboard">Dashboard</a>
-            <% } else { %>
-                <a id="login-button" href="/br/dashboard">Entrar</a>
-                <% } %>
-    </div>
+  <a class="close">&times;</a>
+  <div class="overlay__content">
+    <a href="/br/support">Suporte</a>
+    <a href="/br/support/terms">Termos de uso</a>
+    <a href="/upvote">Votar</a>
+    <a href="/br/premium">Premium</a>
+    <a href="/br/commands">Comandos</a>
+    <% if (user) { %>
+    <a id="login-button" href="/br/dashboard">Dashboard</a>
+    <% } else { %>
+    <a id="login-button" href="/br/dashboard">Entrar</a>
+    <% } %>
+  </div>
 </div>
 
 <script src="/js/HeaderMobile.js"></script>

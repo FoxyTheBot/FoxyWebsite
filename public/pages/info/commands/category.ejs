@@ -1,48 +1,47 @@
 <DOCTYPE html>
-    <html>
+  <html>
 
-    <head>
-        <title>Foxy | Commands</title>
-        <link rel="stylesheet" href="/styles/header.css">
-        <link rel="stylesheet" href="/styles/readonly.css">
-        <link rel="stylesheet" href="/styles/footer.css">
-        <script async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"></script>
-        <link rel="icon" href="/assets/images/foxycake.png">
-    </head>
+  <head>
+    <title>Foxy | Commands</title>
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/readonly.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"></script>
+    <link rel="icon" href="/assets/images/foxycake.png">
+  </head>
 
-    <body>
-        <%- include('../../global/header') %>
+  <body>
+    <%- include('../../global/header') %>
 
-            <main>
-                <h1 class="commands-title"><%= category %></h1>
-                    <table class="command-table">
-                        <tr>
-                            <th>Comando</th>
-                            <th>Descrição</th>
-                        </tr>
-                        <% commands.forEach(command => { %>
-                            <tr>
-                                <td>/<%= command.commandName %></td>
-                                <td><%= command.description %></td>
-                            </tr>
-                        <% }); %>
-                    </table>
-                </div>
-            <script>
-                function toggleCategory(category) {
-                    var wrapper = document.getElementById('wrapper-' + category);
-                    if (wrapper.style.maxHeight && wrapper.style.maxHeight !== '0px') {
-                        wrapper.style.maxHeight = '0px';
-                    } else {
-                        wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
-                    }
-                }
-            </script>
-                            <%- include("commandSidebar.ejs"); %>
-            </main>
-    </body>
+    <main>
+      <h1 class="commands-title"><%= category %></h1>
+      <table class="command-table">
+        <tr>
+          <th>Comando</th>
+          <th>Descrição</th>
+        </tr>
+        <% commands.forEach(command => { %>
+        <tr>
+          <td>/<%= command.commandName %></td>
+          <td><%= command.description %></td>
+        </tr>
+        <% }); %>
+      </table>
+      </div>
+      <script>
+        function toggleCategory(category) {
+          var wrapper = document.getElementById('wrapper-' + category);
+          if (wrapper.style.maxHeight && wrapper.style.maxHeight !== '0px') {
+            wrapper.style.maxHeight = '0px';
+          } else {
+            wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
+          }
+        }
+      </script>
+      <%- include("commandSidebar.ejs"); %>
+    </main>
+  </body>
 
-    <script src="../js/HeaderMobile.js"></script>
+  <script src="../js/HeaderMobile.js"></script>
 
-    </html>
+  </html>
