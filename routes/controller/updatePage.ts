@@ -67,7 +67,7 @@ router.get("/:lang/store/layouts", isAuthenticated, async (req, res, next) => {
 router.get("/checkout", isAuthenticated, async (req, res) => {
     const { itemId } = req.query;
 
-    const checkoutItem = await database.createCheckout(req.session.user_info.id.toString(), itemId.toString());  
+    const checkoutItem = await database.createCheckout(req.session.user_info.id.toString(), itemId.toString());
 
     res.status(200).redirect(process.env.FP_LOCAL_URL + "checkout/id/" + checkoutItem.checkoutId);
 });

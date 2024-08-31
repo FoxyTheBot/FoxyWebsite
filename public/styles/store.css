@@ -16,8 +16,8 @@ html {
 .store-info {
     display: flex;
     flex-direction: column;
-    margin-top: -10%;
-    margin-left: -10%;
+    margin-top: -5%;
+    margin-left: -2%;
 }
 
 p {
@@ -25,12 +25,12 @@ p {
     font-size: 17px;
     font-family: "Poppins";
     margin-left: 5px;
-    margin-top: 13px;
+    margin-top: 10px;
 }
 
 main .title {
     color: #fff;
-    font-size: 40px;
+    font-size: 35px;
     margin-bottom: 1%;
     font-family: "Poppins";
 }
@@ -80,11 +80,11 @@ main .store_image {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 10%;
-    margin-left: -50%;
+    margin-top: 5%;
+    margin-left: -60%;
     margin-bottom: 5%;
     cursor: default;
-    margin-right: -40%;
+    margin-right: -50%;
 }
 
 .item-rec {

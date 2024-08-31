@@ -5,6 +5,10 @@
     display: contents !important;
 }
 
+.navigation-bar {
+    position: fixed !important;
+}
+
 
 .mobile {
     display: none;

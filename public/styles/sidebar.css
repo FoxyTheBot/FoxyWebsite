@@ -5,7 +5,7 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 270px;
+    width: 350px;
     background-color: #36393f;
     transition: left .3s ease;
     overflow-y: auto;
@@ -21,13 +21,12 @@
 }
 
 .left-sidebar .entry {
-    padding: 10px 20px;
+    padding: 5px 20px;
     color: #fff;
     font-family: "Poppins";
-    font-size: 14px;
+    font-size: 15px;
     text-decoration: none;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     transition: background-color .2s ease;
 }
@@ -60,6 +59,14 @@
     margin-bottom: 10px;
 }
 
+.logo {
+    width: 150px;
+    margin-top: -5px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 10px;
+  }
+  
 @media screen and (max-width: 768px) {
     .left-sidebar {
         display: none;
