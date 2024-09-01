@@ -360,47 +360,55 @@ router.get('/:lang/daily', isAuthenticated, async (req, res, next) => {
         if (daily !== null && timeout - (Date.now() - daily) > 0) {
             allowed = false;
         }
-        var img = "../assets/images/foxyoculos.png";
-
-        if (allowed) {
-
-            let amount = Math.floor(Math.random() * 8000);
-            amount = Math.round(amount / 10) * 10;
-            switch (userData.premiumType) {
-                case "1": {
-                    amount = amount * 1.25;
-                    break;
-                }
-
-                case "2": {
-                    amount = amount * 1.5;
-                    break;
-                }
-
-                case "3": {
-                    amount = amount * 2;
-                    break;
-                }
-            }
-            if (amount < 1000) amount = 1000;
-
-            userData.userCakes.balance += amount;
-            userData.userCakes.lastDaily = Date.now();
-            userData.save().catch(err => logger.log(err));
-
-            req.session.coins = amount;
-            req.session.dbCoins = userData.userCakes.balance;
-        } else {
-            req.session.coins = 0;
-            req.session.dbCoins = userData.userCakes.balance;
-        }
 
         res.status(200).render("../public/pages/dashboard/user/daily.ejs", {
             user: req.session.user_info,
-            coins: req.session.coins.toLocaleString('pt-BR'),
-            img: img,
-            dbCoins: req.session.dbCoins.toLocaleString('pt-BR'),
             allowed
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.post("/:lang/dashboard/daily/receive", isAuthenticated, async (req, res, next) => {
+    try {
+        const userId = req.session.user_info.id;
+        const userData = await database.getUser(userId);
+        const timeout = 43200000;
+        const daily = await userData.userCakes.lastDaily;
+
+        if (daily !== null && timeout - (Date.now() - daily) > 0) {
+            return res.status(200).send("<script>alert('Você já coletou seu daily hoje'); window.location.href = '/br/dashboard';</script>");
+        }
+        let amount = Math.floor(Math.random() * 8000);
+        amount = Math.round(amount / 10) * 10;
+
+        switch (userData.userPremium.premiumType) {
+            case "1": {
+                amount = amount * 1.25;
+                break;
+            }
+
+            case "2": {
+                amount = amount * 1.5;
+                break;
+            }
+
+            case "3": {
+                amount = amount * 2;
+                break;
+            }
+        }
+
+        if (amount < 1000) amount = 1000;
+
+        userData.userCakes.balance += amount;
+        userData.userCakes.lastDaily = Date.now();
+        await userData.save().catch(err => logger.log(err));
+
+        res.status(200).json({
+            coins: amount,
+            totalCoins: await userData.userCakes.balance
         });
     } catch (error) {
         next(error);

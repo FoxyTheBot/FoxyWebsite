@@ -1,52 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script> crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../styles/header.css">
   <link rel="stylesheet" href="../styles/utils.css">
   <link rel="stylesheet" href="../styles/dashboard.css">
   <link rel="stylesheet" href="../styles/footer.css">
   <link rel="icon" href="/assets/images/foxycake.png">
   <title>Foxy | Daily</title>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
-<style>
-  header {
-    margin-top: -1.25%;
-  }
-</style>
 
 <body>
   <%- include('../../global/header') %>
   <main>
-    <div class="daily-page">
-      <% if (allowed) { %>
-      <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete" autoplay></audio>
-      <img class="daily_image" src="../assets/images/foxyoculos.png" alt="dashboard">
-      <h1>Você recebeu seu prêmio diário e...</h1>
-      <br>
-      <h2>
-        Ganhou
-        <strong id="coins">
-          <%= coins %>
-        </strong> Cakes
-      </h2>
-      <br>
-      <h3>Agora você possui <%= dbCoins %> Cakes
+    <div class="daily-page" id="firstContent">
+      <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
+      <div class="result">
+        <h1>Prêmio Diário</h1>
         <br>
-      </h3>
-      <br>
-      <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
-      <% } else { %>
-      <img class="daily_image" src="../assets/images/foxycry.png" alt="dashboard">
-      <h1>Você já pegou seu prêmio diário</h1>
-      <br>
-      <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
-      <% } %>
+        <h2>
+          Pegue seu prêmio diário e ganhe Cakes!
+        </h2>
+      </div>
+
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAAihfWsCyK0J3D7y"></div>
+      <a href="#" onclick="receiveDaily()"><button id="daily-btn" class="home_button">Pegar prêmio</button></a>
+      <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
     </div>
+
+    <div class="daily-page" id="secondContent">
+      <div class="result">
+        <h1>Você recebeu seu prêmio diário e...</h1>
+        <br>
+        <h2>
+          Ganhou
+          <strong id="coins">
+            0
+          </strong> Cakes
+        </h2>
+        <br>
+        <h3>Agora você possui 0 Cakes
+          <br>
+        </h3>
+      </div>
+      <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+    </div>
+
     <%- include('../sidebar') %>
   </main>
+
+  <script src="../js/HeaderMobile.js"></script>
+  <script>
+    function receiveDaily() {
+      const captchaResponse = document.querySelector('.cf-turnstile').getAttribute('data-response');
+
+      if (!captchaResponse) {
+        alert('Por favor, complete o CAPTCHA antes de pegar seu prêmio diário.');
+        return;
+      }
+
+      fetch("/br/dashboard/daily/receive", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "cf-turnstile-response": captchaResponse // Envia a resposta do CAPTCHA
+        }
+      }).then(response => response.json()
+        .then(data => {
+          console.log(data);
+          if (data) {
+            document.querySelector("#coins").innerHTML = data.coins.toLocaleString("pt-BR");
+            document.querySelector("h3").innerHTML = `Agora você possui ${data.totalCoins.toLocaleString("pt-BR")} Cakes`;
+            document.querySelector("#shiftcomplete").play();
+
+            const firstContent = document.getElementById('firstContent');
+            const secondContent = document.getElementById('secondContent');
+
+            firstContent.classList.add('fade-out');
+
+            setTimeout(() => {
+              firstContent.style.display = 'none';
+              secondContent.style.display = 'block';
+              setTimeout(() => {
+                secondContent.style.opacity = 1;
+              }, 30);
+            }, 500);
+
+            return;
+          } else {
+            alert("Você já pegou seu prêmio diário");
+          }
+        }));
+    }
+  </script>
 </body>
-<script src="../js/HeaderMobile.js"></script>
 
 </html>
