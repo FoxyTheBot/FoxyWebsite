@@ -9,6 +9,9 @@
     position: fixed !important;
 }
 
+.navigation-bar .entry a {
+    text-transform: uppercase !important;
+}
 
 .mobile {
     display: none;

@@ -43,16 +43,26 @@ router.get("/:lang/support/terms", renderPage("../public/pages/info/privacy.ejs"
 
 router.get("/:lang/store", isAuthenticated, async (req, res, next) => {
     try {
+        res.status(200).render("../public/pages/dashboard/user/store/background.ejs");
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get("/br/store/data", isAuthenticated, async (req, res, next) => {
+    try {
         const userData = await database.getUser(req.session.user_info.id);
         const backgrounds = await database.getAllBackgrounds();
-        res.status(200).render("../public/pages/dashboard/user/store/background.ejs", {
+        const responseData = {
             user: req.session.user_info,
             userData: userData,
             userBackgrounds: userData.userProfile.backgroundList,
             storeContent: {
                 backgrounds: backgrounds
             }
-        });
+        };
+
+        res.status(200).json(responseData);
     } catch (error) {
         next(error);
     }
@@ -217,27 +227,7 @@ router.get("/:lang/decorations/change/:id", isAuthenticated, async (req, res, ne
 });
 
 router.get("/:lang/dashboard", isAuthenticated, async (req, res, next) => {
-    try {
-        const userId = req.session.user_info.id;
-        const userData = await database.getUser(userId);
-        const backgrounds = await database.getAllBackgrounds();
-        const userBackgrounds = [];
-        for (let i = 0; i < userData.userProfile.backgroundList.length; i++) {
-            const background = await database.getBackground(userData.userProfile.backgroundList[i]);
-            userBackgrounds.push(background);
-        }
-
-        res.status(200).render("../public/pages/dashboard/user/backgrounds.ejs", {
-            user: req.session.user_info,
-            userBackgrounds: userBackgrounds,
-            currentBackground: userData.userProfile.background,
-            storeContent: {
-                backgrounds: backgrounds
-            }
-        });
-    } catch (error) {
-        next(error);
-    }
+    res.status(200).render("../public/pages/dashboard/user/backgrounds.ejs");
 });
 
 router.get("/:lang/user/decorations", isAuthenticated, async (req, res, next) => {

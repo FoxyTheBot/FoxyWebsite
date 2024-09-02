@@ -1,40 +1,66 @@
-<DOCTYPE! html>
-  <html>
+<!DOCTYPE html>
+<html>
 
-  <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/styles/header.css" type="text/css">
-    <link rel="icon" href="/assets/images/foxycake.png">
-    <title>Foxy | Loja</title>
-    <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
-  </head>
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/styles/header.css" type="text/css">
+  <link rel="icon" href="/assets/images/foxycake.png">
+  <title>Foxy | Loja</title>
+  <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
+  <link rel="stylesheet" href="/styles/loading.css" type="text/css">
+</head>
 
-  <body>
-    <%- include('../../global/header') %>
-    <main>
-      <div class="itens">
-        <% userBackgrounds.forEach(background=> { %>
-        <div class="item <%= currentBackground === background.id ? 'disabled' : ''  %>" <% if
-                            (currentBackground !==background.id) { %> onclick="change('<%= background.id %>')" <% } %>>
-          <div class="item__icon">
-            <img class="background" src="https://orchid.cakeyfox.live/assets/backgrounds/<%=background.filename%>" onerror="this.src='https://cakey.foxybot.win/assets/backgrounds/<%=background.filename%>'">
-          </div>
+<body>
+  <div id="loadingOverlay" class="loading-overlay">
+    <%- include('../../global/loading') %>
+  </div>
 
-          <% if (currentBackground===background.id) { %>
-          <span class="purchased">Selecionado</span>
-          <% } %>
-        </div>
-        <% }); %>
-      </div>
-      <%- include('../sidebar') %>
-    </main>
+  <main id="content" class="hidden">
+    <!-- Content will be injected here by JavaScript -->
+  </main>
+  <%- include('../sidebar') %>
 
-    <script>
-      function change(backgroundId) {
-        window.location.href = "/br/background/change/" + backgroundId;
-      }
-    </script>
-  </body>
-  <script src="../js/HeaderMobile.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+      fetch('/br/store/data')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('loadingOverlay').classList.add('hidden');
+          document.getElementById('content').classList.remove('hidden');
 
-  </html>
+          const contentDiv = document.getElementById('content');
+          contentDiv.innerHTML = `
+            <div class="itens">
+              ${data.storeContent.backgrounds.map(background => {
+                const isSelected = data.currentBackground === background.id;
+                return `
+                  <div class="item ${isSelected ? 'disabled' : ''}" ${!isSelected ? `onclick="change('${background.id}')" ` : ''}>
+                    <div class="item__icon">
+                      <img class="background" 
+                        src="https://orchid.cakeyfox.live/assets/backgrounds/${background.filename}" 
+                        onerror="this.src='https://cakey.foxybot.win/assets/backgrounds/${background.filename}'" 
+                        alt="${background.name}">
+                    </div>
+                    <div class="item_info">
+                      ${isSelected ? '<span class="purchased">Selecionado</span>' : ''}
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `;
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+          document.getElementById('loadingOverlay').innerText = 'Failed to load content. Please try again later.';
+        });
+    });
+
+    function change(backgroundId) {
+      window.location.href = "/br/background/change/" + backgroundId;
+    }
+  </script>
+</body>
+<script src="../js/HeaderMobile.js"></script>
+
+</html>

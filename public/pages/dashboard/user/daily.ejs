@@ -13,41 +13,52 @@
 </head>
 
 <body>
-  <%- include('../../global/header') %>
   <main>
-    <div class="daily-page" id="firstContent">
-      <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
-      <div class="result">
-        <h1>Prêmio Diário</h1>
-        <br>
-        <h2>
-          Pegue seu prêmio diário e ganhe Cakes!
-        </h2>
-      </div>
-
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAAihfWsCyK0J3D7y"></div>
-      <a href="#" onclick="receiveDaily()"><button id="daily-btn" class="home_button">Pegar prêmio</button></a>
-      <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
-    </div>
-
-    <div class="daily-page" id="secondContent">
-      <div class="result">
-        <h1>Você recebeu seu prêmio diário e...</h1>
-        <br>
-        <h2>
-          Ganhou
-          <strong id="coins">
-            0
-          </strong> Cakes
-        </h2>
-        <br>
-        <h3>Agora você possui 0 Cakes
+    <% if (allowed) { %>
+      <div class="daily-page" id="firstContent">
+        <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
+        <div class="result">
+          <h1>Prêmio Diário</h1>
           <br>
-        </h3>
+          <h2>
+            Pegue seu prêmio diário e ganhe Cakes!
+          </h2>
+        </div>
+  
+        <%- include('../../global/captcha') %>
+        <a href="#" onclick="receiveDaily()"><button id="daily-btn" class="home_button">Pegar prêmio</button></a>
+        <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
       </div>
-      <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
-    </div>
-
+  
+      <div class="daily-page" id="secondContent">
+        <div class="result">
+          <h1>Você recebeu seu prêmio diário e...</h1>
+          <br>
+          <h2>
+            Ganhou
+            <strong id="coins">
+              0
+            </strong> Cakes
+          </h2>
+          <br>
+          <h3>Agora você possui 0 Cakes
+            <br>
+          </h3>
+        </div>
+        <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+      </div>
+    <% } else { %>
+      <div class="daily-page">
+        <div class="result">
+          <h1>Prêmio Diário</h1>
+          <br>
+          <h2>
+            Você já pegou seu prêmio diário.
+          </h2>
+        </div>
+        <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+      </div>
+    <% } %>
     <%- include('../sidebar') %>
   </main>
 
