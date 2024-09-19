@@ -68,7 +68,7 @@ router.get("/br/store/data", isAuthenticated, async (req, res, next) => {
     }
 });
 
-router.get("/br/user/backgrounds/data", async (req, res) => {
+router.get("/br/user/backgrounds/data", isAuthenticated, async (req, res) => {
     const userData = await database.getUser(req.session.user_info.id);
     const backgrounds = await database.getAllBackgrounds();
     const userBackgrounds = [];

@@ -15,49 +15,49 @@
 <body>
   <main>
     <% if (allowed) { %>
-      <div class="daily-page" id="firstContent">
-        <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
-        <div class="result">
-          <h1>Prêmio Diário</h1>
-          <br>
-          <h2>
-            Pegue seu prêmio diário e ganhe Cakes!
-          </h2>
-        </div>
-  
-        <%- include('../../global/captcha') %>
-        <a href="#" onclick="receiveDaily()"><button id="daily-btn" class="home_button">Pegar prêmio</button></a>
-        <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+    <div class="daily-page" id="firstContent">
+      <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
+      <div class="result">
+        <h1>Prêmio Diário</h1>
+        <br>
+        <h2>
+          Pegue seu prêmio diário e ganhe Cakes!
+        </h2>
       </div>
-  
-      <div class="daily-page" id="secondContent">
-        <div class="result">
-          <h1>Você recebeu seu prêmio diário e...</h1>
+
+      <%- include('../../global/captcha') %>
+      <a href="#" onclick="receiveDaily()"><button id="daily-btn" class="home_button">Pegar prêmio</button></a>
+      <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+    </div>
+
+    <div class="daily-page" id="secondContent">
+      <div class="result">
+        <h1>Você recebeu seu prêmio diário e...</h1>
+        <br>
+        <h2>
+          Ganhou
+          <strong id="coins">
+            0
+          </strong> Cakes
+        </h2>
+        <br>
+        <h3>Agora você possui 0 Cakes
           <br>
-          <h2>
-            Ganhou
-            <strong id="coins">
-              0
-            </strong> Cakes
-          </h2>
-          <br>
-          <h3>Agora você possui 0 Cakes
-            <br>
-          </h3>
-        </div>
-        <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+        </h3>
       </div>
+      <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+    </div>
     <% } else { %>
-      <div class="daily-page">
-        <div class="result">
-          <h1>Prêmio Diário</h1>
-          <br>
-          <h2>
-            Você já pegou seu prêmio diário.
-          </h2>
-        </div>
-        <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+    <div class="daily-page">
+      <div class="result">
+        <h1>Prêmio Diário</h1>
+        <br>
+        <h2>
+          Você já pegou seu prêmio diário.
+        </h2>
       </div>
+      <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+    </div>
     <% } %>
     <%- include('../sidebar') %>
   </main>
@@ -65,7 +65,8 @@
   <script src="../js/HeaderMobile.js"></script>
   <script>
     function receiveDaily() {
-      const captchaResponse = document.querySelector('.cf-turnstile').getAttribute('data-response');
+      // Obtém a resposta do CAPTCHA
+      const captchaResponse = turnstile.getResponse(); // Correção: Usa a função correta para obter a resposta
 
       if (!captchaResponse) {
         alert('Por favor, complete o CAPTCHA antes de pegar seu prêmio diário.');
@@ -76,7 +77,7 @@
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "cf-turnstile-response": captchaResponse // Envia a resposta do CAPTCHA
+          "cf-turnstile-response": captchaResponse // Envia a resposta correta do CAPTCHA
         }
       }).then(response => response.json()
         .then(data => {
