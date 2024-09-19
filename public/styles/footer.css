@@ -3,6 +3,7 @@
 footer {
     background-color: #ff4655;
     color: white;
+    z-index: 1000;
     padding: 16px 72px;
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
