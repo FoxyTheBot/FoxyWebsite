@@ -1,29 +1,15 @@
-<img height="100" src="https://cdn.discordapp.com/attachments/1078322762550083736/1078324119906566194/27_Sem_Titulo_20210215123555.png" align="left">
-
 <h1>💻 Foxy Website</h1>
 
 <br>
 
 ### ✨ | Requirements
-- NodeJS v16.x or higher
+- NodeJS v18.x or higher
 - Git
-- npm
+- yarn or npm
 
 ### Configuring the environment
 
 <p> You need to install <a href="https://code.visualstudio.com">Visual Studio Code</a> or another IDE
-
-> Configuring .env
-
-<p>Create a .env file with these values:</p>
-
-```
-CLIENT_SECRET=<your-bot-secret>
-MONGO_URI=<your-mongodb-uri>
-BOT_TOKEN=<your-bot-token>
-REPORT=<your-report-webhook>
-SUGGESTION=<your-suggestion-webhook>
-```
 
 <p>Create a `config.json` file with these values:</p>
 
@@ -61,11 +47,11 @@ $ npm install -g typescript
 $ npm install
 ```
 
-<p>In start.ts you can change the HTTP port, but I prefer 8081</p>
+<p>In start.ts you can change the HTTP port.</p>
 
 ```ts
 import { App } from './client/app';
-const client = new App(8081);
+const client = new App(3000);
 client.start();
 ```
 <p>Compile the server</p>
