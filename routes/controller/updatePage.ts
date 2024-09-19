@@ -414,6 +414,14 @@ router.post("/:lang/dashboard/daily/receive", isAuthenticated, async (req, res, 
 
         userData.userCakes.balance += amount;
         userData.userCakes.lastDaily = Date.now();
+        userData.userTransactions.push({
+            to: req.session.user_info.id,
+            from: config.oauth.clientId,
+            quantity: amount,
+            date: new Date(Date.now()),
+            received: true,
+            type: 'daily'
+        });
         await userData.save().catch(err => logger.log(err));
 
         res.status(200).json({
