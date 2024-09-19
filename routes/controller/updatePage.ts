@@ -163,7 +163,7 @@ router.post("/:lang/store/decorations/confirm/:id", isAuthenticated, async (req,
             type: 'store'
         });
         userData.save().catch(err => logger.log(err));
-        return res.redirect("/br/store");
+        return res.redirect("/br/user/decorations");
     } catch (error) {
         next(error);
     }
@@ -198,7 +198,7 @@ router.post("/:lang/store/confirm/:id", isAuthenticated, async (req, res, next) 
             type: 'store'
         });
         userData.save().catch(err => logger.log(err));
-        return res.redirect("/br/store");
+        return res.redirect("/br/dashboard");
     } catch (error) {
         next(error);
     }
@@ -296,42 +296,42 @@ function getRandomPrize(prizes) {
     }
 }
 
-router.get("/:lang/dashboard/roulette", isAuthenticated, async (req, res, next) => {
-    try {
-        const userData = await database.getUser(req.session.user_info.id);
-        if (userData.roulette.availableSpins <= 0) {
-            return res.status(200).render("../public/pages/dashboard/user/roulette.ejs", {
-                user: req.session.user_info,
-                db: userData,
-                allowed: false,
-                result: null
-            });
-        } else {
-            userData.roulette.availableSpins -= 1;
-            const prize = getRandomPrize(prizes);
-            userData.userCakes.balance += prize;
-            userData.userTransactions.push({
-                to: req.session.user_info.id,
-                from: config.oauth.clientId,
-                quantity: prize,
-                date: new Date(Date.now()),
-                received: true,
-                type: 'roulette'
-            })
-            await userData.save();
+// router.get("/:lang/dashboard/roulette", isAuthenticated, async (req, res, next) => {
+//     try {
+//         const userData = await database.getUser(req.session.user_info.id);
+//         if (userData.roulette.availableSpins <= 0) {
+//             return res.status(200).render("../public/pages/dashboard/user/roulette.ejs", {
+//                 user: req.session.user_info,
+//                 db: userData,
+//                 allowed: false,
+//                 result: null
+//             });
+//         } else {
+//             userData.roulette.availableSpins -= 1;
+//             const prize = getRandomPrize(prizes);
+//             userData.userCakes.balance += prize;
+//             userData.userTransactions.push({
+//                 to: req.session.user_info.id,
+//                 from: config.oauth.clientId,
+//                 quantity: prize,
+//                 date: new Date(Date.now()),
+//                 received: true,
+//                 type: 'roulette'
+//             })
+//             await userData.save();
 
-            return res.status(200).render("../public/pages/dashboard/user/roulette.ejs", {
-                user: req.session.user_info,
-                db: userData,
-                allowed: true,
-                result: prize
-            });
-        }
-    } catch (err) {
-        logger.error(err.message);
-        return res.status(500).send("Erro interno do servidor");
-    }
-});
+//             return res.status(200).render("../public/pages/dashboard/user/roulette.ejs", {
+//                 user: req.session.user_info,
+//                 db: userData,
+//                 allowed: true,
+//                 result: prize
+//             });
+//         }
+//     } catch (err) {
+//         logger.error(err.message);
+//         return res.status(500).send("Erro interno do servidor");
+//     }
+// });
 
 router.get("/riot/connection/status=:status", (req, res) => {
     const status = req.params.status;
