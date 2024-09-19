@@ -1,5 +1,5 @@
 {
-  "name": "foxy-website",
+  "name": "@foxy/website",
   "version": "3.0.0",
   "description": "Website da Foxy feito em TypeScript, JavaScript, ExpressJS e EJS",
   "main": "build/start.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WinG4merBR/BotFoxy.github.io.git"
+    "url": "git+https://github.com/FoxyTheBot/FoxyWebsite"
   },
   "author": "WinG4merBR",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/WinG4merBR/BotFoxy.github.io/issues"
+    "url": "https://github.com/FoxyTheBot/FoxyWebsite/issues"
   },
-  "homepage": "https://github.com/WinG4merBR/BotFoxy.github.io#readme",
+  "homepage": "https://github.com/FoxyTheBot/FoxyWebsite#readme",
   "dependencies": {
     "@types/express": "^4.17.17",
     "@types/multer": "^1.4.7",
