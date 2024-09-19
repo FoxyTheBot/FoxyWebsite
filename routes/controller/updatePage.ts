@@ -99,7 +99,7 @@ router.get("/checkout", isAuthenticated, async (req, res) => {
 
     const checkoutItem = await database.createCheckout(req.session.user_info.id.toString(), itemId.toString());
 
-    res.status(200).redirect(process.env.FP_LOCAL_URL + "checkout/id/" + checkoutItem.checkoutId);
+    res.status(200).redirect(process.env.FP_URL + "checkout/id/" + checkoutItem.checkoutId);
 });
 
 router.get("/:lang/store/decorations", isAuthenticated, async (req, res, next) => {
