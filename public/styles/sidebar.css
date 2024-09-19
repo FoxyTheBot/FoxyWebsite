@@ -51,6 +51,7 @@
 .section-title {
     color: #e7385d;
     font-size: 20px;
+    text-align: left !important;
     font-family: "Poppins";
     margin-left: 18px;
     margin-top: 10px;
