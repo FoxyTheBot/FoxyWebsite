@@ -219,7 +219,7 @@ router.get("/:lang/background/change/:id", isAuthenticated, async (req, res, nex
 
         userData.userProfile.background = background.id;
         userData.save().catch(err => logger.log(err));
-        return res.redirect("/br/dashboard");
+        return res.status(200).json({ success: true });
     } catch (error) {
         next(error);
     }

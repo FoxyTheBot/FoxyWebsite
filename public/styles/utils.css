@@ -38,6 +38,9 @@ main .action__btn .btn {
     transition: background-color .15s ease, color .15s ease;
 }
 
+main .main__image {
+    margin-top: -20%;
+}
 main .store_image {
     width: 50%;
     height: 40%;
@@ -105,13 +108,12 @@ main .action__btn .btn.success:disabled {
 }
 
 main .daily_image {
-    width: 30%;
-    height: 20%;
+    width: 15%;
     text-align: center;
-    margin-top: 5%;
-    margin-left: 52%;
+    margin-top: -5%;
+    margin-left: 35%;
     margin-right: 35%;
-    margin-bottom: 5%;
+    margin-bottom: -3%;
 }
 
 main .daily-page {
@@ -297,7 +299,6 @@ main .action__btn .danger_btn {
 }
 
 @media (max-width: 768px) {
-    /* Ajustes para tablets e telas menores */
     main {
         padding-left: 10%;
         padding-right: 10%;
@@ -315,6 +316,13 @@ main .action__btn .danger_btn {
 
     }
 
+    main .result .daily_image {
+        width: 50%;
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
     main .products {
         flex-direction: column;
         margin-left: 0;

@@ -18,6 +18,7 @@
     <div class="daily-page" id="firstContent">
       <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
       <div class="result">
+        <img src="/assets/emojis/foxy_daily.png" class="daily_image">
         <h1>Prêmio Diário</h1>
         <br>
         <h2>
@@ -32,6 +33,7 @@
 
     <div class="daily-page" id="secondContent">
       <div class="result">
+        <img src="/assets/emojis/foxy_daily.png" class="daily_image">
         <h1>Você recebeu seu prêmio diário e...</h1>
         <br>
         <h2>
@@ -65,8 +67,7 @@
   <script src="../js/HeaderMobile.js"></script>
   <script>
     function receiveDaily() {
-      // Obtém a resposta do CAPTCHA
-      const captchaResponse = turnstile.getResponse(); // Correção: Usa a função correta para obter a resposta
+      const captchaResponse = turnstile.getResponse();
 
       if (!captchaResponse) {
         alert('Por favor, complete o CAPTCHA antes de pegar seu prêmio diário.');
@@ -77,7 +78,7 @@
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "cf-turnstile-response": captchaResponse // Envia a resposta correta do CAPTCHA
+          "cf-turnstile-response": captchaResponse
         }
       }).then(response => response.json()
         .then(data => {
@@ -85,6 +86,7 @@
           if (data) {
             document.querySelector("#coins").innerHTML = data.coins.toLocaleString("pt-BR");
             document.querySelector("h3").innerHTML = `Agora você possui ${data.totalCoins.toLocaleString("pt-BR")} Cakes`;
+            document.querySelector("#shiftcomplete").volume = 0.5;
             document.querySelector("#shiftcomplete").play();
 
             const firstContent = document.getElementById('firstContent');
