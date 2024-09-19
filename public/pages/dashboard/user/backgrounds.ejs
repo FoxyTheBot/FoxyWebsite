@@ -22,7 +22,7 @@
 
   <script>
     window.addEventListener('load', function() {
-      fetch('/br/store/data')
+      fetch('/br/user/backgrounds/data')
         .then(response => response.json())
         .then(data => {
           document.getElementById('loadingOverlay').classList.add('hidden');
@@ -31,7 +31,7 @@
           const contentDiv = document.getElementById('content');
           contentDiv.innerHTML = `
             <div class="itens">
-              ${data.storeContent.backgrounds.map(background => {
+              ${data.userBackgrounds.map(background => {
                 const isSelected = data.currentBackground === background.id;
                 return `
                   <div class="item ${isSelected ? 'disabled' : ''}" ${!isSelected ? `onclick="change('${background.id}')" ` : ''}>

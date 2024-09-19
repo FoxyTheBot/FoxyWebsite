@@ -1,139 +1,72 @@
 <head>
   <link rel="stylesheet" href="/styles/sidebar.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 </head>
 
-<div class="left-sidebar">
+<!-- Sidebar -->
+<div class="left-sidebar" id="sidebar">
   <div class="entries">
-    <a href="/"> <img src="/assets/images/logo.png" alt="Foxy" class="logo">
-    </a>
+    <a href="/"> <img src="/assets/images/logo.png" alt="Foxy" class="logo"> </a>
     <hr class="separator">
     <h2 class="section-title">Opções do usuário</h2>
 
     <a href="/br/daily">
-      <div class="entry">
-        Daily
-      </div>
+      <div class="entry">Daily</div>
     </a>
 
-    <!-- <a href="/br/dashboard/roulette">
-            <div class="entry">
-                Roleta
-            </div>
+    <!-- <a href="/br/dashboard/roulette"> 
+            <div class="entry">Roleta</div>
         </a> -->
 
     <a href="/br/dashboard">
-      <div class="entry">
-        Seus backgrounds
-      </div>
+      <div class="entry">Seus backgrounds</div>
     </a>
 
     <a href="/br/user/decorations">
-      <div class="entry">
-        Suas decorações de avatar
-      </div>
+      <div class="entry">Suas decorações de avatar</div>
     </a>
+
     <hr class="separator">
     <h2 class="section-title">Lojinha da Foxy</h2>
     <a href="/br/store">
-      <div class="entry">
-        Loja de Itens
-      </div>
+      <div class="entry">Loja de Itens</div>
     </a>
-    <!-- <a href="/br/store/layouts">
-            <div class="entry">
-                Layouts de perfil
-            </div>
+
+    <!-- <a href="/br/store/layouts"> 
+            <div class="entry">Layouts de perfil</div>
         </a> -->
+
     <a href="/br/store/decorations">
-      <div class="entry">
-        Decorações de avatar
-      </div>
+      <div class="entry">Decorações de avatar</div>
     </a>
 
     <a href="/br/premium">
-      <div class="entry">
-        Premium e Cakes
-      </div>
+      <div class="entry">Premium e Cakes</div>
     </a>
+
     <hr class="separator">
     <h2 class="section-title">Configurações</h2>
     <a href="/br/confirm">
-      <div class="entry">
-        Deletar conta
-      </div>
+      <div class="entry">Deletar conta</div>
     </a>
     <a href="/br/terms">
-      <div class="entry">
-        Termos de uso
-      </div>
+      <div class="entry">Termos de uso</div>
     </a>
     <a href="/logout">
-      <div class="entry">
-        Sair
-      </div>
+      <div class="entry">Sair</div>
     </a>
   </div>
 </div>
 
-<div class="left-sidebar mobile">
-  <div class="entries">
-    <h2 class="section-title">Opções do usuário</h2>
-    <a href="/br/daily">
-      <div class="entry">
-        Daily
-      </div>
-    </a>
+<button class="sidebar-toggle" id="sidebar-toggle">&#9776;</button>
 
-    <a href="/br/dashboard/roulette">
-      <div class="entry">
-        Roleta
-      </div>
-    </a>
+<script>
+  const sidebarToggle = document.getElementById('sidebar-toggle');
+  const sidebar = document.getElementById('sidebar');
 
-    <a href="/br/user/backgrounds">
-      <div class="entry">
-        Seus backgrounds
-      </div>
-    </a>
-
-    <a href="/br/user/decorations">
-      <div class="entry">
-        Suas decorações de avatar
-      </div>
-    </a>
-    <hr class="separator">
-    <h2 class="section-title">Lojinha da Foxy</h2>
-    <a href="/br/store">
-      <div class="entry">
-        Backgrounds
-      </div>
-    </a>
-    <a href="/br/store/layouts">
-      <div class="entry">
-        Layouts de perfil
-      </div>
-    </a>
-    <a href="/br/store/decorations">
-      <div class="entry">
-        Decorações de avatar
-      </div>
-    </a>
-
-    <a href="/br/premium">
-      <div class="entry">
-        Premium e Cakes
-      </div>
-    </a>
-    <hr class="separator">
-    <a href="/br/confirm">
-      <div class="entry">
-        Deletar conta
-      </div>
-    </a>
-    <a href="/logout">
-      <div class="entry">
-        Sair
-      </div>
-    </a>
-  </div>
-</div>
+  sidebarToggle.addEventListener('click', () => {
+    const isOpen = sidebar.classList.toggle('open');
+    sidebarToggle.setAttribute('aria-expanded', isOpen);
+  });
+</script>

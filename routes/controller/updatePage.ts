@@ -68,6 +68,26 @@ router.get("/br/store/data", isAuthenticated, async (req, res, next) => {
     }
 });
 
+router.get("/br/user/backgrounds/data", async (req, res) => {
+    const userData = await database.getUser(req.session.user_info.id);
+    const backgrounds = await database.getAllBackgrounds();
+    const userBackgrounds = [];
+    for (let i = 0; i < userData.userProfile.backgroundList.length; i++) {
+        const background = await database.getBackground(userData.userProfile.backgroundList[i]);
+        userBackgrounds.push(background);
+    }
+
+    const responseData = {
+        user: req.session.user_info,
+        userBackgrounds: userBackgrounds,
+        currentBackground: userData.userProfile.background,
+        storeContent: {
+            backgrounds: backgrounds
+        }
+    };
+
+    res.status(200).json(responseData);
+})
 // Soon
 
 router.get("/:lang/store/layouts", isAuthenticated, async (req, res, next) => {

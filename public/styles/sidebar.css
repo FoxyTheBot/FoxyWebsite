@@ -3,14 +3,15 @@
 .left-sidebar {
     position: fixed;
     top: 0;
-    left: 0;
     bottom: 0;
+    left: 0;
     width: 350px;
     background-color: #36393f;
-    transition: left .3s ease;
+    transition: left 0.3s ease;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: #4f545c #36393f;    
+    scrollbar-color: #4f545c #36393f;
+    z-index: 900;
 }
 
 .separator {
@@ -28,7 +29,7 @@
     text-decoration: none;
     display: flex;
     justify-content: space-between;
-    transition: background-color .2s ease;
+    transition: background-color 0.2s ease;
 }
 
 .left-sidebar .entry:hover {
@@ -41,10 +42,8 @@
 
 .sidebar-server-icon {
     border-radius: 50%;
-    margin-top: 60px;
-    margin-bottom: -60px;
-    margin-left: 65px;
-    margin-right: 60px;
+    margin: 60px auto 0;
+    display: block;
     width: 130px;
     height: 130px;
 }
@@ -54,22 +53,44 @@
     font-size: 20px;
     font-family: "Poppins";
     margin-left: 20px;
-    text-align: left;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .logo {
     width: 150px;
-    margin-top: -40px;
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-bottom: 10px;
-  }
-  
+    margin: -40px auto 10px;
+    display: block;
+}
+
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+.sidebar-toggle:focus {
+    outline: none;
+}
+
 @media screen and (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+    
     .left-sidebar {
-        display: none;
+        left: -100%;
+        width: 100%;
     }
 
+    .left-sidebar.open {
+        left: 0;
+    }
 }

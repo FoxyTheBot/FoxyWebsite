@@ -292,7 +292,7 @@ main .description {
     margin-top: -30%;
     margin-left: 35%;
     margin-bottom: 5%;
-    margin-right: -40%;    
+    margin-right: -40%;
 }
 
 .item_info h1 {
@@ -306,11 +306,12 @@ main .description {
 .server__info h1 {
     width: 20ch;
     white-space: nowrap;
-    overflow: hidden; 
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.server, .item {
+.server,
+.item {
     margin: 10px;
     padding: 10px 20px;
     color: #fff;
@@ -385,7 +386,8 @@ main .description {
     cursor: not-allowed;
 }
 
-.server, .item:hover {
+.server,
+.item:hover {
     transform: scale(1.1);
     transition: 0.5s;
 }
@@ -906,6 +908,7 @@ main .main__buttons .action__btn .btn {
     transition: background-color .15s ease, color .15s ease;
 }
 
+/* General Popup Styles */
 .popup {
     display: none;
     position: fixed;
@@ -915,13 +918,12 @@ main .main__buttons .action__btn .btn {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: #0f1923;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
 .popup img {
     width: 100%;
-    height: 100%;
+    height: auto;
     border-radius: 10px;
 }
 
@@ -933,7 +935,7 @@ main .main__buttons .action__btn .btn {
     border-radius: 10px;
     max-width: 400px;
     text-align: center;
-    animation: scaleIn 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);;
+    animation: scaleIn 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
 }
 
 .popup-content h2 {
@@ -964,6 +966,53 @@ main .main__buttons .action__btn .btn {
     cursor: pointer;
     border-radius: 5px;
 }
+
+@media (max-width: 768px) {
+    .popup-content {
+        width: 90%;
+        padding: 15px;
+        margin: 20% auto;
+    }
+
+    .popup-content h2 {
+        font-size: 20px;
+    }
+
+    .popup-content h3 {
+        font-size: 14px;
+    }
+
+    .popup-content button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .popup-content {
+        width: 95%;
+        padding: 10px;
+        margin: 25% auto;
+    }
+
+    .popup-content h2 {
+        font-size: 18px;
+    }
+
+    .popup-content h3 {
+        font-size: 12px;
+    }
+
+    .popup-content button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
 
 .close {
     color: #aaa;
@@ -1044,185 +1093,94 @@ main .main__buttons .action__btn .btn.success:disabled {
     cursor: not-allowed;
 }
 
-@media only screen and (min-width: 717px) {
-    main {
-        padding-left: 3%;
-        padding-right: 30%;
-        margin-top: 25%;
-        transition-duration: 0.5s;
+@media (max-width: 768px) {
+
+    /* Estilos gerais */
+    html {
+        background-size: contain;
     }
 
-    main .dashboard_section {
-        margin-top: -10%;
+    .sidebar-toggle {
+        display: block;
     }
 
-    main .main__image {
-        width: 25%;
-        height: 25%;
-        margin-left: 30%;
+    .store-item,
+    .servers,
+    .itens {
+        margin: -90% auto;
+        flex-direction: column;
+        margin-left: 10%;
+        margin-right: -30%;
     }
 
-    main .username {
-        font-size: 35px;
-        margin-left: 30%;
+    .item-name,
+    .title,
+    .section-header,
+    .guild-name {
+        font-size: 24px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
-    main .main__buttons {
-        padding: .45rem 1em;
-        margin-top: -20%;
+    .item-img,
+    .main__image,
+    .current-key__no-key__image,
+    .user-avaliable-keys__no-key__image {
+        width: 50%;
+        height: 50%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    main .main__buttons .action__btn .btn.danger {
-        margin-top: 5%;
-    }
-}
-
-@media only screen and (min-width: 1714px) {
-    main {
-        padding-left: 3%;
-        padding-right: 30%;
-        margin-top: 25%;
-        transition-duration: 0.5s;
+    .modules,
+    .server-features {
+        flex-direction: column;
+        margin: 10% auto;
     }
 
-    main .dashboard_section {
-        margin-top: 10%;
+    .module,
+    .server-feature,
+    .item,
+    .server {
+        min-width: 100%;
+        max-width: 100%;
+        margin: 5% auto;
+        padding: 10px;
     }
 
-    main .main__image {
-        width: 25%;
-        height: 25%;
-    }
-
-    main .username {
-        font-size: 66px;
-    }
-
-    main h3 {
-        color: #fff;
-        font-size: 18px;
-        font-family: sans-serif;
-        margin-left: 5px;
-    }
-
-    main a {
-        list-style: none;
-    }
-
-    main .user-status .bal {
-        margin-left: 9em;
-        font-size: 45px;
-    }
-
-    main .user-status .rep {
-        margin-top: 15%;
-        margin-left: 9em;
-        font-size: 45px;
-    }
-
-    main .bal #value {
-        color: #486be0;
-        margin-right: 35%;
-        font-size: 45px;
-    }
-
-    main .rep #value {
-        color: #486be0;
-        margin-right: 35%;
-        font-size: 45px;
-    }
-
-    main .user__statistics {
+    .guild-join-section,
+    .left-menu {
+        margin-left: 0;
         text-align: center;
-        margin-top: -24%;
-        margin-left: 30%;
     }
 
-    main .aboutme-session .aboutme-title {
-        font-size: 35px
+    .sidebar-logo {
+        width: 100px;
+        height: auto;
+        margin: 5% auto;
     }
 
-    main .main__buttons * {
-        margin-top: -35%;
-    }
-}
-
-@media only screen and (max-width: 985px) {
-    main {
-        padding-left: 3%;
-        padding-right: 30%;
-        margin-top: 25%;
-        transition-duration: 0.5s;
-    }
-
-    main .dashboard_section {
-        margin-top: 5%;
-    }
-
-    main .dashboard-title {
-        color: rgb(255, 255, 255);
-        font-size: 25px;
-        font-family: "Poppins";
-
-    }
-
-    main .main__image {
-        width: 35%;
-        height: 35%;
-        border-radius: 50%;
-        margin-top: -30%;
-        margin-left: 50%;
-        margin-bottom: 5%;
-    }
-
-    main .username {
-        color: rgb(255, 255, 255);
-        font-size: 36px;
-        margin-top: 30%;
-        font-family: "Poppins";
-
-    }
-
-    main h3 {
-        color: #fff;
-        font-size: 18px;
-        font-family: sans-serif;
-        margin-left: 5px;
-    }
-
-    main a {
-        list-style: none;
-    }
-
-    main .user-status {
-        margin-left: 15em;
-    }
-
-    main .user-status .rep {
-        margin-top: 15%;
-    }
-
-    main .bal #value {
-        color: #486be0;
-        margin-right: 10%;
-    }
-
-    main .rep #value {
-        color: #486be0;
-        margin-right: 15%;
-    }
-
-    main .user__statistics {
+    .server__button,
+    .key-manager__add__submit {
+        width: 80%;
+        margin: 10px auto;
         text-align: center;
-        margin-top: -24%;
-        margin-left: 35%;
     }
 
-    main .aboutme-session .aboutme-title {
-        display: none;
+    .item_info h1 {
+        font-size: 18px;
     }
 
-    main .main__buttons {
-        margin-top: -2%;
+    .item_info .purchased,
+    .item_info .cakes {
+        font-size: 14px;
+    }
+
+    .input-description {
+        font-size: 12px;
+    }
+
+    .server__info h1 {
+        font-size: 14px;
     }
 }

@@ -295,3 +295,102 @@ main .action__btn .danger_btn {
     animation: float 6s ease-in-out infinite;
     transition-duration: 0.5s;
 }
+
+@media (max-width: 768px) {
+    /* Ajustes para tablets e telas menores */
+    main {
+        padding-left: 10%;
+        padding-right: 10%;
+        margin-top: 10%;
+    }
+
+    main h1 {
+        font-size: 22px;
+    }
+
+    .daily-page {
+        margin-top: 0;
+        margin-left: 100%;
+        margin-right: 0;
+
+    }
+
+    main .products {
+        flex-direction: column;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .product {
+        width: 100%;
+    }
+
+    main .store_image, main .daily_image {
+        width: 80%;
+        height: auto;
+        margin-top: 5%;
+    }
+
+    main .daily-page .title {
+        font-size: 30px;
+        margin-left: 0;
+    }
+
+    main .user__avatar {
+        width: 60%;
+        height: auto;
+    }
+
+    main h2, main h3, main h4 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding-left: 5%;
+        padding-right: 5%;
+        margin-top: 5%;
+    }
+
+    main h1 {
+        font-size: 20px;
+    }
+
+    main .products {
+        flex-direction: column;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .product {
+        width: 100%;
+    }
+
+    main .store_image, main .daily_image {
+        width: 100%;
+        height: auto;
+    }
+
+    main .daily-page {
+        margin: 0 auto;
+        margin-left: 20%;
+        margin-top: -70%;
+        width: 100%;
+    }
+
+    main .daily-page .title {
+        font-size: 25px;
+        margin-left: 5%;
+        text-align: center;
+    }
+
+    main .user__avatar {
+        width: 70%;
+        height: auto;
+    }
+
+    main h2, main h3, main h4 {
+        font-size: 14px;
+    }
+}
