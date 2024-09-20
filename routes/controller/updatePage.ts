@@ -43,7 +43,7 @@ router.get("/:lang/support/terms", renderPage("../public/pages/info/privacy.ejs"
 
 router.get("/:lang/store", isAuthenticated, async (req, res, next) => {
     try {
-        res.status(200).render("../public/pages/dashboard/user/store/background.ejs");
+        res.status(200).render("../public/pages/dashboard/store/background.ejs");
     } catch (error) {
         next(error);
     }
@@ -107,7 +107,7 @@ router.get("/:lang/store/decorations", isAuthenticated, async (req, res, next) =
         const userData = await database.getUser(req.session.user_info.id);
         const decorations = await database.getAllDecorations();
 
-        res.status(200).render("../public/pages/dashboard/user/store/decoration.ejs", {
+        res.status(200).render("../public/pages/dashboard/store/decoration.ejs", {
             user: req.session.user_info,
             userDecorations: userData.userProfile.decorationList,
             userData: userData,
@@ -247,7 +247,7 @@ router.get("/:lang/decorations/change/:id", isAuthenticated, async (req, res, ne
 });
 
 router.get("/:lang/dashboard", isAuthenticated, async (req, res, next) => {
-    res.status(200).render("../public/pages/dashboard/user/backgrounds.ejs");
+    res.status(200).render("../public/pages/dashboard/user/inventory/backgrounds.ejs");
 });
 
 router.get("/:lang/user/decorations", isAuthenticated, async (req, res, next) => {
@@ -261,7 +261,7 @@ router.get("/:lang/user/decorations", isAuthenticated, async (req, res, next) =>
             userDecorations.push(decoration);
         }
 
-        res.status(200).render("../public/pages/dashboard/user/decorations.ejs", {
+        res.status(200).render("../public/pages/dashboard/user/inventory/decorations.ejs", {
             user: req.session.user_info,
             userDecorations: userDecorations,
             currentDecoration: userData.userProfile.decoration,
@@ -300,7 +300,7 @@ function getRandomPrize(prizes) {
 //     try {
 //         const userData = await database.getUser(req.session.user_info.id);
 //         if (userData.roulette.availableSpins <= 0) {
-//             return res.status(200).render("../public/pages/dashboard/user/roulette.ejs", {
+//             return res.status(200).render("../public/pages/dashboard/user/economy/roulette.ejs", {
 //                 user: req.session.user_info,
 //                 db: userData,
 //                 allowed: false,
@@ -371,7 +371,7 @@ router.get('/:lang/daily', isAuthenticated, async (req, res, next) => {
             allowed = false;
         }
 
-        res.status(200).render("../public/pages/dashboard/user/daily.ejs", {
+        res.status(200).render("../public/pages/dashboard/user/economy/daily.ejs", {
             user: req.session.user_info,
             allowed
         });

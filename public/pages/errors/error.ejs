@@ -10,94 +10,15 @@
   <link rel="icon" href="/assets/images/foxycake.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <link rel="stylesheet" href="/styles/header.css" type="text/css">
-  <link rel="stylesheet" href="/styles/footer.css" type="text/css">
   <link rel="stylesheet" href="/styles/main.css" type="text/css">
-  <title>Foxy | Home</title>
-
-  <meta property="og:type" content="website">
-  <meta content="Foxy" property="og:title" />
-  <meta property="og:site_name" content="Foxy Website">
-  <meta content="Oiii!! Meu nome é Foxy, eu sou um bot de economia para o Discord mas também tenho outras funções :D" property="og:description" />
-  <meta content="https://foxybot.win" property="og:url" />
+  <title>Foxy | Erro</title>
   <meta content="#e7385d" data-react-helmet="true" name="theme-color" />
   <meta content="/assets/images/Foxy.png" property="og:image" />
 
 </head>
 
 <body>
-  <header>
-    <nav class="navigation-bar fixed" data-preload-persist="true" id="navigation-bar">
-      <div class="left-entries">
-        <div class="entry foxy-navbar-logo"><a href="/"><img src="../assets/images/Foxy.png" style="    font-size: 0px;
-                        line-height: 0px;
-                        width: 40px;
-                        height: 40px;
-    
-                        position: absolute;
-                        top: 3px;
-                        border-radius: 100%;"></a></div>
-        <div class="entry"><a href="/br/support" class="menu" data-preload-link="true" data-preload-link-activated="true">
-            Suporte
-          </a></div>
-        <div class="entry"><a href="/br/support/terms" class="commands" data-preload-link="true" data-preload-link-activated="true">
-            Termos
-          </a></div>
-        <div class="entry"><a href="/upvote" class="menu">
-            Votar
-          </a></div>
-        <div class="entry"><a href="/br/premium" class="menu">
-            Premium
-          </a></div>
-        <div class="entry"><a href="/br/commands" class="menu">
-            Comandos
-          </a></div>
-      </div>
-      <div class="right-entries">
-
-        <div class="entry" id="locale-changer-button" style="cursor: default;">
-          </span>
-        </div>
-        <% if (user) { %>
-        <div class="entry">
-          <a href="/br/dashboard" id="login-button"><img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png" style="    font-size: 0px;
-                      line-height: 0px;
-                      width: 40px;
-                      height: 40px;
-    
-                      position: absolute;
-                      top: 3px;
-                      border-radius: 100%;">
-            <div style="    font-size: 0px;
-                      line-height: 0px;
-                      width: 40px;
-                      visibility: hidden;
-                      height: 0px;
-                      display: inline-block;"></div><span style="padding-left: 4px;">
-              <%= user.global_name %>
-            </span>
-          </a>
-        </div>
-
-        <% } else { %>
-        <div class="entry">
-          <a href="/br/dashboard" id="login-button">
-            <div style="    font-size: 0px;
-                                    line-height: 0px;
-                                    width: 40px;
-                                    visibility: hidden;
-                                    height: 0px;
-                                    display: inline-block;"></div><span style="padding-left: 4px;">
-              Entrar
-            </span>
-          </a>
-        </div>
-        <% } %>
-      </div>
-      </div>
-    </nav>
-    <button id="menu" class="mobile">Menu</button>
-  </header>
+  <%- include('../global/header') %>
   <main>
     <h1>Ocorreu um erro!</h1>
     <h3>Algo extremamente errado aconteceu, me desculpe pela inconveniência!</h3>
@@ -105,7 +26,7 @@
 
   </main>
   <script src="../js/HeaderMobile.js"></script>
-
+  <%- include('../global/footer') %>
 </body>
 
 </html>
