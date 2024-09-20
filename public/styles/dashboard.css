@@ -621,16 +621,16 @@ main .page-separator {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     display: none;
     z-index: 1000;
-  }
-  
-  .notification.show {
+}
+
+.notification.show {
     display: block;
-  }
-  
-  .selected {
+}
+
+.selected {
     border: 2px solid #4caf50;
-  }
-  
+}
+
 .notification.error {
     position: fixed;
     bottom: 20px;
@@ -989,6 +989,7 @@ main .main__buttons .action__btn .btn {
 }
 
 @media (max-width: 768px) {
+
     .popup-content {
         width: 90%;
         padding: 15px;
@@ -1115,8 +1116,6 @@ main .main__buttons .action__btn .btn.success:disabled {
 }
 
 @media (max-width: 768px) {
-
-    /* Estilos gerais */
     html {
         background-size: contain;
     }
