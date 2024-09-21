@@ -2,7 +2,8 @@
 <html>
 
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/styles/header.css" type="text/css">
   <link rel="icon" href="/assets/images/foxycake.png">
   <title>Foxy | Seus backgrounds</title>
@@ -18,34 +19,34 @@
   <main id="content" class="hidden">
     <!-- Content will be injected here by JavaScript -->
   </main>
-  
+
   <%- include('../../sidebar') %>
 
-  <div id="notification" class="notification"></div>
+    <div id="notification" class="notification"></div>
 
-  <script>
-    window.addEventListener('load', function() {
-      fetch('/br/user/backgrounds/data')
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('loadingOverlay').classList.add('hidden');
-          document.getElementById('content').classList.remove('hidden');
+    <script>
+      window.addEventListener('load', function () {
+        fetch('/br/user/backgrounds/data')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+            document.getElementById('content').classList.remove('hidden');
 
-          renderBackgrounds(data);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-          document.getElementById('loadingOverlay').innerText = 'Failed to load content. Please try again later.';
-        });
-    });
+            renderBackgrounds(data);
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+            document.getElementById('loadingOverlay').innerText = 'Failed to load content. Please try again later.';
+          });
+      });
 
-    function renderBackgrounds(data) {
-      const contentDiv = document.getElementById('content');
-      contentDiv.innerHTML = `
+      function renderBackgrounds(data) {
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = `
         <div class="itens">
           ${data.userBackgrounds.reverse().map(background => {
-            const isSelected = data.currentBackground === background.id;
-            return `
+          const isSelected = data.currentBackground === background.id;
+          return `
               <div class="item ${isSelected ? 'selected' : ''}" ${!isSelected ? `onclick="change('${background.id}')" ` : ''}>
                 <div class="item__icon">
                   <img class="background" 
@@ -53,57 +54,60 @@
                     onerror="this.src='https://cakey.foxybot.win/assets/backgrounds/${background.filename}'" 
                     alt="${background.name}">
                 </div>
+                <div class="item_info">
+                      <h1 class="item-name">${background.name}</h1>
+                </div>
               </div>
             `;
-          }).join('')}
+        }).join('')}
         </div>
       `;
-    }
+      }
 
-    function change(backgroundId) {
-      fetch(`/br/background/change/${backgroundId}`, { method: 'GET' })
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            return response.text();
-          }
-        })
-        .then(data => {
-          if (typeof data === 'object' && data.success !== undefined) {
-            showNotification('Fundo alterado com sucesso!');
-            console.log('Background changed:', data);
+      function change(backgroundId) {
+        fetch(`/br/background/change/${backgroundId}`, { method: 'GET' })
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              return response.text();
+            }
+          })
+          .then(data => {
+            if (typeof data === 'object' && data.success !== undefined) {
+              showNotification('Fundo alterado com sucesso!');
+              console.log('Background changed:', data);
 
-            fetch('/br/user/backgrounds/data')
-              .then(response => response.json())
-              .then(updatedData => {
-                renderBackgrounds(updatedData);
-              })
-              .catch(error => {
-                console.error('Error fetching updated data:', error);
-                showNotification('Erro ao atualizar a lista de fundos.');
-              });
+              fetch('/br/user/backgrounds/data')
+                .then(response => response.json())
+                .then(updatedData => {
+                  renderBackgrounds(updatedData);
+                })
+                .catch(error => {
+                  console.error('Error fetching updated data:', error);
+                  showNotification('Erro ao atualizar a lista de fundos.');
+                });
 
-          } else {
+            } else {
+              showNotification('Erro ao alterar o fundo. Tente novamente.');
+              console.error('Error changing background:', data);
+            }
+          })
+          .catch(error => {
+            console.error('Error changing background:', error);
             showNotification('Erro ao alterar o fundo. Tente novamente.');
-            console.error('Error changing background:', data);
-          }
-        })
-        .catch(error => {
-          console.error('Error changing background:', error);
-          showNotification('Erro ao alterar o fundo. Tente novamente.');
-        });
-    }
+          });
+      }
 
-    function showNotification(message) {
-      const notification = document.getElementById('notification');
-      notification.textContent = message;
-      notification.classList.add('show');
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 3000);
-    }
-  </script>
+      function showNotification(message) {
+        const notification = document.getElementById('notification');
+        notification.textContent = message;
+        notification.classList.add('show');
+        setTimeout(() => {
+          notification.classList.remove('show');
+        }, 3000);
+      }
+    </script>
 </body>
 <script src="../js/HeaderMobile.js"></script>
 
