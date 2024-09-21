@@ -995,6 +995,22 @@ main .main__buttons .action__btn .btn {
 
 @media (max-width: 768px) {
 
+    #save {
+        color: #fff;
+        display: block;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #359553;
+        border: none;
+        outline: none;
+        font-family: "Poppins";
+        font-size: 14px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        cursor: pointer;
+        margin-left: 10%;
+    }
+
     .popup-content {
         width: 90%;
         padding: 15px;
