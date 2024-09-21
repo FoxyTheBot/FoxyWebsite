@@ -410,7 +410,7 @@ main .description {
 .item__icon img {
     min-width: 100%;
     max-width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: -10px;
 }
 
 .server__info h1 {
@@ -929,7 +929,6 @@ main .main__buttons .action__btn .btn {
     transition: background-color .15s ease, color .15s ease;
 }
 
-/* General Popup Styles */
 .popup {
     display: none;
     position: fixed;
@@ -938,7 +937,7 @@ main .main__buttons .action__btn .btn {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
