@@ -35,7 +35,6 @@
       </div>
     </div>
 
-
     <script>
       window.addEventListener('load', function () {
         fetch('/br/store/data')
@@ -46,37 +45,37 @@
 
             const contentDiv = document.getElementById('content');
             contentDiv.innerHTML = `
-            <div class="itens">
-              ${data.storeContent.backgrounds.reverse().map(background => {
+        <div class="itens">
+          ${data.storeContent.backgrounds.reverse().map(background => {
               if (background.cakes === 0 || background.inactive) {
                 return '';
               }
 
               const backgroundStr = JSON.stringify(background).replace(/"/g, '&quot;');
               const userStr = JSON.stringify(data.user).replace(/"/g, '&quot;');
+              const userDataStr = JSON.stringify(data.userData).replace(/"/g, '&quot;');
 
               return `
-                  <div class="item ${data.userBackgrounds.includes(background.id) ? 'disabled' : ''}" 
-                    ${!data.userBackgrounds.includes(background.id) ? `onclick="showPopup(${backgroundStr}, ${userStr})"` : ''}>
-                    <div class="item__icon">
-                      <img class="background" 
-                        src="https://orchid.cakeyfox.live/assets/backgrounds/${background.filename}" 
-                        onerror="this.src='https://cakey.foxybot.win/assets/backgrounds/${background.filename}'" 
-                        alt="${background.name}">
-                    </div>
-                    <div class="item_info">
-                      <h1 class="item-name">${background.name}</h1>
-                      ${data.userBackgrounds.includes(background.id) ? `
-                        <span class="purchased">💖 Já comprado</span>
-                      ` : `
-                        <span class="cakes">${background.cakes.toLocaleString("pt-BR")} Cakes</span>
-                      `}
-                    </div>
-                  </div>
-                `;
+              <div class="item" onclick="showPopup(${backgroundStr}, ${userStr}, ${userDataStr})">
+                <div class="item__icon">
+                  <img class="background" 
+                    src="https://orchid.cakeyfox.live/assets/backgrounds/${background.filename}" 
+                    onerror="this.src='https://cakey.foxybot.win/assets/backgrounds/${background.filename}'" 
+                    alt="${background.name}">
+                </div>
+                <div class="item_info">
+                  <h1 class="item-name">${background.name}</h1>
+                  ${data.userBackgrounds.includes(background.id) ? `
+                    <span class="purchased">💖 Comprado</span>
+                  ` : `
+                    <span class="cakes">${background.cakes.toLocaleString("pt-BR")} Cakes</span>
+                  `}
+                </div>
+              </div>
+            `;
             }).join('')}
-            </div>
-          `;
+        </div>
+      `;
 
             document.getElementById('user-cakes').innerText = data.userData.userCakes.balance.toLocaleString("pt-BR");
           })
@@ -86,9 +85,10 @@
           });
       });
 
-      function showPopup(background, userData) {
+      function showPopup(background, user, userData) {
         document.getElementById('backgroundId').value = background.id;
-        document.getElementById('popup').style.display = 'block';
+        document.getElementById('popup').classList.add('visible');
+        document.getElementById('popup').classList.remove('hidden');
         document.getElementById('bg-title').innerText = background.name;
         document.getElementById('bg-description').innerText = background.description;
         document.getElementById('popup-img').src = "https://orchid.cakeyfox.live/assets/backgrounds/" + background.filename;
@@ -98,11 +98,25 @@
         };
 
         const userCakes = parseInt(document.getElementById('user-cakes').innerText.replace(/\D/g, ''));
-        document.getElementById('save').disabled = userCakes < background.cakes;
+        const saveButton = document.getElementById('save');
+        if (userData.userProfile.backgroundList.includes(background.id)) {
+          saveButton.disabled = true;
+          saveButton.classList.add('disabled');
+          saveButton.innerText = 'Comprado';
+        } else {
+          saveButton.disabled = userCakes < background.cakes;
+          saveButton.classList.toggle('disabled', saveButton.disabled);
+          saveButton.innerText = saveButton.disabled ? 'Indisponível' : 'Comprar';
+        }
       }
 
       function hidePopup() {
-        document.getElementById('popup').classList.add('hidden');
+        const popup = document.getElementById('popup');
+        popup.classList.remove('visible');
+
+        setTimeout(() => {
+          popup.classList.add('hidden');
+        }, 300);
       }
 
       document.getElementById('purchaseForm').addEventListener('submit', function (event) {
@@ -110,7 +124,7 @@
         this.action = "/br/store/confirm/" + backgroundId;
       });
     </script>
+
 </body>
-<script src="../js/HeaderMobile.js"></script>
 
 </html>

@@ -930,7 +930,6 @@ main .main__buttons .action__btn .btn {
 }
 
 .popup {
-    display: none;
     position: fixed;
     z-index: 9999;
     left: 0;
@@ -939,6 +938,13 @@ main .main__buttons .action__btn .btn {
     height: 100%;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
 }
 
 .popup img {
@@ -949,7 +955,7 @@ main .main__buttons .action__btn .btn {
 
 .popup-content {
     background-color: #fff;
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 20px;
     width: 80%;
     border-radius: 10px;
@@ -1010,7 +1016,13 @@ main .main__buttons .action__btn .btn {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.popup.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 @media (max-width: 480px) {
