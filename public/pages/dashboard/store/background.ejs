@@ -47,7 +47,7 @@
           const contentDiv = document.getElementById('content');
           contentDiv.innerHTML = `
             <div class="itens">
-              ${data.storeContent.backgrounds.map(background => {
+              ${data.storeContent.backgrounds.reverse().map(background => {
             if (background.cakes === 0 || background.inactive) {
               return '';
             }

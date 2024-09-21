@@ -43,7 +43,7 @@
       const contentDiv = document.getElementById('content');
       contentDiv.innerHTML = `
         <div class="itens">
-          ${data.userBackgrounds.map(background => {
+          ${data.userBackgrounds.reverse().map(background => {
             const isSelected = data.currentBackground === background.id;
             return `
               <div class="item ${isSelected ? 'selected' : ''}" ${!isSelected ? `onclick="change('${background.id}')" ` : ''}>
