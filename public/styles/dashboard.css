@@ -287,6 +287,7 @@ main .description {
 
 .itens {
     display: flex;
+    position: relative;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: -30%;
@@ -312,7 +313,7 @@ main .description {
 
 .server,
 .item {
-    margin: 10px;
+    margin: 20px;
     padding: 10px 20px;
     color: #fff;
     font-family: "Poppins";
@@ -1229,5 +1230,11 @@ main .main__buttons .action__btn .btn.success:disabled {
 
     .server__info h1 {
         font-size: 14px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .itens {
+        margin-top: -23%;
     }
 }
