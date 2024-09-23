@@ -84,7 +84,6 @@
             </div>
           `;
 
-          // Verifique se o elemento existe antes de definir innerText
           const userCakesElement = document.getElementById('user-cakes');
           if (userCakesElement) {
             userCakesElement.innerText = data.userData.userCakes.balance.toLocaleString("pt-BR");
