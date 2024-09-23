@@ -28,4 +28,9 @@ router.get("/status", (req, res) => {
 router.get('/upvote', (req, res) => {
     res.redirect('https://top.gg/bot/1006520438865801296');
 });
+
+router.get("/ads.txt", (req, res) => {
+    res.sendFile("ads.txt", { root: "./public" });
+});
+
 export = router; 

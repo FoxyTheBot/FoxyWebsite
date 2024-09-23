@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../styles/header.css">
   <link rel="stylesheet" href="../styles/utils.css">
   <link rel="stylesheet" href="../styles/dashboard.css">
@@ -24,10 +23,11 @@
           Pegue seu prêmio diário e ganhe Cakes!
         </h2>
       </div>
-
       <%- include('../../../global/captcha') %>
       <a href="#" onclick="receiveDaily()"><button id="daily-btn" class="home_button">Pegar prêmio</button></a>
       <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+      <br><br>
+      <%- include('../../../global/ad') %>
     </div>
 
     <div class="daily-page" id="secondContent">
@@ -59,6 +59,8 @@
         </h2>
       </div>
       <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+      <br><br>
+      <%- include('../../../global/ad') %>
     </div>
     <% } %>
     <%- include('../../sidebar') %>
