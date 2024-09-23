@@ -1144,6 +1144,15 @@ main .main__buttons .action__btn .btn.success:disabled {
 }
 
 @media (max-width: 768px) {
+
+    #addBanner {
+        display: none !important;
+    }
+
+    .adsbygoogle {
+        display: none !important;
+    }
+    
     html {
         background-size: contain;
     }
