@@ -53,12 +53,14 @@ router.get("/br/store/data", isAuthenticated, async (req, res, next) => {
     try {
         const userData = await database.getUser(req.session.user_info.id);
         const backgrounds = await database.getAllBackgrounds();
+        const decorations = await database.getAllDecorations();
         const responseData = {
             user: req.session.user_info,
             userData: userData,
             userBackgrounds: userData.userProfile.backgroundList,
             storeContent: {
-                backgrounds: backgrounds
+                backgrounds: backgrounds,
+                decorations: decorations
             }
         };
 
@@ -173,36 +175,55 @@ router.post("/:lang/store/confirm/:id", isAuthenticated, async (req, res, next) 
     try {
         const userId = req.session.user_info.id;
         const userData = await database.getUser(userId);
+        
+        const decoration = await database.getDecoration(req.params.id);
         const background = await database.getBackground(req.params.id);
-        if (!background) {
-            return res.status(404).send("<script>alert('este item não existe'); window.location.href = '/br/store';</script>")
+        
+        const item = decoration || background;
+        const itemType = decoration ? 'decoration' : background ? 'background' : null;
+
+        if (!item) {
+            return res.status(404).send("<script>alert('Este item não existe'); window.location.href = '/br/store';</script>");
         }
 
-        if (userData.userCakes.balance < background.cakes) {
+        if (userData.userCakes.balance < item.cakes) {
             return res.status(200).send("<script>alert('Você não tem cakes suficientes para comprar este item'); window.location.href = '/br/store';</script>");
         }
 
-        if (userData.userProfile.backgroundList.includes(background.id)) {
-            return res.status(200).send("<script>alert('Você já possui este item'); window.location.href = '/br/store';</script>");
+        const alreadyPurchased = (itemType === 'decoration' && userData.userProfile.decorationList.includes(item.id)) ||
+                                 (itemType === 'background' && userData.userProfile.backgroundList.includes(item.id));
+
+        if (alreadyPurchased) {
+            return res.status(200).send(`<script>alert('Você já possui este ${itemType}'); window.location.href = '/br/store';</script>`);
         }
 
-        userData.userProfile.background = background.id;
-        userData.userProfile.backgroundList.push(background.id);
-        userData.userCakes.balance -= background.cakes;
+        userData.userCakes.balance -= item.cakes;
+        if (itemType === 'decoration') {
+            userData.userProfile.decorationList.push(item.id);
+        } else {
+            userData.userProfile.backgroundList.push(item.id);
+        }
+
         userData.userTransactions.push({
             to: config.oauth.clientId,
-            from: req.session.user_info.id,
-            quantity: Number(background.cakes),
-            date: new Date(Date.now()),
+            from: userId,
+            quantity: Number(item.cakes),
+            date: new Date(),
             received: false,
             type: 'store'
         });
-        userData.save().catch(err => logger.log(err));
-        return res.redirect("/br/dashboard");
+
+        await userData.save();
+        if (itemType === 'decoration') {
+            return res.redirect("/br/user/decorations");
+        } else {
+            return res.redirect("/br/dashboard");
+        }
     } catch (error) {
         next(error);
     }
 });
+
 
 router.get("/:lang/background/change/:id", isAuthenticated, async (req, res, next) => {
     try {
