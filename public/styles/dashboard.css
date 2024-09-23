@@ -291,9 +291,9 @@ main .description {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: -30%;
-    margin-left: 35%;
+    margin-left: 25%;
     margin-bottom: 5%;
-    margin-right: -40%;
+    margin-right: -25%;
 }
 
 .item_info h1 {
@@ -1237,4 +1237,12 @@ main .main__buttons .action__btn .btn.success:disabled {
     .itens {
         margin-top: -23%;
     }
+}
+
+#adBanner {
+  position: fixed;
+  right: 0;
+  margin-left: 1%;
+  top: 100px;
+  z-index: 10;
 }
