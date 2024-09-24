@@ -123,6 +123,13 @@ main .daily-page {
     margin-top: -20%;
 }
 
+main .ad {
+    text-align: center;
+    margin-left: 36%;
+    margin-right: -30%;
+    margin-top: 1%;
+}
+
 main .daily-page .title {
     color: #fff;
     font-size: 40px;
@@ -311,9 +318,8 @@ main .action__btn .danger_btn {
 
     .daily-page {
         margin-top: 0;
-        margin-left: 100%;
-        margin-right: 0;
-
+        margin-left: -10%;
+        margin-right: 50%;
     }
 
     main .result .daily_image {

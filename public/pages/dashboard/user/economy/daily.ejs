@@ -13,57 +13,58 @@
 <body>
   <main>
     <% if (allowed) { %>
-    <div class="daily-page" id="firstContent">
-      <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
-      <div class="result">
-        <img src="/assets/emojis/foxy_daily.png" class="daily_image">
-        <h1>Prêmio Diário</h1>
-        <br>
-        <h2>
-          Pegue seu prêmio diário e ganhe Cakes!
-        </h2>
-      </div>
-      <%- include('../../../global/captcha') %>
-      <a href="#" onclick="receiveDaily()"><button id="daily-btn" class="home_button">Pegar prêmio</button></a>
-      <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
-      <br><br>
-      <%- include('../../../global/ad') %>
-    </div>
-
-    <div class="daily-page" id="secondContent">
-      <div class="result">
-        <img src="/assets/emojis/foxy_daily.png" class="daily_image">
-        <h1>Você recebeu seu prêmio diário e...</h1>
-        <br>
-        <h2>
-          Ganhou
-          <strong id="coins">
-            0
-          </strong> Cakes
-        </h2>
-        <br>
-        <h3>Agora você possui 0 Cakes
+      <div class="daily-page" id="firstContent">
+        <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
+        <div class="result">
+          <img src="/assets/emojis/foxy_daily.png" class="daily_image">
+          <h1>Prêmio Diário</h1>
           <br>
-        </h3>
+          <h2>
+            Pegue seu prêmio diário e ganhe Cakes!
+          </h2>
+        </div>
+        <%- include('../../../global/captcha') %>
+          <a href="#" onclick="receiveDaily()"><button id="daily-btn" class="home_button">Pegar prêmio</button></a>
+          <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+          <br><br>
+
       </div>
-      <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
-    </div>
-    <% } else { %>
-    <div class="daily-page">
-      <div class="result">
-        <img src="/assets/emojis/foxy_daily.png" class="daily_image">
-        <h1>Prêmio Diário</h1>
-        <br>
-        <h2>
-          Você já pegou seu prêmio diário.
-        </h2>
+      <div class="daily-page" id="secondContent">
+        <div class="result">
+          <img src="/assets/emojis/foxy_daily.png" class="daily_image">
+          <h1>Você recebeu seu prêmio diário e...</h1>
+          <br>
+          <h2>
+            Ganhou
+            <strong id="coins">
+              0
+            </strong> Cakes
+          </h2>
+          <br>
+          <h3>Agora você possui 0 Cakes
+            <br>
+          </h3>
+        </div>
+        <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
       </div>
-      <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
-      <br><br>
-      <%- include('../../../global/ad') %>
-    </div>
-    <% } %>
-    <%- include('../../sidebar') %>
+      <% } else { %>
+        <div class="daily-page">
+          <div class="result">
+            <img src="/assets/emojis/foxy_daily.png" class="daily_image">
+            <h1>Prêmio Diário</h1>
+            <br>
+            <h2>
+              Você já pegou seu prêmio diário.
+            </h2>
+          </div>
+          <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+          <br><br>
+        </div>
+        <% } %>
+        <div class="ad">
+          <%- include("../../../global/ad") %>
+        </div>
+          <%- include('../../sidebar') %>
   </main>
 
   <script src="../js/HeaderMobile.js"></script>
@@ -114,7 +115,8 @@
 </body>
 <style>
   .adsbygoogle {
-  display: unset !important;
-}
+    display: unset !important;
+  }
 </style>
+
 </html>
