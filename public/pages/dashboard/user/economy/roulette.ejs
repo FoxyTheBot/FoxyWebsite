@@ -4,11 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/utils.css">
   <link rel="stylesheet" href="/styles/dashboard.css">
   <link rel="stylesheet" href="/styles/footer.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-E3J7N4BP8L');
+  </script>
   <link rel="icon" href="/assets/images/foxycake.png">
   <title>Foxy | Roleta</title>
 
@@ -18,46 +28,46 @@
   <main>
     <div class="daily-page">
       <% if (allowed) { %>
-      <audio src="/assets/audios/shiftcomplete.mp3" id="shiftcomplete" autoplay></audio>
-      <img class="daily_image" src="/assets/images/foxyoculos.png" alt="roulette">
-      <h1>Você ganhou um prêmio na roleta!</h1>
-      <br>
-      <h2>
-        <strong id="coins">
-          <%= result %> Cakes
-        </strong>
-      </h2>
-      <br>
-      <% if (db.roulette.availableSpins> 0) { %>
-      <a href="/br/dashboard/roulette"><button class="home_button">Girar novamente (<%=
-                                    db.roulette.availableSpins %>)</button></a>
-      <% } else { %>
-      <a href="#"><button class="home_button disabled">Girar novamente (<%=
-                                        db.roulette.availableSpins %>)</button></a>
-      <a href="/br/premium"><button class="home_button">Comprar giros</button></a>
-      <style>
-        .home_button.disabled {
-          opacity: .5;
-          cursor: not-allowed;
-        }
-      </style>
-      <% } %>
-      <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
-      <% } else { %>
-      <img class="daily_image" src="/assets/images/foxycry.png" alt="no spins">
-      <h1>Você não tem giros restantes</h1>
-      <br>
-      <a href="#"><button class="home_button disabled">Girar novamente (<%=
-                                                db.roulette.availableSpins %>)</button></a>
-      <a href="/br/premium"><button class="home_button">Comprar giros</button></a>
-      <style>
-        .home_button.disabled {
-          opacity: .5;
-          cursor: not-allowed;
-        }
-      </style>
-      <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
-      <% } %>
+        <audio src="/assets/audios/shiftcomplete.mp3" id="shiftcomplete" autoplay></audio>
+        <img class="daily_image" src="/assets/images/foxyoculos.png" alt="roulette">
+        <h1>Você ganhou um prêmio na roleta!</h1>
+        <br>
+        <h2>
+          <strong id="coins">
+            <%= result %> Cakes
+          </strong>
+        </h2>
+        <br>
+        <% if (db.roulette.availableSpins> 0) { %>
+          <a href="/br/dashboard/roulette"><button class="home_button">Girar novamente (<%= db.roulette.availableSpins
+                %>)</button></a>
+          <% } else { %>
+            <a href="#"><button class="home_button disabled">Girar novamente (<%= db.roulette.availableSpins %>
+                  )</button></a>
+            <a href="/br/premium"><button class="home_button">Comprar giros</button></a>
+            <style>
+              .home_button.disabled {
+                opacity: .5;
+                cursor: not-allowed;
+              }
+            </style>
+            <% } %>
+              <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
+              <% } else { %>
+                <img class="daily_image" src="/assets/images/foxycry.png" alt="no spins">
+                <h1>Você não tem giros restantes</h1>
+                <br>
+                <a href="#"><button class="home_button disabled">Girar novamente (<%= db.roulette.availableSpins %>
+                      )</button></a>
+                <a href="/br/premium"><button class="home_button">Comprar giros</button></a>
+                <style>
+                  .home_button.disabled {
+                    opacity: .5;
+                    cursor: not-allowed;
+                  }
+                </style>
+                <a href="/br/dashboard"><button class="home_button">Voltar</button></a>
+                <% } %>
     </div>
     <%- include('../../sidebar') %>
   </main>

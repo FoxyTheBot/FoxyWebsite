@@ -8,34 +8,44 @@
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/invite.css" />
   <link rel="stylesheet" href="/styles/footer.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-E3J7N4BP8L');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+    crossorigin="anonymous"></script>
   <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 
 <body>
   <%- include('../global/header') %>
 
-  <main>
-    <h1 class="commands-title">Precisa de ajuda?</h1>
-    <h3 class="support-description">Está precisando de ajuda? Tire suas dúvidas no meu servidor de suporte, caso
-      queira fazer um apelo de ban <a href="/br/support/ban-appeal">clique aqui</a></h3>
+    <main>
+      <h1 class="commands-title">Precisa de ajuda?</h1>
+      <h3 class="support-description">Está precisando de ajuda? Tire suas dúvidas no meu servidor de suporte, caso
+        queira fazer um apelo de ban <a href="/br/support/ban-appeal">clique aqui</a></h3>
 
-    <h2 class="server-title">Servidor de suporte</h2>
-    <h3 class="server-description">Precisa de ajuda? Entre no meu servidor de suporte e tire suas dúvidas, também
-      faça novas amizades</h3>
-    <div class="discord-invite-wrapper">
-      <div class="discord-invite-title">Você foi convidado(a) a entrar em um servidor</div>
-      <div class="discord-server-details">
-        <div class="discord-server-icon"><img src="../assets/icons/supportserver.png"></div>
-        <div class="discord-server-info">
-          <div class="discord-server-name">Cafeteria da Foxy ☕</div>
+      <h2 class="server-title">Servidor de suporte</h2>
+      <h3 class="server-description">Precisa de ajuda? Entre no meu servidor de suporte e tire suas dúvidas, também
+        faça novas amizades</h3>
+      <div class="discord-invite-wrapper">
+        <div class="discord-invite-title">Você foi convidado(a) a entrar em um servidor</div>
+        <div class="discord-server-details">
+          <div class="discord-server-icon"><img src="../assets/icons/supportserver.png"></div>
+          <div class="discord-server-info">
+            <div class="discord-server-name">Cafeteria da Foxy ☕</div>
+          </div>
+          <a href="https://discord.gg/6mG2xDtuZD" target="_blank" class="discord-server-button">Juntar-se</a>
         </div>
-        <a href="https://discord.gg/6mG2xDtuZD" target="_blank" class="discord-server-button">Juntar-se</a>
       </div>
-    </div>
-    <%- include("InfoSidebar.ejs"); %>
-    </div>
-  </main>
+      <%- include("InfoSidebar.ejs"); %>
+        </div>
+    </main>
 </body>
 <script src="../js/HeaderMobile.js"></script>
 

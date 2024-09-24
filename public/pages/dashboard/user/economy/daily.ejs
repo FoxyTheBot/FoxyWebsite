@@ -6,6 +6,15 @@
   <link rel="stylesheet" href="../styles/utils.css">
   <link rel="stylesheet" href="../styles/dashboard.css">
   <link rel="icon" href="/assets/images/foxycake.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-E3J7N4BP8L');
+  </script>
   <title>Foxy | Daily</title>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
@@ -61,9 +70,9 @@
           <br><br>
         </div>
         <% } %>
-        <div class="ad">
-          <%- include("../../../global/ad") %>
-        </div>
+          <div class="ad">
+            <%- include("../../../global/ad") %>
+          </div>
           <%- include('../../sidebar') %>
   </main>
 
