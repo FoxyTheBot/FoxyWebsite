@@ -197,6 +197,10 @@ main a .home_button {
     animation: float 5s ease-in-out infinite;
 }
 
+main a .home_button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 main h1 {
     color: rgb(255, 255, 255);
     font-size: 25px;
