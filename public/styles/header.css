@@ -9,6 +9,21 @@
     text-transform: uppercase !important;
 }
 
+.navigation-bar .entry {
+    float: left;
+    display: block;
+    color: #f2f2f2 !important;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 17px;
+    transition: .5s;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+}
+
+
 .mobile {
     display: none;
     color: #fff;
