@@ -4,6 +4,7 @@ import config from '../../config.json';
 import { database } from '../../client/app';
 import { logger } from '../../structures/logger';
 import dotenv from 'dotenv';
+import User from '../../types/user';
 
 dotenv.config();
 
@@ -44,7 +45,7 @@ router.get('/login/callback', async (req, res) => {
             },
         });
 
-        const result: any = await userResult.json();
+        const result: User = await userResult.json() as User;
         const userData = await database.getUser(result.id);
 
         req.session.user_info = {
