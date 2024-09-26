@@ -13,6 +13,14 @@ html {
     height: 100%;
 }
 
+.command-category-name {
+    text-align: center;
+    font-family: "Poppins";
+    font-size: 30px;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
 main {
     padding-left: 25%;
     padding-right: 5%;

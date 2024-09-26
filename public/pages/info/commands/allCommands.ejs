@@ -1,53 +1,82 @@
-<DOCTYPE html>
-  <html>
+<!DOCTYPE html>
+<html>
 
-  <head>
+<head>
     <title>Foxy | Commands</title>
     <link rel="stylesheet" href="/styles/header.css">
     <link rel="stylesheet" href="/styles/readonly.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"></script>
     <link rel="icon" href="/assets/images/foxycake.png">
-  </head>
+</head>
 
-  <body>
+<body>
     <%- include('../../global/header') %>
 
-    <main>
-      <h1 class="commands-title">Comandos</h1>
+    <script>
+        const translations = {
+            pt: {
+                roleplay: "Roleplay",
+                fun: "Diversão",
+                games: "Jogos",
+                economy: "Economia",
+                image: "Imagens",
+                noCategory: "Sem Categoria",
+                social: "Social",
+                util: "Utilitários",
+            },
+            en: {
+                roleplay: "Roleplay",
+                fun: "Fun",
+                games: "Games",
+                economy: "Economy",
+                noCategory: "No Category",
+                image: "Images",
+                social: "Social",
+                util: "Utilities",
+            }
+        };
 
-
-      <table>
-        <tr>
-          <th>Comando</th>
-          <th>Descrição</th>
-        </tr>
-        <% allCommands.forEach(command=> { %>
-        <tr>
-          <td>
-            /<%= command.commandName %>
-          </td>
-          <td>
-            <%= command.description %>
-          </td>
-        </tr>
-        <% }); %>
-      </table>
-
-      <script>
-        function toggleCategory(category) {
-          var wrapper = document.getElementById('wrapper-' + category);
-          if (wrapper.style.maxHeight && wrapper.style.maxHeight !== '0px') {
-            wrapper.style.maxHeight = '0px';
-          } else {
-            wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
-          }
+        function translate(categoryId, lang) {
+            const langTranslations = translations[lang] || translations['en'];
+            return langTranslations[categoryId] || categoryId;
         }
-      </script>
-      <%- include("commandSidebar.ejs") %>
+    </script>
+
+    <main>
+        <h1 class="commands-title">Comandos</h1>
+
+        <% 
+        const categories = [...new Set(allCommands.map(command => command.category))];
+        const lang = 'pt';
+        categories.forEach(category => { 
+        %>
+        <div class="command-category">
+            <h2 class="command-category-name"><script>document.write(translate('<%= category %>', '<%= lang %>'));</script></h2>
+            <div id="wrapper-<%= category %>" class="command-wrapper">
+                <table>
+                    <tr>
+                        <th>Comando</th>
+                        <th>Descrição</th>
+                    </tr>
+                    <% allCommands.filter(command => command.category === category).forEach(command => { %>
+                    <tr>
+                        <td>
+                            <%= (command.commandName === 'View User Profile' || command.commandName === 'View VALORANT Stats') ? command.commandName : '/' + command.commandName %>
+                        </td>
+                        <td>
+                            <%= command.description %>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </table>
+            </div>
+        </div>
+        <% }); %>
     </main>
-  </body>
+    <%- include('./commandSidebar') %>
+</body>
 
-  <script src="../js/HeaderMobile.js"></script>
+<script src="../js/HeaderMobile.js"></script>
 
-  </html>
+</html>
