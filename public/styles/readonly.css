@@ -330,44 +330,80 @@ main .support-description {
 }
 
 table {
-    border-collapse: collapse;
-    width: 100%;
+    border-collapse: separate;
+    width: 90%;
     margin: 20px auto;
-    background-color: #fff;
-    font-family: "Poppins";
-    border-radius: 5px;
+    background-color: #282a2e;
+    font-family: "Poppins", sans-serif;
+    border-radius: 10px;
     overflow: hidden;
-}
-
-th,
-td {
-    padding: 8px;
-    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-spacing: 0;
 }
 
 th {
     background-color: #e7385d;
     color: #fff;
+    padding: 12px 15px;
+    font-weight: 600;
+    font-size: 1.1em;
+    text-align: left;
+    position: sticky;
+    top: 0;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+td {
+    padding: 12px 15px;
+    text-align: left;
+    background-color: #3b3f45;
+    color: #fff;
+    border-bottom: 1px solid #464a4f;
 }
 
-.command-name {
+tr:nth-child(even) td {
+    background-color: #353a3f;
+}
+
+tr:hover td {
+    background-color: #464a4f;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.commands-title {
     text-align: center;
-    font-family: Montserrat;
-    font-size: 20px;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    font-family: "Poppins", sans-serif;
+    font-size: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #fff;
 }
 
-.command-description {
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 15px;
-    margin-top: 1%;
-    margin-bottom: 5%;
+td:first-child {
+    font-weight: 500;
+    font-size: 1em;
+}
+
+td:last-child {
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+a {
+    text-decoration: none;
+    color: #e7385d;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 768px) {
+    table {
+        width: 100%;
+        font-size: 0.9em;
+    }
+    
+    th, td {
+        padding: 10px 12px;
+    }
 }
 
 main .tos {
