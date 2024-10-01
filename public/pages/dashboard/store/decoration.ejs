@@ -20,6 +20,17 @@
   </script>
   <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
   <link rel="stylesheet" href="/styles/loading.css" type="text/css">
+  <style>
+    #popup-img {
+      position: absolute;
+      top: -35%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+  </style>
 </head>
 
 <body>
@@ -43,7 +54,13 @@
       <div class="popup-content">
         <span class="close" onclick="hidePopup()">&times;</span>
         <h2 id="bg-title"></h2>
-        <img id="popup-img" src="" alt="Background Image">
+        <br><br>
+        <div class="avatar-wrapper">
+          <img id="popup-img" src="" alt="Decoration Image">
+          <img id="user-avatar" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png?size=128"
+            alt="User Avatar">
+        </div>
+
         <h3 id="bg-description"></h3>
         <h3>Você possui <strong style="color: #e7385d;" id="user-cakes"></strong> Cakes</h3>
         <form id="purchaseForm" method="POST">
@@ -52,6 +69,7 @@
         </form>
       </div>
     </div>
+
 
     <script>
       window.addEventListener('load', function () {
