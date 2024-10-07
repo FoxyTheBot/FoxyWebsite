@@ -18,3 +18,5 @@ build
 .env
 yarn.lock
 config.json
+
+public/styles

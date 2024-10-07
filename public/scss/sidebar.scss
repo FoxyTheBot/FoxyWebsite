@@ -1,15 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
+$sidebar-background: #36393f;
+$separator-color: #2f3136;
+$default-color: #e7385d;
+
 .left-sidebar {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     width: 330px;
-    background-color: #36393f;
+    background-color: $sidebar-background;
     transition: left 0.3s ease;
     overflow-y: auto;
     scrollbar-width: thin;
+    box-shadow: 0 0 10px $default-color;
     scrollbar-color: #4f545c #36393f;
     z-index: 900;
 }
@@ -17,7 +22,7 @@
 .separator {
     height: 1px;
     width: 100%;
-    background-color: #2f3136;
+    background-color: $separator-color;
     margin: 10px 0;
 }
 
@@ -49,7 +54,7 @@
 }
 
 .section-title {
-    color: #e7385d;
+    color: $default-color;
     font-size: 20px;
     text-align: left !important;
     font-family: "Poppins";

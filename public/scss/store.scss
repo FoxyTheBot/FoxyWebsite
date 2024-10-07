@@ -1,16 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
+:root {
     background-image: url("../assets/images/background.png"), linear-gradient(90deg, #0f1923, #0f1923);
     background-size: cover;
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .store-info {
@@ -28,13 +25,6 @@ p {
     margin-top: 10px;
 }
 
-main .title {
-    color: #fff;
-    font-size: 35px;
-    margin-bottom: 1%;
-    font-family: "Poppins";
-}
-
 main {
     padding-left: 20%;
     padding-right: 25%;
@@ -42,38 +32,47 @@ main {
     margin-left: 10%;
     transition-duration: 0.5s;
     text-align: center;
-}
 
-main  .action__btn .btn {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    outline: none;
-    font-family: Roboto, sans-serif;
-    line-height: 20px;
-    font-size: 17px;
-    color: #fff;
-    min-width: 36px;
-    margin-left: 1.5%;
-    padding: .5rem 1rem;
-    margin-top: 10%;
-    box-sizing: border-box;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    background: #7289da;
-    transition: background-color .15s ease, color .15s ease;
-}
+    .title {
+        color: #fff;
+        font-size: 35px;
+        margin-bottom: 1%;
+        font-family: "Poppins";
+    }
 
-main .store_image {
-    width: 50%;
-    height: 40%;
-    text-align: left;
-    margin-left: -170%;
-    margin-top: -300%;
+    .action__btn {
+        .btn {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            outline: none;
+            font-family: Roboto, sans-serif;
+            line-height: 20px;
+            font-size: 17px;
+            color: #fff;
+            min-width: 36px;
+            margin-left: 1.5%;
+            padding: .5rem 1rem;
+            margin-top: 10%;
+            box-sizing: border-box;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            background: #7289da;
+            transition: background-color .15s ease, color .15s ease;
+        }
+    }
+
+    .store_image {
+        width: 50%;
+        height: 40%;
+        text-align: left;
+        margin-left: -170%;
+        margin-top: -300%;
+    }
 }
 
 .items {
@@ -117,9 +116,13 @@ main .store_image {
     cursor: default;
 }
 
-.item__info .plan-title {
-    margin-bottom: 10px;
-    font-size: 18px;
+.item__info {
+    .plan-title {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+
 }
 
 .item:hover {
