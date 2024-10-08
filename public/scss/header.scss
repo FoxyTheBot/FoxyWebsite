@@ -1,5 +1,6 @@
 @import url(https://lotus.cakeyfox.live/styles/header.css);
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
 .navigation-bar {
     position: fixed !important;
@@ -16,7 +17,7 @@
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
-    font-size: 17px;
+    font: 500 17px Oswald;
     transition: .5s;
     cursor: pointer;
     white-space: nowrap;
