@@ -564,17 +564,6 @@ router.get('/:lang/support/ban-appeal', async (req, res, next) => {
     }
 });
 
-router.post("/:lang/submit", isAuthenticated, async (req, res, next) => {
-    try {
-        const userData = await database.getUser(req.session.user_info.id);
-        userData.aboutme = req.body.aboutme;
-        userData.save().catch(err => logger.log(err));
-        return res.redirect('/dashboard');
-    } catch (error) {
-        next(error);
-    }
-});
-
 router.get('/:lang/error', (req, res) => {
     res.status(200).render("../public/pages/errors/error.ejs", {
         user: req.session.user_info
