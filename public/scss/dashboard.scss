@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 @import "components/background";
 @import "components/default-padding";
+@import "components/empty-content";
+@import "components/inline-emoji";
+@import "components/forms";
 
 :root {
     --primary-color: #ff4655;
@@ -105,100 +108,7 @@ main {
         margin-left: 39%;
     }
 
-    /* Key Manager */
-    .key-manager__add__submit {
-        display: block;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background-color: #7289da;
-        border: none;
-        outline: none;
-        font-family: sans-serif;
-        font-size: 14px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-        cursor: pointer;
-        color: #fff;
-    }
-
-    .current-key {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .current-key__no-key__image {
-        width: 15%;
-        height: 15%;
-        margin-top: 1%;
-        margin-left: 50%;
-        margin-bottom: -17%;
-        filter: grayscale(100%);
-    }
-
-    .user-avaliable-keys__no-key__image {
-        width: 15%;
-        height: 19%;
-        margin-top: 1%;
-        margin-left: 67%;
-        margin-bottom: -17%;
-        filter: grayscale(100%);
-    }
-
-    .current-key__no-key {
-        font-family: sans-serif;
-        font-size: 20px;
-        color: #fff;
-        text-align: center;
-        margin-left: 50%;
-        margin-top: 20%;
-    }
-
-    .current-key__content__key,
-    .current-key__content__expires {
-        font-family: sans-serif;
-        font-size: 14px;
-        color: #fff;
-    }
-
-    .key-manager__add__input {
-        display: block;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background-color: #fff;
-        border: none;
-        outline: none;
-        font-family: sans-serif;
-        font-size: 14px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-    }
-
-    .current-key__content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-
-    /* Forms and Texts */
-    form select {
-        display: block;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background-color: #fff;
-        border: none;
-        outline: none;
-        font-family: sans-serif;
-        font-size: 14px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-    }
-
-    form select:disabled {
-        opacity: .5;
-    }
+    /* Texts */
 
     h3 {
         color: #fff;
@@ -218,12 +128,6 @@ main {
     margin-top: -30%;
     margin-right: -1%;
     margin-bottom: -5%;
-}
-
-.inline-emoji {
-    height: 1.5em;
-    position: relative;
-    top: 0.3em;
 }
 
 .itens {
