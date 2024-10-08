@@ -151,27 +151,6 @@ main {
     }
 }
 
-#save {
-    color: #fff;
-    display: block;
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #359553;
-    border: none;
-    outline: none;
-    font-family: var(--font-family);
-    font-size: 14px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    cursor: pointer;
-    margin-left: 36%;
-
-    &:disabled {
-        opacity: .5;
-        cursor: not-allowed;
-    }
-}
-
 .server,
 .item {
     margin: 20px;
@@ -272,45 +251,6 @@ textarea {
     z-index: 0;
 }
 
-
-@media (max-width: 768px) {
-
-    #save {
-        color: #fff;
-        display: block;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background-color: #359553;
-        border: none;
-        outline: none;
-        font-family: var(--font-family);
-        font-size: 14px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-        cursor: pointer;
-        margin-left: 10%;
-    }
-
-    .popup-content {
-        width: 90%;
-        padding: 15px;
-        margin: 20% auto;
-    }
-
-    .popup-content h2 {
-        font-size: 20px;
-    }
-
-    .popup-content h3 {
-        font-size: 14px;
-    }
-
-    .popup-content button {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
-}
-
 .hidden {
     display: none !important;
 }
@@ -320,28 +260,6 @@ textarea {
     transform: translateY(0);
     pointer-events: auto;
 }
-
-@media (max-width: 480px) {
-    .popup-content {
-        width: 95%;
-        padding: 10px;
-        margin: 25% auto;
-    }
-
-    .popup-content h2 {
-        font-size: 18px;
-    }
-
-    .popup-content h3 {
-        font-size: 12px;
-    }
-
-    .popup-content button {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-}
-
 
 .close {
     color: #aaa;

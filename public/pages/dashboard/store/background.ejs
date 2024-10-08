@@ -47,7 +47,7 @@
         <form id="purchaseForm" method="POST">
           <input type="hidden" name="backgroundId" id="backgroundId">
           <div class="popup-buttons">
-            <button id="save">Comprar</button>
+            <button id="save" type="submit">Comprar</button>
           </div>
         </form>
       </div>
@@ -127,7 +127,6 @@
         } else {
           saveButton.disabled = userCakes < background.cakes;
           saveButton.classList.toggle('disabled', saveButton.disabled);
-          saveButton.innerText = saveButton.disabled ? 'Indisponível' : 'Comprar';
         }
       }
 
