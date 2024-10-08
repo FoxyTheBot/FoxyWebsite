@@ -4,6 +4,10 @@ $sidebar-background: #36393f;
 $separator-color: #2f3136;
 $default-color: #e7385d;
 
+* {
+    text-decoration: none !important;
+}
+
 .left-sidebar {
     position: fixed;
     top: 0;
@@ -23,7 +27,6 @@ $default-color: #e7385d;
         color: #fff;
         font-family: "Poppins";
         font-size: 14px;
-        text-decoration: none !important;
         display: flex;
         justify-content: space-between;
         transition: background-color 0.2s ease;
@@ -69,10 +72,6 @@ $default-color: #e7385d;
         display: block;
     }
 }
-
-
-
-
 
 .sidebar-toggle {
     display: none;

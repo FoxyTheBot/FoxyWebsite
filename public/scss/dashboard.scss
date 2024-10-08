@@ -7,6 +7,7 @@
 @import "components/forms";
 @import "components/notifications";
 @import "components/popup";
+@import "components/buttons";
 
 :root {
     --primary-color: #ff4655;
@@ -42,75 +43,6 @@ main {
         margin-top: -30%;
         margin-right: -1%;
         margin-bottom: -1%;
-    }
-
-    /* Buttons */
-
-
-    .main__buttons {
-        margin-top: -20%;
-        margin-left: 39%;
-
-        .action__btn {
-            &.danger {
-                background: #ed4245;
-
-                &:hover {
-                    background: #d53b3e;
-                }
-            }
-
-            &.primary {
-                background: #5865f2;
-
-                &:disabled {
-                    background: #4752c4;
-                    opacity: .5;
-                    cursor: not-allowed;
-                }
-
-                &:hover {
-                    background: #4752c4;
-                }
-            }
-
-            &.success {
-                background: #3ba55c;
-
-                &:hover {
-                    background: #359553;
-                }
-
-                &:disabled {
-                    opacity: .5;
-                    background-color: #359553;
-                    cursor: not-allowed;
-                }
-            }
-
-            .btn {
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                align-items: center;
-                justify-content: center;
-                border: none;
-                outline: none;
-                font-family: Roboto, sans-serif;
-                line-height: 20px;
-                font-size: 17px;
-                color: #fff;
-                min-width: 36px;
-                margin-left: 1.5%;
-                padding: .5rem 1rem;
-                box-sizing: border-box;
-                border-radius: 4px;
-                cursor: pointer;
-                text-decoration: none;
-                background: #7289da;
-                transition: background-color .15s ease, color .15s ease;
-            }
-        }
     }
 
     /* Texts */
@@ -272,10 +204,6 @@ main {
     }
 }
 
-.server__buttons {
-    margin-top: 10px;
-}
-
 .guild-name {
     color: rgb(255, 255, 255);
     font-size: 30px;
@@ -286,27 +214,6 @@ main {
     margin-bottom: 5%;
     display: flex;
     align-items: center;
-}
-
-.server__button {
-    display: block;
-    padding: 8px 16px;
-    border-radius: 5px;
-    background-color: var(--secondary-color);
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    transition: 0.5s;
-}
-
-.server__button:hover {
-    background-color: var(--primary-color);
-    transition: 0.5s;
-}
-
-.server__button.disabled {
-    opacity: .5;
-    cursor: not-allowed;
 }
 
 .selected {
@@ -365,21 +272,6 @@ textarea {
     z-index: 0;
 }
 
-.popup-content {
-    button {
-        background-color: #7289da;
-        border: none;
-        color: #fff;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-}
 
 @media (max-width: 768px) {
 

@@ -31,6 +31,34 @@
         text-align: center;
         animation: scaleIn 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
 
+
+        .popup-buttons {
+            button {
+                margin: 0 5px;
+                background-color: #ff4655;
+                color: white;
+                border: none;
+                padding: .55rem 1rem;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            
+                &:hover {
+                    background-color: #e04a52;
+                    transform: translateY(-2px);
+                }
+            
+                &:active {
+                    transform: translateY(0); 
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+            }
+            
+        }
+
         h2 {
             color: #ff4655;
             font-size: 24px;

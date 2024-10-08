@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 @import "components/default-padding";
 @import "components/background";
+@import "components/inline-emoji";
 
 .store-info {
     display: flex;
@@ -245,34 +246,6 @@ main .products {
     margin-bottom: 2%;
     padding: 1rem;
 }
-main  .action__btn .btn.primary {
-    background: #5865f2;
-}
-
-
-main  .action__btn .btn.primary:disabled {
-    background: #4752c4;
-    opacity: .5;
-    cursor: not-allowed
-}
-
-main  .action__btn .btn.primary:hover {
-    background: #4752c4;
-}
-
-main  .action__btn .btn.success {
-    background: #3ba55c;
-}
-
-main  .action__btn .btn.success:hover {
-    background: #359553;
-}
-
-main  .action__btn .btn.success:disabled {
-    opacity: .5;
-    background-color: #359553;
-    cursor: not-allowed;
-}
 
 main .main__image {
     margin-top: -25%;
@@ -326,41 +299,11 @@ main a {
     left: 50%;
 }
 
-main a button:hover {
-    background-color: #047cd6;
-    transition-duration: 0.5s;
-}
-
-.action__buttons {
-    text-align: center;
-    margin-top: 20px;
-}
-
 main h2 {
     color: #fff;
     font-size: 20px;
     font-family: sans-serif;
     margin-top: 5px;
-}
-
-main  #default .default-button {
-    color: #fff;
-    background-color: #047cd6;
-    font-family: "Poppins";
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    margin: 20px 5px 10px 5px;
-    animation: float 6s ease-in-out infinite;
-    transition-duration: 0.5s;
-}
-
-.inline-emoji {
-    height: 1.5em;
-    position: relative;
-    top: 0.3em;
 }
 
 main  .action__btn .danger_btn {

@@ -2,9 +2,8 @@
 <html lang="pt-BR">
 
 <head>
-  <link rel="stylesheet" href="../styles/header.css">
-  <link rel="stylesheet" href="../styles/utils.css">
-  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link rel="stylesheet" href="/styles/utils.css">
+  <link rel="stylesheet" href="/styles/dashboard.css">
   <link rel="icon" href="/assets/images/foxycake.png">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
@@ -33,8 +32,10 @@
           </h2>
         </div>
         <%- include('../../../global/captcha') %>
-          <a href="#" onclick="receiveDaily()"><button id="daily-btn" class="home_button">Pegar prêmio</button></a>
-          <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+          <div class="discord-buttons">
+            <a href="#"><button id="daily-btn" class="button success" onclick="receiveDaily()">Pegar prêmio</button></a>
+            <a href="/br/dashboard"><button id="daily-btn" class="button">Voltar</button></a>
+          </div>
           <br><br>
 
       </div>
@@ -54,8 +55,10 @@
             <br>
           </h3>
         </div>
-        <a href="#"><button id="daily-btn" class="home_button disabled" disabled>Pegar prêmio</button></a>
-        <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+        <div class="discord-buttons">
+          <a href="#"><button id="daily-btn" class="button sucess disabled" disabled>Pegar prêmio</button></a>
+          <a href="/br/dashboard"><button id="daily-btn" class="button">Voltar</button></a>
+        </div>
       </div>
       <% } else { %>
         <div class="daily-page">
@@ -67,8 +70,10 @@
               Você já pegou seu prêmio diário.
             </h2>
           </div>
-          <a href="#"><button id="daily-btn" class="home_button disabled" disabled>Pegar prêmio</button></a>
-          <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+          <div class="discord-buttons">
+            <a href="#"><button id="daily-btn" class="button sucess disabled" disabled>Pegar prêmio</button></a>
+            <a href="/br/dashboard"><button id="daily-btn" class="button">Voltar</button></a>
+          </div>
           <br><br>
         </div>
         <% } %>
