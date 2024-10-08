@@ -33,32 +33,6 @@ main {
         font-family: "Poppins";
     }
 
-    .action__btn {
-        .btn {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            outline: none;
-            font-family: Roboto, sans-serif;
-            line-height: 20px;
-            font-size: 17px;
-            color: #fff;
-            min-width: 36px;
-            margin-left: 1.5%;
-            padding: .5rem 1rem;
-            margin-top: 10%;
-            box-sizing: border-box;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            background: #7289da;
-            transition: background-color .15s ease, color .15s ease;
-        }
-    }
-
     .store_image {
         width: 50%;
         height: 40%;
@@ -304,17 +278,4 @@ main h2 {
     font-size: 20px;
     font-family: sans-serif;
     margin-top: 5px;
-}
-
-main  .action__btn .danger_btn {
-    color: #fff;
-    background-color: rgb(224, 72, 72);
-    font-family: "Poppins";
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    animation: float 6s ease-in-out infinite;
-    transition-duration: 0.5s;
 }

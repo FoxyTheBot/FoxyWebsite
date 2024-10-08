@@ -179,19 +179,6 @@ h3 {
     font-family: "Poppins" !important;
 }
 
-main .action__btn .danger_btn {
-    color: #fff;
-    background-color: rgb(224, 72, 72);
-    font-family: "Poppins";
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    animation: float 6s ease-in-out infinite;
-    transition-duration: 0.5s;
-}
-
 @media (max-width: 768px) {
     main {
         padding-left: 10%;
