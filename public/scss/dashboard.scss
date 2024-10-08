@@ -199,80 +199,9 @@ main {
     border: 2px solid #4caf50;
 }
 
-#cancel {
-    color: #fff;
-    display: block;
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #ff5050;
-    border: none;
-    outline: none;
-    font-family: var(--font-family);
-    font-size: 14px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    cursor: pointer;
-    margin-left: 36%;
-}
-
-textarea {
-    display: block;
-    width: 60%;
-    height: 170px;
-    padding: 10px 10px;
-    border-radius: 5px;
-    background-color: #fff;
-    border: none;
-    outline: none;
-    font-family: sans-serif;
-    font-size: 14px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-}
-
-#text:focus {
-    border: 2px solid #7289da;
-}
-
-#text:disabled {
-    opacity: .5;
-}
-
-#text::placeholder {
-    color: #7289da;
-}
-
-
-#user-avatar {
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-}
 
 .hidden {
     display: none !important;
-}
-
-.popup.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 @keyframes scaleIn {
@@ -299,11 +228,6 @@ textarea {
     }
 }
 
-
-#selected {
-    background-color: #2f3136;
-}
-
 @media (max-width: 768px) {
 
     #addBanner {
@@ -316,10 +240,6 @@ textarea {
 
     html {
         background-size: contain;
-    }
-
-    .sidebar-toggle {
-        display: block;
     }
 
     .store-item,
