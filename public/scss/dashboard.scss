@@ -151,7 +151,6 @@ main {
     }
 }
 
-.server,
 .item {
     margin: 20px;
     padding: 10px 20px;
@@ -181,18 +180,6 @@ main {
     &.disabled {
         cursor: not-allowed;
     }
-}
-
-.guild-name {
-    color: rgb(255, 255, 255);
-    font-size: 30px;
-    font-family: var(--font-family);
-
-    margin-top: -30%;
-    margin-left: 55%;
-    margin-bottom: 5%;
-    display: flex;
-    align-items: center;
 }
 
 .selected {
@@ -243,7 +230,6 @@ main {
     }
 
     .store-item,
-    .servers,
     .itens {
         margin: -90% auto;
         flex-direction: column;
@@ -252,18 +238,14 @@ main {
     }
 
     .item-name,
-    .title,
-    .section-header,
-    .guild-name {
+    .title {
         font-size: 24px;
         margin-left: 0;
         margin-right: 0;
     }
 
     .item-img,
-    .main__image,
-    .current-key__no-key__image,
-    .user-avaliable-keys__no-key__image {
+    .main__image {
         width: 50%;
         height: 50%;
         margin-left: auto;
