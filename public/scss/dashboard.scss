@@ -21,19 +21,6 @@ main {
     padding-right: 30%;
     margin-top: 20em;
 
-    .dashboard_section {
-        margin-top: 10%;
-    }
-
-    .main__image {
-        width: 25%;
-        height: 25%;
-        border-radius: 50%;
-        margin-top: -30%;
-        margin-left: 10%;
-        margin-bottom: 5%;
-    }
-
     .title {
         color: #fff;
         font-size: 40px;
@@ -244,8 +231,7 @@ main {
         margin-right: 0;
     }
 
-    .item-img,
-    .main__image {
+    .item-img {
         width: 50%;
         height: 50%;
         margin-left: auto;
