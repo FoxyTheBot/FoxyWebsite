@@ -53,6 +53,7 @@ nav.navigation-bar {
                 border-radius: 100%;
                 font-size: 0px;
             }
+
             & > div {
                 width: 40px;
                 line-height: 0px;
@@ -61,6 +62,7 @@ nav.navigation-bar {
                 height: 0px;
                 display: inline-block;
             }
+
             & > span {
                 padding-left: 4px;
             }
@@ -68,13 +70,13 @@ nav.navigation-bar {
     }
 
     .entry {
-            display: flex;
-            align-items: center;
-            color: #f2f2f2 !important;
-            font-size: 17px;
-            transition: .5s;
-            cursor: pointer;
-            white-space: nowrap;
+        display: flex;
+        align-items: center;
+        color: #f2f2f2 !important;
+        font-size: 17px;
+        transition: 0.5s;
+        cursor: pointer;
+        white-space: nowrap;
 
         a {
             color: #f2f2f2 !important;
@@ -120,8 +122,6 @@ nav.navigation-bar {
     vertical-align: -0.125em;
 }
 
-
-
 /* Mobile Nav */
 
 .mobile {
@@ -154,8 +154,8 @@ nav.navigation-bar {
         font-size: 36px;
         display: block;
         transition: all 0.3s ease 0s;
-
     }
+
     a:hover,
     a:focus {
         color: #0088a9;
@@ -203,7 +203,6 @@ nav.navigation-bar {
 }
 
 @media only screen and (max-width: 800px) {
-
     nav.navigation-bar {
         display: none;
     }
