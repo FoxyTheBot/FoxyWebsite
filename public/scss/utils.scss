@@ -64,6 +64,13 @@ main .daily-page {
     margin-left: 35%;
     margin-right: -30%;
     margin-top: -20%;
+
+    .daily-warning {
+        font-size: 16px;
+        color: rgb(255, 52, 52);
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
 }
 
 main .ad {
