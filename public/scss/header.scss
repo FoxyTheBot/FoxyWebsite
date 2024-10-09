@@ -11,7 +11,7 @@
     text-decoration: none;
 }
 
-.navigation-bar {
+nav.navigation-bar {
     top: 0;
     width: 100%;
     height: 46px;
@@ -26,6 +26,10 @@
     z-index: 999;
     display: flex;
     flex-direction: row;
+
+    .icon {
+        filter: drop-shadow(0 1px rgba(0, 0, 0, 0.2));
+    }
 
     .left-entries {
         display: flex;
@@ -104,17 +108,6 @@
     line-height: 1;
 }
 
-nav.navigation-bar .left-entries {
-    display: flex;
-    flex-grow: 1;
-    flex-flow: wrap;
-    flex-direction: initial;
-    flex-wrap: wrap;
-    overflow: hidden;
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-
 .icon {
     display: inline-block;
     width: 1em;
@@ -127,26 +120,9 @@ nav.navigation-bar .left-entries {
     vertical-align: -0.125em;
 }
 
-nav#navigation-bar .icon {
-    filter: drop-shadow(0 1px rgba(0, 0, 0, 0.2));
-}
 
-nav.navigation-bar {
-    top: 0px;
-    width: 100%;
-    height: 46px;
-    opacity: 100%;
-    text-shadow: 0 1px rgb(0 0 0 / 20%);
-    font-family: Pacifico, Impact, Arial, sans-serif;
-    line-height: 1;
-    z-index: 999;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-}
 
 /* Mobile Nav */
-
 
 .mobile {
     display: none;
@@ -172,6 +148,27 @@ nav.navigation-bar {
     background-color: #24252a;
     overflow-x: hidden;
     transition: all 0.5s ease 0s;
+
+    a {
+        padding: 15px;
+        font-size: 36px;
+        display: block;
+        transition: all 0.3s ease 0s;
+
+    }
+    a:hover,
+    a:focus {
+        color: #0088a9;
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 45px;
+        font-size: 60px;
+        color: #edf0f1;
+        cursor: pointer;
+    }
 }
 
 .overlay--active {
@@ -184,34 +181,13 @@ nav.navigation-bar {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
 
-.overlay a {
-    padding: 15px;
-    font-size: 36px;
-    display: block;
-    transition: all 0.3s ease 0s;
-}
-
-.overlay a:hover,
-.overlay a:focus {
-    color: #0088a9;
-}
-
-.overlay .close {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
-    color: #edf0f1;
-    cursor: pointer;
-}
-
-.overlay__content a {
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    color: #edf0f1;
-    text-decoration: none;
+    a {
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        color: #edf0f1;
+        text-decoration: none;
+    }
 }
 
 @media screen and (max-height: 450px) {
