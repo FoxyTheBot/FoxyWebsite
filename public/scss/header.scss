@@ -64,18 +64,14 @@
     }
 
     .entry {
-            float: left;
-            display: block;
+            display: flex;
+            align-items: center;
             color: #f2f2f2 !important;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
             font-size: 17px;
             transition: .5s;
             cursor: pointer;
             white-space: nowrap;
-            position: relative;
-        
+
         a {
             color: #f2f2f2 !important;
             text-decoration: none;
