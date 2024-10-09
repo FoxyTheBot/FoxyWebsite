@@ -11,7 +11,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-E3J7N4BP8L');
   </script>
   <title>Foxy | Daily</title>
@@ -19,72 +18,83 @@
 </head>
 
 <body>
-  <main>
-    <% if (allowed) { %>
-      <div class="daily-page" id="firstContent">
-        <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
-        <div class="result">
-          <img src="/assets/emojis/foxy_daily.png" class="daily_image">
-          <h1>Prêmio Diário</h1>
-          <br>
-          <h2>
-            Pegue seu prêmio diário e ganhe Cakes!
-          </h2>
-        </div>
-        <%- include('../../../global/captcha') %>
-          <div class="discord-buttons">
-            <a href="#"><button id="daily-btn" class="button success" onclick="receiveDaily()">Pegar prêmio</button></a>
-            <a href="/br/dashboard"><button id="daily-btn" class="button">Voltar</button></a>
-          </div>
-          <br><br>
+  <main data-allowed="<%= allowed %>">
+    <div class="daily-page" id="firstContent">
+      <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
+      <div class="result">
+        <img src="/assets/emojis/foxy_daily.png" class="daily_image">
+        <h1>Prêmio Diário</h1>
+        <br>
+        <h2>
+          Pegue seu prêmio diário e ganhe Cakes!
+        </h2>
+      </div>
+      <%- include('../../../global/captcha') %>
+      <div class="discord-buttons">
+        <a href="#"><button id="daily-btn" class="button success" onclick="receiveDaily()">Pegar prêmio</button></a>
+        <a href="/br/dashboard"><button id="daily-btn" class="button">Voltar</button></a>
+      </div>
+      <br><br>
+    </div>
+    
+    <div class="daily-page" id="secondContent">
+      <div class="result">
+        <img src="/assets/emojis/foxy_daily.png" class="daily_image">
+        <h1>Você recebeu seu prêmio diário e...</h1>
+        <br>
+        <h2>
+          Ganhou <strong id="coins">0</strong> Cakes
+        </h2>
+        <br>
+        <h3>Agora você possui 0 Cakes<br></h3>
+      </div>
+      <div class="discord-buttons">
+        <a href="#"><button id="daily-btn" class="button success disabled" disabled>Pegar prêmio</button></a>
+        <a href="/br/dashboard"><button id="daily-btn" class="button">Voltar</button></a>
+      </div>
+    </div>
 
+    <div class="daily-page" id="alreadyCollectedContent">
+      <div class="result">
+        <img src="/assets/emojis/foxy_daily.png" class="daily_image">
+        <h1>Prêmio Diário</h1>
+        <br>
+        <h2>Você já pegou seu prêmio diário.</h2>
       </div>
-      <div class="daily-page" id="secondContent">
-        <div class="result">
-          <img src="/assets/emojis/foxy_daily.png" class="daily_image">
-          <h1>Você recebeu seu prêmio diário e...</h1>
-          <br>
-          <h2>
-            Ganhou
-            <strong id="coins">
-              0
-            </strong> Cakes
-          </h2>
-          <br>
-          <h3>Agora você possui 0 Cakes
-            <br>
-          </h3>
-        </div>
-        <div class="discord-buttons">
-          <a href="#"><button id="daily-btn" class="button sucess disabled" disabled>Pegar prêmio</button></a>
-          <a href="/br/dashboard"><button id="daily-btn" class="button">Voltar</button></a>
-        </div>
+      <div class="discord-buttons">
+        <a href="#"><button id="daily-btn" class="button success disabled" disabled>Pegar prêmio</button></a>
+        <a href="/br/dashboard"><button id="daily-btn" class="button">Voltar</button></a>
       </div>
-      <% } else { %>
-        <div class="daily-page">
-          <div class="result">
-            <img src="/assets/emojis/foxy_daily.png" class="daily_image">
-            <h1>Prêmio Diário</h1>
-            <br>
-            <h2>
-              Você já pegou seu prêmio diário.
-            </h2>
-          </div>
-          <div class="discord-buttons">
-            <a href="#"><button id="daily-btn" class="button sucess disabled" disabled>Pegar prêmio</button></a>
-            <a href="/br/dashboard"><button id="daily-btn" class="button">Voltar</button></a>
-          </div>
-          <br><br>
-        </div>
-        <% } %>
-          <div class="ad">
-            <%- include("../../../global/ad") %>
-          </div>
-          <%- include('../../sidebar') %>
+      <br><br>
+    </div>
+
+    <div class="ad">
+      <%- include("../../../global/ad") %>
+    </div>
+
+    <%- include('../../sidebar') %>
   </main>
 
   <script src="../js/HeaderMobile.js"></script>
   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const allowed = document.querySelector("main").getAttribute("data-allowed") === "true";
+
+      const firstContent = document.getElementById("firstContent");
+      const secondContent = document.getElementById("secondContent");
+      const alreadyCollectedContent = document.getElementById("alreadyCollectedContent");
+
+      if (allowed) {
+        firstContent.style.display = "block";
+        secondContent.style.display = "none";
+        alreadyCollectedContent.style.display = "none";
+      } else {
+        firstContent.style.display = "none";
+        secondContent.style.display = "none";
+        alreadyCollectedContent.style.display = "block";
+      }
+    });
+
     function receiveDaily() {
       const captchaResponse = turnstile.getResponse();
 
@@ -107,9 +117,6 @@
             document.querySelector("h3").innerHTML = `Agora você possui ${data.totalCoins.toLocaleString("pt-BR")} Cakes`;
             document.querySelector("#shiftcomplete").volume = 0.5;
             document.querySelector("#shiftcomplete").play();
-
-            const firstContent = document.getElementById('firstContent');
-            const secondContent = document.getElementById('secondContent');
 
             firstContent.classList.add('fade-out');
 
