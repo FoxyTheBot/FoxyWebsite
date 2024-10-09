@@ -50,26 +50,60 @@ main .products {
     padding: 1rem;
 }
 
-main .daily_image {
-    width: 15%;
-    text-align: center;
-    margin-top: -5%;
-    margin-left: 35%;
-    margin-right: 35%;
-    margin-bottom: -3%;
-}
-
 main .daily-page {
     text-align: center;
     margin-left: 35%;
     margin-right: -30%;
     margin-top: -20%;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+
+    .daily_image {
+        width: 15%;
+        text-align: center;
+        margin-top: -5%;
+        margin-left: 35%;
+        margin-right: 35%;
+        margin-bottom: -3%;
+    }
 
     .daily-warning {
         font-size: 16px;
         color: rgb(255, 52, 52);
         margin-top: 2%;
         margin-bottom: 2%;
+        font-style: bold;
+        font-weight: 500;
+    }
+
+    .title {
+        color: #fff;
+        font-size: 40px;
+        font-family: "Poppins";
+        margin-top: -60%;
+        margin-left: 30%;
+    }
+
+    #secondContent {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+    }
+    
+    .cf-turnstile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3%;
+    }
+
+    #coins {
+        background: linear-gradient(to right, #e7385d, #a6ff7d, #e7385d, #f185ff, #e7385d);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: rainbow_animation 6s ease-in-out infinite;
+        background-size: 400% 100%;
     }
 }
 
@@ -80,35 +114,9 @@ main .ad {
     margin-top: 1%;
 }
 
-main .daily-page .title {
-    color: #fff;
-    font-size: 40px;
-    font-family: "Poppins";
-    margin-top: -60%;
-    margin-left: 30%;
-}
-
-.daily-page {
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-}
-
 .fade-out {
     opacity: 0;
 
-}
-
-#secondContent {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease-in;
-}
-
-.cf-turnstile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3%;
 }
 
 main .user__avatar {
@@ -122,15 +130,6 @@ main .user__avatar {
 main h1 {
     color: rgb(255, 255, 255);
     font-size: 25px;
-}
-
-main #coins {
-    background: linear-gradient(to right, #e7385d, #a6ff7d, #e7385d, #f185ff, #e7385d);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: rainbow_animation 6s ease-in-out infinite;
-    background-size: 400% 100%;
 }
 
 @keyframes rainbow_animation {
