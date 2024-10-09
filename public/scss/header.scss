@@ -37,7 +37,30 @@
 
     .right-entries {
         display: flex;
-        justify-content: flex-end;
+
+        a#login-button {
+            & > img {
+                line-height: 0px;
+                width: 40px;
+                height: 40px;
+
+                position: absolute;
+                top: 3px;
+                border-radius: 100%;
+                font-size: 0px;
+            }
+            & > div {
+                width: 40px;
+                line-height: 0px;
+                font-size: 0px;
+                visibility: hidden;
+                height: 0px;
+                display: inline-block;
+            }
+            & > span {
+                padding-left: 4px;
+            }
+        }
     }
 
     .entry {
