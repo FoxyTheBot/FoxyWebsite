@@ -16,7 +16,6 @@ nav.navigation-bar {
     width: 100%;
     height: 46px;
     background-color: #ff4655;
-    opacity: 0.9;
     text-shadow: 0 1px rgb(0 0 0 / 20%);
     font-family: "Oswald" !important;
     font-weight: 500;
@@ -24,6 +23,7 @@ nav.navigation-bar {
     text-transform: uppercase;
     line-height: 1;
     z-index: 999;
+    position: fixed;
     display: flex;
     flex-direction: row;
 
