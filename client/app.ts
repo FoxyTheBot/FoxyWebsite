@@ -34,6 +34,7 @@ export class App {
         app.use('/', require("../routes/auth/oauthDiscord"));
         app.use('/', require("../routes/controller/updatePage"));
         app.use('/', require("../routes/controller/redirectPage"));
+        app.use('/', require("../routes/controller/DashboardRoutes"));
 
         app.get('*', (req, res) => {
             if (!req.session.bearer_token) {

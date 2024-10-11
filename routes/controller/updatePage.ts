@@ -2,46 +2,22 @@ import express from 'express';
 import config from '../../config.json';
 import { database } from '../../client/app';
 import { logger } from '../../structures/logger';
+import RouterManager from './RouterManager';
 
 const router = express.Router();
+const routerManager = new RouterManager();
 
-const checkSession = (req, res, next) => {
-    if (!req.session.bearer_token) {
-        req.session.user_info = null;
-    }
-    next();
-};
+router.use(routerManager.checkSession);
 
-const renderPage = (page, options = {}) => (req, res) => {
-    res.status(200).render(page, {
-        user: req.session.user_info,
-        ...options
-    });
-};
+router.get("/", routerManager.renderPage("../public/pages/index.ejs"));
 
-const isAuthenticated = (req, res, next) => {
-    if (!req.session.bearer_token) {
-        return res.redirect('/login');
-    }
-    next();
-};
+router.get("/:lang/support/guidelines", routerManager.renderPage("../public/pages/info/guidelines.ejs"));
 
-const errorHandler = (err, req, res, next) => {
-    console.error(err);
-    res.status(500).send("Internal Server Error");
-};
+router.get('/:lang/premium', routerManager.renderPage("../public/pages/info/premium.ejs"));
 
-router.use(checkSession);
+router.get("/:lang/support/terms", routerManager.renderPage("../public/pages/info/privacy.ejs"));
 
-router.get("/", renderPage("../public/pages/index.ejs"));
-
-router.get("/:lang/support/guidelines", renderPage("../public/pages/info/guidelines.ejs"));
-
-router.get('/:lang/premium', renderPage("../public/pages/info/premium.ejs"));
-
-router.get("/:lang/support/terms", renderPage("../public/pages/info/privacy.ejs"));
-
-router.get("/:lang/store", isAuthenticated, async (req, res, next) => {
+router.get("/:lang/store", routerManager.isAuthenticated, async (req, res, next) => {
     try {
         res.status(200).render("../public/pages/dashboard/store/background.ejs");
     } catch (error) {
@@ -49,7 +25,7 @@ router.get("/:lang/store", isAuthenticated, async (req, res, next) => {
     }
 });
 
-router.get("/br/store/data", isAuthenticated, async (req, res, next) => {
+router.get("/br/store/data", routerManager.isAuthenticated, async (req, res, next) => {
     try {
         const userData = await database.getUser(req.session.user_info.id);
         const backgrounds = await database.getAllBackgrounds();
@@ -70,33 +46,11 @@ router.get("/br/store/data", isAuthenticated, async (req, res, next) => {
     }
 });
 
-router.get("/br/user/backgrounds/data", isAuthenticated, async (req, res) => {
-    const userData = await database.getUser(req.session.user_info.id);
-    const backgrounds = await database.getAllBackgrounds();
-    const userBackgrounds = [];
-    for (let i = 0; i < userData.userProfile.backgroundList.length; i++) {
-        const background = await database.getBackground(userData.userProfile.backgroundList[i]);
-        userBackgrounds.push(background);
-    }
-
-    const responseData = {
-        user: req.session.user_info,
-        userBackgrounds: userBackgrounds,
-        currentBackground: userData.userProfile.background,
-        storeContent: {
-            backgrounds: backgrounds
-        }
-    };
-
-    res.status(200).json(responseData);
-})
-// Soon
-
-router.get("/:lang/store/layouts", isAuthenticated, async (req, res, next) => {
+router.get("/:lang/store/layouts", routerManager.isAuthenticated, async (req, res, next) => {
     res.status(200).send("Soon");
 });
 
-router.get("/checkout", isAuthenticated, async (req, res) => {
+router.get("/checkout", routerManager.isAuthenticated, async (req, res) => {
     const { itemId } = req.query;
 
     const checkoutItem = await database.createCheckout(req.session.user_info.id.toString(), itemId.toString());
@@ -104,7 +58,7 @@ router.get("/checkout", isAuthenticated, async (req, res) => {
     res.status(200).redirect(process.env.FP_URL + "checkout/id/" + checkoutItem.checkoutId);
 });
 
-router.get("/:lang/store/decorations", isAuthenticated, async (req, res, next) => {
+router.get("/:lang/store/decorations", routerManager.isAuthenticated, async (req, res, next) => {
     try {
         const userData = await database.getUser(req.session.user_info.id);
         const decorations = await database.getAllDecorations();
@@ -136,142 +90,11 @@ router.get("/:lang/rso/login", (req, res) => {
     });
 });
 
-router.post("/:lang/store/decorations/confirm/:id", isAuthenticated, async (req, res, next) => {
-    try {
-        const userId = req.session.user_info.id;
-        const userData = await database.getUser(userId);
-        const decoration = await database.getDecoration(req.params.id);
-        if (!decoration) {
-            return res.status(404).send("<script>alert('Esta decoração não existe'); window.location.href = '/br/store';</script>")
-        }
-
-        if (userData.userCakes.balance < decoration.cakes) {
-            return res.status(200).send("<script>alert('Você não tem cakes suficientes para comprar esta decoração'); window.location.href = '/br/store';</script>");
-        }
-
-        if (userData.userProfile.decorationList.includes(decoration.id)) {
-            return res.status(200).send("<script>alert('Você já possui esta decoração'); window.location.href = '/br/store';</script>");
-        }
-
-        userData.userProfile.decoration = decoration.id;
-        userData.userProfile.decorationList.push(decoration.id);
-        userData.userCakes.balance -= decoration.cakes;
-        userData.userTransactions.push({
-            to: config.oauth.clientId,
-            from: req.session.user_info.id,
-            quantity: Number(decoration.cakes),
-            date: new Date(Date.now()),
-            received: false,
-            type: 'store'
-        });
-        userData.save().catch(err => logger.log(err));
-        return res.redirect("/br/user/decorations");
-    } catch (error) {
-        next(error);
-    }
-});
-
-router.post("/:lang/store/confirm/:id", isAuthenticated, async (req, res, next) => {
-    try {
-        const userId = req.session.user_info.id;
-        const userData = await database.getUser(userId);
-        
-        const decoration = await database.getDecoration(req.params.id);
-        const background = await database.getBackground(req.params.id);
-        
-        const item = decoration || background;
-        const itemType = decoration ? 'decoration' : background ? 'background' : null;
-
-        if (!item) {
-            return res.status(404).send("<script>alert('Este item não existe'); window.location.href = '/br/store';</script>");
-        }
-
-        if (userData.userCakes.balance < item.cakes) {
-            return res.status(200).send("<script>alert('Você não tem cakes suficientes para comprar este item'); window.location.href = '/br/store';</script>");
-        }
-
-        const alreadyPurchased = (itemType === 'decoration' && userData.userProfile.decorationList.includes(item.id)) ||
-                                 (itemType === 'background' && userData.userProfile.backgroundList.includes(item.id));
-
-        if (alreadyPurchased) {
-            return res.status(200).send(`<script>alert('Você já possui este ${itemType}'); window.location.href = '/br/store';</script>`);
-        }
-
-        userData.userCakes.balance -= item.cakes;
-        if (itemType === 'decoration') {
-            userData.userProfile.decorationList.push(item.id);
-        } else {
-            userData.userProfile.backgroundList.push(item.id);
-        }
-
-        userData.userTransactions.push({
-            to: config.oauth.clientId,
-            from: userId,
-            quantity: Number(item.cakes),
-            date: new Date(),
-            received: false,
-            type: 'store'
-        });
-
-        await userData.save();
-        if (itemType === 'decoration') {
-            return res.redirect("/br/user/decorations");
-        } else {
-            return res.redirect("/br/dashboard");
-        }
-    } catch (error) {
-        next(error);
-    }
-});
-
-
-router.get("/:lang/background/change/:id", isAuthenticated, async (req, res, next) => {
-    try {
-        const userId = req.session.user_info.id;
-        const userData = await database.getUser(userId);
-        const background = await database.getBackground(req.params.id);
-        if (!background) {
-            return res.status(404).send("<script>alert('este item não existe'); window.location.href = '/br/store';</script>")
-        }
-
-        if (!userData.userProfile.backgroundList.includes(background.id)) {
-            return res.status(200).send("<script>alert('Você não possui este item'); window.location.href = '/br/store';</script>");
-        }
-
-        userData.userProfile.background = background.id;
-        userData.save().catch(err => logger.log(err));
-        return res.status(200).json({ success: true });
-    } catch (error) {
-        next(error);
-    }
-});
-
-router.get("/:lang/decorations/change/:id", isAuthenticated, async (req, res, next) => {
-    try {
-        const userId = req.session.user_info.id;
-        const userData = await database.getUser(userId);
-        const decoration = await database.getDecoration(req.params.id);
-        if (!decoration) {
-            return res.status(404).send("<script>alert('Esta decoração não existe'); window.location.href = '/br/store';</script>")
-        }
-
-        if (!userData.userProfile.decorationList.includes(decoration.id)) {
-            return res.status(200).send("<script>alert('Você não possui esta decoração'); window.location.href = '/br/store';</script>");
-        }
-
-        userData.userProfile.decoration = decoration.id;
-        userData.save().catch(err => logger.log(err));
-        return res.redirect("/br/user/decorations");
-    } catch (error) {
-        next(error);
-    }
-});
-
-router.get("/:lang/dashboard", isAuthenticated, async (req, res, next) => {
+router.get("/:lang/dashboard", routerManager.isAuthenticated, async (req, res, next) => {
     res.status(200).render("../public/pages/dashboard/user/inventory/backgrounds.ejs");
 });
 
-router.get("/:lang/user/decorations", isAuthenticated, async (req, res, next) => {
+router.get("/:lang/user/decorations", routerManager.isAuthenticated, async (req, res, next) => {
     try {
         const userId = req.session.user_info.id;
         const userData = await database.getUser(userId);
@@ -317,7 +140,7 @@ function getRandomPrize(prizes) {
     }
 }
 
-// router.get("/:lang/dashboard/roulette", isAuthenticated, async (req, res, next) => {
+// router.get("/:lang/dashboard/roulette", routerManager.isAuthenticated, async (req, res, next) => {
 //     try {
 //         const userData = await database.getUser(req.session.user_info.id);
 //         if (userData.roulette.availableSpins <= 0) {
@@ -380,7 +203,7 @@ router.get("/riot/connection/status=:status", (req, res) => {
     }
 });
 
-router.get('/:lang/daily', isAuthenticated, async (req, res, next) => {
+router.get('/:lang/daily', routerManager.isAuthenticated, async (req, res, next) => {
     try {
         const userId = req.session.user_info.id;
         const userData = await database.getUser(userId);
@@ -401,60 +224,7 @@ router.get('/:lang/daily', isAuthenticated, async (req, res, next) => {
     }
 });
 
-router.post("/:lang/dashboard/daily/receive", isAuthenticated, async (req, res, next) => {
-    try {
-        const userId = req.session.user_info.id;
-        const userData = await database.getUser(userId);
-        const timeout = 43200000;
-        const daily = await userData.userCakes.lastDaily;
-
-        if (daily !== null && timeout - (Date.now() - daily) > 0) {
-            return res.status(200).send("<script>alert('Você já coletou seu daily hoje'); window.location.href = '/br/dashboard';</script>");
-        }
-        let amount = Math.floor(Math.random() * 8000);
-        amount = Math.round(amount / 10) * 10;
-
-        switch (userData.userPremium.premiumType) {
-            case "1": {
-                amount = amount * 1.25;
-                break;
-            }
-
-            case "2": {
-                amount = amount * 1.5;
-                break;
-            }
-
-            case "3": {
-                amount = amount * 2;
-                break;
-            }
-        }
-
-        if (amount < 1000) amount = 1000;
-
-        userData.userCakes.balance += amount;
-        userData.userCakes.lastDaily = Date.now();
-        userData.userTransactions.push({
-            to: req.session.user_info.id,
-            from: config.oauth.clientId,
-            quantity: amount,
-            date: new Date(Date.now()),
-            received: true,
-            type: 'daily'
-        });
-        await userData.save().catch(err => logger.log(err));
-
-        res.status(200).json({
-            coins: amount,
-            totalCoins: await userData.userCakes.balance
-        });
-    } catch (error) {
-        next(error);
-    }
-});
-
-router.get('/:lang/delete', isAuthenticated, async (req, res, next) => {
+router.get('/:lang/delete', routerManager.isAuthenticated, async (req, res, next) => {
     try {
         const userId = req.session.user_info.id;
         const userData = await database.getUser(userId);
@@ -532,7 +302,7 @@ router.get("/:lang/commands/:category", async (req, res, next) => {
     }
 });
 
-router.get('/:lang/confirm', isAuthenticated, async (req, res, next) => {
+router.get('/:lang/confirm', routerManager.isAuthenticated, async (req, res, next) => {
     try {
         const userData = await database.getUser(req.session.user_info.id);
         res.status(200).render("../public/pages/utils/confirm.ejs", {
@@ -576,6 +346,6 @@ router.get('/:lang/404', (req, res) => {
     });
 });
 
-router.use(errorHandler);
+router.use(routerManager.errorHandler);
 
 module.exports = router;
