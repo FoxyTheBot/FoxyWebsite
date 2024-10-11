@@ -2,6 +2,7 @@ import express from 'express';
 import config from '../../config.json';
 import { database } from '../../client/app';
 import RouterManager from './RouterManager';
+import { TransactionType } from '../../types/Transactions';
 
 class DashboardRoutes {
     router: express.Router;
@@ -64,7 +65,7 @@ class DashboardRoutes {
             userData.userProfile.decoration = decoration.id;
             userData.userProfile.decorationList.push(decoration.id);
             userData.userCakes.balance -= decoration.cakes;
-            userData.userTransactions.push(this.createTransaction(userId, decoration.cakes));
+            userData.userTransactions.push(this.createTransaction(userId, decoration.cakes, false, TransactionType.SPENT_AT_STORE));
 
             await userData.save();
             return res.redirect("/br/user/decorations");
@@ -104,7 +105,7 @@ class DashboardRoutes {
                 userData.userProfile.backgroundList.push(item.id);
             }
 
-            userData.userTransactions.push(this.createTransaction(userId, item.cakes));
+            userData.userTransactions.push(this.createTransaction(userId, item.cakes, false, TransactionType.SPENT_AT_STORE));
 
             await userData.save();
             return res.redirect(itemType === 'decoration' ? "/br/user/decorations" : "/br/dashboard");
@@ -181,7 +182,7 @@ class DashboardRoutes {
 
             userData.userCakes.balance += amount;
             userData.userCakes.lastDaily = Date.now();
-            userData.userTransactions.push(this.createTransaction(userId, amount, true));
+            userData.userTransactions.push(this.createTransaction(userId, amount, true, TransactionType.DAILY_REWARD));
 
             await userData.save();
             res.status(200).json({ coins: amount, totalCoins: userData.userCakes.balance });
@@ -194,14 +195,14 @@ class DashboardRoutes {
         return res.status(200).send(`<script>alert('${message}'); window.location.href = '${redirectUrl}';</script>`);
     }
 
-    createTransaction(userId, quantity, received = false) {
+    createTransaction(userId, quantity, received = false, type: TransactionType) {
         return {
             to: config.oauth.clientId,
             from: userId,
             quantity: Number(quantity),
             date: new Date(),
             received,
-            type: 'store'
+            type: type
         };
     }
 }
