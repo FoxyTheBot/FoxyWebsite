@@ -6,6 +6,8 @@ import bodyParser from 'body-parser';
 import config from '../config.json';
 import RestManager from '../structures/RestManager';
 import { logger } from '../structures/logger';
+import UpdatePages from '../routes/controller/UpdatePages';
+import DashboardRoutes from '../routes/controller/DashboardRoutes';
 
 export class App {
     port: number;
@@ -31,10 +33,10 @@ export class App {
 
         app.set('view engine', 'ejs');
 
+        app.use('/', new UpdatePages().getRouter());
+        app.use('/', new DashboardRoutes().getRouter());
         app.use('/', require("../routes/auth/oauthDiscord"));
-        app.use('/', require("../routes/controller/updatePage"));
         app.use('/', require("../routes/controller/redirectPage"));
-        app.use('/', require("../routes/controller/DashboardRoutes"));
 
         app.get('*', (req, res) => {
             if (!req.session.bearer_token) {
