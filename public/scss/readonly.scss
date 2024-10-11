@@ -380,22 +380,6 @@ main a {
 }
 
 @media only screen and (max-width: 768px) {
-    
-    .discord-invite-wrapper {
-        display: flex;
-        flex-direction: column;
-        background-color: #282a2e;
-        border-radius: 3px;
-        padding: 0.5em;
-        margin-left: -5%;
-        margin-right: -5%;
-        gap: 0.5em;
-        color: #fff;
-        transition-duration: 1s;
-        font-family: Arial, Helvetica, sans-serif;
-        width: fit-content;
-        margin-bottom: 20.5em;
-    }
 
     header {
         padding-left: 5%;

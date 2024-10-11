@@ -7,7 +7,7 @@ import { TransactionType } from '../../types/Transactions';
 class DashboardRoutes {
     router: express.Router;
     routerManager: RouterManager;
-    
+
     constructor() {
         this.router = express.Router();
         this.routerManager = new RouterManager();
@@ -23,11 +23,11 @@ class DashboardRoutes {
         this.router.post("/:lang/dashboard/daily/receive", this.routerManager.isAuthenticated, this.receiveDaily);
         this.router.use(this.routerManager.errorHandler);
     }
-    
+
     getRouter() {
         return this.router;
     }
-    
+
     async getUserBackgrounds(req, res) {
         const userId = req.session.user_info.id;
         const userData = await database.getUser(userId);
@@ -92,7 +92,7 @@ class DashboardRoutes {
             }
 
             const alreadyPurchased = (itemType === 'decoration' && userData.userProfile.decorationList.includes(item.id)) ||
-                                     (itemType === 'background' && userData.userProfile.backgroundList.includes(item.id));
+                (itemType === 'background' && userData.userProfile.backgroundList.includes(item.id));
 
             if (alreadyPurchased) {
                 return this.sendAlert(res, `Você já possui este ${itemType}`, '/br/store');
