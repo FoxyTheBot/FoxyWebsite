@@ -139,6 +139,16 @@ const commandsSchema = new mongoose.Schema({
     usage: Array
 }, { versionKey: false, id: false });
 
+const itemSchema = new mongoose.Schema({
+    id: String,
+    type: String,
+});
+
+const dailyStoreSchema = new mongoose.Schema({
+    itens: [itemSchema],
+    lastUpdate: Date,
+}, { versionKey: false, id: false });
+
 const backgroundSchema = new mongoose.Schema({
     id: String,
     name: String,
@@ -146,7 +156,7 @@ const backgroundSchema = new mongoose.Schema({
     filename: String,
     description: String,
     author: String,
-    inactive: Boolean,
+    inactive: Boolean
 }, { versionKey: false, id: false } );
 
 const layoutSchema = new mongoose.Schema({
@@ -197,6 +207,7 @@ export const Schemas = {
     avatarDecorationSchema,
     storeSchema,
     checkoutList,
+    dailyStoreSchema
 };
 
 /* End of bot related schemas */

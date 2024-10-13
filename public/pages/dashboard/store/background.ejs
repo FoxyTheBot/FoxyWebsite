@@ -7,13 +7,11 @@
   <link rel="stylesheet" href="/styles/header.css" type="text/css">
   <link rel="icon" href="/assets/images/foxycake.png">
   <title>Foxy | Loja</title>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-E3J7N4BP8L');
   </script>
   <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
@@ -32,48 +30,53 @@
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
+    <h1 class="page-title">Lojinha da Foxy</h1>
+    <p>Compre backgrounds e decorações de avatar para o seu perfil :3<br><br>A loja é atualizada todos os dias às 21:00
+      (Horário de Brasília)</p>
+    <div class="remaining-time">
+      <h2>Tempo restante para a próxima atualização:</h2>
+      <h2 id="countdown"></h2>
+      <main id="content" class="hidden">
+        <!-- Content will be injected here by JavaScript -->
+      </main>
 
-    <main id="content" class="hidden">
-      <!-- Content will be injected here by JavaScript -->
-    </main>
-
-    <div id="popup" class="popup hidden">
-      <div class="popup-content">
-        <span class="close" onclick="hidePopup()">&times;</span>
-        <h2 id="bg-title"></h2>
-        <img id="popup-img" src="" alt="Background Image">
-        <h3 id="bg-description"></h3>
-        <h3>Você possui <strong style="color: #e7385d;" id="user-cakes"></strong> Cakes</h3>
-        <form id="purchaseForm" method="POST">
-          <input type="hidden" name="backgroundId" id="backgroundId">
-          <div class="popup-buttons">
-            <button id="save" type="submit">Comprar</button>
-          </div>
-        </form>
+      <div id="popup" class="popup hidden">
+        <div class="popup-content">
+          <span class="close" onclick="hidePopup()">&times;</span>
+          <h2 id="bg-title"></h2>
+          <img id="popup-img" src="" alt="Background Image">
+          <h3 id="bg-description"></h3>
+          <h3>Você possui <strong style="color: #e7385d;" id="user-cakes"></strong> Cakes</h3>
+          <form id="purchaseForm" method="POST">
+            <input type="hidden" name="backgroundId" id="backgroundId">
+            <div class="popup-buttons">
+              <button id="save" type="submit">Comprar</button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
 
-    <script>
-      window.addEventListener('load', function () {
-        fetch('/br/store/data')
-          .then(response => response.json())
-          .then(data => {
-            document.getElementById('loadingOverlay').classList.add('hidden');
-            document.getElementById('content').classList.remove('hidden');
+      <script>
+        window.addEventListener('load', function () {
+          fetch('/br/store/data')
+            .then(response => response.json())
+            .then(data => {
+              document.getElementById('loadingOverlay').classList.add('hidden');
+              document.getElementById('content').classList.remove('hidden');
 
-            const contentDiv = document.getElementById('content');
-            contentDiv.innerHTML = `
+              const contentDiv = document.getElementById('content');
+              contentDiv.innerHTML += `
             <div class="itens">
               ${data.storeContent.backgrounds.reverse().map(background => {
-              if (background.cakes === 0 || background.inactive) {
-                return '';
-              }
+                if (background.cakes === 0 || background.inactive) {
+                  return '';
+                }
 
-              const backgroundStr = JSON.stringify(background).replace(/"/g, '&quot;');
-              const userStr = JSON.stringify(data.user).replace(/"/g, '&quot;');
-              const userDataStr = JSON.stringify(data.userData).replace(/"/g, '&quot;');
+                const backgroundStr = JSON.stringify(background).replace(/"/g, '&quot;');
+                const userStr = JSON.stringify(data.user).replace(/"/g, '&quot;');
+                const userDataStr = JSON.stringify(data.userData).replace(/"/g, '&quot;');
 
-              return `
+                return `
                   <div class="item" onclick="showPopup(${backgroundStr}, ${userStr}, ${userDataStr})">
                     <div class="item__icon">
                       <img class="background" 
@@ -91,59 +94,90 @@
                     </div>
                   </div>
                 `;
-            }).join('')}
+              }).join('')}
             </div>
           `;
 
-            const userCakesElement = document.getElementById('user-cakes');
-            if (userCakesElement) {
-              userCakesElement.innerText = data.userData.userCakes.balance.toLocaleString("pt-BR");
+              const userCakesElement = document.getElementById('user-cakes');
+              if (userCakesElement) {
+                userCakesElement.innerText = data.userData.userCakes.balance.toLocaleString("pt-BR");
+              }
+
+              startCountdown(data.lastUpdate);
+            })
+            .catch(error => {
+              console.error('Error fetching data:', error);
+              document.getElementById('loadingOverlay').innerText = 'Failed to load content. Please try again later.';
+            });
+        });
+
+        function startCountdown(lastUpdate) {
+          console.log(lastUpdate)
+          const updateHour = 21;
+          const lastUpdateDate = new Date(lastUpdate);
+          const nextUpdate = new Date(lastUpdateDate);
+
+          nextUpdate.setDate(nextUpdate.getDate() + 1);
+          nextUpdate.setHours(updateHour, 0, 0, 0);
+
+          const countdownElement = document.getElementById('countdown');
+          const countdownInterval = setInterval(() => {
+            const now = new Date();
+            const distance = nextUpdate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+              clearInterval(countdownInterval);
+              startCountdown(nextUpdate);
             }
-          })
-          .catch(error => {
-            console.error('Error fetching data:', error);
-            document.getElementById('loadingOverlay').innerText = 'Failed to load content. Please try again later.';
-          });
-      });
-
-      function showPopup(background, user, userData) {
-        document.getElementById('backgroundId').value = background.id;
-        document.getElementById('popup').classList.add('visible');
-        document.getElementById('popup').classList.remove('hidden');
-        document.getElementById('bg-title').innerText = background.name;
-        document.getElementById('bg-description').innerText = background.description;
-        document.getElementById('popup-img').src = "https://orchid.cakeyfox.live/assets/backgrounds/" + background.filename;
-
-        document.getElementById('popup-img').onerror = function () {
-          this.src = "https://cakey.foxybot.win/assets/backgrounds/" + background.filename;
-        };
-
-        const userCakes = parseInt(document.getElementById('user-cakes').innerText.replace(/\D/g, ''));
-        const saveButton = document.getElementById('save');
-        if (userData.userProfile.backgroundList.includes(background.id)) {
-          saveButton.disabled = true;
-          saveButton.classList.add('disabled');
-          saveButton.innerText = 'Comprado';
-        } else {
-          saveButton.disabled = userCakes < background.cakes;
-          saveButton.classList.toggle('disabled', saveButton.disabled);
+          }, 1000);
         }
-      }
+        
+        function showPopup(background, user, userData) {
+          document.getElementById('backgroundId').value = background.id;
+          document.getElementById('popup').classList.add('visible');
+          document.getElementById('popup').classList.remove('hidden');
+          document.getElementById('bg-title').innerText = background.name;
+          document.getElementById('bg-description').innerText = background.description;
+          document.getElementById('popup-img').src = "https://orchid.cakeyfox.live/assets/backgrounds/" + background.filename;
 
-      function hidePopup() {
-        const popup = document.getElementById('popup');
-        popup.classList.remove('visible');
+          document.getElementById('popup-img').onerror = function () {
+            this.src = "https://cakey.foxybot.win/assets/backgrounds/" + background.filename;
+          };
 
-        setTimeout(() => {
-          popup.classList.add('hidden');
-        }, 300);
-      }
+          const userCakes = parseInt(document.getElementById('user-cakes').innerText.replace(/\D/g, ''));
+          const saveButton = document.getElementById('save');
+          if (userData.userProfile.backgroundList.includes(background.id)) {
+            saveButton.disabled = true;
+            saveButton.classList.add('disabled');
+            saveButton.innerText = 'Comprado';
+          } else {
+            saveButton.disabled = userCakes < background.cakes;
+            saveButton.classList.toggle('disabled', saveButton.disabled);
+          }
+        }
 
-      document.getElementById('purchaseForm').addEventListener('submit', function (event) {
-        const backgroundId = document.getElementById('backgroundId').value;
-        this.action = "/br/store/confirm/" + backgroundId;
-      });
-    </script>
+        function hidePopup() {
+          const popup = document.getElementById('popup');
+          popup.classList.remove('visible');
+
+          setTimeout(() => {
+            popup.classList.add('hidden');
+          }, 300);
+        }
+
+        document.getElementById('purchaseForm').addEventListener('submit', function (event) {
+          const backgroundId = document.getElementById('backgroundId').value;
+          this.action = "/br/store/confirm/" + backgroundId;
+        });
+      </script>
+
 
 </body>
 

@@ -53,8 +53,8 @@ main .products {
 main .daily-page {
     text-align: center;
     margin-left: 35%;
-    margin-right: -30%;
-    margin-top: -20%;
+    margin-right: 10%;
+    margin-top: 10%;
     opacity: 1;
     transition: opacity 0.5s ease-out;
 
@@ -68,18 +68,17 @@ main .daily-page {
     }
 
     .daily-warning {
-        font-size: 16px;
+        font-size: 1rem;
         color: rgb(255, 52, 52);
-        margin-top: 2%;
+        margin-top: 1%;
         margin-bottom: 2%;
-        font-style: bold;
         font-weight: 500;
     }
 
     .title {
         color: #fff;
-        font-size: 40px;
-        font-family: "Poppins";
+        font-size: 2.5rem;
+        font-family: var(--font-family);
         margin-top: -60%;
         margin-left: 30%;
     }
@@ -107,10 +106,11 @@ main .daily-page {
     }
 }
 
+
 main .ad {
     text-align: center;
     margin-left: 36%;
-    margin-right: -30%;
+    margin-right: 0%;
     margin-top: 1%;
 }
 
@@ -195,8 +195,8 @@ h3 {
     }
 
     .daily-page {
-        margin-top: 0;
-        margin-left: -10%;
+        margin-top: 10%;
+        margin-left: 5%;
         margin-right: 50%;
     }
 
@@ -266,8 +266,8 @@ h3 {
 
     main .daily-page {
         margin: 0 auto;
-        margin-left: 20%;
-        margin-top: -70%;
+        margin-left: 2%;
+        margin-top: 0%;
         width: 100%;
     }
 
@@ -286,3 +286,31 @@ h3 {
         font-size: 14px;
     }
 }
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+  }
+  
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

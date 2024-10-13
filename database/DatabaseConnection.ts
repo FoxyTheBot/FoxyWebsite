@@ -15,6 +15,7 @@ export default class DatabaseConnection {
     public decorations: any;
     public items: any;
     public checkoutList: any;
+    public store: any;
 
     constructor() {
         mongoose.set("strictQuery", true)
@@ -33,6 +34,7 @@ export default class DatabaseConnection {
         this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
         this.items = mongoose.model('storeItems', Schemas.storeSchema);
         this.checkoutList = mongoose.model('checkoutList', Schemas.checkoutList);
+        this.store = mongoose.model('dailyStore', Schemas.dailyStoreSchema);
     }
 
     async getUser(userId: string): Promise<any> {
@@ -123,6 +125,11 @@ export default class DatabaseConnection {
 
             return;
         }
+    }
+
+    async getStore() {
+        let storeData = await this.store.find({ id: "store" });
+        return storeData[0];
     }
 
     async getAllCommands(): Promise<any> {

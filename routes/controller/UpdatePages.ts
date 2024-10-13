@@ -49,8 +49,6 @@ class UpdatePages {
 
         this.router.get("/:lang/store", this.routerManager.isAuthenticated, this.storeHandler);
 
-        this.router.get("/br/store/data", this.routerManager.isAuthenticated, this.storeDataHandler);
-
         this.router.get("/:lang/store/layouts", this.routerManager.isAuthenticated, this.layoutHandler);
 
         this.router.get("/checkout", this.routerManager.isAuthenticated, this.checkoutHandler);
@@ -89,27 +87,6 @@ class UpdatePages {
     storeHandler = async (req, res, next) => {
         try {
             res.status(200).render("../public/pages/dashboard/store/background.ejs");
-        } catch (error) {
-            next(error);
-        }
-    }
-
-    storeDataHandler = async (req, res, next) => {
-        try {
-            const userData = await database.getUser(req.session.user_info.id);
-            const backgrounds = await database.getAllBackgrounds();
-            const decorations = await database.getAllDecorations();
-            const responseData = {
-                user: req.session.user_info,
-                userData: userData,
-                userBackgrounds: userData.userProfile.backgroundList,
-                storeContent: {
-                    backgrounds: backgrounds,
-                    decorations: decorations
-                }
-            };
-
-            res.status(200).json(responseData);
         } catch (error) {
             next(error);
         }
