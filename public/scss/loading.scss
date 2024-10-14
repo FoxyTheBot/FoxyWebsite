@@ -12,13 +12,13 @@
     z-index: 1000;
     font-size: 24px;
     color: #fff;
-}
 
-.loading-overlay .icon {
-    width: 100px;
-    height: 100px;
-}
+    .icon {
+        width: 100px;
+        height: 100px;
+    }
 
-.hidden {
-    display: none;
+    .hidden {
+        display: none;
+    }
 }

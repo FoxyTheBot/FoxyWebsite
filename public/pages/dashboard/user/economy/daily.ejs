@@ -2,84 +2,98 @@
 <html lang="pt-BR">
 
 <head>
-  <link rel="stylesheet" href="../styles/header.css">
-  <link rel="stylesheet" href="../styles/utils.css">
-  <link rel="stylesheet" href="../styles/dashboard.css">
+  <link rel="stylesheet" href="/styles/utils.css">
+  <link rel="stylesheet" href="/styles/dashboard.css">
   <link rel="icon" href="/assets/images/foxycake.png">
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-E3J7N4BP8L');
   </script>
+
   <title>Foxy | Daily</title>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
-  <main>
-    <% if (allowed) { %>
-      <div class="daily-page" id="firstContent">
-        <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
-        <div class="result">
-          <img src="/assets/emojis/foxy_daily.png" class="daily_image">
-          <h1>Prêmio Diário</h1>
-          <br>
-          <h2>
-            Pegue seu prêmio diário e ganhe Cakes!
-          </h2>
+  <main data-allowed="<%= allowed %>">
+    <div class="daily-page" id="firstContent" style="display: none; opacity: 0;">
+      <audio src="../assets/audios/shiftcomplete.mp3" id="shiftcomplete"></audio>
+      <div class="result">
+        <h1 class="daily-title">Prêmio Diário</h1>
+        <img src="/assets/emojis/foxy_daily.png" class="daily_image">
+        <h2>Pegue seu prêmio diário e ganhe Cakes!</h2>
+      </div>
+      <%- include('../../../global/captcha') %>
+        <div class="discord-buttons">
+          <a href="#"><button class="button success" onclick="receiveDaily()">Pegar prêmio</button></a>
+          <a href="/br/dashboard"><button class="button">Voltar</button></a>
         </div>
-        <%- include('../../../global/captcha') %>
-          <a href="#" onclick="receiveDaily()"><button id="daily-btn" class="home_button">Pegar prêmio</button></a>
-          <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
-          <br><br>
+        <h3 class="daily-warning">
+          Você não pode trocar cakes por dinheiro, Nitro ou conteúdos NSFW! Se fizer isso, será banido de usar a Foxy!
+        </h3>
+    </div>
 
+    <div class="daily-page" id="secondContent" style="display: none; opacity: 0;">
+      <div class="result">
+        <h1 class="daily-title">Prêmio Diário</h1>
+        <img src="/assets/emojis/foxy_daily.png" class="daily_image">
+        <h2>Você recebeu seu prêmio diário e... <br><br> Ganhou <strong id="coins">0</strong> Cakes</h2>
+        <h3 id="total">Agora você possui 0 Cakes</h3>
       </div>
-      <div class="daily-page" id="secondContent">
-        <div class="result">
-          <img src="/assets/emojis/foxy_daily.png" class="daily_image">
-          <h1>Você recebeu seu prêmio diário e...</h1>
-          <br>
-          <h2>
-            Ganhou
-            <strong id="coins">
-              0
-            </strong> Cakes
-          </h2>
-          <br>
-          <h3>Agora você possui 0 Cakes
-            <br>
-          </h3>
-        </div>
-        <a href="#"><button id="daily-btn" class="home_button disabled" disabled>Pegar prêmio</button></a>
-        <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
+      <div class="discord-buttons">
+        <a href="#"><button class="button success disabled" disabled>Pegar prêmio</button></a>
+        <a href="/br/dashboard"><button class="button">Voltar</button></a>
       </div>
-      <% } else { %>
-        <div class="daily-page">
-          <div class="result">
-            <img src="/assets/emojis/foxy_daily.png" class="daily_image">
-            <h1>Prêmio Diário</h1>
-            <br>
-            <h2>
-              Você já pegou seu prêmio diário.
-            </h2>
-          </div>
-          <a href="#"><button id="daily-btn" class="home_button disabled" disabled>Pegar prêmio</button></a>
-          <a href="/br/dashboard"><button id="daily-btn" class="home_button">Voltar</button></a>
-          <br><br>
-        </div>
-        <% } %>
-          <div class="ad">
-            <%- include("../../../global/ad") %>
-          </div>
-          <%- include('../../sidebar') %>
+      <h3 class="daily-warning">
+        Você não pode trocar cakes por dinheiro, Nitro ou conteúdos NSFW! Se fizer isso, será banido de usar a Foxy!
+      </h3>
+    </div>
+
+    <div class="daily-page" id="alreadyCollectedContent" style="display: none; opacity: 0;">
+      <div class="result">
+        <h1 class="daily-title">Prêmio Diário</h1>
+        <img src="/assets/emojis/foxy_daily.png" class="daily_image">
+        <h2>Você já pegou seu prêmio diário.</h2>
+      </div>
+      <div class="discord-buttons">
+        <a href="#"><button class="button success disabled" disabled>Pegar prêmio</button></a>
+        <a href="/br/dashboard"><button class="button">Voltar</button></a>
+      </div>
+      <h3 class="daily-warning">
+        Você não pode trocar cakes por dinheiro, Nitro ou conteúdos NSFW! Se fizer isso, será banido de usar a Foxy!
+      </h3>
+    </div>
+
+    <div class="ad" style=" text-align: center;
+    margin-left: 21rem;
+    margin-right: 0rem;
+    margin-top: 2rem;">
+      <%- include("../../../global/ad") %>
+    </div>
+
+    <%- include('../../sidebar') %>
   </main>
 
   <script src="../js/HeaderMobile.js"></script>
   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const allowed = document.querySelector("main").getAttribute("data-allowed") === "true";
+      const firstContent = document.getElementById("firstContent");
+      const secondContent = document.getElementById("secondContent");
+      const alreadyCollectedContent = document.getElementById("alreadyCollectedContent");
+
+      if (allowed) {
+        fadeIn(firstContent);
+      } else {
+        fadeIn(alreadyCollectedContent);
+      }
+    });
+
     function receiveDaily() {
       const captchaResponse = turnstile.getResponse();
 
@@ -94,40 +108,46 @@
           "Content-Type": "application/json",
           "cf-turnstile-response": captchaResponse
         }
-      }).then(response => response.json()
-        .then(data => {
-          console.log(data);
-          if (data) {
-            document.querySelector("#coins").innerHTML = data.coins.toLocaleString("pt-BR");
-            document.querySelector("h3").innerHTML = `Agora você possui ${data.totalCoins.toLocaleString("pt-BR")} Cakes`;
-            document.querySelector("#shiftcomplete").volume = 0.5;
-            document.querySelector("#shiftcomplete").play();
+      }).then(response => response.json().then(data => {
+        if (data) {
+          document.querySelector("#coins").textContent = data.coins.toLocaleString("pt-BR");
+          document.querySelector("#total").textContent = `Agora você possui ${data.totalCoins.toLocaleString("pt-BR")} Cakes`;
+          document.getElementById("shiftcomplete").volume = 0.5;
+          document.getElementById("shiftcomplete").play();
 
-            const firstContent = document.getElementById('firstContent');
-            const secondContent = document.getElementById('secondContent');
+          fadeOut(firstContent, () => fadeIn(secondContent));
+        } else {
+          alert("Você já pegou seu prêmio diário.");
+          fadeOut(firstContent, () => fadeIn(alreadyCollectedContent));
+        }
+      }));
+    }
 
-            firstContent.classList.add('fade-out');
+    function fadeIn(element) {
+      element.style.display = "block";
+      element.style.opacity = 0;
 
-            setTimeout(() => {
-              firstContent.style.display = 'none';
-              secondContent.style.display = 'block';
-              setTimeout(() => {
-                secondContent.style.opacity = 1;
-              }, 30);
-            }, 500);
+      let opacity = 0;
+      const interval = setInterval(() => {
+        opacity += 0.1;
+        element.style.opacity = opacity;
+        if (opacity >= 1) clearInterval(interval);
+      }, 50);
+    }
 
-            return;
-          } else {
-            alert("Você já pegou seu prêmio diário");
-          }
-        }));
+    function fadeOut(element, callback) {
+      let opacity = 1;
+      const interval = setInterval(() => {
+        opacity -= 0.1;
+        element.style.opacity = opacity;
+        if (opacity <= 0) {
+          clearInterval(interval);
+          element.style.display = "none";
+          if (callback) callback();
+        }
+      }, 50);
     }
   </script>
 </body>
-<style>
-  .adsbygoogle {
-    display: unset !important;
-  }
-</style>
 
 </html>

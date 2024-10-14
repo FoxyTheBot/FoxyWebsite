@@ -1,20 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 @import "components/default-padding";
 @import "components/background";
+@import "components/inline-emoji";
 
 .store-info {
     display: flex;
     flex-direction: column;
-    margin-top: -5%;
-    margin-left: -2%;
+    margin-top: 1rem;
+    margin-left: 1rem;
 }
 
 p {
     color: #fff;
-    font-size: 17px;
+    font-size: 1rem;
     font-family: "Poppins";
-    margin-left: 5px;
-    margin-top: 10px;
+    margin-left: 1rem;
+    margin-top: -14rem;
 }
 
 main {
@@ -26,44 +27,18 @@ main {
     text-align: center;
 
     .title {
-        color: #fff;
+        color: #e7385d;
         font-size: 35px;
-        margin-bottom: 1%;
+        margin-bottom: 1rem;
         font-family: "Poppins";
     }
 
-    .action__btn {
-        .btn {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            outline: none;
-            font-family: Roboto, sans-serif;
-            line-height: 20px;
-            font-size: 17px;
-            color: #fff;
-            min-width: 36px;
-            margin-left: 1.5%;
-            padding: .5rem 1rem;
-            margin-top: 10%;
-            box-sizing: border-box;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            background: #7289da;
-            transition: background-color .15s ease, color .15s ease;
-        }
-    }
-
     .store_image {
-        width: 50%;
-        height: 40%;
+        width: 20rem;
+        height: 20rem;
         text-align: left;
-        margin-left: -170%;
-        margin-top: -300%;
+        margin-left: -21rem;
+        margin-top: -6rem;
     }
 }
 
@@ -76,25 +51,6 @@ main {
     margin-bottom: 5%;
     cursor: default;
     margin-right: -50%;
-}
-
-.item-rec {
-    box-sizing: border-box;
-    margin: 10px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    background: #5865F2;
-    color: #fff;
-    font-family: sans-serif;
-    font-size: 14px;
-    text-decoration: none;
-    flex: 1 0 calc(25% - 20px);
-    max-width: calc(25% - 20px);
-    min-width: 250px;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    cursor: default;
 }
 
 .items-2 {
@@ -113,8 +69,6 @@ main {
         margin-bottom: 10px;
         font-size: 18px;
     }
-
-
 }
 
 .item:hover {
@@ -160,6 +114,10 @@ main {
     margin-top: 17px;
 }
 
+.plan-title {
+    color: #fff !important;
+}
+
 .recommended-flag {
     position: absolute;
     top: 0;
@@ -196,6 +154,10 @@ main {
     flex-direction: column;
     align-items: center;
     text-align: center;
+
+    &.rec {
+        background: #5865F2;
+    }
 }
 
 .item__button {
@@ -209,7 +171,7 @@ main {
 }
 
 main h1 {
-    color: rgb(255, 255, 255);
+    color: #e7385d;
     font-size: 25px;
     font-family: "Poppins";
     
@@ -245,39 +207,6 @@ main .products {
     margin-bottom: 2%;
     padding: 1rem;
 }
-main  .action__btn .btn.primary {
-    background: #5865f2;
-}
-
-
-main  .action__btn .btn.primary:disabled {
-    background: #4752c4;
-    opacity: .5;
-    cursor: not-allowed
-}
-
-main  .action__btn .btn.primary:hover {
-    background: #4752c4;
-}
-
-main  .action__btn .btn.success {
-    background: #3ba55c;
-}
-
-main  .action__btn .btn.success:hover {
-    background: #359553;
-}
-
-main  .action__btn .btn.success:disabled {
-    opacity: .5;
-    background-color: #359553;
-    cursor: not-allowed;
-}
-
-main .main__image {
-    margin-top: -25%;
-    margin-bottom: 5%;
-}
 
 main .user__avatar {
     width: 45%;
@@ -288,7 +217,7 @@ main .user__avatar {
 }
 
 main h1 {
-    color: rgb(255, 255, 255);
+    color: #e7385d;
     font-size: 25px;
     font-family: "Poppins";
     
@@ -326,16 +255,6 @@ main a {
     left: 50%;
 }
 
-main a button:hover {
-    background-color: #047cd6;
-    transition-duration: 0.5s;
-}
-
-.action__buttons {
-    text-align: center;
-    margin-top: 20px;
-}
-
 main h2 {
     color: #fff;
     font-size: 20px;
@@ -343,35 +262,61 @@ main h2 {
     margin-top: 5px;
 }
 
-main  #default .default-button {
-    color: #fff;
-    background-color: #047cd6;
-    font-family: "Poppins";
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    margin: 20px 5px 10px 5px;
-    animation: float 6s ease-in-out infinite;
-    transition-duration: 0.5s;
-}
+@media (max-width: 768px) {
+    .store_image {
+        display: none;
+    }
 
-.inline-emoji {
-    height: 1.5em;
-    position: relative;
-    top: 0.3em;
-}
+    .store-info {
+        display: flex;
+        flex-direction: column;
+        margin-top: -2rem;
+        margin-left: -2rem;
+    }
 
-main  .action__btn .danger_btn {
-    color: #fff;
-    background-color: rgb(224, 72, 72);
-    font-family: "Poppins";
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    animation: float 6s ease-in-out infinite;
-    transition-duration: 0.5s;
+    .items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 5%;
+        margin-left: 2rem;
+        margin-bottom: 5%;
+        cursor: default;
+        margin-right: 4rem;
+    }
+
+    main {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-top: 1rem;
+        margin-left: 2rem;
+        transition-duration: 0.5s;
+        text-align: center;
+    }
+
+    p {
+        color: #fff;
+        font-size: 1rem;
+        font-family: "Poppins";
+        margin-left: 0rem;
+        margin-top: 0rem;
+    }
+
+    .item {
+        box-sizing: border-box;
+        margin: 10px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background: #7289da;
+        color: #fff;
+        font-family: sans-serif;
+        font-size: 14px;
+        text-decoration: none;
+        flex: 1 0 calc(25% - 20px);
+        max-width: calc(25% - 20px);
+        min-width: 22rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 }

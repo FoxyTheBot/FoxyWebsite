@@ -156,14 +156,14 @@ a {
 }
 
 main h1 {
-    color: #fff;
+    color: #e7385d;
     font-size: 40px;
     margin-bottom: 5%;
     font-family: Montserrat;
 }
 
 main .tos-title {
-    color: #fff;
+    color: #e7385d;
     font-size: 40px;
     margin-bottom: 5%;
     font-family: "Arial";
@@ -288,7 +288,7 @@ tr:hover td {
     font-size: 40px;
     margin-top: 30px;
     margin-bottom: 30px;
-    color: #fff;
+    color: #e7385d;
 }
 
 td:first-child {
@@ -364,7 +364,7 @@ main a {
 }
 
 .main2 h1 {
-    color: #fff;
+    color: #e7385d;
     font-size: 40px;
     font-family: Montserrat;
 }
@@ -380,22 +380,6 @@ main a {
 }
 
 @media only screen and (max-width: 768px) {
-    
-    .discord-invite-wrapper {
-        display: flex;
-        flex-direction: column;
-        background-color: #282a2e;
-        border-radius: 3px;
-        padding: 0.5em;
-        margin-left: -5%;
-        margin-right: -5%;
-        gap: 0.5em;
-        color: #fff;
-        transition-duration: 1s;
-        font-family: Arial, Helvetica, sans-serif;
-        width: fit-content;
-        margin-bottom: 20.5em;
-    }
 
     header {
         padding-left: 5%;
@@ -424,7 +408,7 @@ main a {
     }
 
     main .commands-title {
-        margin-top: -30%;
+        margin-top: 1rem;
     }
 
     main .server-title {
@@ -442,10 +426,6 @@ main a {
 
     main h3 {
         font-size: 4vw;
-    }
-
-    main a button {
-        font-size: 5vw;
     }
 }
 

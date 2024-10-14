@@ -4,6 +4,10 @@ $sidebar-background: #36393f;
 $separator-color: #2f3136;
 $default-color: #e7385d;
 
+* {
+    text-decoration: none !important;
+}
+
 .left-sidebar {
     position: fixed;
     top: 0;
@@ -17,56 +21,56 @@ $default-color: #e7385d;
     box-shadow: 0 0 10px $default-color;
     scrollbar-color: #4f545c #36393f;
     z-index: 900;
-}
 
-.separator {
-    height: 1px;
-    width: 100%;
-    background-color: $separator-color;
-    margin: 10px 0;
-}
+    .entry {
+        padding: 5px 20px;
+        color: #fff;
+        font-family: "Poppins";
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        transition: background-color 0.2s ease;
 
-.left-sidebar .entry {
-    padding: 5px 20px;
-    color: #fff;
-    font-family: "Poppins";
-    font-size: 14px;
-    text-decoration: none !important;
-    display: flex;
-    justify-content: space-between;
-    transition: background-color 0.2s ease;
-}
+        &:hover {
+            background-color: #2f3136;
+        }
+    }
 
-.left-sidebar .entry:hover {
-    background-color: #2f3136;
-}
+    .separator {
+        height: 1px;
+        width: 100%;
+        background-color: $separator-color;
+        margin: 10px 0;
+    }
 
-.entries {
-    margin-top: 70px;
-}
+    .entries {
+        margin-top: 70px;
+    }
 
-.sidebar-server-icon {
-    border-radius: 50%;
-    margin: 60px auto 0;
-    display: block;
-    width: 130px;
-    height: 130px;
-}
+    .sidebar-server-icon {
+        border-radius: 50%;
+        margin: 60px auto 0;
+        display: block;
+        width: 130px;
+        height: 130px;
+    }
 
-.section-title {
-    color: $default-color;
-    font-size: 20px;
-    text-align: left !important;
-    font-family: "Poppins";
-    margin-left: 18px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+    .section-title {
+        color: $default-color;
+        font-size: 20px;
+        text-align: left !important;
+        font-family: "Poppins";
+        margin-left: 18px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
-.logo {
-    width: 150px;
-    margin: -50px auto 10px;
-    display: block;
+
+    .logo {
+        width: 150px;
+        margin: -50px auto 10px;
+        display: block;
+    }
 }
 
 .sidebar-toggle {
@@ -80,17 +84,17 @@ $default-color: #e7385d;
     border: none;
     cursor: pointer;
     z-index: 2000;
-}
 
-.sidebar-toggle:focus {
-    outline: none;
+    &:focus {
+        outline: none;
+    }
 }
 
 @media screen and (max-width: 768px) {
     .sidebar-toggle {
         display: block;
     }
-    
+
     .left-sidebar {
         left: -100%;
         width: 100%;
