@@ -112,13 +112,17 @@
         });
 
         function startCountdown(lastUpdate) {
-          console.log(lastUpdate)
           const updateHour = 21;
           const lastUpdateDate = new Date(lastUpdate);
-          const nextUpdate = new Date(lastUpdateDate);
+          const now = new Date();
 
-          nextUpdate.setDate(nextUpdate.getDate() + 1);
+          let nextUpdate = new Date(lastUpdateDate);
+
           nextUpdate.setHours(updateHour, 0, 0, 0);
+
+          if (now.getTime() >= nextUpdate.getTime()) {
+            nextUpdate.setDate(nextUpdate.getDate() + 1);
+          }
 
           const countdownElement = document.getElementById('countdown');
           const countdownInterval = setInterval(() => {
@@ -138,7 +142,7 @@
             }
           }, 1000);
         }
-        
+
         function showPopup(background, user, userData) {
           document.getElementById('backgroundId').value = background.id;
           document.getElementById('popup').classList.add('visible');
@@ -177,8 +181,6 @@
           this.action = "/br/store/confirm/" + backgroundId;
         });
       </script>
-
-
 </body>
 
 </html>

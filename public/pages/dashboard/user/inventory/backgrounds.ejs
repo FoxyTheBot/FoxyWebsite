@@ -32,9 +32,6 @@
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
   <main id="content" class="hidden">
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
     <!-- Content will be injected here by JavaScript -->
   </main>
 
@@ -61,7 +58,11 @@
       function renderBackgrounds(data) {
         const contentDiv = document.getElementById('content');
         contentDiv.innerHTML = `
-        <div class="itens">
+        <div class="itens" id="inventory" style="
+        margin-top: -2rem !important;
+        margin-left: 22rem !important;
+        margin-right: 5rem !important;
+        ">
           ${data.userBackgrounds.reverse().map(background => {
           const isSelected = data.currentBackground === background.id;
           return `
