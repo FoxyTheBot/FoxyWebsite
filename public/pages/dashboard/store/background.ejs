@@ -31,7 +31,7 @@
       (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
     <h1 class="page-title">Lojinha da Foxy</h1>
-    <p>Compre backgrounds e decorações de avatar para o seu perfil :3<br><br>A loja é atualizada todos os dias às 21:00
+    <p>Compre backgrounds e decorações de avatar para o seu perfil! (◕‿◕✿)<br><br>A loja é atualizada todos os dias às 21:00
       (Horário de Brasília)</p>
     <div class="remaining-time">
       <h2>Tempo restante para a próxima atualização:</h2>
@@ -117,7 +117,6 @@
           const now = new Date();
 
           let nextUpdate = new Date(lastUpdateDate);
-
           nextUpdate.setHours(updateHour, 0, 0, 0);
 
           if (now.getTime() >= nextUpdate.getTime()) {
@@ -125,22 +124,27 @@
           }
 
           const countdownElement = document.getElementById('countdown');
-          const countdownInterval = setInterval(() => {
+
+          function updateCountdown() {
             const now = new Date();
             const distance = nextUpdate - now;
+
+            if (distance <= 0) {
+              countdownElement.innerHTML = "00:00:00:00";
+              startCountdown(nextUpdate);
+              return;
+            }
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            countdownElement.innerHTML = `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+          }
 
-            if (distance < 0) {
-              clearInterval(countdownInterval);
-              startCountdown(nextUpdate);
-            }
-          }, 1000);
+          updateCountdown();
+          setInterval(updateCountdown, 1000);
         }
 
         function showPopup(background, user, userData) {

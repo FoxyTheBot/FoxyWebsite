@@ -61,17 +61,17 @@ main .daily-page {
     .daily_image {
         width: 15%;
         text-align: center;
-        margin-top: -5%;
-        margin-left: 35%;
-        margin-right: 35%;
-        margin-bottom: -3%;
+        margin-top: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
     }
 
     .daily-warning {
         font-size: 1rem;
         color: rgb(255, 52, 52);
-        margin-top: 1%;
-        margin-bottom: 2%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
         font-weight: 500;
     }
 
@@ -88,7 +88,7 @@ main .daily-page {
         opacity: 0;
         transition: opacity 0.5s ease-in;
     }
-    
+
     .cf-turnstile {
         display: flex;
         justify-content: center;
@@ -125,6 +125,11 @@ main .user__avatar {
     border-radius: 50%;
     margin-top: -30%;
     margin-bottom: 5%;
+}
+
+.daily-title {
+    color: #e7385d;
+    font-size: 40px !important;
 }
 
 main h1 {
@@ -202,11 +207,12 @@ h3 {
 
     main .result .daily_image {
         width: 50%;
-        margin-top: 0;
+        margin-top: 5;
         margin-left: 0;
         margin-right: 0;
         margin-bottom: 10px;
     }
+
     main .products {
         flex-direction: column;
         margin-left: 0;
@@ -217,7 +223,8 @@ h3 {
         width: 100%;
     }
 
-    main .store_image, main .daily_image {
+    main .store_image,
+    main .daily_image {
         width: 80%;
         height: auto;
         margin-top: 5%;
@@ -233,7 +240,9 @@ h3 {
         height: auto;
     }
 
-    main h2, main h3, main h4 {
+    main h2,
+    main h3,
+    main h4 {
         font-size: 16px;
     }
 }
@@ -259,7 +268,8 @@ h3 {
         width: 100%;
     }
 
-    main .store_image, main .daily_image {
+    main .store_image,
+    main .daily_image {
         width: 100%;
         height: auto;
     }
@@ -282,35 +292,38 @@ h3 {
         height: auto;
     }
 
-    main h2, main h3, main h4 {
+    main h2,
+    main h3,
+    main h4 {
         font-size: 14px;
     }
 }
 
 .fade-out {
     animation: fadeOut 0.5s forwards;
-  }
-  
-  .fade-in {
+}
+
+.fade-in {
     opacity: 0;
     animation: fadeIn 0.5s forwards;
-  }
-  
-  @keyframes fadeOut {
+}
+
+@keyframes fadeOut {
     from {
-      opacity: 1;
+        opacity: 1;
     }
+
     to {
-      opacity: 0;
+        opacity: 0;
     }
-  }
-  
-  @keyframes fadeIn {
+}
+
+@keyframes fadeIn {
     from {
-      opacity: 0;
+        opacity: 0;
     }
+
     to {
-      opacity: 1;
+        opacity: 1;
     }
-  }
-  
+}
