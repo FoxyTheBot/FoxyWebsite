@@ -3,7 +3,8 @@
 
 <head>
   <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/styles/header.css" type="text/css">
   <link rel="icon" href="/assets/images/foxycake.png">
   <title>Foxy | Suas decorações</title>
@@ -20,40 +21,44 @@
 
 <body>
   <%- include('../../sidebar') %>
-  <% if (userDecorations && userDecorations.length > 0) { %>
-    <main>
-      <div class="itens">
-        <% userDecorations.forEach(decoration => { %>
-          <div class="item <%= currentDecoration === decoration.id ? 'disabled' : '' %>" 
-               <% if (currentDecoration !== decoration.id) { %> 
-               onclick="change('<%= decoration.id %>')" <% } %>>
-            <div class="item__icon">
-              <img class="background" src="https://orchid.cakeyfox.live/assets/masks/<%= decoration.filename %>"
-                   onerror="this.src='https://cakey.foxybot.win/assets/masks/<%= decoration.filename %>'">
-            </div>
+    <% if (userDecorations && userDecorations.length> 0) { %>
+      <main>
+        <div class="itens" style="
+      margin-top: -2rem !important;
+      margin-left: 22rem !important;
+      margin-right: 5rem !important;
+      ">
+          <% userDecorations.forEach(decoration=> { %>
+            <div class="item <%= currentDecoration === decoration.id ? 'disabled' : '' %>" <% if (currentDecoration
+              !==decoration.id) { %>
+              onclick="change('<%= decoration.id %>')" <% } %>>
+                  <div class="item__icon">
+                    <img class="background" src="https://orchid.cakeyfox.live/assets/masks/<%= decoration.filename %>"
+                      onerror="this.src='https://cakey.foxybot.win/assets/masks/<%= decoration.filename %>'">
+                  </div>
 
-            <% if (currentDecoration === decoration.id) { %>
-              <span class="purchased">Selecionado</span>
-            <% } %>
-          </div>
-        <% }); %>
-      </div>
-    </main>
-  <% } else { %>
-    <div class="empty">
-      <img class="empty-img" src="/assets/emojis/foxy_cry.png" alt="Empty">
-      <p>Você não tem decorações de avatar.<br>Compre na lojinha da Foxy usando Cakes</p>
-    </div>
-  <% } %>
+                  <% if (currentDecoration===decoration.id) { %>
+                    <span class="purchased">Selecionado</span>
+                    <% } %>
+            </div>
+            <% }); %>
+        </div>
+      </main>
+      <% } else { %>
+        <div class="empty">
+          <img class="empty-img" src="/assets/emojis/foxy_cry.png" alt="Empty">
+          <p>Você não tem decorações de avatar.<br>Compre na lojinha da Foxy usando Cakes</p>
+        </div>
+        <% } %>
 
 
 </body>
 
-  <script>
-    function change(backgroundId) {
-      window.location.href = "/br/decorations/change/" + backgroundId;
-    }
-  </script>
-  <script src="../js/HeaderMobile.js"></script>
+<script>
+  function change(backgroundId) {
+    window.location.href = "/br/decorations/change/" + backgroundId;
+  }
+</script>
+<script src="../js/HeaderMobile.js"></script>
 
 </html>

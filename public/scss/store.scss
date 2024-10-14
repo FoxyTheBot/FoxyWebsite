@@ -27,7 +27,7 @@ main {
     text-align: center;
 
     .title {
-        color: #fff;
+        color: #e7385d;
         font-size: 35px;
         margin-bottom: 1%;
         font-family: "Poppins";
@@ -135,6 +135,10 @@ main {
     margin-top: 17px;
 }
 
+.plan-title {
+    color: #fff !important;
+}
+
 .recommended-flag {
     position: absolute;
     top: 0;
@@ -184,7 +188,7 @@ main {
 }
 
 main h1 {
-    color: rgb(255, 255, 255);
+    color: #e7385d;
     font-size: 25px;
     font-family: "Poppins";
     
@@ -230,7 +234,7 @@ main .user__avatar {
 }
 
 main h1 {
-    color: rgb(255, 255, 255);
+    color: #e7385d;
     font-size: 25px;
     font-family: "Poppins";
     
