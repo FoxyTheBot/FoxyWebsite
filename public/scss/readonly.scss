@@ -1,17 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    background-image: url("../assets/images/background.png"), linear-gradient(90deg, #0f1923, #0f1923);
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-}
+@import "components/default-padding";
+@import "components/background";
+@import "components/discord-invite";
 
 .command-category-name {
     text-align: center;
@@ -29,84 +19,6 @@ main {
     transition-duration: 0.5s;
 }
 
-.support-invites-wrapper .support-invite-wrapper .discord-support-invite-wrapper {
-    display: flex;
-    margin-top: auto;
-    justify-content: center;
-}
-
-.discord-invite-wrapper {
-    display: flex;
-    flex-direction: column;
-    background-color: #282a2e;
-    border-radius: 3px;
-    padding: 1em;
-    margin-left: 31%;
-    gap: 0.5em;
-    color: #fff;
-    transition-duration: 1s;
-    font-family: Arial, Helvetica, sans-serif;
-    width: fit-content;
-    margin-bottom: 20.5em;
-}
-
-.discord-invite-wrapper .discord-server-details .discord-server-icon img {
-    border-radius: 25%;
-    width: 50px;
-    height: 50px;
-    display: block;
-}
-
-.discord-invite-wrapper .discord-invite-title {
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #b5bac1;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.75em;
-}
-
-.discord-invite-wrapper .discord-server-details {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-}
-
-.discord-invite-wrapper .discord-server-details .discord-server-icon {
-    flex-shrink: 0;
-}
-
-.discord-invite-wrapper .discord-server-details .discord-server-info {
-    line-height: 1;
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-self: stretch;
-    flex-shrink: 1;
-}
-
-.discord-invite-wrapper .discord-server-details .discord-server-info .discord-server-name {
-    font-weight: bold;
-}
-
-.discord-invite-wrapper .discord-server-details .discord-server-info .discord-server-description {
-    font-size: 0.9em;
-}
-
-.discord-invite-wrapper .discord-server-details .discord-server-button {
-    margin-left: auto;
-    background-color: #3ba55d;
-    border-radius: 3px;
-    color: white;
-    font-size: 0.9em;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    padding-left: 1em;
-    padding-right: 1em;
-    height: 40px;
-    transition-duration: 0.5s;
-    flex-shrink: 0;
-}
 
 h2 {
     color: #fff;
@@ -244,14 +156,14 @@ a {
 }
 
 main h1 {
-    color: #fff;
+    color: #e7385d;
     font-size: 40px;
     margin-bottom: 5%;
     font-family: Montserrat;
 }
 
 main .tos-title {
-    color: #fff;
+    color: #e7385d;
     font-size: 40px;
     margin-bottom: 5%;
     font-family: "Arial";
@@ -376,7 +288,7 @@ tr:hover td {
     font-size: 40px;
     margin-top: 30px;
     margin-bottom: 30px;
-    color: #fff;
+    color: #e7385d;
 }
 
 td:first-child {
@@ -452,7 +364,7 @@ main a {
 }
 
 .main2 h1 {
-    color: #fff;
+    color: #e7385d;
     font-size: 40px;
     font-family: Montserrat;
 }
@@ -468,22 +380,6 @@ main a {
 }
 
 @media only screen and (max-width: 768px) {
-    
-    .discord-invite-wrapper {
-        display: flex;
-        flex-direction: column;
-        background-color: #282a2e;
-        border-radius: 3px;
-        padding: 0.5em;
-        margin-left: -5%;
-        margin-right: -5%;
-        gap: 0.5em;
-        color: #fff;
-        transition-duration: 1s;
-        font-family: Arial, Helvetica, sans-serif;
-        width: fit-content;
-        margin-bottom: 20.5em;
-    }
 
     header {
         padding-left: 5%;
@@ -512,7 +408,7 @@ main a {
     }
 
     main .commands-title {
-        margin-top: -30%;
+        margin-top: 1rem;
     }
 
     main .server-title {
@@ -530,10 +426,6 @@ main a {
 
     main h3 {
         font-size: 4vw;
-    }
-
-    main a button {
-        font-size: 5vw;
     }
 }
 

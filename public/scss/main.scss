@@ -3,15 +3,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Muli&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
 @import url("https://lotus.cakeyfox.live/styles/body.css");
+@import "components/background";
+@import "components/popup";
 
 :root {
-    background-image: url("../assets/images/background.png"), var(--background-color);
-    background-size: cover;
-    width: 100%;
-    height: 100%;
     --primary-color: #ff4655;
     --secondary-color: #eb5362;
-    --background-color: linear-gradient(90deg, #0f1923, #0f1923);
 }
 
 /* Main page */
@@ -61,90 +58,7 @@
     }
 
     &:last-child {
-        margin-right: 0;
-    }
-}
-
-#login-button {
-    display: block;
-    margin-right: 15%;
-}
-
-.popup {
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: none;
-    justify-content: center;
-    align-items: center;
-
-    img {
-        width: 30%;
-        height: auto;
-        border-radius: 10px;
-    }
-
-    &.active {
-        display: flex;
-    }
-
-    .popup-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-        animation: scaleIn 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-
-        h2 {
-            color: var(--primary-color);
-            font-size: 20px;
-            font-family: "Poppins", sans-serif;
-            margin-bottom: 10px;
-        }
-
-        p {
-            color: #000000;
-            font-size: 15px;
-            font-family: "Poppins", sans-serif;
-            margin-bottom: 20px;
-        }
-
-        button {
-            background-color: #7289da;
-            border: none;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    }
-
-    .close {
-        cursor: pointer;
-        color: #aaa;
-        font-size: 28px;
-        font-weight: bold;
-        float: right;
-
-        &:hover {
-            color: black;
-        }
+        margin-right: 1.1rem;
     }
 }
 
