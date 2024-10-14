@@ -10,6 +10,33 @@
     padding: 0;
     text-decoration: none;
 }
+.mobile i {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    margin-top: 0.590rem;
+}
+
+.mobile {
+    display: none;
+    position: fixed;
+    top: 0.141rem;
+    z-index: 9999;
+    left: 20px;
+    font-size: 30px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    z-index: 2000;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:focus {
+        outline: none;
+    }
+}
 
 nav.navigation-bar {
     top: 0;
@@ -124,20 +151,6 @@ nav.navigation-bar {
 
 /* Mobile Nav */
 
-.mobile {
-    display: none;
-    color: #fff;
-    background-color: #1d9ae4;
-    font-family: "Poppins";
-    font-size: 15px;
-    cursor: pointer;
-    padding: 10px 12px 10px 12px;
-    border-radius: 5px;
-    border: none;
-    margin: 20px 5px 10px 5px;
-    transition-duration: 0.5s;
-}
-
 .overlay {
     height: 100%;
     width: 0;
@@ -159,15 +172,6 @@ nav.navigation-bar {
     a:hover,
     a:focus {
         color: #0088a9;
-    }
-
-    .close {
-        position: absolute;
-        top: 20px;
-        right: 45px;
-        font-size: 60px;
-        color: #edf0f1;
-        cursor: pointer;
     }
 }
 
@@ -194,20 +198,59 @@ nav.navigation-bar {
     .overlay a {
         font-size: 20px;
     }
-
-    .overlay .close {
-        font-size: 40px;
-        top: 15px;
-        right: 35px;
-    }
 }
 
 @media only screen and (max-width: 800px) {
+    main {
+        text-align: center;
+        margin-top: 6rem;
+        margin-bottom: 15%;
+        margin-right: 5%;
+        margin-left: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        transition-duration: 0.5;
+    }
+
     nav.navigation-bar {
+        top: 0;
+        width: 101%;
+        height: 50px;
+        background-color: #ff4655;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+        font-family: "Oswald" !important;
+        font-weight: 500;
+        font-size: 17px;
+        text-transform: uppercase;
+        line-height: 0;
+        z-index: 999;
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        margin-left: -1.3rem;
+    }
+
+    .left-entries {
+        margin-top: 1rem;
+        .entry {
+            display: none !important;
+        }
+    }
+
+    nav.navigation-bar .right-entries {
         display: none;
     }
 
     .mobile {
-        display: initial;
+        display: block;
+    }
+
+    .left-sidebar {
+        left: -100%;
+        width: 100%;
+    }
+
+    .left-sidebar.open {
+        left: 0;
     }
 }

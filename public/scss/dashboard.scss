@@ -139,6 +139,7 @@ main {
         .item_info {
             text-align: center;
             margin-top: -0.125rem;
+
             h1 {
                 margin: 0;
                 font-size: 1rem;
@@ -243,6 +244,7 @@ main {
 }
 
 @media (max-width: 48em) {
+
     #addBanner,
     .adsbygoogle {
         display: none !important;
@@ -351,10 +353,23 @@ main {
     z-index: 10;
 }
 
+#inventory {
+    margin-top: -2rem !important;
+    margin-left: 22rem !important;
+    margin-right: 5rem !important;
+}
+
 @media (max-width: 768px) {
+
     #addBanner,
     .adsbygoogle {
         display: none !important;
+    }
+
+    #inventory {
+        margin-top: 0rem !important;
+        margin-left: 0rem !important;
+        margin-right: 1rem !important;
     }
 
     html {
