@@ -376,9 +376,8 @@ main {
         background-size: contain;
     }
 
-    .store-item,
-    .itens {
-        margin: 0 auto;
+    .store-item, .itens {
+        margin: -4rem auto;
         flex-direction: column;
         align-items: center;
     }
@@ -434,8 +433,8 @@ main {
     }
 
     .page-title {
-        font-size: 1.5rem;
-        margin: 1rem 0;
+        font-size: 1.90rem;
+        margin: 4rem 0;
     }
 
     p {
@@ -455,8 +454,8 @@ main {
         margin: 0.5rem 0;
     }
 
-    .remaining-time {
+.remaining-time {
         font-size: 0.6254rem;
-        margin: 0.5rem 0;
+        margin: -2.5rem 0;
     }
 }
