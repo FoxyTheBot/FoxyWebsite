@@ -31,7 +31,8 @@
       (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
     <h1 class="page-title">Lojinha da Foxy</h1>
-    <p>Compre backgrounds e decorações de avatar para o seu perfil! (◕‿◕✿)<br><br>A loja é atualizada todos os dias às 21:00
+    <p>Compre backgrounds e decorações de avatar para o seu perfil! (◕‿◕✿)<br><br>A loja é atualizada todos os dias às
+      21:00
       (Horário de Brasília)</p>
     <div class="remaining-time">
       <h2>Tempo restante para a próxima atualização:</h2>
@@ -65,50 +66,59 @@
               document.getElementById('content').classList.remove('hidden');
 
               const contentDiv = document.getElementById('content');
-              contentDiv.innerHTML += `
-            <div class="itens">
-              ${data.storeContent.backgrounds.reverse().map(background => {
-                if (background.cakes === 0 || background.inactive) {
-                  return '';
-                }
 
-                const backgroundStr = JSON.stringify(background).replace(/"/g, '&quot;');
-                const userStr = JSON.stringify(data.user).replace(/"/g, '&quot;');
-                const userDataStr = JSON.stringify(data.userData).replace(/"/g, '&quot;');
-
+              function generateItemsBlock(items, type, userList) {
                 return `
-                  <div class="item" onclick="showPopup(${backgroundStr}, ${userStr}, ${userDataStr})">
-                    <div class="item__icon">
-                      <img class="background" 
-                        src="https://orchid.cakeyfox.live/assets/backgrounds/${background.filename}" 
-                        onerror="this.src='https://cakey.foxybot.win/assets/backgrounds/${background.filename}'" 
-                        alt="${background.name}">
-                    </div>
-                    <div class="item_info">
-                      <h1 class="item-name">${background.name}</h1>
-                      ${data.userBackgrounds.includes(background.id) ? `
-                        <span class="purchased">💖 Comprado</span>
-                      ` : `
-                        <span class="cakes">${background.cakes.toLocaleString("pt-BR")} Cakes</span>
-                      `}
-                    </div>
-                  </div>
-                `;
-              }).join('')}
-            </div>
-          `;
+          <div class="itens ${type}">
+            ${items.reverse().map(item => {
+                  if (item.cakes === 0 || item.inactive) return '';
 
-              const userCakesElement = document.getElementById('user-cakes');
-              if (userCakesElement) {
-                userCakesElement.innerText = data.userData.userCakes.balance.toLocaleString("pt-BR");
+                  const itemStr = JSON.stringify(item).replace(/"/g, '&quot;');
+                  const userStr = JSON.stringify(data.user).replace(/"/g, '&quot;');
+                  const userDataStr = JSON.stringify(data.userData).replace(/"/g, '&quot;');
+                  const isPurchased = userList.includes(item.id);
+
+                  return `
+                <div class="item ${isPurchased ? 'disabled' : ''}"
+                  onclick="showPopup(${itemStr}, ${userStr}, ${userDataStr})">
+                  <div class="item__icon">
+                    <img class="${type}" 
+                      src="https://cakey.foxybot.win/assets/${type}/${item.filename}" 
+                      onerror="this.src='https://cakey.foxybot.win/assets/masks/${item.filename}'" 
+                      alt="${item.name}">
+                  </div>
+                  <div class="item_info">
+                    <h1 class="item-name">${item.name}</h1>
+                    ${isPurchased ? `
+                      <span class="purchased">💖 Já comprado</span>
+                    ` : `
+                      <span class="cakes">${item.cakes.toLocaleString("pt-BR")} Cakes</span>
+                    `}
+                  </div>
+                </div>
+              `;
+                }).join('')}
+          </div>
+        `;
               }
 
+              const { backgrounds, decorations } = data.storeContent;
+
+              contentDiv.innerHTML = `
+        ${generateItemsBlock(backgrounds, 'backgrounds', data.userData.userProfile.backgroundList)}
+        ${generateItemsBlock(decorations, 'decorations', data.userData.userProfile.decorationList)}
+      `;
+
+              document.getElementById('user-cakes').innerText =
+                data.userData.userCakes.balance.toLocaleString("pt-BR");
               startCountdown(data.lastUpdate);
             })
             .catch(error => {
-              console.error('Error fetching data:', error);
-              document.getElementById('loadingOverlay').innerText = 'Failed to load content. Please try again later.';
+              console.error('Erro ao buscar os dados:', error);
+              document.getElementById('loadingOverlay').innerText =
+                'Falha ao carregar o conteúdo. Tente novamente mais tarde.';
             });
+
         });
 
         function startCountdown(lastUpdate) {

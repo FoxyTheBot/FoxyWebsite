@@ -20,3 +20,5 @@ yarn.lock
 config.json
 
 public/styles
+
+public/ads.txt

@@ -86,7 +86,9 @@ class UpdatePages {
 
     storeHandler = async (req, res, next) => {
         try {
-            res.status(200).render("../public/pages/dashboard/store/background.ejs");
+            res.status(200).render("../public/pages/dashboard/store/background.ejs", {
+                user: req.session.user_info,
+            });
         } catch (error) {
             next(error);
         }

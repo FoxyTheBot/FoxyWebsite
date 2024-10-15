@@ -110,6 +110,19 @@ main {
     margin-left: 5rem;
     margin-right: 3rem;
 
+    &.decorations {
+        margin-top: 5rem;
+
+       .item {
+        .item__icon {
+            img {
+                width: 85%;
+                border-radius: 0.625rem;
+                height: auto;
+            }
+        }
+       }
+    }
     .item {
         display: flex;
         flex-direction: column;
