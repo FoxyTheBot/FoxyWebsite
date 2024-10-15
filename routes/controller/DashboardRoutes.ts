@@ -30,23 +30,49 @@ class DashboardRoutes {
     }
 
     async getStoreData(req, res) {
-        const userData = await database.getUser(req.session.user_info.id);
-        const storeItems = await database.getStore();
-        const backgroundsAtStore = await Promise.all(storeItems.itens.map(background => {
-            return database.getBackground(background.id);
-        }));
-        const decorations = await database.getAllDecorations();
-
-        const responseData = {
-            user: req.session.user_info,
-            userData: userData,
-            userBackgrounds: userData.userProfile.backgroundList,
-            userDecorations: userData.userProfile.decorationList,
-            storeContent: { backgrounds: backgroundsAtStore, decorations },
-            lastUpdate: storeItems.lastUpdate
-        };
-        res.status(200).json(responseData);
+        try {
+            const userId = req.session.user_info.id;
+            const [userData, storeItems, allDecorations] = await Promise.all([
+                database.getUser(userId),
+                database.getStore(),
+                database.getAllDecorations()
+            ]);
+    
+            const backgroundsInStore = storeItems.itens
+                .filter(item => item.type === 'background')
+                .map(item => item.id);
+    
+            const decorationsInStore = storeItems.itens
+                .filter(item => item.type === 'decoration')
+                .map(item => item.id);
+    
+            const storeBackgrounds = await Promise.all(
+                backgroundsInStore.map(id => database.getBackground(id))
+            );
+    
+            const storeDecorations = decorationsInStore.map(id => 
+                allDecorations.find(decoration => decoration.id === id)
+            );
+    
+            const responseData = {
+                user: req.session.user_info,
+                userData: userData,
+                userBackgrounds: userData.userProfile.backgroundList,
+                userDecorations: userData.userProfile.decorationList,
+                storeContent: {
+                    backgrounds: storeBackgrounds,
+                    decorations: storeDecorations
+                },
+                lastUpdate: storeItems.lastUpdate
+            };
+    
+            res.status(200).json(responseData);
+        } catch (error) {
+            console.error(`[API] Error fetching store data: ${error.message}`);
+            res.status(500).json({ error: 'Failed to load store data' });
+        }
     }
+    
 
     async getUserBackgrounds(req, res) {
         const userId = req.session.user_info.id;
