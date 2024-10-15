@@ -171,7 +171,7 @@
 
           const userCakes = parseInt(document.getElementById('user-cakes').innerText.replace(/\D/g, ''));
           const saveButton = document.getElementById('save');
-          if (userData.userProfile.backgroundList.includes(background.id)) {
+          if (userData.userProfile.backgroundList.includes(background.id) || userData.userProfile.decorationList.includes(background.id)) {
             saveButton.disabled = true;
             saveButton.classList.add('disabled');
             saveButton.innerText = 'Comprado';
