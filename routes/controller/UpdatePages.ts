@@ -53,8 +53,6 @@ class UpdatePages {
 
         this.router.get("/checkout", this.routerManager.isAuthenticated, this.checkoutHandler);
 
-        this.router.get("/:lang/store/decorations", this.routerManager.isAuthenticated, this.decorationsHandler);
-
         this.router.get("/:lang/rso/login", this.rsoLoginHandler);
 
         this.router.get("/:lang/dashboard", this.routerManager.isAuthenticated, this.dashboardHandler);
@@ -104,24 +102,6 @@ class UpdatePages {
         const checkoutItem = await database.createCheckout(req.session.user_info.id.toString(), itemId.toString());
 
         res.status(200).redirect(process.env.FP_URL + "checkout/id/" + checkoutItem.checkoutId);
-    }
-
-    decorationsHandler = async (req, res, next) => {
-        try {
-            const userData = await database.getUser(req.session.user_info.id);
-            const decorations = await database.getAllDecorations();
-
-            res.status(200).render("../public/pages/dashboard/store/decoration.ejs", {
-                user: req.session.user_info,
-                userDecorations: userData.userProfile.decorationList,
-                userData: userData,
-                storeContent: {
-                    decorations: decorations
-                }
-            });
-        } catch (error) {
-            next(error);
-        }
     }
 
     rsoLoginHandler = (req, res) => {

@@ -16,7 +16,6 @@ class DashboardRoutes {
 
     initializeRoutes() {
         this.router.get("/br/user/backgrounds/data", this.routerManager.isAuthenticated, this.getUserBackgrounds);
-        this.router.post("/:lang/store/decorations/confirm/:id", this.routerManager.isAuthenticated, this.confirmDecoration);
         this.router.post("/:lang/store/confirm/:id", this.routerManager.isAuthenticated, this.confirmStore);
         this.router.get("/:lang/background/change/:id", this.routerManager.isAuthenticated, this.changeBackground);
         this.router.get("/:lang/decorations/change/:id", this.routerManager.isAuthenticated, this.changeDecoration);
@@ -88,43 +87,6 @@ class DashboardRoutes {
         };
 
         res.status(200).json(responseData);
-    }
-
-    async confirmDecoration(req, res, next) {
-        try {
-            const userId = req.session.user_info.id;
-            const userData = await database.getUser(userId);
-            const decoration = await database.getDecoration(req.params.id);
-
-            if (!decoration) {
-                return this.sendAlert(res, 'Esta decoração não existe', '/br/store');
-            }
-
-            if (userData.userCakes.balance < decoration.cakes) {
-                return this.sendAlert(res, 'Você não tem cakes suficientes para comprar esta decoração', '/br/store');
-            }
-
-            if (userData.userProfile.decorationList.includes(decoration.id)) {
-                return this.sendAlert(res, 'Você já possui esta decoração', '/br/store');
-            }
-
-            userData.userProfile.decoration = decoration.id;
-            userData.userProfile.decorationList.push(decoration.id);
-            userData.userCakes.balance -= decoration.cakes;
-            userData.userTransactions.push({
-                to: config.oauth.clientId,
-                from: userId,
-                quantity: decoration.cakes,
-                date: new Date(),
-                received: false,
-                type: TransactionType.SPENT_AT_STORE
-            });
-
-            await userData.save();
-            return res.redirect("/br/user/decorations");
-        } catch (error) {
-            next(error);
-        }
     }
 
     async confirmStore(req, res, next) {
