@@ -18,6 +18,106 @@
     box-sizing: border-box;
 }
 
+/* Theme */
+
+html.dark-theme body .meeting,
+html.dark-theme body .meeting-2 {
+    color: #fff !important;
+}
+
+html.dark-theme body .features,
+html.dark-theme body .feature {
+    background-color: #36393f !important;
+}
+
+html.dark-theme body .features h2 {
+    color: #fff !important;
+}
+
+.features {
+    padding: 30px;
+    opacity: inherit;
+    background-color: #ffffff;
+    border-color: #000;
+    position: relative;
+    text-align: center;
+
+    p {
+        font-family: "Poppins";
+        font-size: 15px;
+        color: #3d3d3d;
+        margin-left: auto;
+    }
+
+    .feature__title {
+        font-family: "Poppins";
+        font-size: 20px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        color: black;
+    }
+
+    .description {
+        font-family: "Poppins";
+        text-align: center;
+        color: black;
+    }
+
+    .feature {
+        flex-direction: column;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        border-color: #000;
+        position: relative;
+
+        h1 {
+            font-family: "Poppins";
+            font-size: 160%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            color: #e7385d;
+        }
+
+        h2 {
+            font-family: "Poppins";
+            font-size: 110%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            color: black;
+        }
+    }
+}
+
+
+
+.server-name {
+    color: #fff !important;
+}
+
+main  {
+    .meeting {
+        color: #e7385d;
+        font-size: 40px;
+        font-family: 'Cookie';
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+
+    .meeting-2 {
+        color: #e7385d;
+        font-size: 40px;
+        font-family: 'Cookie';
+        margin-left: 5px;
+        margin-top: 1px;
+    }
+}
+
 .server-card {
     width: 200px;
     height: 170px;
@@ -66,6 +166,7 @@
     0% {
         transform: scale(0);
     }
+
     100% {
         transform: scale(1);
     }

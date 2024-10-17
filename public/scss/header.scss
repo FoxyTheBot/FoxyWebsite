@@ -10,6 +10,7 @@
     padding: 0;
     text-decoration: none;
 }
+
 .mobile i {
     font-size: 30px;
     color: white;
@@ -71,7 +72,7 @@ nav.navigation-bar {
         padding: 0em 1em;
 
         a#login-button {
-            & > img {
+            &>img {
                 line-height: 0px;
                 width: 40px;
                 height: 40px;
@@ -81,7 +82,7 @@ nav.navigation-bar {
                 font-size: 0px;
             }
 
-            & > div {
+            &>div {
                 width: 40px;
                 line-height: 0px;
                 font-size: 0px;
@@ -90,7 +91,7 @@ nav.navigation-bar {
                 display: inline-block;
             }
 
-            & > span {
+            &>span {
                 padding-left: 4px;
             }
         }
@@ -121,6 +122,32 @@ nav.navigation-bar {
 
 .fab {
     font-family: "Font Awesome 5 Brands";
+}
+
+.theme-switch-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background-color);
+    transition: background-color 0.3s;
+    margin-right: 1rem;
+    margin-left: -1rem;
+}
+
+.theme-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+
+    svg {
+        width: 30px;
+        height: 30px;
+        transition: opacity 0.3s ease;
+    }
 }
 
 .fa,
@@ -232,6 +259,7 @@ nav.navigation-bar {
 
     .left-entries {
         margin-top: 1rem;
+
         .entry {
             display: none !important;
         }

@@ -4,6 +4,11 @@
 @import "components/buttons";
 @import "components/inline-emoji";
 
+/* Theme */
+html.dark-theme main h2 {
+    color: #fff;
+}
+
 main {
     padding-left: 28%;
     padding-right: 30%;
@@ -171,7 +176,7 @@ main a {
 }
 
 main h2 {
-    color: #fff;
+    color: #000000;
     font-size: 20px;
     margin-top: 5px;
 }

@@ -17,6 +17,29 @@
     --font-family: "Poppins";
 }
 
+/* Theme */
+html.dark-theme p {
+    color: #fff;
+    font-size: 1rem;
+    font-family: "Arial";
+    text-align: center;
+    margin: 1rem 0;
+    margin-left: 26rem !important;
+    margin-right: 13rem !important;
+}
+
+html.dark-theme .remaining-time {
+    color: #fff;
+    font-size: 0.7545rem;
+    font-family: var(--font-family);
+    text-align: center;
+    margin-left: 13rem;
+}
+
+html.dark-theme h2 {
+    color: #fff;
+}
+
 .page-title {
     color: #e7385d;
     font-size: 2rem;
@@ -27,7 +50,7 @@
 }
 
 p {
-    color: #fff;
+    color: #020202;
     font-size: 1rem;
     font-family: "Arial";
     text-align: center;
@@ -37,7 +60,7 @@ p {
 }
 
 .remaining-time {
-    color: #fff;
+    color: #000000;
     font-size: 0.7545rem;
     font-family: var(--font-family);
     text-align: center;
@@ -114,16 +137,18 @@ main {
     &.decorations {
         margin-top: 5rem;
         margin-bottom: 3rem;
-       .item {
-        .item__icon {
-            img {
-                width: 85%;
-                border-radius: 0.625rem;
-                height: auto;
+
+        .item {
+            .item__icon {
+                img {
+                    width: 85%;
+                    border-radius: 0.625rem;
+                    height: auto;
+                }
             }
         }
-       }
     }
+
     .item {
         display: flex;
         flex-direction: column;
@@ -390,7 +415,8 @@ main {
         background-size: contain;
     }
 
-    .store-item, .itens {
+    .store-item,
+    .itens {
         margin: -4rem auto;
         flex-direction: column;
         align-items: center;
@@ -468,7 +494,7 @@ main {
         margin: 0.5rem 0;
     }
 
-.remaining-time {
+    .remaining-time {
         font-size: 0.6254rem;
         margin: -2.5rem 0;
     }

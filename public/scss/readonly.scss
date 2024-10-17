@@ -3,6 +3,14 @@
 @import "components/background";
 @import "components/discord-invite";
 
+/* Theme */
+html.dark-theme main .description {
+    color: #fff;
+    font-size: 17px;
+    margin-bottom: 2%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .command-category-name {
     text-align: center;
     font-family: "Poppins";
@@ -181,7 +189,7 @@ main li {
 }
 
 main .description {
-    color: #fff;
+    color: #000;
     font-size: 17px;
     margin-bottom: 2%;
     font-family: Arial, Helvetica, sans-serif;

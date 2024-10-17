@@ -1,7 +1,32 @@
 :root {
-    background-image: url("../assets/images/background.png"), var(--background-color);
+    --background-color-light: linear-gradient(90deg, #e6e6e6, #e6e6e6);
+    --background-color-dark: linear-gradient(90deg, #0f1923, #0f1923);
+    --background-image-light: url("../assets/images/background-white.png");
+    --background-image-dark: url("../assets/images/background.png");
+
+    --text-color-light: #333;
+    --text-color-dark: #fff;
+}
+
+html {
+    background: var(--background-image-light), var(--background-color-light);
     background-size: cover;
     width: 100%;
     height: 100%;
-    --background-color: linear-gradient(90deg, #0f1923, #0f1923);
+}
+
+body {
+    color: var(--text-color-light);
+    transition: color 0.3s ease-in-out;
+}
+
+html.dark-theme {
+    background: var(--background-image-dark), var(--background-color-dark);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+body.dark-theme {
+    color: var(--text-color-dark);
 }
