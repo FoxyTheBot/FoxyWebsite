@@ -32,7 +32,7 @@ html.dark-theme {
     transition: left 0.3s ease;
     overflow-y: auto;
     scrollbar-width: thin;
-    box-shadow: 0 0 10px $default-color;
+    box-shadow: 0 0 2px;
     scrollbar-color: #4f545c #36393f;
     z-index: 900;
 
@@ -46,7 +46,7 @@ html.dark-theme {
         transition: background-color 0.2s ease;
 
         &:hover {
-            background-color: #cfcfcf;
+            background-color: #fafafa;
         }
     }
 

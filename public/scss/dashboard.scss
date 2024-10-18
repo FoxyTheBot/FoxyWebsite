@@ -28,6 +28,13 @@ html.dark-theme p {
     margin-right: 13rem !important;
 }
 
+html.dark-theme .itens .item {
+    background-color: #4f545c;
+}
+html.dark-theme .itens .item .item-name {
+    color: #fff;
+}
+
 html.dark-theme .remaining-time {
     color: #fff;
     font-size: 0.7545rem;
@@ -156,7 +163,7 @@ main {
         padding: 0.625rem;
         margin: 0.595rem;
         border-radius: 0.625rem;
-        background-color: #4f545c;
+        background-color: #fafafa;
         transition: transform 0.3s ease-in-out;
         box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
 
@@ -186,7 +193,7 @@ main {
             }
 
             .item-name {
-                color: #fff;
+                color: #26282c;
                 font-size: 1rem;
                 font-family: var(--font-family);
                 text-align: center;
@@ -204,7 +211,7 @@ main {
             .purchased {
                 display: block;
                 margin-top: 0.3125rem;
-                color: rgb(103, 255, 103);
+                color: rgb(75, 207, 75);
                 font-size: 1rem;
                 font-weight: bold;
             }

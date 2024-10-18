@@ -4,14 +4,17 @@
 @import "components/discord-invite";
 
 /* Theme */
+html.dark-theme main .server-description,
+html.dark-theme main .server-title,
+html.dark-theme main .support-description,
+html.dark-theme main h2
+html.dark-theme main .command-category-name,
 html.dark-theme main .description {
     color: #fff;
-    font-size: 17px;
-    margin-bottom: 2%;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .command-category-name {
+    color: #272222;
     text-align: center;
     font-family: "Poppins";
     font-size: 30px;
@@ -29,7 +32,7 @@ main {
 
 
 h2 {
-    color: #fff;
+    color: #272222;
     font-size: 25px;
     margin-bottom: 10px;
     font-family: Montserrat;
@@ -189,7 +192,7 @@ main li {
 }
 
 main .description {
-    color: #000;
+    color: #272222;
     font-size: 17px;
     margin-bottom: 2%;
     font-family: Arial, Helvetica, sans-serif;
@@ -226,7 +229,7 @@ main .server-description {
 }
 
 main .support-description {
-    color: #fff;
+    color: #272222;
     font-size: 17px;
     margin-bottom: 2%;
     text-align: center;
@@ -335,14 +338,14 @@ main .tos {
 }
 
 main .tos .term h2 {
-    color: #fff;
+    color: #272222;
     font-size: 25px;
     font-family: Montserrat;
     margin-bottom: 1%;
 }
 
 main .tos .term h3 {
-    color: #fff;
+    color: #272222;
     font-size: 18px;
     font-family: Montserrat;
     margin-bottom: 2%;
@@ -354,7 +357,7 @@ p {
 }
 
 main h3 {
-    color: #fff;
+    color: #272222;
     font-size: 18px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
