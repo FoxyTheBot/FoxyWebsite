@@ -11,10 +11,13 @@ $default-color: #e7385d;
 html.dark-theme {
     .left-sidebar {
         background-color: #2f3136;
-    }
-
-    .entry {
-        color: #fff;
+        .entry {
+            color: #fff;
+            
+            &:hover {
+                background-color: #36393f;
+            }
+        }
     }
 
     .separator {
