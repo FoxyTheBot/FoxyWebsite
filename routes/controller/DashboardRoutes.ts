@@ -76,7 +76,7 @@ class DashboardRoutes {
     async getSubscriptionsData(req, res) {
         const userId = req.session.user_info.id;
         const userData = await database.getUser(userId);
-
+        const usersCheckous = await database.getCheckouts(userId);
         const responseData = {
             user: req.session.user_info,
             userData: userData,
@@ -85,7 +85,8 @@ class DashboardRoutes {
                 premiumDate: userData.userPremium.premiumDate,
                 premium: userData.userPremium.premium
             },
-            userCakes: userData.userCakes
+            userCakes: userData.userCakes,
+            userCheckouts: usersCheckous
         }
 
         res.status(200).json(responseData);

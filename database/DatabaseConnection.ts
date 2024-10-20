@@ -147,6 +147,11 @@ export default class DatabaseConnection {
         return document;
     }
 
+    async getCheckouts(userId: string): Promise<any> {
+        let document = await this.checkoutList.find({ userId });
+        return document;
+    }
+
     async createCheckout(userId: string, itemId: string): Promise<any> {
         let document = await this.checkoutList.findOne({ userId });
         if (document && !document.isApproved) return document;
