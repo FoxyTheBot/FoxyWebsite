@@ -48,7 +48,6 @@ html.dark-theme p {
 }
 
 .subscription-buttons {
-    display: flex;
     justify-content: center;
     margin-top: -3rem;
     margin-left: 36rem;
@@ -520,8 +519,9 @@ main {
     }
 
     .subscription-buttons {
-        margin-top: 0;
-        margin-bottom: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0rem;
+        margin-left: 0rem;
     }
 
     .subscription-title {
@@ -535,6 +535,11 @@ main {
 
     .subscription-info {
         align-items: center;
+    }
+    .current-subscription {
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 3rem;
     }
 
     .subscription-buttons a>button {
