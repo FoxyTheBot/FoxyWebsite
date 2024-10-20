@@ -155,6 +155,7 @@ export default class DatabaseConnection {
             checkoutId: randomUUID(),
             userId: userId,
             itemId: itemId,
+            isApproved: false,
         }).save();
 
         return document;
