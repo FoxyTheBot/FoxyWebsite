@@ -75,6 +75,8 @@ class UpdatePages {
 
         this.router.get('/:lang/support/ban-appeal', this.banAppealHandler);
 
+        this.router.get("/:lang/dashboard/subscriptions", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/user/subscriptions.ejs"));
+        
         this.router.get('/:lang/error', this.errorHandler);
 
         this.router.get('/:lang/404', this.notFoundHandler);
@@ -101,7 +103,7 @@ class UpdatePages {
 
         const checkoutItem = await database.createCheckout(req.session.user_info.id.toString(), itemId.toString());
 
-        res.status(200).redirect(process.env.FP_URL + "checkout/id/" + checkoutItem.checkoutId);
+        res.status(200).redirect(process.env.FP_LOCAL_URL + "checkout/id/" + checkoutItem.checkoutId);
     }
 
     rsoLoginHandler = (req, res) => {

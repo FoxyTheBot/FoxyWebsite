@@ -196,6 +196,7 @@ const checkoutList = new mongoose.Schema({
     itemId: String,
     date: Date,
     isApproved: Boolean,
+    paymentId: String,
 }, { versionKey: false, id: false });
 
 export const Schemas = {

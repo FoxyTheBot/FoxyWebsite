@@ -149,13 +149,14 @@ export default class DatabaseConnection {
 
     async createCheckout(userId: string, itemId: string): Promise<any> {
         let document = await this.checkoutList.findOne({ userId });
-        if (document) return document;
+        if (document && !document.isApproved) return document;
         
         document = new this.checkoutList({
             checkoutId: randomUUID(),
             userId: userId,
             itemId: itemId,
             isApproved: false,
+            paymentId: null,
         }).save();
 
         return document;

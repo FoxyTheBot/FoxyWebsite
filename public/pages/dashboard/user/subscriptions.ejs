@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles/header.css" type="text/css">
+    <link rel="icon" href="/assets/images/foxycake.png">
+    <title>Foxy | Assinaturas</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-E3J7N4BP8L');
+    </script>
+    <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
+    <link rel="stylesheet" href="/styles/loading.css" type="text/css">
+</head>
+
+<body>
+    <div id="loadingOverlay" class="loading-overlay">
+        <%- include('../../global/loading') %>
+    </div>
+
+    <%- include('../sidebar') %>
+
+        <ins id="adBanner" class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+            data-ad-client="ca-pub-7726590371480649" data-ad-slot="4619028248"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <div class="store-content">
+            <h1 class="page-title">Gerenciar assinaturas</h1>
+            <p>Comprou algum plano premium da Foxy mas não recebeu uma DM dela, pois você esqueceu sua DM fechada? Veja
+                as informações do seu plano aqui!</p>
+            <main>
+                <h1 class="subscription-title">Plano atual:</h1>
+                <div class="current-subscription">
+                    <div class="subscription-info">
+                        <h2 class="subscription-name" id="subscriptionName"></h2>
+                        <h4 class="expiration-date" id="expirationDate"></h4>
+                        <div class="subscription-buttons" id="buttons">
+                            <a href="/br/premium">
+                                <button id="subscriptionButton" class="button"></button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script src="/js/theme.js"></script>
+        <script>
+            function getPlanName(premiumType) {
+                switch (premiumType) {
+                    case "3":
+                    case "Foxy Premium III":
+                        return "Plano Completo";
+                    case "2":
+                    case "Foxy Premium II":
+                        return "Plano Recomendado";
+                    case "1":
+                    case "Foxy Premium I":
+                        return "Plano Básico";
+                    case "0":
+                    case null:
+                        return "Plano Gratuito";
+                    default:
+                        return "Plano Desconhecido";
+                }
+            }
+
+            async function loadSubscriptionData() {
+                try {
+                    const response = await fetch('/br/dashboard/subscriptions/data');
+                    if (!response.ok) throw new Error('Erro ao carregar dados da assinatura.');
+
+                    const data = await response.json();
+                    console.log(data);
+
+                    const { currentSubscription } = data;
+
+                    const planName = getPlanName(currentSubscription.premiumType);
+
+                    const premiumDate = currentSubscription.premiumDate
+                        ? `Ativo até: ${new Date(currentSubscription.premiumDate).toLocaleDateString('pt-BR', {
+                            day: '2-digit',
+                            month: 'long',
+                            year: 'numeric'
+                        })}`
+                        : 'Vitalício';
+
+                    document.getElementById('subscriptionName').textContent = planName;
+                    document.getElementById('expirationDate').textContent = premiumDate;
+
+                    const buttonContainer = document.getElementById('buttons');
+                    const subscriptionButton = document.getElementById('subscriptionButton');
+                    if (planName === "Plano Gratuito") {
+                        subscriptionButton.textContent = "Comprar";
+                    } else {
+                        subscriptionButton.textContent = "Renovar";
+                    }
+
+                } catch (error) {
+                    console.error('Erro ao buscar dados:', error);
+                    document.getElementById('subscriptionName').textContent = 'Erro ao carregar dados';
+                } finally {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', loadSubscriptionData);
+        </script>
+</body>
+
+</html>

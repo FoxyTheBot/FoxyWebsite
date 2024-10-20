@@ -28,9 +28,87 @@ html.dark-theme p {
     margin-right: 13rem !important;
 }
 
+.current-subscription {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 4px;
+    margin-left: 27rem;
+    margin-bottom: 3rem;
+    font-family: "Arial";
+    background-color: #f5f5f5;
+    color: #000;
+    transition: 0.3s;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+    margin-right: 12rem;
+
+    &:hover {
+        transform: scale(1.05);
+        transition: 0.3s;
+    }
+}
+
+.subscription-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: -3rem;
+    margin-left: 36rem;
+    margin-bottom: 1rem;
+
+    &>a>button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        outline: none;
+        font-family: Roboto, sans-serif;
+        line-height: 20px;
+        font-size: 17px;
+        color: #fff;
+        min-width: 36px;
+        margin-left: 1.5%;
+        padding: .55rem 1rem;
+        box-sizing: border-box;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        background: #5865f2;
+        animation: float 5s ease-in-out infinite;
+    }
+}
+
+.subscription-title {
+    margin-bottom: 1rem;
+    margin-left: 25rem;
+    margin-top: -3rem;
+    font-family: "Poppins";
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.subscription-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.subscription-name {
+    font-size: 1.5rem;
+    color: #e7385d !important;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.expiration-date {
+    font-size: 1rem;
+    font-family: "Poppins";
+    color: #272222;
+}
+
 html.dark-theme .itens .item {
     background-color: #4f545c;
 }
+
 html.dark-theme .itens .item .item-name {
     color: #fff;
 }
@@ -439,6 +517,30 @@ main {
         width: 80%;
         height: auto;
         max-width: 300px;
+    }
+
+    .subscription-buttons {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .subscription-title {
+        margin-left: 0;
+        font-size: 1.2rem;
+    }
+
+    .subscription-name {
+        font-size: 1.25rem;
+    }
+
+    .subscription-info {
+        align-items: center;
+    }
+
+    .subscription-buttons a>button {
+        width: 100%;
+        max-width: 300px;
+        margin-left: 0;
     }
 
     .module,
