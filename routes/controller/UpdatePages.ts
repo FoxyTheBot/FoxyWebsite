@@ -103,7 +103,7 @@ class UpdatePages {
 
         const checkoutItem = await database.createCheckout(req.session.user_info.id.toString(), itemId.toString());
 
-        res.status(200).redirect(process.env.FP_LOCAL_URL + "checkout/id/" + checkoutItem.checkoutId);
+        res.status(200).redirect(process.env.FP_URL + "checkout/id/" + checkoutItem.checkoutId);
     }
 
     rsoLoginHandler = (req, res) => {
