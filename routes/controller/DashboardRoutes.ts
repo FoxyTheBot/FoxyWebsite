@@ -21,6 +21,7 @@ class DashboardRoutes {
         this.router.get("/:lang/decorations/change/:id", this.routerManager.isAuthenticated, this.changeDecoration);
         this.router.post("/:lang/dashboard/daily/receive", this.routerManager.isAuthenticated, this.receiveDaily);
         this.router.get("/:lang/store/data", this.routerManager.isAuthenticated, this.getStoreData);
+        this.router.get("/:lang/dashboard/subscriptions/data", this.routerManager.isAuthenticated, this.getSubscriptionsData);
         this.router.use(this.routerManager.errorHandler);
     }
 
@@ -36,23 +37,23 @@ class DashboardRoutes {
                 database.getStore(),
                 database.getAllDecorations()
             ]);
-    
+
             const backgroundsInStore = storeItems.itens
                 .filter(item => item.type === 'background')
                 .map(item => item.id);
-    
+
             const decorationsInStore = storeItems.itens
                 .filter(item => item.type === 'decoration')
                 .map(item => item.id);
-    
+
             const storeBackgrounds = await Promise.all(
                 backgroundsInStore.map(id => database.getBackground(id))
             );
-    
-            const storeDecorations = decorationsInStore.map(id => 
+
+            const storeDecorations = decorationsInStore.map(id =>
                 allDecorations.find(decoration => decoration.id === id)
             );
-    
+
             const responseData = {
                 user: req.session.user_info,
                 userData: userData,
@@ -64,14 +65,31 @@ class DashboardRoutes {
                 },
                 lastUpdate: storeItems.lastUpdate
             };
-    
+
             res.status(200).json(responseData);
         } catch (error) {
             console.error(`[API] Error fetching store data: ${error.message}`);
             res.status(500).json({ error: 'Failed to load store data' });
         }
     }
-    
+
+    async getSubscriptionsData(req, res) {
+        const userId = req.session.user_info.id;
+        const userData = await database.getUser(userId);
+
+        const responseData = {
+            user: req.session.user_info,
+            userData: userData,
+            currentSubscription: {
+                premiumType: userData.userPremium.premiumType,
+                premiumDate: userData.userPremium.premiumDate,
+                premium: userData.userPremium.premium
+            },
+            userCakes: userData.userCakes
+        }
+
+        res.status(200).json(responseData);
+    }
 
     async getUserBackgrounds(req, res) {
         const userId = req.session.user_info.id;
@@ -186,22 +204,39 @@ class DashboardRoutes {
             const userData = await database.getUser(userId);
             const timeout = 43200000;
             const daily = userData.userCakes.lastDaily;
-
+    
             if (daily !== null && timeout - (Date.now() - daily) > 0) {
                 return this.sendAlert(res, 'Você já coletou seu daily hoje', '/br/dashboard');
             }
-
+    
             let amount = Math.floor(Math.random() * 8000);
             amount = Math.round(amount / 10) * 10;
-
+    
+            let multiplier = 1;
+            let maxAmount = 8000;
+    
             switch (userData.userPremium.premiumType) {
-                case "1": amount *= 1.25; break;
-                case "2": amount *= 1.5; break;
-                case "3": amount *= 2; break;
+                case "Foxy Premium I":
+                case "1":
+                    multiplier = 1.25;
+                    maxAmount = 15000;
+                    break;
+                case "Foxy Premium II":
+                case "2":
+                    multiplier = 1.5;
+                    maxAmount = 20000;
+                    break;
+                case "Foxy Premium III":
+                case "3":
+                    multiplier = 2;
+                    maxAmount = 25000;
+                    break;
             }
-
+    
+            amount = Math.min(Math.floor(amount * multiplier), maxAmount);
+    
             if (amount < 1000) amount = 1000;
-
+    
             userData.userCakes.balance += amount;
             userData.userCakes.lastDaily = Date.now();
             userData.userTransactions.push({
@@ -212,13 +247,14 @@ class DashboardRoutes {
                 received: true,
                 type: TransactionType.DAILY_REWARD
             });
-
+    
             await userData.save();
             res.status(200).json({ coins: amount, totalCoins: userData.userCakes.balance });
         } catch (error) {
             next(error);
         }
     }
+    
 
     sendAlert(res, message, redirectUrl) {
         return res.status(200).send(`<script>alert('${message}'); window.location.href = '${redirectUrl}';</script>`);
