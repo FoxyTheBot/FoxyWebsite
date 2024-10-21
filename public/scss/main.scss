@@ -18,6 +18,22 @@
     box-sizing: border-box;
 }
 
+main .foxy {
+    margin-left: 135% !important;
+    margin-top: -20rem !important;
+    margin-bottom: 19% !important;
+    width: 47% !important;
+    height: 65% !important;
+    display: inline !important;
+    border-radius: 50% !important;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    animation: float 2s ease-in-out infinite;
+}
+
+main .foxy:hover {
+    transform: scale(1.1);
+}
+
 /* Theme */
 
 html.dark-theme body .meeting,
@@ -36,7 +52,6 @@ html.dark-theme body .features h2 {
 
 .features {
     padding: 30px;
-    opacity: inherit;
     background-color: #ffffff;
     border-color: #000;
     position: relative;
@@ -52,61 +67,98 @@ html.dark-theme body .features h2 {
     .feature__title {
         font-family: "Poppins";
         font-size: 20px;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
         margin-top: 20px;
         color: #272222;
     }
 
     .description {
         font-family: "Poppins";
-        text-align: center;
         color: #272222;
     }
 
     .feature {
-        flex-direction: column;
+        display: flex;
         margin: 20px;
-        padding: 20px;
+        padding: 2rem;
         border-radius: 10px;
         background-color: #ffffff;
-        border-color: #000;
-        position: relative;
+        align-items: flex-start;
+
+        &.right {
+            flex-direction: row;
+        }
+
+        &.left {
+            flex-direction: row-reverse;
+        }
+
+        &.centralized {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .text-container {
+            flex: 1;
+            text-align: left;
+            margin-right: 20px;
+            padding: 0 10px;
+        }
 
         h1 {
             font-family: "Poppins";
             font-size: 160%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 10px;
+            margin: 0 0 10px 0;
             color: #e7385d;
         }
 
         h2 {
             font-family: "Poppins";
             font-size: 110%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 10px;
-            color: #272222;
+            margin: 0;
+            color: #000;
+        }
+
+        .feature-image {
+            width: 15%;
+            height: auto;
+            margin-left: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .feature {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            .text-container {
+                margin-right: 0;
+                padding: 0;
+                margin-top: 20px;
+            }
+
+            .feature-image {
+                display: none;
+            }
         }
     }
 }
 
-
-
 .server-name {
     color: #fff !important;
+    margin-top: 1rem !important;
 }
 
-main  {
+main {
+    margin-top: 11rem;
+
     .meeting {
         color: #e7385d;
         font-size: 40px;
         font-family: 'Cookie';
         margin-left: 5px;
-        margin-top: 5px;
+        margin-top: 1rem;
     }
 
     .meeting-2 {
@@ -121,6 +173,7 @@ main  {
 .server-container {
     margin-bottom: -5rem;
 }
+
 .server-card {
     width: 200px;
     height: 170px;
@@ -163,6 +216,23 @@ main  {
     &:last-child {
         margin-right: 1.1rem;
     }
+
+    &:active {
+        transform: scale(1);
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    main .foxy {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+
+    main .foxy {
+        display: none !important;
+    }
 }
 
 @keyframes scaleIn {
@@ -172,5 +242,17 @@ main  {
 
     100% {
         transform: scale(1);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
     }
 }

@@ -8,13 +8,6 @@ function switchTheme() {
     document.getElementById('sun-icon').style.display = isDark ? 'none' : 'block';
     document.getElementById('moon-icon').style.display = isDark ? 'block' : 'none';
 
-    const foxyImg = document.querySelector('.foxy');
-    if (foxyImg) {
-        foxyImg.src = isDark 
-            ? '../assets/images/foxy-fullbody.png' 
-            : '../assets/images/foxy-white-fullbody.png';
-    }
-
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
@@ -25,13 +18,6 @@ function applySavedTheme() {
     document.documentElement.classList.toggle('dark-theme', isDark);
     document.getElementById('sun-icon').style.display = isDark ? 'none' : 'block';
     document.getElementById('moon-icon').style.display = isDark ? 'block' : 'none';
-
-    const foxyImg = document.querySelector('.foxy');
-    if (foxyImg) {
-        foxyImg.src = isDark 
-            ? '../assets/images/foxy-fullbody.png' 
-            : '../assets/images/foxy-white-fullbody.png';
-    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
