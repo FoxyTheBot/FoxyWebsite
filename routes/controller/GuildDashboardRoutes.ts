@@ -48,7 +48,6 @@ class GuildDashboardRoutes {
                 authorizedGuilds.push(guild);
             }
         }
-        console.log(authorizedGuilds);
         res.status(200).json({ user, guilds: authorizedGuilds });
     }
 
