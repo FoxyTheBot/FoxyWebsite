@@ -55,9 +55,9 @@ main {
 
     .daily-page {
         text-align: center;
-        margin-left: 35%;
-        margin-right: 10%;
-        margin-top: 10%;
+        margin-left: 26rem;
+        margin-right: 4rem;
+        margin-top: -3rem;
         opacity: 1;
         transition: opacity 0.5s ease-out;
 
@@ -76,6 +76,10 @@ main {
             margin-top: 1rem;
             margin-bottom: 1rem;
             font-weight: 500;
+
+            & a {
+                color: #247ff7;
+            }
         }
 
         .title {
@@ -291,8 +295,8 @@ h3 {
 
     main .daily-page {
         margin: 0 auto;
-        margin-left: 1rem;
-        margin-top: 1rem;
+        margin-left: 0.360rem;
+        margin-top: -3rem;
         width: 100%;
     }
 
