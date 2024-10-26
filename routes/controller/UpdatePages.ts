@@ -38,49 +38,28 @@ class UpdatePages {
 
     initializeRoutes() {
         this.router.use(this.routerManager.checkSession);
-
         this.router.get("/", this.routerManager.renderPage("../public/pages/index.ejs"));
-
         this.router.get("/:lang/support/guidelines", this.routerManager.renderPage("../public/pages/info/guidelines.ejs"));
-
         this.router.get('/:lang/premium', this.routerManager.renderPage("../public/pages/info/premium.ejs"));
-
         this.router.get("/:lang/support/terms", this.routerManager.renderPage("../public/pages/info/privacy.ejs"));
-
         this.router.get("/:lang/store", this.routerManager.isAuthenticated, this.storeHandler);
-
         this.router.get("/:lang/store/layouts", this.routerManager.isAuthenticated, this.layoutHandler);
-
         this.router.get("/checkout", this.routerManager.isAuthenticated, this.checkoutHandler);
-
+        this.router.get("/:lang/servers", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/guild/servers.ejs"));
         this.router.get("/:lang/rso/login", this.rsoLoginHandler);
-
-        this.router.get("/:lang/dashboard", this.routerManager.isAuthenticated, this.dashboardHandler);
-
+        this.router.get("/:lang/dashboard", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/guild/dashboard.ejs"));
         this.router.get("/:lang/user/decorations", this.routerManager.isAuthenticated, this.userDecorationsHandler);
-
         this.router.get("/riot/connection/status=:status", this.riotConnectionStatusHandler);
-
         this.router.get('/:lang/daily', this.routerManager.isAuthenticated, this.dailyHandler);
-
         this.router.get('/:lang/delete', this.routerManager.isAuthenticated, this.deleteUserHandler);
-
         this.router.get("/:lang/commands/", this.commandsHandler);
-
         this.router.get("/:lang/commands/:category", this.categoryCommandsHandler);
-
         this.router.get('/:lang/confirm', this.routerManager.isAuthenticated, this.confirmHandler);
-
         this.router.get('/:lang/support', this.supportHandler);
-
         this.router.get('/:lang/support/ban-appeal', this.banAppealHandler);
-
         this.router.get("/:lang/dashboard/subscriptions", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/user/subscriptions.ejs"));
-        
         this.router.get('/:lang/error', this.errorHandler);
-
         this.router.get('/:lang/404', this.notFoundHandler);
-
         this.router.use(this.routerManager.errorHandler);
     }
 
@@ -118,10 +97,6 @@ class UpdatePages {
             user: null,
             body: data
         });
-    }
-
-    dashboardHandler = async (req, res) => {
-        res.status(200).render("../public/pages/dashboard/user/inventory/backgrounds.ejs");
     }
 
     userDecorationsHandler = async (req, res, next) => {
