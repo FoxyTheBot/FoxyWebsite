@@ -45,7 +45,6 @@ class UpdatePages {
         this.router.get("/:lang/store", this.routerManager.isAuthenticated, this.storeHandler);
         this.router.get("/:lang/store/layouts", this.routerManager.isAuthenticated, this.layoutHandler);
         this.router.get("/checkout", this.routerManager.isAuthenticated, this.checkoutHandler);
-        this.router.get("/:lang/rso/login", this.rsoLoginHandler);
         this.router.get("/:lang/dashboard", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/guild/dashboard.ejs"));
         this.router.get("/:lang/user/decorations", this.routerManager.isAuthenticated, this.userDecorationsHandler);
         this.router.get("/riot/connection/status=:status", this.riotConnectionStatusHandler);
@@ -82,20 +81,6 @@ class UpdatePages {
         const checkoutItem = await database.createCheckout(req.session.user_info.id.toString(), itemId.toString());
 
         res.status(200).redirect(process.env.FP_URL + "checkout/id/" + checkoutItem.checkoutId);
-    }
-
-    rsoLoginHandler = (req, res) => {
-        const data = {
-            puuid: req.query.puuid,
-            gameName: req.query.gameName,
-            tagLine: req.query.tagLine,
-            authCode: req.query.key
-        };
-
-        res.status(200).render("../public/pages/utils/rso.ejs", {
-            user: null,
-            body: data
-        });
     }
 
     userDecorationsHandler = async (req, res, next) => {
