@@ -349,7 +349,6 @@ class GuildDashboardRoutes {
                         authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
                     }
                 });
-                console.log(userGuilds.status)
                 const guilds = await userGuilds.json();
                 resolve(guilds);
             }, 500);
