@@ -75,14 +75,19 @@ class GuildDashboardRoutes {
             return res.redirect(`https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=${guildId}`)
         }
 
-        const guildInfo = await fetch(`https://discord.com/api/guilds/${guildId}`, {
+        const userGuilds = await fetch(`https://discord.com/api/users/@me/guilds`, {
             headers: {
                 authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
             }
         });
-        const guild = await guildInfo.json();
+        
+        const guilds = await userGuilds.json();
+        const currentGuild = guilds.find(g => g.id === guildId);
+        if (!currentGuild || !currentGuild.permissions) {
+            return res.redirect("/br/dashboard");
+        }
 
-        const isUserAuthorized = this.checkUserPermissions(Number(guild.permissions));
+        const isUserAuthorized = this.checkUserPermissions(Number(currentGuild.permissions));
 
         if (!isUserAuthorized) {
             return res.status(403).json({ message: 'Você não tem permissão para acessar este servidor.' });
@@ -143,16 +148,16 @@ class GuildDashboardRoutes {
                 } : []
             };
 
-            guild.GuildJoinLeaveModule = {
+            guildData.GuildJoinLeaveModule = {
                 isEnabled: !!toggleWelcomeModule,
                 joinMessage: JSON.stringify(joinMessage) || null,
                 alertWhenUserLeaves: !!toggleGoodbyeModule,
                 leaveMessage: JSON.stringify(leaveMessage) || null,
-                joinChannel: welcomeChannel || guild.GuildJoinLeaveModule.joinChannel,
-                leaveChannel: goodbyeChannel || guild.GuildJoinLeaveModule.leaveChannel
+                joinChannel: welcomeChannel || guildData.GuildJoinLeaveModule.joinChannel,
+                leaveChannel: goodbyeChannel || guildData.GuildJoinLeaveModule.leaveChannel
             };
 
-            await guild.save();
+            await guildData.save();
 
             res.status(200).redirect(`/br/servers/${guildId}`);
         } catch (error) {
@@ -184,7 +189,7 @@ class GuildDashboardRoutes {
             res.status(500).json({ message: 'Erro ao buscar informações dos servidores.' });
         }
     }
-    
+
     async getServerConfig(req, res) {
         const guildId = req.params.id;
         const guild = await database.getGuild(guildId);
