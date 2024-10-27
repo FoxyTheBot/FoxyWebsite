@@ -1,6 +1,7 @@
 import express from 'express';
 import { database } from '../../client/app';
 import RouterManager from './RouterManager';
+import { Guild } from 'discordeno/*';
 
 class GuildDashboardRoutes {
     router: express.Router;
@@ -13,20 +14,11 @@ class GuildDashboardRoutes {
     }
 
     initializeRoutes() {
-        this.router.get("/:lang/servers/data", this.routerManager.isAuthenticated, this.getServersData);
-        this.router.get("/:lang/servers/:id/data", this.routerManager.isAuthenticated, this.getServerConfig);
-        this.router.get("/:lang/servers/:id/channels", this.routerManager.isAuthenticated, this.getServerChannels);
-        this.router.get("/:lang/servers/:id", this.routerManager.isAuthenticated, async (req, res) => {
-            const guildId = req.params.id;
-            const guild = await database.getGuild(guildId);
-            if (!guild) {
-                return res.redirect(`https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=${guildId}`)
-            }
-            res.status(200).render("../public/pages/dashboard/guild/modules/welcomer.ejs", {
-                user: req.session.user_info,
-                guildId,
-            });
-        });;
+        this.router.get("/:lang/servers/data", this.routerManager.isAuthenticated, this.getServersData.bind(this));
+        this.router.get("/:lang/servers/:id/data", this.routerManager.isAuthenticated, this.getServerConfig.bind(this));
+        this.router.get("/:lang/servers/:id/channels", this.routerManager.isAuthenticated, this.getServerChannels.bind(this));
+        this.router.post("/br/servers/:guildId/modules/welcomer", this.routerManager.isAuthenticated, this.saveWelcomerModule.bind(this));
+        this.router.get("/:lang/servers/:id", this.routerManager.isAuthenticated, this.getGuildSettings.bind(this));
 
         this.router.post("/br/servers/:guildId/modules/welcomer", this.routerManager.isAuthenticated, this.saveWelcomerModule);
 
@@ -37,8 +29,61 @@ class GuildDashboardRoutes {
         return this.router;
     }
 
+
+    checkUserPermissions(permission): boolean {
+        console.log(permission);
+        console.log((permission & (8 | 32)) !== 0);
+        return (permission & (8 | 32)) !== 0;
+    }
+
+    async getGuildSettings(req, res) {
+        const guildId = req.params.id;
+        const guildData = await database.getGuild(guildId);
+        if (!guildData) {
+            return res.redirect(`https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=${guildId}`)
+        }
+
+        const userGuilds = await fetch(`https://discord.com/api/users/@me/guilds`, {
+            headers: {
+                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
+            }
+        });
+        const guilds = await userGuilds.json();
+        const currentGuild = guilds.find(g => g.id === guildId);
+        if (!currentGuild || !currentGuild.permissions) {
+            return res.redirect("/br/dashboard");
+        }
+        const isUserAuthorized = this.checkUserPermissions(Number(currentGuild.permissions));
+
+        if (!isUserAuthorized) {
+            return res.redirect("/br/dashboard");
+        }
+
+        res.status(200).render("../public/pages/dashboard/guild/modules/welcomer.ejs", {
+            user: req.session.user_info,
+            guildId,
+        });
+    }
+
     async saveWelcomerModule(req, res) {
         const { guildId } = req.params;
+        const guildData = await database.getGuild(guildId);
+        if (!guildData) {
+            return res.redirect(`https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=${guildId}`)
+        }
+
+        const guildInfo = await fetch(`https://discord.com/api/guilds/${guildId}`, {
+            headers: {
+                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
+            }
+        });
+        const guild = await guildInfo.json();
+
+        const isUserAuthorized = this.checkUserPermissions(Number(guild.permissions));
+
+        if (!isUserAuthorized) {
+            return res.status(403).json({ message: 'Você não tem permissão para acessar este servidor.' });
+        }
         const {
             welcomeChannel,
             toggleWelcomeModule,
@@ -54,16 +99,13 @@ class GuildDashboardRoutes {
             goodbyeEmbedColor,
             embedFields,
             buttons,
+            welcomeShowAvatar,
+            goodbyeShowAvatar,
             goodbyeEmbedFields,
             goodbyeButtons
         } = req.body;
 
         try {
-            const guild = await database.getGuild(guildId);
-            if (!guild) {
-                return res.status(404).json({ message: 'Servidor não encontrado.' });
-            }
-
             const joinMessage = {
                 content: messageContent || "<@{user.id}>",
                 embeds: [
@@ -71,6 +113,7 @@ class GuildDashboardRoutes {
                         title: embedTitle || null,
                         description: embedDescription || null,
                         color: parseInt(embedColor.replace('#', '0x')) || null,
+                        thumbnail: welcomeShowAvatar ? { url: "{user.avatar}" } : null,
                         fields: Array.isArray(embedFields) && embedFields.length > 0 ? embedFields : []
                     }
                 ].filter(embed => embed.title || embed.description || embed.fields.length > 0),
@@ -87,6 +130,7 @@ class GuildDashboardRoutes {
                         title: goodbyeEmbedTitle || null,
                         description: goodbyeEmbedDescription || null,
                         color: parseInt(goodbyeEmbedColor.replace('#', '0x')) || null,
+                        thumbnail: goodbyeShowAvatar ? { url: "{user.avatar}" } : null,
                         fields: Array.isArray(goodbyeEmbedFields) && goodbyeEmbedFields.length > 0 ? goodbyeEmbedFields : []
                     }
                 ].filter(embed => embed.title || embed.description || embed.fields.length > 0),
@@ -113,6 +157,7 @@ class GuildDashboardRoutes {
             res.status(500).json({ message: 'Erro ao salvar configurações.' });
         }
     }
+
     async getServersData(req, res) {
         const user = await req.session.user_info;
         const userGuilds = await fetch("https://discord.com/api/users/@me/guilds", {
@@ -123,12 +168,9 @@ class GuildDashboardRoutes {
         const guilds = await userGuilds.json();
         const authorizedGuilds = [];
 
-        function hasRequiredPermissions(permissions: number): boolean {
-            return (permissions & (8 | 32)) !== 0;
-        }
 
         for (const guild of guilds) {
-            if (hasRequiredPermissions(Number(guild.permissions))) {
+            if (this.checkUserPermissions(Number(guild.permissions))) {
                 authorizedGuilds.push(guild);
             }
         }
