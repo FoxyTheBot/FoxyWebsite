@@ -53,7 +53,7 @@ class GuildDashboardRoutes {
             goodbyeEmbedFields,
             goodbyeButtons
         } = req.body;
-        console.log(req.body)
+        
         try {
             const guild = await database.getGuild(guildId);
             if (!guild) {
@@ -66,6 +66,7 @@ class GuildDashboardRoutes {
                     {
                         title: embedTitle || null,
                         description: embedDescription || null,
+                        color: parseInt(embedColor.replace('#', '0x')) || null,
                         fields: Array.isArray(embedFields) && embedFields.length > 0 ? embedFields : []
                     }
                 ].filter(embed => embed.title || embed.description || embed.fields.length > 0),

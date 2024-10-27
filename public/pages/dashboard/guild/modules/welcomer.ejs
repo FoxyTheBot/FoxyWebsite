@@ -74,7 +74,7 @@
                                 </div>
                                 <div>
                                     <label class="module-name">Cor do Embed</label>
-                                    <input type="color" name="embedColor" id="embedColor" value="#ffffff">
+                                    <input type="color" name="embedColor" id="embedColor" value="#ffffff" class="embedColor">
                                 </div>
                                 <!-- <div>
                                     <h4>Fields do Embed</h4>
@@ -117,7 +117,7 @@
                                     placeholder="Descrição do embed"></textarea>
 
                                 <label class="toggleable-option-title">Cor do Embed</label>
-                                <input type="color" name="goodbyeEmbedColor" id="goodbyeEmbedColor" value="#ffffff">
+                                <input type="color" name="goodbyeEmbedColor" id="goodbyeEmbedColor" value="#ffffff" class="embedColor">
 
                                 <!-- <h4>Fields do Embed</h4>
                                 <div id="goodbyeEmbedFieldsContainer" data-max-fields="10"></div>
@@ -146,6 +146,8 @@
                 const toggleableGoodbyeOptions = document.getElementById('toggleableGoodbyeOptions');
                 const welcomeChannelSelect = document.getElementById('welcomeChannel');
                 const goodbyeChannelSelect = document.getElementById('goodbyeChannel');
+                const goodbyeEmbedColor = document.getElementById('goodbyeEmbedColor');
+                const welcomeEmbedColor = document.getElementById('embedColor');
 
                 try {
                     const response = await fetch('/br/servers/<%= guildId %>/data');
@@ -172,7 +174,10 @@
                         document.querySelector('#messageContent').value = joinMessage.content || '';
                         document.querySelector('#embedTitle').value = joinMessage.embeds[0]?.title || '';
                         document.querySelector('#embedDescription').value = joinMessage.embeds[0]?.description || '';
-                        document.querySelector('#embedColor').value = joinMessage.embeds[0]?.color || '#ffffff';
+
+                        const joinColor = joinMessage.embeds[0]?.color || 0xFFFFFF;
+                        document.querySelector('#embedColor').value = `#${joinColor.toString(16).padStart(6, '0')}`;
+                        welcomeEmbedColor.value = `#${joinColor.toString(16).padStart(6, '0')}`;
 
                         if (joinMessage.embeds[0]?.fields) {
                             joinMessage.embeds[0]?.fields.forEach(field => {
@@ -180,14 +185,17 @@
                                 document.getElementById('embedFieldsContainer').appendChild(fieldDiv);
                             });
                         }
-
                     }
 
                     if (leaveMessage.embeds) {
                         document.querySelector('#goodbyeMessage').value = leaveMessage.content || '';
                         document.querySelector('#goodbyeEmbedTitle').value = leaveMessage.embeds[0]?.title || '';
                         document.querySelector('#goodbyeEmbedDescription').value = leaveMessage.embeds[0]?.description || '';
-                        document.querySelector('#goodbyeEmbedColor').value = leaveMessage.embeds[0]?.color || '#ffffff';
+
+                        const leaveColor = leaveMessage.embeds[0]?.color || 0xFFFFFF;
+                        document.querySelector('#goodbyeEmbedColor').value = `#${leaveColor.toString(16).padStart(6, '0')}`;
+                        goodbyeEmbedColor.value = `#${leaveColor.toString(16).padStart(6, '0')}`;
+
                         if (leaveMessage.embeds[0]?.fields) {
                             leaveMessage.embeds[0]?.fields.forEach(field => {
                                 const fieldDiv = createField(field.name, field.value, 'goodbye');
@@ -195,6 +203,7 @@
                             });
                         }
                     }
+
 
 
 
