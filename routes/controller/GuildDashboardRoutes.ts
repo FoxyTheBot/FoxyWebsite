@@ -31,8 +31,6 @@ class GuildDashboardRoutes {
 
 
     checkUserPermissions(permission): boolean {
-        console.log(permission);
-        console.log((permission & (8 | 32)) !== 0);
         return (permission & (8 | 32)) !== 0;
     }
 
