@@ -18,6 +18,10 @@ class GuildDashboardRoutes {
         this.router.get("/:lang/servers/:id/channels", this.routerManager.isAuthenticated, this.getServerChannels);
         this.router.get("/:lang/servers/:id", this.routerManager.isAuthenticated, async (req, res) => {
             const guildId = req.params.id;
+            const guild = await database.getGuild(guildId);
+            if (!guild) {
+                return res.redirect(`https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=${guildId}`)
+            }
             res.status(200).render("../public/pages/dashboard/guild/modules/welcomer.ejs", {
                 user: req.session.user_info,
                 guildId,
@@ -53,7 +57,7 @@ class GuildDashboardRoutes {
             goodbyeEmbedFields,
             goodbyeButtons
         } = req.body;
-        
+
         try {
             const guild = await database.getGuild(guildId);
             if (!guild) {
