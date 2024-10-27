@@ -147,7 +147,7 @@ class GuildDashboardRoutes {
                             : [],
                     };
 
-                    const joinChannel = guildData.GuildJoinLeaveModule.joinChannel || welcomeChannel;
+                    const joinChannel = welcomeChannel || guildData.GuildJoinLeaveModule.joinChannel;
 
                     if (toggleWelcomeModule) {
                         await rest.sendMessageToAChannelAsJSON(joinChannel, JSON.stringify(joinMessage));
@@ -173,7 +173,7 @@ class GuildDashboardRoutes {
                         ].filter((embed) => embed.title || embed.description || embed.fields.length > 0),
                     };
 
-                    const leaveChannel = guildData.GuildJoinLeaveModule.leaveChannel || goodbyeChannel;
+                    const leaveChannel = goodbyeChannel || guildData.GuildJoinLeaveModule.leaveChannel;
 
                     if (toggleGoodbyeModule) {
                         await rest.sendMessageToAChannelAsJSON(leaveChannel, JSON.stringify(leaveMessage));

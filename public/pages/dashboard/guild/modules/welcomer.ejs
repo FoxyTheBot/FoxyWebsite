@@ -280,9 +280,6 @@
                         }
                     }
 
-
-
-
                     // joinMessage.components.forEach(component => {
                     //     if (component.type === 1) {
                     //         component.components.forEach(button => {
@@ -303,12 +300,28 @@
 
                     const channelsResponse = await fetch(`/br/servers/<%= guildId %>/channels`);
                     const channelsData = await channelsResponse.json();
+
+                    const joinChannelId = data.GuildJoinLeaveModule.joinChannel || '';
+                    const leaveChannelId = data.GuildJoinLeaveModule.leaveChannel || '';
+
                     channelsData.channels.forEach(channel => {
-                        const option = document.createElement('option');
-                        option.value = channel.id;
-                        option.textContent = channel.name;
-                        welcomeChannelSelect.appendChild(option.cloneNode(true));
-                        goodbyeChannelSelect.appendChild(option.cloneNode(true));
+                        const welcomeOption = document.createElement('option');
+                        welcomeOption.value = channel.id;
+                        welcomeOption.textContent = channel.name;
+                        welcomeChannelSelect.appendChild(welcomeOption);
+
+                        const goodbyeOption = document.createElement('option');
+                        goodbyeOption.value = channel.id;
+                        goodbyeOption.textContent = channel.name;
+                        goodbyeChannelSelect.appendChild(goodbyeOption);
+
+                        if (channel.id === joinChannelId) {
+                            welcomeOption.selected = true;
+                        }
+
+                        if (channel.id === leaveChannelId) {
+                            goodbyeOption.selected = true;
+                        }
                     });
 
                 } catch (error) {
