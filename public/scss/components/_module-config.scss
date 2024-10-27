@@ -26,7 +26,8 @@
         margin: 0 0 0 5rem;
 
         .config-module-form {
-            margin-left: 15rem;
+            margin-left: auto;
+            margin-right: auto;
 
             .config-module {
                 margin-top: 2rem;
@@ -37,8 +38,8 @@
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                margin-left: 9rem;
-                margin-right: 11rem;
+                margin-left: 14rem;
+                margin-right: 0rem;
 
                 .module-name {
                     color: #fafafa;
