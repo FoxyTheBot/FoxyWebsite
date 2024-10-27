@@ -60,7 +60,7 @@ router.get('/login/callback', async (req, res) => {
         req.session.save();
         
         logger.log(`[LOGIN] Usuário ${result.username} / ${result.id} fez login no website!`);
-        res.redirect('/');
+        res.redirect('/br/dashboard');
     } catch (err) {
         logger.error(err);
         res.redirect('/error');

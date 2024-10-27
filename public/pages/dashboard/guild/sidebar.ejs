@@ -1,0 +1,68 @@
+<head>
+    <link rel="stylesheet" href="/styles/sidebar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  
+  </head>
+  
+  <!-- Sidebar -->
+  <div class="left-sidebar" id="sidebar">
+    <div class="entries">
+      <a href="/br/dashboard"> <img src="/assets/images/logo.png" alt="Foxy" class="logo"> </a>
+      <hr class="separator">
+      <a href="/br/dashboard">
+        <div class="entry">Voltar à lista de servidores</div>
+        </a>
+      <hr class="separator">
+      <h2 class="section-title">Automações</h2>
+      <a href="/br/servers">
+        <div class="entry">Mensagens de Entrada/Saída</div>
+      </a>
+  
+      <a href="/br/dashboard">
+        <div class="entry">Dar cargo ao entrar no servidor</div>
+      </a>
+
+      <hr class="separator">
+
+      <h2 class="section-title">VALORANT</h2>
+      <a href="/br/user/decorations">
+        <div class="entry">VALORANT Autorole</div>
+      </a>
+      
+      <hr class="separator">
+      <h2 class="section-title">Configurações</h2>
+  
+      <a href="/br/dashboard/subscriptions">
+        <div class="entry">Gerenciar assinaturas</div>
+      </a>
+
+      <a href="/br/support/terms">
+        <div class="entry">Termos de uso</div>
+      </a>
+  
+      <a href="/br/support/guidelines">
+        <div class="entry">Diretrizes da comunidade</div>
+      </a>
+      
+      <a href="/logout">
+        <div class="entry">Sair</div>
+      </a>
+    </div>
+  </div>
+  
+  <button class="sidebar-toggle" id="sidebar-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
+  
+  
+  <script>
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('sidebar');
+  
+    sidebarToggle.addEventListener('click', () => {
+      const isOpen = sidebar.classList.toggle('open');
+      sidebarToggle.setAttribute('aria-expanded', isOpen);
+    });
+  </script>

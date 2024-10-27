@@ -8,6 +8,7 @@ import RestManager from '../structures/RestManager';
 import { logger } from '../structures/logger';
 import UpdatePages from '../routes/controller/UpdatePages';
 import DashboardRoutes from '../routes/controller/DashboardRoutes';
+import GuildDashboardRoutes from '../routes/controller/GuildDashboardRoutes';
 
 export class App {
     port: number;
@@ -35,6 +36,7 @@ export class App {
 
         app.use('/', new UpdatePages().getRouter());
         app.use('/', new DashboardRoutes().getRouter());
+        app.use('/', new GuildDashboardRoutes().getRouter());
         app.use('/', require("../routes/auth/oauthDiscord"));
         app.use('/', require("../routes/controller/RedirectPages"));
 

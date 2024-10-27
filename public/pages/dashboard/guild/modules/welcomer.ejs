@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
+    <link rel="stylesheet" href="/styles/loading.css" type="text/css">
+    <link rel="stylesheet" href="/styles/header.css" type="text/css">
+    <link rel="icon" href="/assets/images/foxycake.png">
+    <title>Foxy | Painel de Controle</title>
+
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        crossorigin="anonymous"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-E3J7N4BP8L');
+    </script>
+</head>
+
+<body>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        crossorigin="anonymous"></script>
+    <ins id="adBanner" class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+        data-ad-client="ca-pub-7726590371480649" data-ad-slot="4619028248"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <%- include('../sidebar') %>
+        <div class="config-wrapper">
+            <h1 class="module-title">Mensagens de Entrada/Saída</h1>
+            <p class="module-description">Configure a Foxy para notificar quando um membro entra ou sai do seu servidor!
+            </p>
+
+            <div class="config-module-wrapper">
+                <form action="/br/servers/<%= guildId %>/modules/welcomer" method="POST" class="config-module-form">
+                    <div class="config-module">
+                        <label class="module-name">Enviar mensagem quando alguém entrar no servidor</label>
+                        <label class="switch">
+                            <input type="checkbox" id="toggleWelcomeModule" name="toggleWelcomeModule">
+                            <span class="slider round"></span>
+                        </label>
+
+                        <div class="toggleable-options hidden" id="toggleableWelcomeOptions">
+                            <div class="toggleable-option">
+                                <label class="toggleable-option-title">Canal de boas-vindas</label>
+                                <select name="welcomeChannel" id="welcomeChannel">
+                                    <option value="" disabled selected>Selecione um canal</option>
+                                </select>
+                            </div>
+
+                            <div class="toggleable-option">
+                                <label class="toggleable-option-title">Mensagem de boas-vindas</label>
+                                <div>
+                                    <label class="module-name">Conteúdo da mensagem</label>
+                                    <input type="text" name="messageContent" id="messageContent"
+                                        placeholder="Conteúdo da mensagem">
+                                </div>
+                                <div>
+                                    <label class="module-name">Título do Embed</label>
+                                    <input type="text" name="embedTitle" id="embedTitle" placeholder="Título do embed">
+                                </div>
+                                <div>
+                                    <label class="module-name">Descrição do Embed</label>
+                                    <textarea name="embedDescription" id="embedDescription" rows="3"
+                                        placeholder="Descrição do embed"></textarea>
+                                </div>
+                                <div>
+                                    <label class="module-name">Cor do Embed</label>
+                                    <input type="color" name="embedColor" id="embedColor" value="#ffffff">
+                                </div>
+                                <div>
+                                    <h4>Fields do Embed</h4>
+                                    <div id="embedFieldsContainer" data-max-fields="10"></div>
+                                    <button type="button" id="addFieldButton">Adicionar Field</button>
+                                </div>
+                                <div>
+                                    <h4>Botões</h4>
+                                    <div id="buttonsContainer" data-max-fields="5"></div>
+                                    <button type="button" id="addButton">Adicionar Botão</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="config-module">
+                        <label class="module-name">Enviar mensagem quando alguém sair do servidor</label>
+                        <label class="switch">
+                            <input type="checkbox" id="toggleGoodbyeModule" name="toggleGoodbyeModule">
+                            <span class="slider round"></span>
+                        </label>
+
+                        <div class="toggleable-options hidden" id="toggleableGoodbyeOptions">
+                            <div class="toggleable-option">
+                                <label class="toggleable-option-title">Canal de despedidas</label>
+                                <select name="goodbyeChannel" id="goodbyeChannel">
+                                    <option value="" disabled selected>Selecione um canal</option>
+                                </select>
+
+                                <label class="toggleable-option-title">Mensagem de despedida</label>
+                                <input type="text" name="goodbyeMessage" id="goodbyeMessage"
+                                    placeholder="Mensagem de despedida">
+
+                                <label class="toggleable-option-title">Título do Embed</label>
+                                <input type="text" name="goodbyeEmbedTitle" id="goodbyeEmbedTitle"
+                                    placeholder="Título do embed">
+
+                                <label class="toggleable-option-title">Descrição do Embed</label>
+                                <textarea name="goodbyeEmbedDescription" id="goodbyeEmbedDescription" rows="3"
+                                    placeholder="Descrição do embed"></textarea>
+
+                                <label class="toggleable-option-title">Cor do Embed</label>
+                                <input type="color" name="goodbyeEmbedColor" id="goodbyeEmbedColor" value="#ffffff">
+
+                                <h4>Fields do Embed</h4>
+                                <div id="goodbyeEmbedFieldsContainer" data-max-fields="10"></div>
+                                <button type="button" id="addGoodbyeFieldButton">Adicionar Field</button>
+
+                                <h4>Botões</h4>
+                                <div id="goodbyeButtonsContainer" data-max-fields="5"></div>
+                                <button type="button" id="addGoodbyeButton">Adicionar Botão</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="saveButton" type="submit">Salvar Configurações</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="loadingOverlay" class="loading-overlay">
+            <%- include('../../../global/loading') %>
+        </div>
+        <script>
+            window.addEventListener('load', async function () {
+                const loadingOverlay = document.getElementById('loadingOverlay');
+                const toggleWelcomeModule = document.getElementById('toggleWelcomeModule');
+                const toggleGoodbyeModule = document.getElementById('toggleGoodbyeModule');
+                const toggleableWelcomeOptions = document.getElementById('toggleableWelcomeOptions');
+                const toggleableGoodbyeOptions = document.getElementById('toggleableGoodbyeOptions');
+                const welcomeChannelSelect = document.getElementById('welcomeChannel');
+                const goodbyeChannelSelect = document.getElementById('goodbyeChannel');
+
+                try {
+                    const response = await fetch('/br/servers/<%= guildId %>/data');
+                    const data = await response.json();
+
+                    toggleWelcomeModule.checked = data.GuildJoinLeaveModule.isEnabled || false;
+                    toggleGoodbyeModule.checked = data.GuildJoinLeaveModule.alertWhenUserLeaves || false;
+
+                    toggleableWelcomeOptions.classList.toggle('hidden', !toggleWelcomeModule.checked);
+                    toggleableGoodbyeOptions.classList.toggle('hidden', !toggleGoodbyeModule.checked);
+
+                    toggleWelcomeModule.addEventListener('change', function () {
+                        toggleableWelcomeOptions.classList.toggle('hidden', !toggleWelcomeModule.checked);
+                    });
+
+                    toggleGoodbyeModule.addEventListener('change', function () {
+                        toggleableGoodbyeOptions.classList.toggle('hidden', !toggleGoodbyeModule.checked);
+                    });
+
+                    const joinMessage = JSON.parse(data.GuildJoinLeaveModule.joinMessage || '{}');
+                    const leaveMessage = JSON.parse(data.GuildJoinLeaveModule.leaveMessage || '{}');
+
+                    if (joinMessage.embeds) {
+                        document.querySelector('#messageContent').value = joinMessage.content || '';
+                        document.querySelector('#embedTitle').value = joinMessage.embeds[0]?.title || '';
+                        document.querySelector('#embedDescription').value = joinMessage.embeds[0]?.description || '';
+                        document.querySelector('#embedColor').value = joinMessage.embeds[0]?.color || '#ffffff';
+
+                        if (joinMessage.embeds[0]?.fields) {
+                            joinMessage.embeds[0]?.fields.forEach(field => {
+                                const fieldDiv = createField(field.name, field.value);
+                                document.getElementById('embedFieldsContainer').appendChild(fieldDiv);
+                            });
+                        }
+
+                    }
+
+                    if (leaveMessage.embeds) {
+                        document.querySelector('#goodbyeMessage').value = leaveMessage.content || '';
+                        document.querySelector('#goodbyeEmbedTitle').value = leaveMessage.embeds[0]?.title || '';
+                        document.querySelector('#goodbyeEmbedDescription').value = leaveMessage.embeds[0]?.description || '';
+                        document.querySelector('#goodbyeEmbedColor').value = leaveMessage.embeds[0]?.color || '#ffffff';
+                        if (leaveMessage.embeds[0]?.fields) {
+                            leaveMessage.embeds[0]?.fields.forEach(field => {
+                                const fieldDiv = createField(field.name, field.value, 'goodbye');
+                                document.getElementById('goodbyeEmbedFieldsContainer').appendChild(fieldDiv);
+                            });
+                        }
+                    }
+
+
+
+                    // joinMessage.components.forEach(component => {
+                    //     if (component.type === 1) {
+                    //         component.components.forEach(button => {
+                    //             const buttonDiv = createButton(button.label, button.url);
+                    //             document.getElementById('buttonsContainer').appendChild(buttonDiv);
+                    //         });
+                    //     }
+                    // });
+
+                    // leaveMessage.components.forEach(component => {
+                    //     if (component.type === 1) {
+                    //         component.components.forEach(button => {
+                    //             const buttonDiv = createButton(button.label, button.url, 'goodbye');
+                    //             document.getElementById('goodbyeButtonsContainer').appendChild(buttonDiv);
+                    //         });
+                    //     }
+                    // });
+
+                    const channelsResponse = await fetch(`/br/servers/<%= guildId %>/channels`);
+                    const channelsData = await channelsResponse.json();
+                    console.log(channelsData);
+                    channelsData.channels.forEach(channel => {
+                        const option = document.createElement('option');
+                        option.value = channel.id;
+                        option.textContent = channel.name;
+                        welcomeChannelSelect.appendChild(option.cloneNode(true));
+                        goodbyeChannelSelect.appendChild(option.cloneNode(true));
+                    });
+
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                } finally {
+                    loadingOverlay.classList.add('hidden');
+                }
+            });
+        </script>
+</body>
+<script src="/js/theme.js"></script>
+
+</html>

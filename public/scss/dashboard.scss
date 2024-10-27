@@ -8,6 +8,7 @@
 @import "components/notifications";
 @import "components/popup";
 @import "components/buttons";
+@import "components/module-config";
 
 :root {
     font-size: 16px;
@@ -20,12 +21,6 @@
 /* Theme */
 html.dark-theme p {
     color: #fff;
-    font-size: 1rem;
-    font-family: "Arial";
-    text-align: center;
-    margin: 1rem 0;
-    margin-left: 26rem !important;
-    margin-right: 13rem !important;
 }
 
 .current-subscription {
@@ -102,7 +97,8 @@ html.dark-theme p {
     color: #272222;
 }
 
-html.dark-theme .itens .item {
+html.dark-theme .itens .item,
+html.dark-theme .servers .server {
     background-color: #4f545c;
 }
 
@@ -129,6 +125,101 @@ html.dark-theme h2 {
     text-align: center;
     margin: 2rem 0 1rem 5rem;
     margin-left: 7em;
+}
+
+.servers {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: -5rem;
+    margin-left: 18rem;
+    margin-right: 4rem;
+
+    .server {
+        box-sizing: border-box;
+        margin: 10px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        background: #fafafa;
+        color: #fff;
+        font-family: sans-serif;
+        font-size: 14px;
+        text-decoration: none;
+        flex: 1 0 calc(25% - 20px);
+        max-width: calc(25% - 20px);
+        min-width: 250px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: transform 0.5s;
+
+        .server__icon {
+            img {
+                width: 40%;
+                border-radius: 50%;
+                margin-bottom: 10px;
+                transition: 0.5s;
+
+                &:hover {
+                    border-radius: 25%;
+                    transition: 0.5s;
+                }
+
+                &:not(:hover) {
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        .server__info {
+            h1 {
+                margin: 0;
+                font-size: 16px;
+                font-weight: bold;
+                flex-direction: column;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                max-width: 100%;
+                display: block;
+            }
+        }
+
+        .server__buttons {
+            margin-top: 10px;
+        }
+
+        .server__button {
+            display: block;
+            padding: 0.625rem 0.626rem;
+            border-radius: 5px;
+            background-color: #e7385d;
+            color: #fafafa;
+            text-align: center;
+            text-decoration: none;
+            font-family: "Poppins";
+            font-size: 0.95rem;
+        }
+
+        &:hover {
+            transform: scale(1.06);
+            transition: 0.5s;
+
+            .server__icon img {
+                border-radius: 25%;
+                transition: 0.5s;
+            }
+        }
+
+        &:not(:hover) {
+            transform: scale(1);
+
+            .server__icon img {
+                border-radius: 50%;
+            }
+        }
+    }
 }
 
 p {
@@ -534,6 +625,7 @@ main {
     .subscription-info {
         align-items: center;
     }
+
     .current-subscription {
         margin-left: 0;
         margin-right: 0;

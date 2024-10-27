@@ -1,0 +1,79 @@
+@import "switch";
+
+.config-wrapper {
+    padding: 1rem;
+
+    .module-title {
+        color: #e7385d;
+        font-size: 2rem;
+        font-family: var(--font-family);
+        margin: 2rem 0 1rem;
+        margin-left: 20rem;
+        text-align: center;
+    }
+
+    .module-description {
+        color: #fafafa;
+        font-size: 1rem;
+        font-family: var(--font-family);
+        text-align: center;
+        margin-left: 30rem !important;
+    }
+
+    .config-module-wrapper {
+        justify-content: center;
+        margin: 0 0 0 5rem;
+
+        .config-module-form {
+            margin-left: 15rem;
+
+            .config-module {
+                margin-top: 2rem;
+                background-color: #333;
+                padding: 1rem;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: 10rem;
+                margin-right: 10rem;
+                
+                .module-name {
+                    color: #fafafa;
+                    font-size: 1rem;
+                    font-family: var(--font-family);
+                    font-weight: 700;
+                    margin-right: 1rem;
+                }
+
+                .switch {
+                    margin-left: auto;
+                    margin-top: 0.5rem;
+                }
+
+                .toggleable-options {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 1rem;
+
+                    .toggleable-option-title {
+                        color: #fafafa;
+                        font-size: 1rem;
+                        font-family: var(--font-family);
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .toggleable-option {
+                        margin-top: 0.5rem;
+                        margin-right: 0;
+                    }
+
+                    .toggleable-option:not(:last-child) {
+                        margin-top: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
