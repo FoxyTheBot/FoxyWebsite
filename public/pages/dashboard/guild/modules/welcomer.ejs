@@ -174,8 +174,6 @@
 
                     if (!response.ok) throw new Error(`Erro: ${response.statusText}`);
 
-                    const result = await response.json();
-                    alert(`Teste bem-sucedido: ${result.message}`);
                 } catch (error) {
                     alert(`Erro ao testar: ${error.message}`);
                 } finally {
@@ -203,8 +201,6 @@
 
                     if (!response.ok) throw new Error(`Erro: ${response.statusText}`);
 
-                    const result = await response.json();
-                    alert(`Teste bem-sucedido: ${result.message}`);
                 } catch (error) {
                     alert(`Erro ao testar: ${error.message}`);
                 } finally {

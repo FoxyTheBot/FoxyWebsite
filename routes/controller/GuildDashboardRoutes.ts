@@ -4,6 +4,7 @@ import RouterManager from './RouterManager';
 import { Guild } from 'discordeno/*';
 import User from '../../types/user';
 import rateLimit from 'express-rate-limit';
+import { logger } from '../../structures/logger';
 
 class GuildDashboardRoutes {
     router: express.Router;
@@ -16,6 +17,9 @@ class GuildDashboardRoutes {
         standardHeaders: true,
         legacyHeaders: false,
     });
+    
+    private lastFetchTime: number = 0;
+    private fetchDelay: number = 2000;
 
     constructor() {
         this.router = express.Router();
@@ -57,12 +61,7 @@ class GuildDashboardRoutes {
         }
 
         try {
-            const userGuilds = await fetch(`https://discord.com/api/users/@me/guilds`, {
-                headers: {
-                    authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
-                }
-            });
-            const guilds = await userGuilds.json();
+            const guilds = await this.getUserGuilds(req);
             const currentGuild = guilds.find(g => g.id === guildId);
             if (!currentGuild || !currentGuild.permissions) {
                 return res.redirect("/br/dashboard");
@@ -78,8 +77,8 @@ class GuildDashboardRoutes {
                 guildId,
             });
         } catch (error) {
-            console.error('Erro ao buscar informações do servidor:', error);
-            res.status(500).json({ message: 'Erro ao buscar informações do servidor.' });
+            logger.error(error);
+            res.status(500).json({ message: 'Failed to fetch server info' });
         }
     }
 
@@ -88,27 +87,20 @@ class GuildDashboardRoutes {
         const guildData = await database.getGuild(guildId);
 
         if (!guildData) {
-            return res.status(404).json({ message: 'Servidor não encontrado.' });
+            return res.status(404).json({ message: 'Server not found.' });
         }
-
-        const userGuilds = await fetch(`https://discord.com/api/users/@me/guilds`, {
-            headers: {
-                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
-            },
-        });
-
-        const userGuildsToJSON = await userGuilds.json();
+        const userGuildsToJSON = await this.getUserGuilds(req);
         const currentGuild = userGuildsToJSON.find((g) => g.id === guildId);
 
         if (!currentGuild || !currentGuild.permissions) {
-            return res.status(403).json({ message: 'Você não tem permissão para acessar este servidor.' });
+            return res.status(403);
         }
 
         const isUserAuthorized = this.checkUserPermissions(Number(currentGuild.permissions));
         const currentSessionUser = req.session.user_info;
 
         if (!isUserAuthorized) {
-            return res.status(403).json({ message: 'Você não tem permissão para acessar este servidor.' });
+            return res.status(403);
         }
 
         const placeholders = this.getTestCompatiblePlaceholders(currentSessionUser);
@@ -160,6 +152,8 @@ class GuildDashboardRoutes {
                     if (toggleWelcomeModule) {
                         await rest.sendMessageToAChannelAsJSON(joinChannel, JSON.stringify(joinMessage));
                     }
+
+                    res.status(200);
                     break;
                 }
 
@@ -184,15 +178,17 @@ class GuildDashboardRoutes {
                     if (toggleGoodbyeModule) {
                         await rest.sendMessageToAChannelAsJSON(leaveChannel, JSON.stringify(leaveMessage));
                     }
+
+                    res.status(200);
                     break;
                 }
 
                 default:
-                    return res.status(400).json({ message: 'Invalid module from this feature.' });
+                    return res.status(400);
             }
         } catch (error) {
-            console.error('Erro ao enviar mensagem de teste:', error);
-            res.status(500).json({ message: 'Erro ao enviar mensagem de teste.' });
+            logger.error(error);
+            res.status(500);
         }
     }
 
@@ -203,13 +199,7 @@ class GuildDashboardRoutes {
             return res.redirect(`https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=${guildId}`)
         }
 
-        const userGuilds = await fetch(`https://discord.com/api/users/@me/guilds`, {
-            headers: {
-                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
-            }
-        });
-
-        const guilds = await userGuilds.json();
+        const guilds = await this.getUserGuilds(req);
         const currentGuild = guilds.find(g => g.id === guildId);
         if (!currentGuild || !currentGuild.permissions) {
             return res.redirect("/br/dashboard");
@@ -297,14 +287,8 @@ class GuildDashboardRoutes {
     async getServersData(req, res) {
         const user = await req.session.user_info;
         try {
-            const userGuilds = await fetch("https://discord.com/api/users/@me/guilds", {
-                headers: {
-                    authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
-                }
-            });
-            const guilds = await userGuilds.json();
+            const guilds = await this.getUserGuilds(req);
             const authorizedGuilds = [];
-
 
             for (const guild of guilds) {
                 if (this.checkUserPermissions(Number(guild.permissions))) {
@@ -356,6 +340,22 @@ class GuildDashboardRoutes {
             content
         );
     }
+
+    private getUserGuilds(req): Promise<any> {
+        return new Promise((resolve) => {
+            setTimeout(async () => {
+                const userGuilds = await fetch("https://discord.com/api/users/@me/guilds", {
+                    headers: {
+                        authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
+                    }
+                });
+                console.log(userGuilds.status)
+                const guilds = await userGuilds.json();
+                resolve(guilds);
+            }, 500);
+        });
+    }
+    
 }
 
 
