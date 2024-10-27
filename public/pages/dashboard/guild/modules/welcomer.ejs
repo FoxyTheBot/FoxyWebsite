@@ -218,7 +218,6 @@
 
                     const channelsResponse = await fetch(`/br/servers/<%= guildId %>/channels`);
                     const channelsData = await channelsResponse.json();
-                    console.log(channelsData);
                     channelsData.channels.forEach(channel => {
                         const option = document.createElement('option');
                         option.value = channel.id;

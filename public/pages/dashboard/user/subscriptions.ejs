@@ -96,7 +96,6 @@
                     if (!response.ok) throw new Error('Erro ao carregar dados da assinatura.');
 
                     const data = await response.json();
-                    console.log(data);
 
                     const { currentSubscription } = data;
 

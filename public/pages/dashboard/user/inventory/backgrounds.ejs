@@ -93,7 +93,6 @@
           .then(data => {
             if (typeof data === 'object' && data.success !== undefined) {
               showNotification('Fundo alterado com sucesso!');
-              console.log('Background changed:', data);
 
               fetch('/br/user/backgrounds/data')
                 .then(response => response.json())
