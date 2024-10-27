@@ -133,14 +133,7 @@
                                 <label class="switch small">
                                     <input type="checkbox" name="goodbyeShowAvatar" id="showAvatar">
                                     <span class="slider round"></span>
-
-                                    <!-- <h4>Fields do Embed</h4>
-                                <div id="goodbyeEmbedFieldsContainer" data-max-fields="10"></div>
-                                <button type="button" id="addGoodbyeFieldButton">Adicionar Field</button>
-
-                                <h4>Botões</h4>
-                                <div id="goodbyeButtonsContainer" data-max-fields="5"></div>
-                                <button type="button" id="addGoodbyeButton">Adicionar Botão</button> -->
+                                    
                             </div>
                             <button id="goodbyeTestButton" class="test-btn" type="button">Testar</button>
                         </div>
@@ -279,24 +272,6 @@
                             });
                         }
                     }
-
-                    // joinMessage.components.forEach(component => {
-                    //     if (component.type === 1) {
-                    //         component.components.forEach(button => {
-                    //             const buttonDiv = createButton(button.label, button.url);
-                    //             document.getElementById('buttonsContainer').appendChild(buttonDiv);
-                    //         });
-                    //     }
-                    // });
-
-                    // leaveMessage.components.forEach(component => {
-                    //     if (component.type === 1) {
-                    //         component.components.forEach(button => {
-                    //             const buttonDiv = createButton(button.label, button.url, 'goodbye');
-                    //             document.getElementById('goodbyeButtonsContainer').appendChild(buttonDiv);
-                    //         });
-                    //     }
-                    // });
 
                     const channelsResponse = await fetch(`/br/servers/<%= guildId %>/channels`);
                     const channelsData = await channelsResponse.json();
