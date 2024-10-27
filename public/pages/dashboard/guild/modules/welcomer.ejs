@@ -95,7 +95,7 @@
                                     <button type="button" id="addButton">Adicionar Botão</button>
                                 </div> -->
                             </div>
-                            <button id="testButton" type="button">Testar</button>
+                            <button id="welcomeTestButton" class="test-btn" type="button">Testar</button>
                         </div>
                     </div>
 
@@ -142,7 +142,7 @@
                                 <div id="goodbyeButtonsContainer" data-max-fields="5"></div>
                                 <button type="button" id="addGoodbyeButton">Adicionar Botão</button> -->
                             </div>
-                            <button id="testButton" type="button">Testar</button>
+                            <button id="goodbyeTestButton" class="test-btn" type="button">Testar</button>
                         </div>
                         <button id="saveButton" type="submit">Salvar</button>
                     </div>
@@ -154,6 +154,64 @@
             <%- include('../../../global/loading') %>
         </div>
         <script>
+            document.getElementById("goodbyeTestButton").addEventListener("click", async function () {
+                const form = document.querySelector(".config-module-form");
+                const originalAction = form.action;
+                const guildId = "<%= guildId %>";
+                const testAction = `/br/servers/${guildId}/modules/welcomer/test/module/goodbyeModule`;
+
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const response = await fetch(testAction, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (!response.ok) throw new Error(`Erro: ${response.statusText}`);
+
+                    const result = await response.json();
+                    alert(`Teste bem-sucedido: ${result.message}`);
+                } catch (error) {
+                    alert(`Erro ao testar: ${error.message}`);
+                } finally {
+                    form.action = originalAction;
+                }
+            });
+
+            document.getElementById("welcomeTestButton").addEventListener("click", async function () {
+                const form = document.querySelector(".config-module-form");
+                const originalAction = form.action;
+                const guildId = "<%= guildId %>";
+                const testAction = `/br/servers/${guildId}/modules/welcomer/test/module/welcomeModule`;
+
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const response = await fetch(testAction, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (!response.ok) throw new Error(`Erro: ${response.statusText}`);
+
+                    const result = await response.json();
+                    alert(`Teste bem-sucedido: ${result.message}`);
+                } catch (error) {
+                    alert(`Erro ao testar: ${error.message}`);
+                } finally {
+                    form.action = originalAction;
+                }
+            });
+
             window.addEventListener('load', async function () {
                 const loadingOverlay = document.getElementById('loadingOverlay');
                 const toggleWelcomeModule = document.getElementById('toggleWelcomeModule');

@@ -1,11 +1,21 @@
 import express from 'express';
-import { database } from '../../client/app';
+import { database, rest } from '../../client/app';
 import RouterManager from './RouterManager';
 import { Guild } from 'discordeno/*';
+import User from '../../types/user';
+import rateLimit from 'express-rate-limit';
 
 class GuildDashboardRoutes {
     router: express.Router;
     routerManager: RouterManager;
+
+    private testMessageLimiter = rateLimit({
+        windowMs: 60 * 1000,
+        max: 5,
+        message: { message: 'Too many requests, please try again later.' },
+        standardHeaders: true,
+        legacyHeaders: false,
+    });
 
     constructor() {
         this.router = express.Router();
@@ -18,8 +28,13 @@ class GuildDashboardRoutes {
         this.router.get("/:lang/servers/:id/data", this.routerManager.isAuthenticated, this.getServerConfig.bind(this));
         this.router.get("/:lang/servers/:id/channels", this.routerManager.isAuthenticated, this.getServerChannels.bind(this));
         this.router.post("/br/servers/:guildId/modules/welcomer", this.routerManager.isAuthenticated, this.saveWelcomerModule.bind(this));
+        this.router.post(
+            "/:lang/servers/:guildId/modules/welcomer/test/module/:module",
+            this.routerManager.isAuthenticated,
+            this.testMessageLimiter,
+            this.sendTestMessage.bind(this)
+        );
         this.router.get("/:lang/servers/:id", this.routerManager.isAuthenticated, this.getGuildSettings.bind(this));
-
         this.router.post("/br/servers/:guildId/modules/welcomer", this.routerManager.isAuthenticated, this.saveWelcomerModule);
 
         this.router.use(this.routerManager.errorHandler);
@@ -68,6 +83,119 @@ class GuildDashboardRoutes {
         }
     }
 
+    async sendTestMessage(req, res) {
+        const { guildId, module } = req.params;
+        const guildData = await database.getGuild(guildId);
+
+        if (!guildData) {
+            return res.status(404).json({ message: 'Servidor não encontrado.' });
+        }
+
+        const userGuilds = await fetch(`https://discord.com/api/users/@me/guilds`, {
+            headers: {
+                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`,
+            },
+        });
+
+        const userGuildsToJSON = await userGuilds.json();
+        const currentGuild = userGuildsToJSON.find((g) => g.id === guildId);
+
+        if (!currentGuild || !currentGuild.permissions) {
+            return res.status(403).json({ message: 'Você não tem permissão para acessar este servidor.' });
+        }
+
+        const isUserAuthorized = this.checkUserPermissions(Number(currentGuild.permissions));
+        const currentSessionUser = req.session.user_info;
+
+        if (!isUserAuthorized) {
+            return res.status(403).json({ message: 'Você não tem permissão para acessar este servidor.' });
+        }
+
+        const placeholders = this.getTestCompatiblePlaceholders(currentSessionUser);
+
+        const {
+            welcomeChannel,
+            toggleWelcomeModule,
+            toggleGoodbyeModule,
+            messageContent,
+            embedTitle,
+            embedDescription,
+            embedColor,
+            goodbyeChannel,
+            goodbyeMessage,
+            goodbyeEmbedTitle,
+            goodbyeEmbedDescription,
+            goodbyeEmbedColor,
+            embedFields,
+            buttons,
+            welcomeShowAvatar,
+            goodbyeShowAvatar,
+            goodbyeEmbedFields,
+            goodbyeButtons,
+        } = req.body;
+
+        try {
+            switch (module) {
+                case 'welcomeModule': {
+                    const joinMessage = {
+                        content: this.replacePlaceholders(messageContent, placeholders),
+                        embeds: [
+                            {
+                                title: embedTitle || null,
+                                description: this.replacePlaceholders(embedDescription, placeholders),
+                                color: parseInt(embedColor.replace('#', '0x')) || null,
+                                thumbnail: welcomeShowAvatar
+                                    ? { url: placeholders['{user.avatar}'] }
+                                    : null,
+                                fields: Array.isArray(embedFields) && embedFields.length > 0 ? embedFields : [],
+                            },
+                        ].filter((embed) => embed.title || embed.description || embed.fields.length > 0),
+                        components: buttons?.length
+                            ? [{ type: 1, components: buttons }]
+                            : [],
+                    };
+
+                    const joinChannel = guildData.GuildJoinLeaveModule.joinChannel || welcomeChannel;
+
+                    if (toggleWelcomeModule) {
+                        await rest.sendMessageToAChannelAsJSON(joinChannel, JSON.stringify(joinMessage));
+                    }
+                    break;
+                }
+
+                case 'goodbyeModule': {
+                    const leaveMessage = {
+                        content: this.replacePlaceholders(goodbyeMessage, placeholders),
+                        embeds: [
+                            {
+                                title: goodbyeEmbedTitle || null,
+                                description: this.replacePlaceholders(goodbyeEmbedDescription, placeholders),
+                                color: parseInt(goodbyeEmbedColor.replace('#', '0x')) || null,
+                                thumbnail: goodbyeShowAvatar
+                                    ? { url: placeholders['{user.avatar}'] }
+                                    : null,
+                                fields: Array.isArray(goodbyeEmbedFields) && goodbyeEmbedFields.length > 0 ? goodbyeEmbedFields : [],
+                            },
+                        ].filter((embed) => embed.title || embed.description || embed.fields.length > 0),
+                    };
+
+                    const leaveChannel = guildData.GuildJoinLeaveModule.leaveChannel || goodbyeChannel;
+
+                    if (toggleGoodbyeModule) {
+                        await rest.sendMessageToAChannelAsJSON(leaveChannel, JSON.stringify(leaveMessage));
+                    }
+                    break;
+                }
+
+                default:
+                    return res.status(400).json({ message: 'Invalid module from this feature.' });
+            }
+        } catch (error) {
+            console.error('Erro ao enviar mensagem de teste:', error);
+            res.status(500).json({ message: 'Erro ao enviar mensagem de teste.' });
+        }
+    }
+
     async saveWelcomerModule(req, res) {
         const { guildId } = req.params;
         const guildData = await database.getGuild(guildId);
@@ -80,7 +208,7 @@ class GuildDashboardRoutes {
                 authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
             }
         });
-        
+
         const guilds = await userGuilds.json();
         const currentGuild = guilds.find(g => g.id === guildId);
         if (!currentGuild || !currentGuild.permissions) {
@@ -212,6 +340,23 @@ class GuildDashboardRoutes {
         }
         res.status(200).json({ channels: filteredChannels });
     }
+
+    private getTestCompatiblePlaceholders(user) {
+        return {
+            '{user}': user.username,
+            '{@user}': `<@${user.id}>`,
+            '{user.id}': user.id.toString(),
+            '{user.avatar}': `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` || '',
+        };
+    }
+
+    private replacePlaceholders(content, placeholders) {
+        return Object.entries(placeholders).reduce(
+            (result, [key, value]) => result.replace(new RegExp(key, 'g'), value),
+            content
+        );
+    }
 }
+
 
 export default GuildDashboardRoutes;
