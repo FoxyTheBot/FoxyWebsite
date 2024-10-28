@@ -17,9 +17,6 @@ class GuildDashboardRoutes {
         standardHeaders: true,
         legacyHeaders: false,
     });
-    
-    private lastFetchTime: number = 0;
-    private fetchDelay: number = 2000;
 
     constructor() {
         this.router = express.Router();
@@ -148,7 +145,9 @@ class GuildDashboardRoutes {
                     };
 
                     const joinChannel = welcomeChannel || guildData.GuildJoinLeaveModule.joinChannel;
-
+                    if (!joinChannel) {
+                        return res.status(400).json({ message: 'Welcome channel not found.' });
+                    }
                     if (toggleWelcomeModule) {
                         await rest.sendMessageToAChannelAsJSON(joinChannel, JSON.stringify(joinMessage));
                     }
@@ -174,7 +173,9 @@ class GuildDashboardRoutes {
                     };
 
                     const leaveChannel = goodbyeChannel || guildData.GuildJoinLeaveModule.leaveChannel;
-
+                    if (!leaveChannel) {
+                        return res.status(400).json({ message: 'Goodbye channel not found.' });
+                    }
                     if (toggleGoodbyeModule) {
                         await rest.sendMessageToAChannelAsJSON(leaveChannel, JSON.stringify(leaveMessage));
                     }
@@ -354,7 +355,6 @@ class GuildDashboardRoutes {
             }, 500);
         });
     }
-    
 }
 
 
