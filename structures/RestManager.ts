@@ -1,4 +1,4 @@
-import { createBotConstants, createRestManager } from "discordeno";
+import { BigString, createBotConstants, createRestManager, Guild } from "discordeno";
 import { logger } from "./logger";
 
 export default class RestManager {
@@ -13,6 +13,23 @@ export default class RestManager {
         return await this.rest.runMethod(this.rest, "GET", this.constants.routes.USER(userId));
     }
 
+    async sendDirectMessage(userId: BigString, data: Object) {
+        try {
+            const userDM: any = this.rest.runMethod(this.rest, "POST", this.constants.routes.USER_DM(), {
+                recipient_id: userId,
+            });
+    
+            return this.rest.runMethod(this.rest, "POST", this.constants.routes.CHANNEL_MESSAGES((await userDM).id), {
+                ...data
+            });
+        } catch (error) {
+            logger.error("Error sending direct message to user. Is DM closed?", error)
+        }
+    }
+
+    async getGuild(guildId: string): Promise<Guild> {
+        return await this.rest.runMethod(this.rest, "GET", this.constants.routes.GUILD(guildId));
+    }
 
     async sendMessageToAChannelAsJSON(channelId: string, content: string) {
         let jsonContent;
