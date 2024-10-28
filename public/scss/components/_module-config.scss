@@ -169,11 +169,16 @@ form {
         margin-bottom: 10px;
         cursor: pointer;
         box-sizing: border-box;
-        transition: background-color 0.3s;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
     
         &:hover {
             background-color: #2d68e3;
-            transition: background-color 0.3s;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
         }
     }
     
@@ -254,6 +259,11 @@ form {
     cursor: pointer;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
 }
 
 .embedColor {

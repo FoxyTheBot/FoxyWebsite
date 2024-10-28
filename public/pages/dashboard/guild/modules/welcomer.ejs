@@ -133,7 +133,7 @@
                                 <label class="switch small">
                                     <input type="checkbox" name="goodbyeShowAvatar" id="showAvatar">
                                     <span class="slider round"></span>
-                                    
+
                             </div>
                             <button id="goodbyeTestButton" class="test-btn" type="button">Testar</button>
                         </div>
@@ -147,6 +147,9 @@
             <%- include('../../../global/loading') %>
         </div>
         <script>
+            const saveButton = document.getElementById("saveButton");
+            const testButtons = document.querySelectorAll(".test-btn");
+            
             document.getElementById("goodbyeTestButton").addEventListener("click", async function () {
                 const form = document.querySelector(".config-module-form");
                 const originalAction = form.action;
@@ -155,6 +158,8 @@
 
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
+                saveButton.disabled = true;
+                testButtons.forEach(button => button.disabled = true);
 
                 try {
                     const response = await fetch(testAction, {
@@ -166,9 +171,13 @@
                     });
 
                     if (!response.ok) throw new Error(`Erro: ${response.statusText}`);
+                    saveButton.disabled = false;
+                    testButtons.forEach(button => button.disabled = false);
 
                 } catch (error) {
                     alert(`Erro ao testar: ${error.message}`);
+                    saveButton.disabled = false;
+                    testButtons.forEach(button => button.disabled = false);
                 } finally {
                     form.action = originalAction;
                 }
@@ -182,6 +191,8 @@
 
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
+                saveButton.disabled = true;
+                testButtons.forEach(button => button.disabled = true);
 
                 try {
                     const response = await fetch(testAction, {
@@ -191,11 +202,13 @@
                         },
                         body: JSON.stringify(data)
                     });
-
                     if (!response.ok) throw new Error(`Erro: ${response.statusText}`);
-
+                    saveButton.disabled = false;
+                    testButtons.forEach(button => button.disabled = false);
                 } catch (error) {
                     alert(`Erro ao testar: ${error.message}`);
+                    saveButton.disabled = false;
+                    testButtons.forEach(button => button.disabled = false);
                 } finally {
                     form.action = originalAction;
                 }

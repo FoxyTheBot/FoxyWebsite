@@ -153,7 +153,7 @@ class GuildDashboardRoutes {
                         await rest.sendMessageToAChannelAsJSON(joinChannel, JSON.stringify(joinMessage));
                     }
 
-                    res.status(200);
+                    res.status(200).json({ message: 'Test message sent successfully.' });
                     break;
                 }
 
@@ -179,7 +179,7 @@ class GuildDashboardRoutes {
                         await rest.sendMessageToAChannelAsJSON(leaveChannel, JSON.stringify(leaveMessage));
                     }
 
-                    res.status(200);
+                    res.status(200).json({ message: 'Test message sent successfully.' });
                     break;
                 }
 
