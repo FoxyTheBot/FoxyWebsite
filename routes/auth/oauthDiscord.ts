@@ -11,6 +11,7 @@ dotenv.config();
 const router = express.Router();
 
 router.get('/login/callback', async (req, res) => {
+    const guildId = req.query.guild_id;
     try {
         const code = req.query.code;
         if (!code) {
@@ -60,6 +61,9 @@ router.get('/login/callback', async (req, res) => {
         req.session.save();
         
         logger.log(`[LOGIN] Usuário ${result.username} / ${result.id} fez login no website!`);
+        if (guildId) {
+            return res.redirect(`/br/servers/${guildId}`);
+        }
         res.redirect('/br/dashboard');
     } catch (err) {
         logger.error(err);
