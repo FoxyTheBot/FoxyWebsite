@@ -11,36 +11,40 @@ dotenv.config();
 const router = express.Router();
 
 async function sendWelcomeMessage(userId, guildName) {
-    await rest.sendDirectMessage(userId, {
-        embeds: [{
-            title: "<:foxy_cake:866084383843549204> **|** Obrigada por me adicionar!",
-            color: 0xe7385d,
-            description: 
-                `<:foxy_howdy:853366973751885854> **|** Olá <@${userId}>, obrigada por me adicionar no servidor **${guildName}**!` +
-                "\n\n" +
-                `<:foxy_yay:1070906796274888795> **|** Estou muito feliz por fazer parte da sua comunidade! ` +
-                "Se você está me conhecendo agora, eu sou a **Foxy**, um bot multiuso para Discord, pronta para ajudar você e seu servidor a se divertir e crescer! " +
-                "Além de entreter os membros, posso dar uma mãozinha no gerenciamento e proteção do servidor! :3" + 
-                "\n\n" +
-                `<:foxy_drinking_coffee:1071119512352591974> **|** Quer saber mais sobre mim? Confira meus comandos [clicando aqui](https://foxybot.win/br/commands)! ` +
-                "Se precisar de ajuda ou tiver alguma dúvida, você pode entrar no meu servidor de suporte; seria muito legal ter você lá!" +
-                "\n\n" +
-                `<:foxy_wow:853366914054881310> **|** Espero poder ajudar você e seu servidor a crescer e se divertir bastante!`,
-            image: {
-                url: "https://cakey.foxybot.win/assets/banner-2.png"
-            }
-        }],
-        components: [{
-            type: 1,
+    try {
+        await rest.sendDirectMessage(userId, {
+            embeds: [{
+                title: "<:foxy_cake:866084383843549204> **|** Obrigada por me adicionar!",
+                color: 0xe7385d,
+                description: 
+                    `<:foxy_howdy:853366973751885854> **|** Olá <@${userId}>, obrigada por me adicionar no servidor **${guildName}**!` +
+                    "\n\n" +
+                    `<:foxy_yay:1070906796274888795> **|** Estou muito feliz por fazer parte da sua comunidade! ` +
+                    "Se você está me conhecendo agora, eu sou a **Foxy**, um bot multiuso para Discord, pronta para ajudar você e seu servidor a se divertir e crescer! " +
+                    "Além de entreter os membros, posso dar uma mãozinha no gerenciamento e proteção do servidor! :3" + 
+                    "\n\n" +
+                    `<:foxy_drinking_coffee:1071119512352591974> **|** Quer saber mais sobre mim? Confira meus comandos [clicando aqui](https://foxybot.win/br/commands)! ` +
+                    "Se precisar de ajuda ou tiver alguma dúvida, você pode entrar no meu servidor de suporte; seria muito legal ter você lá!" +
+                    "\n\n" +
+                    `<:foxy_wow:853366914054881310> **|** Espero poder ajudar você e seu servidor a crescer e se divertir bastante!`,
+                image: {
+                    url: "https://cakey.foxybot.win/assets/banner-2.png"
+                }
+            }],
             components: [{
-                type: 2,
-                style: 5,
-                label: "Servidor de Suporte",
-                url: "https://discord.gg/UbwQ3Ad56w",
-                emoji: { id: "866084383843549204" }
+                type: 1,
+                components: [{
+                    type: 2,
+                    style: 5,
+                    label: "Servidor de Suporte",
+                    url: "https://discord.gg/UbwQ3Ad56w",
+                    emoji: { id: "866084383843549204" }
+                }]
             }]
-        }]
-    });    
+        });
+    } catch (err) {
+        logger.error("Is DM disabled?", err);
+    }
 }
 
 router.get('/login/callback', async (req, res) => {
