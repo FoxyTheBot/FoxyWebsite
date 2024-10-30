@@ -2,7 +2,7 @@ import * as express from 'express';
 const router = express.Router();
 
 router.get('/add', (req, res) => {
-    res.redirect('https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255');
+    res.redirect('https://discord.com/oauth2/authorize?client_id=1006520438865801296&permissions=269872255&response_type=code&redirect_uri=https%3A%2F%2Ffoxybot.win%2Flogin%2Fcallback&integration_type=0&scope=guilds+bot+applications.commands+email+identify');
 });
 
 router.get('/github', (req, res) => {
