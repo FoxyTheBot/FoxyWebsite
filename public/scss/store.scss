@@ -3,11 +3,6 @@
 @import "components/background";
 @import "components/inline-emoji";
 
-/* Theme */
-html.dark-theme main p {
-    color: #fff;
-}
-
 .store-info {
     display: flex;
     flex-direction: column;
@@ -16,7 +11,7 @@ html.dark-theme main p {
 }
 
 p {
-    color: #272222;
+    color: #fff;
     font-size: 1rem;
     font-family: "Poppins";
     margin-left: 1rem;
@@ -301,7 +296,7 @@ main h2 {
     }
 
     p {
-        color: #272222;
+        color: #fff;
         font-size: 1rem;
         font-family: "Poppins";
         margin-left: 0rem;

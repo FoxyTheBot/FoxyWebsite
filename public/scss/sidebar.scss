@@ -1,28 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-$sidebar-background: #fff;
+$sidebar-background: #313338;
 $separator-color: #2f3136;
 $default-color: #e7385d;
 
 * {
     text-decoration: none !important;
-}
-
-html.dark-theme {
-    .left-sidebar {
-        background-color: #2f3136;
-        .entry {
-            color: #fff;
-            
-            &:hover {
-                background-color: #36393f;
-            }
-        }
-    }
-
-    .separator {
-        background-color: #2f3136;
-    }
 }
 
 .left-sidebar {
@@ -40,28 +23,31 @@ html.dark-theme {
     z-index: 900;
 
     .entry {
-        padding: 0.2345rem 1rem;
-        color: #363636;
+        color: #fff;
         font-family: "Poppins";
         font-size: 0.895rem;
         display: flex;
         justify-content: space-between;
         transition: background-color 0.2s ease;
+        padding: 8px 15px;
+        border-radius: 8px;
+        transition: background-color 0.2s ease, color 0.2s ease;
 
         &:hover {
-            background-color: #fafafa;
+            background-color: #5865f2;
+            color: #fff;
         }
     }
 
     .separator {
         height: 1px;
         width: 100%;
-        background-color: $separator-color;
+        color: $separator-color;
         margin: 10px 0;
     }
 
     .entries {
-        margin-top: 70px;
+        margin-top: 1rem;
     }
 
     .sidebar-server-icon {
@@ -85,10 +71,28 @@ html.dark-theme {
 
     .logo {
         width: 150px;
-        margin: -50px auto 10px;
+        margin: 1rem auto 10px;
         display: block;
     }
+
+    .server-icon {
+        width: 50%;
+        margin: 0rem;
+        margin-left: 23%;
+        border-radius: 50%;
+        margin-right: 0%;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &:active {
+            transform: scale(0.9);
+        }
+    }
 }
+
 
 .sidebar-toggle {
     display: none;

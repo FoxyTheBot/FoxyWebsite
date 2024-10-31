@@ -34,25 +34,9 @@ main .foxy:hover {
     transform: scale(1.1);
 }
 
-/* Theme */
-
-html.dark-theme body .meeting,
-html.dark-theme body .meeting-2 {
-    color: #fff !important;
-}
-
-html.dark-theme body .features,
-html.dark-theme body .feature {
-    background-color: #36393f !important;
-}
-
-html.dark-theme body .features h2 {
-    color: #fff !important;
-}
-
 .features {
     padding: 30px;
-    background-color: #ffffff;
+    background-color: #2b2d31;
     border-color: #000;
     position: relative;
     text-align: center;
@@ -68,12 +52,12 @@ html.dark-theme body .features h2 {
         font-family: "Poppins";
         font-size: 20px;
         margin-top: 20px;
-        color: #272222;
+        color: #fff;
     }
 
     .description {
         font-family: "Poppins";
-        color: #272222;
+        color: #fff;
     }
 
     .feature {
@@ -81,7 +65,7 @@ html.dark-theme body .features h2 {
         margin: 20px;
         padding: 2rem;
         border-radius: 10px;
-        background-color: #ffffff;
+        background-color: #2b2d31;
         align-items: flex-start;
 
         &.right {
@@ -116,7 +100,7 @@ html.dark-theme body .features h2 {
             font-family: "Poppins";
             font-size: 110%;
             margin: 0;
-            color: #000;
+            color: #ffffff;
         }
 
         .feature-image {
@@ -154,7 +138,7 @@ main {
     margin-top: 11rem;
 
     .meeting {
-        color: #e7385d;
+        color: #fff;
         font-size: 40px;
         font-family: 'Cookie';
         margin-left: 5px;
@@ -162,7 +146,7 @@ main {
     }
 
     .meeting-2 {
-        color: #e7385d;
+        color: #fff;
         font-size: 40px;
         font-family: 'Cookie';
         margin-left: 5px;

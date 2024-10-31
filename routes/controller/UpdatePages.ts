@@ -46,6 +46,7 @@ class UpdatePages {
         this.router.get("/:lang/store/layouts", this.routerManager.isAuthenticated, this.layoutHandler);
         this.router.get("/checkout", this.routerManager.isAuthenticated, this.checkoutHandler);
         this.router.get("/:lang/dashboard", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/guild/dashboard.ejs"));
+        this.router.get("/:lang/user/backgrounds", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/user/inventory/backgrounds.ejs"));
         this.router.get("/:lang/user/decorations", this.routerManager.isAuthenticated, this.userDecorationsHandler);
         this.router.get("/riot/connection/status=:status", this.riotConnectionStatusHandler);
         this.router.get('/:lang/daily', this.routerManager.isAuthenticated, this.dailyHandler);

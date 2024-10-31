@@ -23,7 +23,7 @@
   <%- include('../../sidebar') %>
     <% if (userDecorations && userDecorations.length> 0) { %>
       <main>
-        <div class="itens">
+        <div class="itens" id="inventory">
           <% userDecorations.forEach(decoration=> { %>
             <div class="item <%= currentDecoration === decoration.id ? 'disabled' : '' %>" <% if (currentDecoration
               !==decoration.id) { %>

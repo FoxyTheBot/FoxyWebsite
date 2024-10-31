@@ -1,9 +1,11 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { User } from 'discordeno/transformers';
 import { Schemas } from './schemas/Schemas';
 import { logger } from '../structures/logger';
 import { rest } from '../client/app';
 import { randomUUID } from 'crypto';
+import { FoxyGuild } from "../types/Guild";
+
 export default class DatabaseConnection {
     public key: any;
     public user: any;
@@ -155,7 +157,7 @@ export default class DatabaseConnection {
     async createCheckout(userId: string, itemId: string): Promise<any> {
         let document = await this.checkoutList.findOne({ userId });
         if (document && !document.isApproved) return document;
-        
+
         document = new this.checkoutList({
             checkoutId: randomUUID(),
             userId: userId,
@@ -166,7 +168,7 @@ export default class DatabaseConnection {
 
         return document;
     }
-    
+
     async getCode(code: string): Promise<any> {
         const riotAccount = this.riotAccount.findOne({ authCode: code });
         if (!riotAccount) return null;
@@ -181,42 +183,14 @@ export default class DatabaseConnection {
 
     }
 
-    async getGuild(guildId: String): Promise<any> {
+    async getGuild(guildId: String): Promise<FoxyGuild> {
         let document = await this.guilds.findOne({ _id: guildId });
         return document;
     }
 
-    async addGuild(guildId: String): Promise<any> {
+    async addGuild(guildId: String): Promise<FoxyGuild> {
         let document = await this.guilds.findOne({ _id: guildId });
-
-        if (!document) {
-            document = new this.guilds({
-                _id: guildId,
-                GuildJoinLeaveModule: {
-                    isEnabled: false,
-                    joinMessage: null,
-                    alertWhenUserLeaves: false,
-                    leaveMessage: null,
-                    joinChannel: null,
-                    leaveChannel: null,
-                },
-                valAutoRoleModule: {
-                    isEnabled: false,
-                    unratedRole: null,
-                    ironRole: null,
-                    bronzeRole: null,
-                    silverRole: null,
-                    goldRole: null,
-                    platinumRole: null,
-                    diamondRole: null,
-                    ascendantRole: null,
-                    immortalRole: null,
-                    radiantRole: null,
-                },
-                premiumKeys: []
-
-            }).save()
-        }
+        if (!document) return null;
 
         return document;
     }

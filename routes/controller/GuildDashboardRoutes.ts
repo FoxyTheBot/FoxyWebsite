@@ -1,8 +1,6 @@
 import express from 'express';
 import { database, rest } from '../../client/app';
 import RouterManager from './RouterManager';
-import { Guild } from 'discordeno/*';
-import User from '../../types/user';
 import rateLimit from 'express-rate-limit';
 import { logger } from '../../structures/logger';
 
@@ -25,9 +23,23 @@ class GuildDashboardRoutes {
     }
 
     initializeRoutes() {
-        this.router.get("/:lang/servers/data", this.routerManager.isAuthenticated, this.getServersData.bind(this));
+        this.router.use(this.routerManager.errorHandler);
+
+        /* Guild settings pages */
+        this.router.get("/:lang/servers/:id", this.routerManager.isAuthenticated, this.getGuildSettings.bind(this));
+        this.router.get("/:lang/servers/:id/modules/welcomer", this.routerManager.isAuthenticated, (req, res) => {
+            res.render("../public/pages/dashboard/guild/modules/welcomer.ejs", {
+                user: req.session.user_info,
+                guildId: req.params.id
+            })
+        });
+        /* Guild data */
+
+        this.router.get("/:lang/user/servers/data", this.routerManager.isAuthenticated, this.getServersData.bind(this));
         this.router.get("/:lang/servers/:id/data", this.routerManager.isAuthenticated, this.getServerConfig.bind(this));
         this.router.get("/:lang/servers/:id/channels", this.routerManager.isAuthenticated, this.getServerChannels.bind(this));
+
+        /* Save module settings */
         this.router.post("/br/servers/:guildId/modules/welcomer", this.routerManager.isAuthenticated, this.saveWelcomerModule.bind(this));
         this.router.post(
             "/:lang/servers/:guildId/modules/welcomer/test/module/:module",
@@ -35,10 +47,6 @@ class GuildDashboardRoutes {
             this.testMessageLimiter,
             this.sendTestMessage.bind(this)
         );
-        this.router.get("/:lang/servers/:id", this.routerManager.isAuthenticated, this.getGuildSettings.bind(this));
-        this.router.post("/br/servers/:guildId/modules/welcomer", this.routerManager.isAuthenticated, this.saveWelcomerModule);
-
-        this.router.use(this.routerManager.errorHandler);
     }
 
     getRouter() {
@@ -69,9 +77,9 @@ class GuildDashboardRoutes {
                 return res.redirect("/br/dashboard");
             }
 
-            res.status(200).render("../public/pages/dashboard/guild/modules/welcomer.ejs", {
+            res.status(200).render("../public/pages/dashboard/guild/modules/general.ejs", {
                 user: req.session.user_info,
-                guildId,
+                guildId
             });
         } catch (error) {
             logger.error(error);
@@ -305,6 +313,18 @@ class GuildDashboardRoutes {
 
     async getServerConfig(req, res) {
         const guildId = req.params.id;
+
+        const guilds = await this.getUserGuilds(req);
+        const currentGuild = guilds.find(g => g.id === guildId);
+        if (!currentGuild || !currentGuild.permissions) {
+            return res.redirect("/br/dashboard");
+        }
+        const isUserAuthorized = this.checkUserPermissions(Number(currentGuild.permissions));
+
+        if (!isUserAuthorized) {
+            return res.redirect("/br/dashboard");
+        }
+
         const guild = await database.getGuild(guildId);
         res.status(200).json(guild);
     }

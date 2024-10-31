@@ -99,6 +99,13 @@ const keySchemaForGuilds = new mongoose.Schema({
     versionKey: false, id: false
 });
 
+const dashboardLogsSchema = new mongoose.Schema({
+    _id: String,
+    user: String,
+    action: String,
+    date: Date,
+}, { versionKey: false, id: false });
+
 const guildSchema = new mongoose.Schema({
     _id: String,
     GuildJoinLeaveModule: {
@@ -109,20 +116,20 @@ const guildSchema = new mongoose.Schema({
         joinChannel: String,
         leaveChannel: String,
     },
-    valAutoRoleModule: {
+    AutoRoleModule: {
         isEnabled: Boolean,
-        unratedRole: String,
-        ironRole: String,
-        bronzeRole: String,
-        silverRole: String,
-        goldRole: String,
-        platinumRole: String,
-        diamondRole: String,
-        ascendantRole: String,
-        immortalRole: String,
-        radiantRole: String,
+        roles: Array,
     },
-    premiumKeys: [keySchemaForGuilds]
+    premiumKeys: [keySchemaForGuilds],
+    guildSettings: {
+        prefix: String,
+        disabledCommands: Array,
+        blockedChannels: Array,
+        sendMessageIfChannelIsBlocked: Boolean,
+        deleteMessageIfCommandIsExecuted: Boolean,
+        usersWhoCanAccessDashboard: Array,
+    },
+    dashboardLogs: [dashboardLogsSchema]
 }, { versionKey: false, id: false });
 
 /* End of guild related schemas */
@@ -157,7 +164,7 @@ const backgroundSchema = new mongoose.Schema({
     description: String,
     author: String,
     inactive: Boolean
-}, { versionKey: false, id: false } );
+}, { versionKey: false, id: false });
 
 const layoutSchema = new mongoose.Schema({
     id: String,

@@ -15,12 +15,16 @@
         <div class="entry">Voltar à lista de servidores</div>
         </a>
       <hr class="separator">
-      <h2 class="section-title">Automações</h2>
-      <a href="/br/servers">
+      <h2 class="section-title">Configurações para servidor</h2>
+
+      <a href="/br/servers/<%= guildId %>/">
+        <div class="entry">Configurações gerais</div>
+      </a>
+      <a href="/br/servers/<%= guildId %>/modules/welcomer">
         <div class="entry">Mensagens de Entrada/Saída</div>
       </a>
   
-      <a href="/br/dashboard">
+      <a href="/br/servers/<%= guildId %>/modules/autorole">
         <div class="entry">Dar cargo ao entrar no servidor</div>
       </a>
  
