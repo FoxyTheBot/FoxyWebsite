@@ -131,7 +131,7 @@
 
                                 <label class="toggleable-option-title">Mostrar avatar do usuário</label>
                                 <label class="switch small">
-                                    <input type="checkbox" name="goodbyeShowAvatar" id="showAvatar">
+                                    <input type="checkbox" name="goodbyeShowAvatar" id="goodbyeShowAvatar">
                                     <span class="slider round"></span>
 
                             </div>
@@ -263,7 +263,7 @@
                         document.querySelector('#messageContent').value = joinMessage.content || '';
                         document.querySelector('#embedTitle').value = joinMessage.embeds[0]?.title || '';
                         document.querySelector('#embedDescription').value = joinMessage.embeds[0]?.description || '';
-                        if (joinMessage.embeds[0]?.thumbnail.url) {
+                        if (joinMessage.embeds[0]?.thumbnail?.url) {
                             document.querySelector('#showAvatar').checked = true;
                         }
                         const joinColor = joinMessage.embeds[0]?.color || 0xFFFFFF;
@@ -282,7 +282,7 @@
                         document.querySelector('#goodbyeMessage').value = leaveMessage.content || '';
                         document.querySelector('#goodbyeEmbedTitle').value = leaveMessage.embeds[0]?.title || '';
                         document.querySelector('#goodbyeEmbedDescription').value = leaveMessage.embeds[0]?.description || '';
-                        if (leaveMessage.embeds[0]?.thumbnail.url) {
+                        if (leaveMessage.embeds[0]?.thumbnail?.url) {
                             document.querySelector('#goodbyeShowAvatar').checked = true;
                         }
                         const leaveColor = leaveMessage.embeds[0]?.color || 0xFFFFFF;

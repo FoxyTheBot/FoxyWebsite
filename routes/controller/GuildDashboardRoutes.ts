@@ -61,11 +61,16 @@ class GuildDashboardRoutes {
     checkUserPermissions(permission): boolean {
         return (permission & (8 | 32)) !== 0;
     }
-
     async renderModulePage(req, res, module, guildId) {
-        try {
-            await this.getUserCurrentGuild(req, res, guildId);
+        const guildInfo = await database.getGuild(guildId);
+        if (!guildInfo) {
+            return res.redirect(constants.INVITE_BOT(guildId));
+        }
 
+        const isRedirected = await this.getUserCurrentGuild(req, res, guildId);
+        if (isRedirected) return;
+
+        try {
             res.status(200).render(`../public/pages/dashboard/guild/modules/${module}.ejs`, {
                 user: req.session.user_info,
                 guildId: req.params.id
@@ -77,18 +82,53 @@ class GuildDashboardRoutes {
 
     async getUserCurrentGuild(req, res, guildId) {
         if (!guildId) throw new Error('Guild ID not found.');
-        const userGuilds = await fetch(constants.USER_GUILDS, {
-            headers: {
-                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
+        const guildInfo = await database.getGuild(guildId);
+
+        if (!guildInfo) {
+            res.redirect(constants.INVITE_BOT(guildId));
+            return true;
+        }
+
+        let userGuildsResponse;
+        let attempts = 0;
+
+        while (attempts < 3) {
+            userGuildsResponse = await fetch(constants.USER_GUILDS, {
+                headers: {
+                    authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
+                }
+            });
+
+            if (userGuildsResponse.status === 429) {
+                const rateLimitData = await userGuildsResponse.json();
+                const waitTime = rateLimitData.retry_after * 1000;
+                await new Promise(resolve => setTimeout(resolve, waitTime));
+                attempts++;
+            } else {
+                break;
             }
-        });
-        const guilds = await userGuilds.json();
+        }
+
+        if (userGuildsResponse.status === 429) {
+            logger.error("Rate limit exceeded. Please try again later.");
+            return true;
+        }
+
+        const guilds = await userGuildsResponse.json();
         const currentGuild = guilds.find((g) => g.id === guildId);
+        if (!currentGuild) {
+            res.redirect(constants.DASHBOARD);
+            return true;
+        }
+
         const isUserAuthorized = this.checkUserPermissions(currentGuild.permissions);
 
-        if (!currentGuild || !currentGuild.permissions || !isUserAuthorized) {
-            return res.redirect(constants.DASHBOARD);
+        if (!currentGuild.permissions || !isUserAuthorized) {
+            res.redirect(constants.DASHBOARD);
+            return true;
         }
+
+        return false;
     }
 
     async saveGeneralSettings(req, res) {
@@ -100,7 +140,9 @@ class GuildDashboardRoutes {
         }
 
         try {
-            await this.getUserCurrentGuild(req, res, guildId);
+            const isRedirected = await this.getUserCurrentGuild(req, res, guildId);
+            if (isRedirected) return;
+
             const {
                 deleteMessageIfCommandIsExecuted,
                 botPrefix,
@@ -141,7 +183,8 @@ class GuildDashboardRoutes {
         if (!guildData) {
             return res.status(404).json({ message: 'Server not found.' });
         }
-        await this.getUserCurrentGuild(req, res, guildId);
+        const isRedirected = await this.getUserCurrentGuild(req, res, guildId);
+        if (isRedirected) return;
 
         const currentSessionUser = req.session.user_info;
 
@@ -239,7 +282,9 @@ class GuildDashboardRoutes {
 
     async saveWelcomerModule(req, res) {
         const { guildId } = req.params;
-        await this.getUserCurrentGuild(req, res, guildId);
+        const isRedirected = await this.getUserCurrentGuild(req, res, guildId);
+        if (isRedirected) return;
+
         const guildData = await database.getGuild(guildId);
 
         const {
@@ -344,8 +389,8 @@ class GuildDashboardRoutes {
 
     async getServerConfig(req, res) {
         const guildId = req.params.id;
-        await this.getUserCurrentGuild(req, res, guildId);
-
+        const isRedirected = await this.getUserCurrentGuild(req, res, guildId);
+        if (isRedirected) return;
         const guild = await database.getGuild(guildId);
         res.status(200).json(guild);
     }
