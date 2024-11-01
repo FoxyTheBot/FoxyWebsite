@@ -59,6 +59,15 @@
                         </label>
                     </div>
 
+
+                    <div class="config-module">
+                        <label class="module-name">Avisar quando enviarem comandos em um canal bloqueado</label>
+                        <label class="switch">
+                            <input type="checkbox" id="warnIfCommandIsExecutedInBlockedChannel"
+                                name="warnIfCommandIsExecutedInBlockedChannel">
+                            <span class="slider round"></span>
+                    </div>
+
                     <div class="config-module">
                         <label class="module-name">Canais onde comandos não podem ser executados</label>
                         <div class="channel-selector" style="display: flex; align-items: center;">
@@ -83,8 +92,9 @@
                 const deleteMessageIfCommandIsExecuted = document.getElementById('deleteMessageIfCommandIsExecuted');
                 const channelsToBlockCommandsSelect = document.getElementById('channelsToBlockCommands');
                 const saveButton = document.getElementById('saveButton');
+                const warnIfCommandIsExecutedInBlockedChannel = document.getElementById('warnIfCommandIsExecutedInBlockedChannel');
 
-                saveButton.addEventListener('click', function() {
+                saveButton.addEventListener('click', function () {
                     loadingOverlay.classList.remove('hidden');
                 });
 
@@ -96,6 +106,8 @@
 
                     botPrefix.value = data.guildSettings.prefix;
                     deleteMessageIfCommandIsExecuted.checked = data.guildSettings.deleteMessageIfCommandIsExecuted;
+                    warnIfCommandIsExecutedInBlockedChannel.checked = data.guildSettings.sendMessageIfChannelIsBlocked;
+
                     const channelsResponse = await fetch(`/br/servers/<%= guildId %>/channels`);
                     const channelsData = await channelsResponse.json();
 

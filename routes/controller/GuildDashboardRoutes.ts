@@ -148,7 +148,7 @@ class GuildDashboardRoutes {
                 botPrefix,
                 disabledCommands,
                 blockedChannels,
-                sendMessageIfChannelIsBlocked,
+                warnIfCommandIsExecutedInBlockedChannel
             } = req.body;
 
             const updatedSettings: FoxyGuild = {
@@ -160,7 +160,7 @@ class GuildDashboardRoutes {
                     deleteMessageIfCommandIsExecuted: !!deleteMessageIfCommandIsExecuted,
                     disabledCommands: disabledCommands || guildData.guildSettings.disabledCommands,
                     blockedChannels: JSON.parse(blockedChannels) || guildData.guildSettings.blockedChannels,
-                    sendMessageIfChannelIsBlocked: !!sendMessageIfChannelIsBlocked,
+                    sendMessageIfChannelIsBlocked: !!warnIfCommandIsExecutedInBlockedChannel,
                     usersWhoCanAccessDashboard: guildData.guildSettings.usersWhoCanAccessDashboard
                 },
                 premiumKeys: guildData.premiumKeys,
