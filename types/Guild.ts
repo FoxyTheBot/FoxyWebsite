@@ -6,7 +6,7 @@ export interface FoxyGuild {
     guildSettings: guildSettings;
     dashboardLogs: dashboardLogs[];
 
-    save(): any;
+    save?: () => any;
 }
 
 interface AutoRoleModule {

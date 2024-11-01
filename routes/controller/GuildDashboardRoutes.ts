@@ -3,6 +3,8 @@ import { database, rest } from '../../client/app';
 import RouterManager from './RouterManager';
 import rateLimit from 'express-rate-limit';
 import { logger } from '../../structures/logger';
+import { constants } from '../../structures/constants';
+import { FoxyGuild } from '../../types/Guild';
 
 class GuildDashboardRoutes {
     router: express.Router;
@@ -26,12 +28,13 @@ class GuildDashboardRoutes {
         this.router.use(this.routerManager.errorHandler);
 
         /* Guild settings pages */
-        this.router.get("/:lang/servers/:id", this.routerManager.isAuthenticated, this.getGuildSettings.bind(this));
-        this.router.get("/:lang/servers/:id/modules/welcomer", this.routerManager.isAuthenticated, (req, res) => {
-            res.render("../public/pages/dashboard/guild/modules/welcomer.ejs", {
-                user: req.session.user_info,
-                guildId: req.params.id
-            })
+        this.router.get("/:lang/servers/:id", this.routerManager.isAuthenticated, (req, res) => {
+            this.renderModulePage(req, res, "general", req.params.id);
+        });
+
+        this.router.get("/:lang/servers/:id/modules/:module", this.routerManager.isAuthenticated, (req, res) => {
+            const { id, module } = req.params;
+            this.renderModulePage(req, res, module, id);
         });
         /* Guild data */
 
@@ -40,7 +43,8 @@ class GuildDashboardRoutes {
         this.router.get("/:lang/servers/:id/channels", this.routerManager.isAuthenticated, this.getServerChannels.bind(this));
 
         /* Save module settings */
-        this.router.post("/br/servers/:guildId/modules/welcomer", this.routerManager.isAuthenticated, this.saveWelcomerModule.bind(this));
+        this.router.post("/:lang/servers/:guildId/modules/welcomer", this.routerManager.isAuthenticated, this.saveWelcomerModule.bind(this));
+        this.router.post("/:lang/servers/:guildId/modules/general", this.routerManager.isAuthenticated, this.saveGeneralSettings.bind(this));
         this.router.post(
             "/:lang/servers/:guildId/modules/welcomer/test/module/:module",
             this.routerManager.isAuthenticated,
@@ -58,32 +62,75 @@ class GuildDashboardRoutes {
         return (permission & (8 | 32)) !== 0;
     }
 
-    async getGuildSettings(req, res) {
-        const guildId = req.params.id;
+    async renderModulePage(req, res, module, guildId) {
+        try {
+            await this.getUserCurrentGuild(req, res, guildId);
+
+            res.status(200).render(`../public/pages/dashboard/guild/modules/${module}.ejs`, {
+                user: req.session.user_info,
+                guildId: req.params.id
+            });
+        } catch (err) {
+            logger.error(err);
+        }
+    }
+
+    async getUserCurrentGuild(req, res, guildId) {
+        if (!guildId) throw new Error('Guild ID not found.');
+        const userGuilds = await fetch(constants.USER_GUILDS, {
+            headers: {
+                authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
+            }
+        });
+        const guilds = await userGuilds.json();
+        const currentGuild = guilds.find((g) => g.id === guildId);
+        const isUserAuthorized = this.checkUserPermissions(currentGuild.permissions);
+
+        if (!currentGuild || !currentGuild.permissions || !isUserAuthorized) {
+            return res.redirect(constants.DASHBOARD);
+        }
+    }
+
+    async saveGeneralSettings(req, res) {
+        const { guildId } = req.params;
         const guildData = await database.getGuild(guildId);
+
         if (!guildData) {
-            return res.redirect(`https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=${guildId}`)
+            return res.redirect(constants.INVITE_BOT(guildId))
         }
 
         try {
-            const guilds = await this.getUserGuilds(req);
-            const currentGuild = guilds.find(g => g.id === guildId);
-            if (!currentGuild || !currentGuild.permissions) {
-                return res.redirect("/br/dashboard");
-            }
-            const isUserAuthorized = this.checkUserPermissions(Number(currentGuild.permissions));
+            await this.getUserCurrentGuild(req, res, guildId);
+            const {
+                deleteMessageIfCommandIsExecuted,
+                botPrefix,
+                disabledCommands,
+                blockedChannels,
+                sendMessageIfChannelIsBlocked,
+            } = req.body;
 
-            if (!isUserAuthorized) {
-                return res.redirect("/br/dashboard");
-            }
+            const updatedSettings: FoxyGuild = {
+                _id: guildData._id,
+                AutoRoleModule: guildData.AutoRoleModule,
+                GuildJoinLeaveModule: guildData.GuildJoinLeaveModule,
+                guildSettings: {
+                    prefix: botPrefix || guildData.guildSettings.prefix,
+                    deleteMessageIfCommandIsExecuted: !!deleteMessageIfCommandIsExecuted,
+                    disabledCommands: disabledCommands || guildData.guildSettings.disabledCommands,
+                    blockedChannels: JSON.parse(blockedChannels) || guildData.guildSettings.blockedChannels,
+                    sendMessageIfChannelIsBlocked: !!sendMessageIfChannelIsBlocked,
+                    usersWhoCanAccessDashboard: guildData.guildSettings.usersWhoCanAccessDashboard
+                },
+                premiumKeys: guildData.premiumKeys,
+                dashboardLogs: guildData.dashboardLogs
+            };
 
-            res.status(200).render("../public/pages/dashboard/guild/modules/general.ejs", {
-                user: req.session.user_info,
-                guildId
-            });
-        } catch (error) {
-            logger.error(error);
-            res.status(500).json({ message: 'Failed to fetch server info' });
+            await database.saveGuildSettings(guildId, updatedSettings);
+
+            res.status(200).redirect(constants.SERVER_SETTINGS(guildId));
+        } catch (err) {
+            console.error('Erro ao salvar configurações:', err);
+            res.status(500).json({ message: 'Erro ao salvar configurações.' });
         }
     }
 
@@ -94,19 +141,9 @@ class GuildDashboardRoutes {
         if (!guildData) {
             return res.status(404).json({ message: 'Server not found.' });
         }
-        const userGuildsToJSON = await this.getUserGuilds(req);
-        const currentGuild = userGuildsToJSON.find((g) => g.id === guildId);
+        await this.getUserCurrentGuild(req, res, guildId);
 
-        if (!currentGuild || !currentGuild.permissions) {
-            return res.status(403);
-        }
-
-        const isUserAuthorized = this.checkUserPermissions(Number(currentGuild.permissions));
         const currentSessionUser = req.session.user_info;
-
-        if (!isUserAuthorized) {
-            return res.status(403);
-        }
 
         const placeholders = this.getTestCompatiblePlaceholders(currentSessionUser);
 
@@ -128,7 +165,6 @@ class GuildDashboardRoutes {
             welcomeShowAvatar,
             goodbyeShowAvatar,
             goodbyeEmbedFields,
-            goodbyeButtons,
         } = req.body;
 
         try {
@@ -203,22 +239,9 @@ class GuildDashboardRoutes {
 
     async saveWelcomerModule(req, res) {
         const { guildId } = req.params;
+        await this.getUserCurrentGuild(req, res, guildId);
         const guildData = await database.getGuild(guildId);
-        if (!guildData) {
-            return res.redirect(`https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=bot+applications.commands&permissions=269872255&guild_id=${guildId}`)
-        }
 
-        const guilds = await this.getUserGuilds(req);
-        const currentGuild = guilds.find(g => g.id === guildId);
-        if (!currentGuild || !currentGuild.permissions) {
-            return res.redirect("/br/dashboard");
-        }
-
-        const isUserAuthorized = this.checkUserPermissions(Number(currentGuild.permissions));
-
-        if (!isUserAuthorized) {
-            return res.status(403).json({ message: 'Você não tem permissão para acessar este servidor.' });
-        }
         const {
             welcomeChannel,
             toggleWelcomeModule,
@@ -275,18 +298,26 @@ class GuildDashboardRoutes {
                 } : []
             };
 
-            guildData.GuildJoinLeaveModule = {
-                isEnabled: !!toggleWelcomeModule,
-                joinMessage: JSON.stringify(joinMessage) || null,
-                alertWhenUserLeaves: !!toggleGoodbyeModule,
-                leaveMessage: JSON.stringify(leaveMessage) || null,
-                joinChannel: welcomeChannel || guildData.GuildJoinLeaveModule.joinChannel,
-                leaveChannel: goodbyeChannel || guildData.GuildJoinLeaveModule.leaveChannel
+            const updatedSettings: FoxyGuild = {
+                _id: guildData._id,
+                AutoRoleModule: guildData.AutoRoleModule,
+                GuildJoinLeaveModule: {
+                    isEnabled: !!toggleWelcomeModule,
+                    joinMessage: JSON.stringify(joinMessage) || null,
+                    alertWhenUserLeaves: !!toggleGoodbyeModule,
+                    leaveMessage: JSON.stringify(leaveMessage) || null,
+                    joinChannel: welcomeChannel || guildData.GuildJoinLeaveModule.joinChannel,
+                    leaveChannel: goodbyeChannel || guildData.GuildJoinLeaveModule.leaveChannel
+                },
+                guildSettings: guildData.guildSettings,
+                premiumKeys: guildData.premiumKeys,
+                dashboardLogs: guildData.dashboardLogs
             };
 
-            await guildData.save();
 
-            res.status(200).redirect(`/br/servers/${guildId}`);
+            await database.saveGuildSettings(guildId, updatedSettings);
+
+            res.status(200).redirect(constants.SERVER_MODULES(guildId, "welcomer"));
         } catch (error) {
             console.error('Erro ao salvar configurações:', error);
             res.status(500).json({ message: 'Erro ao salvar configurações.' });
@@ -313,17 +344,7 @@ class GuildDashboardRoutes {
 
     async getServerConfig(req, res) {
         const guildId = req.params.id;
-
-        const guilds = await this.getUserGuilds(req);
-        const currentGuild = guilds.find(g => g.id === guildId);
-        if (!currentGuild || !currentGuild.permissions) {
-            return res.redirect("/br/dashboard");
-        }
-        const isUserAuthorized = this.checkUserPermissions(Number(currentGuild.permissions));
-
-        if (!isUserAuthorized) {
-            return res.redirect("/br/dashboard");
-        }
+        await this.getUserCurrentGuild(req, res, guildId);
 
         const guild = await database.getGuild(guildId);
         res.status(200).json(guild);
@@ -331,7 +352,7 @@ class GuildDashboardRoutes {
 
     async getServerChannels(req, res) {
         const guildId = req.params.id;
-        const channels = await fetch(`https://discord.com/api/guilds/${guildId}/channels`, {
+        const channels = await fetch(constants.GUILD_CHANNELS(guildId), {
             headers: {
                 authorization: `Bot ${process.env.BOT_TOKEN}`
             }
@@ -351,7 +372,7 @@ class GuildDashboardRoutes {
             '{user}': user.username,
             '{@user}': `<@${user.id}>`,
             '{user.id}': user.id.toString(),
-            '{user.avatar}': `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` || '',
+            '{user.avatar}': constants.USER_AVATAR(user.id, user.avatar) || '',
         };
     }
 
@@ -365,7 +386,7 @@ class GuildDashboardRoutes {
     private getUserGuilds(req): Promise<any> {
         return new Promise((resolve) => {
             setTimeout(async () => {
-                const userGuilds = await fetch("https://discord.com/api/users/@me/guilds", {
+                const userGuilds = await fetch(constants.USER_GUILDS, {
                     headers: {
                         authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
                     }

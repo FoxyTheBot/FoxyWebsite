@@ -26,4 +26,8 @@ export default class RouterManager {
             ...options
         });
     }
+
+    public sendAlert(res, message, redirectUrl) {
+        return res.status(200).send(`<script>alert('${message}'); window.location.href = '${redirectUrl}';</script>`);
+    }
 }

@@ -1,32 +1,33 @@
 import * as express from 'express';
+import { constants } from '../../structures/constants';
 const router = express.Router();
 
 router.get('/add', (req, res) => {
-    res.redirect('https://discord.com/oauth2/authorize?client_id=1006520438865801296&permissions=269872255&response_type=code&redirect_uri=https%3A%2F%2Ffoxybot.win%2Flogin%2Fcallback&integration_type=0&scope=guilds+bot+applications.commands+email+identify');
+    res.redirect(constants.DISCORD_OAUTH_URL);
 });
 
 router.get('/github', (req, res) => {
-    res.redirect('https://github.com/FoxyTheBot/Foxy');
+    res.redirect(constants.GITHUB_URL);
 });
 
 router.get('/discord', (req, res) => {
-    res.redirect('https://discord.gg/6mG2xDtuZD');
+    res.redirect(constants.DISCORD_SERVER_URL);
 });
 
 router.get('/privacy', (req, res) => {
-    res.redirect('https://foxybot.win/br/support/terms');    
+    res.redirect(constants.PRIVACY_POLICY_URL);    
 });
 
 router.get("/translate", (req, res) => {
-    res.redirect("https://translate.foxybot.win");
+    res.redirect(constants.TRANSLATE_URL);
 });
 
 router.get("/status", (req, res) => {
-    res.redirect("https://foxybot.statuspage.io/");
+    res.redirect(constants.STATUS_PAGE_URL);
 });
 
 router.get('/upvote', (req, res) => {
-    res.redirect('https://top.gg/bot/1006520438865801296');
+    res.redirect(constants.UPVOTE_URL);
 });
 
 router.get("/ads.txt", (req, res) => {

@@ -3,6 +3,7 @@ import config from '../../config.json';
 import { database } from '../../client/app';
 import RouterManager from './RouterManager';
 import { TransactionType } from '../../types/Transactions';
+import { constants } from '../../structures/constants';
 
 class DashboardRoutes {
     router: express.Router;
@@ -17,7 +18,6 @@ class DashboardRoutes {
     initializeRoutes() {
         /* Get data */
         this.router.get("/br/user/backgrounds/data", this.routerManager.isAuthenticated, this.getUserBackgrounds);
-        this.router.get("/:lang/background/change/:id", this.routerManager.isAuthenticated, this.changeBackground);
         this.router.get("/:lang/store/data", this.routerManager.isAuthenticated, this.getStoreData);
         this.router.get("/:lang/dashboard/subscriptions/data", this.routerManager.isAuthenticated, this.getSubscriptionsData);
 
@@ -25,6 +25,8 @@ class DashboardRoutes {
         this.router.post("/:lang/store/confirm/:id", this.routerManager.isAuthenticated, this.confirmStore);
         this.router.get("/:lang/decorations/change/:id", this.routerManager.isAuthenticated, this.changeDecoration);
         this.router.post("/:lang/dashboard/daily/receive", this.routerManager.isAuthenticated, this.receiveDaily);
+        this.router.get("/:lang/background/change/:id", this.routerManager.isAuthenticated, this.changeBackground);
+
         this.router.use(this.routerManager.errorHandler);
     }
 
@@ -129,18 +131,18 @@ class DashboardRoutes {
             const itemType = decoration ? 'decoration' : background ? 'background' : null;
 
             if (!item) {
-                return this.sendAlert(res, 'Este item não existe', '/br/store');
+                return this.routerManager.sendAlert(res, 'Este item não existe', constants.USER_STORE);
             }
 
             if (userData.userCakes.balance < item.cakes) {
-                return this.sendAlert(res, 'Você não tem cakes suficientes para comprar este item', '/br/store');
+                return this.routerManager.sendAlert(res, 'Você não tem cakes suficientes para comprar este item', constants.USER_STORE);
             }
 
             const alreadyPurchased = (itemType === 'decoration' && userData.userProfile.decorationList.includes(item.id)) ||
                 (itemType === 'background' && userData.userProfile.backgroundList.includes(item.id));
 
             if (alreadyPurchased) {
-                return this.sendAlert(res, `Você já possui este ${itemType}`, '/br/store');
+                return this.routerManager.sendAlert(res, `Você já possui este ${itemType}`, constants.USER_STORE);
             }
 
             userData.userCakes.balance -= item.cakes;
@@ -173,11 +175,11 @@ class DashboardRoutes {
             const background = await database.getBackground(req.params.id);
 
             if (!background) {
-                return this.sendAlert(res, 'Este item não existe', '/br/store');
+                return this.routerManager.sendAlert(res, 'Este item não existe', constants.USER_STORE);
             }
 
             if (!userData.userProfile.backgroundList.includes(background.id)) {
-                return this.sendAlert(res, 'Você não possui este item', '/br/store');
+                return this.routerManager.sendAlert(res, 'Você não possui este item', constants.USER_STORE);
             }
 
             userData.userProfile.background = background.id;
@@ -195,16 +197,16 @@ class DashboardRoutes {
             const decoration = await database.getDecoration(req.params.id);
 
             if (!decoration) {
-                return this.sendAlert(res, 'Esta decoração não existe', '/br/store');
+                return this.routerManager.sendAlert(res, 'Esta decoração não existe', constants.USER_STORE);
             }
 
             if (!userData.userProfile.decorationList.includes(decoration.id)) {
-                return this.sendAlert(res, 'Você não possui esta decoração', '/br/store');
+                return this.routerManager.sendAlert(res, 'Você não possui esta decoração', constants.USER_STORE);
             }
 
             userData.userProfile.decoration = decoration.id;
             await userData.save();
-            return res.redirect("/br/user/decorations");
+            return res.redirect(constants.USER_DECORATIONS);
         } catch (error) {
             next(error);
         }
@@ -218,7 +220,7 @@ class DashboardRoutes {
             const daily = userData.userCakes.lastDaily;
     
             if (daily !== null && timeout - (Date.now() - daily) > 0) {
-                return this.sendAlert(res, 'Você já coletou seu daily hoje', '/br/dashboard');
+                return this.routerManager.sendAlert(res, 'Você já coletou seu daily hoje', constants.DASHBOARD);
             }
     
             let amount = Math.floor(Math.random() * 8000);
@@ -265,11 +267,6 @@ class DashboardRoutes {
         } catch (error) {
             next(error);
         }
-    }
-    
-
-    sendAlert(res, message, redirectUrl) {
-        return res.status(200).send(`<script>alert('${message}'); window.location.href = '${redirectUrl}';</script>`);
     }
 
     createTransaction(userId, quantity, received = false, type: TransactionType) {

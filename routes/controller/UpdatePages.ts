@@ -2,6 +2,7 @@ import express from 'express';
 import { database } from '../../client/app';
 import { logger } from '../../structures/logger';
 import RouterManager from './RouterManager';
+import { constants } from '../../structures/constants';
 
 class UpdatePages {
     router: express.Router;
@@ -81,7 +82,7 @@ class UpdatePages {
 
         const checkoutItem = await database.createCheckout(req.session.user_info.id.toString(), itemId.toString());
 
-        res.status(200).redirect(process.env.FP_URL + "checkout/id/" + checkoutItem.checkoutId);
+        res.status(200).redirect(constants.CHECKOUT(checkoutItem.checkoutId));
     }
 
     userDecorationsHandler = async (req, res, next) => {

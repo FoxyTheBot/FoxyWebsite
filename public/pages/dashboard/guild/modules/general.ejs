@@ -45,8 +45,8 @@
                     <div class="config-module">
                         <label class="module-name">Prefixo da Foxy</label>
                         <div>
-                            <input type="text" name="botPrefix" id="botPrefix" placeholder="Prefixo" maxlength="3" ,
-                                minlength="1">
+                            <input type="text" name="botPrefix" id="botPrefix" placeholder="Prefixo" maxlength="10"
+                                minlength="1" required style="width: 50%">
                         </div>
                     </div>
 
@@ -57,6 +57,17 @@
                                 name="deleteMessageIfCommandIsExecuted">
                             <span class="slider round"></span>
                         </label>
+                    </div>
+
+                    <div class="config-module">
+                        <label class="module-name">Canais onde comandos não podem ser executados</label>
+                        <div class="channel-selector" style="display: flex; align-items: center;">
+                            <select name="channelsToBlockCommands" id="channelsToBlockCommands" style="width: 60%">
+                                <option value="" disabled selected>Selecione um canal</option>
+                            </select>
+                            <button id="addChannelButton" type="button">Adicionar</button>
+                        </div>
+                        <div id="selectedChannels" class="selected-channels"></div>
                     </div>
                     <button id="saveButton" type="submit">Salvar</button>
                 </form>
@@ -70,13 +81,73 @@
                 const loadingOverlay = document.getElementById('loadingOverlay');
                 const botPrefix = document.getElementById('botPrefix');
                 const deleteMessageIfCommandIsExecuted = document.getElementById('deleteMessageIfCommandIsExecuted');
+                const channelsToBlockCommandsSelect = document.getElementById('channelsToBlockCommands');
+                const saveButton = document.getElementById('saveButton');
+
+                saveButton.addEventListener('click', function() {
+                    loadingOverlay.classList.remove('hidden');
+                });
+
+                let blockedChannelsArray = [];
 
                 try {
                     const response = await fetch('/br/servers/<%= guildId %>/data');
                     const data = await response.json();
-                    
+
                     botPrefix.value = data.guildSettings.prefix;
                     deleteMessageIfCommandIsExecuted.checked = data.guildSettings.deleteMessageIfCommandIsExecuted;
+                    const channelsResponse = await fetch(`/br/servers/<%= guildId %>/channels`);
+                    const channelsData = await channelsResponse.json();
+
+                    channelsData.channels.forEach(channel => {
+                        const channelOption = document.createElement('option');
+                        channelOption.value = channel.id;
+                        channelOption.textContent = channel.name;
+                        channelsToBlockCommandsSelect.appendChild(channelOption);
+                    });
+
+                    const blockedChannels = data.guildSettings.blockedChannels || [];
+                    blockedChannelsArray = [...blockedChannels];
+                    blockedChannels.forEach(blockedChannelId => {
+                        const option = channelsToBlockCommandsSelect.querySelector(`option[value="${blockedChannelId}"]`);
+                        if (option) addChannelDisplay(blockedChannelId, option.textContent);
+                    });
+
+                    document.getElementById('addChannelButton').addEventListener('click', function () {
+                        const select = document.getElementById('channelsToBlockCommands');
+                        const selectedChannelId = select.value;
+                        const selectedChannelText = select.options[select.selectedIndex].text;
+
+                        if (selectedChannelId && !document.getElementById(`channel-${selectedChannelId}`)) {
+                            blockedChannelsArray.push(selectedChannelId);
+                            addChannelDisplay(selectedChannelId, selectedChannelText);
+                        }
+                    });
+
+                    function addChannelDisplay(channelId, channelName) {
+                        const channelDisplay = document.createElement('span');
+                        channelDisplay.className = 'channel-mention';
+                        channelDisplay.id = `channel-${channelId}`;
+                        channelDisplay.innerHTML = `#${channelName}`;
+
+                        const removeBtn = document.createElement('button');
+                        removeBtn.innerText = 'Remover';
+                        removeBtn.onclick = function () {
+                            document.getElementById('selectedChannels').removeChild(channelDisplay);
+                            blockedChannelsArray = blockedChannelsArray.filter(id => id !== channelId);
+                        };
+
+                        channelDisplay.appendChild(removeBtn);
+                        document.getElementById('selectedChannels').appendChild(channelDisplay);
+                    }
+
+                    document.querySelector('.config-module-form').addEventListener('submit', function (e) {
+                        const hiddenInput = document.createElement('input');
+                        hiddenInput.type = 'hidden';
+                        hiddenInput.name = 'blockedChannels';
+                        hiddenInput.value = JSON.stringify(blockedChannelsArray);
+                        this.appendChild(hiddenInput);
+                    });
 
                 } catch (error) {
                     console.error('Error fetching data:', error);

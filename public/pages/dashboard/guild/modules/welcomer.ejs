@@ -149,7 +149,8 @@
         <script>
             const saveButton = document.getElementById("saveButton");
             const testButtons = document.querySelectorAll(".test-btn");
-            
+            const loadingOverlay = document.getElementById('loadingOverlay');
+
             document.getElementById("goodbyeTestButton").addEventListener("click", async function () {
                 const form = document.querySelector(".config-module-form");
                 const originalAction = form.action;
@@ -159,6 +160,7 @@
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
                 saveButton.disabled = true;
+                loadingOverlay.classList.remove('hidden');
                 testButtons.forEach(button => button.disabled = true);
 
                 try {
@@ -172,11 +174,13 @@
 
                     if (!response.ok) throw new Error(`Erro: ${response.statusText}`);
                     saveButton.disabled = false;
+                    loadingOverlay.classList.add('hidden');
                     testButtons.forEach(button => button.disabled = false);
 
                 } catch (error) {
                     alert(`Erro ao testar: ${error.message}`);
                     saveButton.disabled = false;
+                    loadingOverlay.classList.add('hidden');
                     testButtons.forEach(button => button.disabled = false);
                 } finally {
                     form.action = originalAction;
@@ -192,6 +196,7 @@
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
                 saveButton.disabled = true;
+                loadingOverlay.classList.remove('hidden');
                 testButtons.forEach(button => button.disabled = true);
 
                 try {
@@ -204,10 +209,12 @@
                     });
                     if (!response.ok) throw new Error(`Erro: ${response.statusText}`);
                     saveButton.disabled = false;
+                    loadingOverlay.classList.add('hidden');
                     testButtons.forEach(button => button.disabled = false);
                 } catch (error) {
                     alert(`Erro ao testar: ${error.message}`);
                     saveButton.disabled = false;
+                    loadingOverlay.classList.add('hidden');
                     testButtons.forEach(button => button.disabled = false);
                 } finally {
                     form.action = originalAction;
@@ -215,7 +222,6 @@
             });
 
             window.addEventListener('load', async function () {
-                const loadingOverlay = document.getElementById('loadingOverlay');
                 const toggleWelcomeModule = document.getElementById('toggleWelcomeModule');
                 const toggleGoodbyeModule = document.getElementById('toggleGoodbyeModule');
                 const toggleableWelcomeOptions = document.getElementById('toggleableWelcomeOptions');
@@ -226,6 +232,11 @@
                 const welcomeEmbedColor = document.getElementById('embedColor');
                 const welcomeShowAvatar = document.getElementById('welcomeShowAvatar');
                 const goodbyeShowAvatar = document.getElementById('goodbyeShowAvatar');
+                const saveButton = document.getElementById('saveButton');
+
+                saveButton.addEventListener('click', function () {
+                    loadingOverlay.classList.remove('hidden');
+                });
 
                 try {
                     const response = await fetch('/br/servers/<%= guildId %>/data');

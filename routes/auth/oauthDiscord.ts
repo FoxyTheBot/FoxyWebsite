@@ -5,6 +5,7 @@ import { database, rest } from '../../client/app';
 import { logger } from '../../structures/logger';
 import dotenv from 'dotenv';
 import User from '../../types/user';
+import { constants } from '../../structures/constants';
 
 dotenv.config();
 
@@ -94,10 +95,10 @@ router.get('/login/callback', async (req, res) => {
         if (guildId) {
             const guildName = (await rest.getGuild(String(guildId))).name;
             await sendWelcomeMessage(user.id, guildName);
-            return res.redirect(`/br/servers/${guildId}`);
+            return res.redirect(constants.SERVER_SETTINGS(String(guildId)));
         }
 
-        res.redirect('/br/dashboard');
+        res.redirect(constants.DASHBOARD);
     } catch (err) {
         logger.error(err);
         res.redirect('/error');

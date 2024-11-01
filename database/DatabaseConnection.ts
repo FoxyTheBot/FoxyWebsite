@@ -246,6 +246,30 @@ export default class DatabaseConnection {
         let decorationData = await this.decorations.findOne({ id: decorationId });
         return decorationData;
     }
+
+    async saveGuildSettings(guildId: string, guildData: FoxyGuild) {
+        const guild = await this.getGuild(guildId);
+        if (!guild) return;
+
+        const modulesToUpdate = [
+            "AutoRoleModule",
+            "GuildJoinLeaveModule",
+            "guildSettings"
+        ];
+
+        for (const module of modulesToUpdate) {
+            for (const key in guild[module]) {
+                if (guildData[module] && guildData[module][key] !== undefined) {
+                    guild[module][key] = guildData[module][key];
+                }
+            }
+        }
+
+        guild.premiumKeys = guildData.premiumKeys || guild.premiumKeys;
+        guild.dashboardLogs = guildData.dashboardLogs || guild.dashboardLogs;
+
+        await guild.save();
+    }
 }
 
 export interface Background {
