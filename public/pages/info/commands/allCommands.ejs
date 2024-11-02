@@ -82,6 +82,7 @@
               <tr>
                 <th>Comando</th>
                 <th>Descrição</th>
+                <th>Suporta prefixo</th>
               </tr>
               <% allCommands .filter(command=> command.category === category && !command.commandName.includes(' '))
                 .forEach(command => {
@@ -93,6 +94,9 @@
                   <td>
                     <%= command.description %>
                   </td>
+                  <td>
+                      <%= command.supportsLegacy ? 'Sim' : 'Não' %>
+                    </td>
                 </tr>
                 <% }); %>
             </table>
