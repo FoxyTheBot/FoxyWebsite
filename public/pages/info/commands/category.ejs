@@ -49,12 +49,14 @@
       <table class="command-table">
         <tr>
           <th>Comando</th>
-          <th>Descrição</th>
+                <th>Descrição</th>
+                <th>Suporta prefixo</th>
         </tr>
         <% contextCommands.forEach(command => { %>
         <tr>
           <td><%= command.commandName %></td>
           <td><%= command.description %></td>
+          <td><%= command.supportsPrefix ? 'Sim' : 'Não' %></td>
         </tr>
         <% }); %>
       </table>
