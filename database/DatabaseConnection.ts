@@ -102,7 +102,10 @@ export default class DatabaseConnection {
                 premiumKeys: [],
                 roulette: {
                     availableSpins: 5,
-                }
+                },
+                lastVote: null,
+                voteCount: 0,
+                notifiedForVote: false,
             }).save();
         }
 
