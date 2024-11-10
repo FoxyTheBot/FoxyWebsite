@@ -3,6 +3,8 @@
 
 .config-wrapper {
     padding: 1rem;
+    margin-left: -3rem;
+    margin-right: 3rem;
 
     .module-title {
         color: #e7385d;
@@ -110,7 +112,10 @@ form {
     width: 83%;
     padding: 0 1rem;
 
-    select, input, textarea, #inline-input {
+    select,
+    input,
+    textarea,
+    #inline-input {
         width: calc(100% - 20px);
     }
 
@@ -171,16 +176,16 @@ form {
         transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         resize: vertical;
     }
-    
+
     textarea:hover {
         background-color: #f0f0f0;
     }
-    
+
     textarea:focus {
         border-color: #5865F2;
         box-shadow: 0 0 8px rgba(88, 101, 242, 0.4);
     }
-    
+
     .test-btn {
         display: block;
         padding: 10px 20px;
@@ -196,7 +201,7 @@ form {
         cursor: pointer;
         box-sizing: border-box;
         transition: opacity 0.3s ease, visibility 0.3s ease;
-    
+
         &:hover {
             background-color: #2d68e3;
             transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -207,7 +212,7 @@ form {
             opacity: 0.5;
         }
     }
-    
+
     button {
         display: block;
         padding: 10px 20px;
@@ -277,6 +282,7 @@ form {
     bottom: 20px;
     right: 20px;
     background-color: #5865F2;
+    z-index: 999;
     color: white;
     border: none;
     border-radius: 5px;
@@ -317,10 +323,10 @@ form {
         .config-module-wrapper {
             justify-content: center;
             margin: 0;
-    
+
             .config-module-form {
                 margin-left: 0;
-    
+
                 .config-module {
                     margin-left: -1rem;
                     margin-right: -5rem;
@@ -328,10 +334,10 @@ form {
                 }
             }
         }
-    
+
         .module-title {
             margin-left: 0;
         }
     }
-    
+
 }

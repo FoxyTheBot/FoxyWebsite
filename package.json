@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node build/start.js",
-    "scss": "sass --watch src/scss:public/css"
+    "scss": "sass --watch public/scss:public/styles"
   },
   "repository": {
     "type": "git",
