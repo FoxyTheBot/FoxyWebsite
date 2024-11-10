@@ -131,18 +131,18 @@ class DashboardRoutes {
             const itemType = decoration ? 'decoration' : background ? 'background' : null;
 
             if (!item) {
-                return this.routerManager.sendAlert(res, 'Este item não existe', constants.USER_STORE);
+                return this.routerManager.redirectTo(res, constants.USER_STORE);
             }
 
             if (userData.userCakes.balance < item.cakes) {
-                return this.routerManager.sendAlert(res, 'Você não tem cakes suficientes para comprar este item', constants.USER_STORE);
+                return this.routerManager.redirectTo(res, constants.USER_STORE);
             }
 
             const alreadyPurchased = (itemType === 'decoration' && userData.userProfile.decorationList.includes(item.id)) ||
                 (itemType === 'background' && userData.userProfile.backgroundList.includes(item.id));
 
             if (alreadyPurchased) {
-                return this.routerManager.sendAlert(res, `Você já possui este ${itemType}`, constants.USER_STORE);
+                return this.routerManager.redirectTo(res, constants.USER_STORE);
             }
 
             userData.userCakes.balance -= item.cakes;
@@ -175,11 +175,11 @@ class DashboardRoutes {
             const background = await database.getBackground(req.params.id);
 
             if (!background) {
-                return this.routerManager.sendAlert(res, 'Este item não existe', constants.USER_STORE);
+                return this.routerManager.redirectTo(res, constants.USER_STORE);
             }
 
             if (!userData.userProfile.backgroundList.includes(background.id)) {
-                return this.routerManager.sendAlert(res, 'Você não possui este item', constants.USER_STORE);
+                return this.routerManager.redirectTo(res, constants.USER_STORE);
             }
 
             userData.userProfile.background = background.id;
@@ -197,11 +197,11 @@ class DashboardRoutes {
             const decoration = await database.getDecoration(req.params.id);
 
             if (!decoration) {
-                return this.routerManager.sendAlert(res, 'Esta decoração não existe', constants.USER_STORE);
+                return this.routerManager.redirectTo(res, constants.USER_STORE);
             }
 
             if (!userData.userProfile.decorationList.includes(decoration.id)) {
-                return this.routerManager.sendAlert(res, 'Você não possui esta decoração', constants.USER_STORE);
+                return this.routerManager.redirectTo(res, constants.USER_STORE);
             }
 
             userData.userProfile.decoration = decoration.id;
@@ -220,7 +220,7 @@ class DashboardRoutes {
             const daily = userData.userCakes.lastDaily;
     
             if (daily !== null && timeout - (Date.now() - daily) > 0) {
-                return this.routerManager.sendAlert(res, 'Você já coletou seu daily hoje', constants.DASHBOARD);
+                return this.routerManager.redirectTo(res, constants.DASHBOARD);
             }
     
             let amount = Math.floor(Math.random() * 8000);
