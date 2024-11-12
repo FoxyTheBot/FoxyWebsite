@@ -103,10 +103,9 @@ const keySchemaForGuilds = new mongoose.Schema({
 });
 
 const dashboardLogsSchema = new mongoose.Schema({
-    _id: String,
-    user: String,
-    action: String,
-    date: Date,
+    authorId: String,
+    actionType: String,
+    date: Date
 }, { versionKey: false, id: false });
 
 const guildSchema = new mongoose.Schema({
@@ -210,6 +209,16 @@ const checkoutList = new mongoose.Schema({
     paymentId: String,
 }, { versionKey: false, id: false });
 
+const badgesSchema = new mongoose.Schema({
+    id: String,
+    name: String,
+    asset: String,
+    description: String,
+    exclusive: Boolean,
+    priority: Number,
+    isFromGuild: String,
+});
+
 export const Schemas = {
     userSchema,
     guildSchema,
@@ -221,7 +230,8 @@ export const Schemas = {
     avatarDecorationSchema,
     storeSchema,
     checkoutList,
-    dailyStoreSchema
+    dailyStoreSchema,
+    badgesSchema,
 };
 
 /* End of bot related schemas */
