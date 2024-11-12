@@ -37,12 +37,12 @@
                 as informações do seu plano aqui!</p>
 
             <main>
-                <h1 class="subscription-title">Plano atual:</h1>
-                <div class="current-subscription">
-                    <div class="subscription-info">
-                        <h2 class="subscription-name" id="subscriptionName"></h2>
-                        <h4 class="expiration-date" id="expirationDate"></h4>
-                        <div class="subscription-buttons" id="buttons">
+                <h1 class="cirno-card-title">Plano atual:</h1>
+                <div class="cirno-card">
+                    <div class="cirno-card-info">
+                        <h2 class="cirno-card-name" id="subscriptionName"></h2>
+                        <h4 class="cirno-card-details" id="expirationDate"></h4>
+                        <div class="cirno-card-buttons" id="buttons">
                             <a href="/br/premium">
                                 <button id="subscriptionButton" class="button"></button>
                             </a>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <br>
-                <h1 class="subscription-title">Meus Checkouts:</h1>
+                <h1 class="cirno-card-title">Meus Checkouts:</h1>
                 <div class="checkouts-container" id="checkoutsContainer"></div>
             </main>
         </div>
@@ -123,12 +123,12 @@
                     const checkoutsContainer = document.getElementById('checkoutsContainer');
                     data.userCheckouts.forEach(checkout => {
                         const card = document.createElement('div');
-                        card.className = 'current-subscription';
+                        card.className = 'cirno-card';
                         card.innerHTML = `
-                            <div class="subscription-info">
-                                <h2 class="subscription-name">${getPlanName(checkout.itemId)}</h2>
-                                <h4 class="expiration-date">${checkout.paymentId ? `Referência: ${checkout.paymentId}` : "Pagamento não realizado"}</h4>
-                                <div class="subscription-buttons">
+                            <div class="cirno-card-info">
+                                <h2 class="cirno-card-name">${getPlanName(checkout.itemId)}</h2>
+                                <h4 class="cirno-card-details">${checkout.paymentId ? `Referência: ${checkout.paymentId}` : "Pagamento não realizado"}</h4>
+                                <div class="cirno-card-buttons">
                                     <a href="${checkout.paymentId ? "" : `https://payments.cakeyfox.live/checkout/id/${checkout.checkoutId}`}">
                                             <button class="button">${checkout.paymentId ? "Detalhes" : "Pagar"}</button>
                                     </a>
