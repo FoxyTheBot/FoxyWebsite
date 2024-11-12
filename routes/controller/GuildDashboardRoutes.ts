@@ -1,11 +1,11 @@
 import express from 'express';
-import { database, rest } from '../../client/app';
+import { client, database, rest } from '../../client/app';
 import RouterManager from './RouterManager';
 import rateLimit from 'express-rate-limit';
 import { logger } from '../../structures/logger';
 import { constants } from '../../structures/constants';
 import { FoxyGuild } from '../../types/Guild';
-
+import { ActionType } from '../../types/dashboardLog';
 class GuildDashboardRoutes {
     router: express.Router;
     routerManager: RouterManager;
@@ -31,6 +31,10 @@ class GuildDashboardRoutes {
         this.router.get("/:lang/servers/:id", this.routerManager.isAuthenticated, (req, res) => {
             this.renderModulePage(req, res, "general", req.params.id);
         });
+        
+        this.router.get("/:lang/servers/:id/logs", this.routerManager.isAuthenticated, (req, res) => {
+            this.renderModulePage(req, res, "logs", req.params.id);
+        });
 
         this.router.get("/:lang/servers/:id/modules/:module", this.routerManager.isAuthenticated, (req, res) => {
             const { id, module } = req.params;
@@ -41,7 +45,11 @@ class GuildDashboardRoutes {
         this.router.get("/:lang/user/servers/data", this.routerManager.isAuthenticated, this.getServersData.bind(this));
         this.router.get("/:lang/servers/:id/data", this.routerManager.isAuthenticated, this.getServerConfig.bind(this));
         this.router.get("/:lang/servers/:id/channels", this.routerManager.isAuthenticated, this.getServerChannels.bind(this));
-
+        this.router.get("/:lang/servers/:id/logs/data", this.routerManager.isAuthenticated, async (req, res) => {
+            const guildId = req.params.id;
+            const logs = await this.getLogs(guildId);
+            res.status(200).json(logs);
+        });
         /* Save module settings */
         this.router.post("/:lang/servers/:guildId/modules/welcomer", this.routerManager.isAuthenticated, this.saveWelcomerModule.bind(this));
         this.router.post("/:lang/servers/:guildId/modules/general", this.routerManager.isAuthenticated, this.saveGeneralSettings.bind(this));
@@ -170,6 +178,7 @@ class GuildDashboardRoutes {
             await database.saveGuildSettings(guildId, updatedSettings);
 
             res.status(200).redirect(constants.SERVER_SETTINGS(guildId));
+            return this.saveToLog(req.session.user_info.id, guildId, ActionType.UPDATE_GENERAL_SETTINGS);
         } catch (err) {
             console.error('Erro ao salvar configurações:', err);
             res.status(500).json({ message: 'Erro ao salvar configurações.' });
@@ -363,6 +372,7 @@ class GuildDashboardRoutes {
             await database.saveGuildSettings(guildId, updatedSettings);
 
             res.status(200).redirect(constants.SERVER_MODULES(guildId, "welcomer"));
+            return this.saveToLog(req.session.user_info.id, guildId, ActionType.UPDATE_WELCOMER_MODULE);
         } catch (error) {
             console.error('Erro ao salvar configurações:', error);
             res.status(500).json({ message: 'Erro ao salvar configurações.' });
@@ -441,6 +451,46 @@ class GuildDashboardRoutes {
             }, 500);
         });
     }
+
+    private async saveToLog(authorId: string, guildId: string, action: ActionType) {
+        const log = {
+            authorId,
+            actionType: action.toString(),
+            date: new Date()
+        }
+
+        const guildData = await database.getGuild(guildId);
+        guildData.dashboardLogs.push(log);
+        await guildData.save();
+    }
+
+    private async getLogs(guildId: string) {
+        const guildData = await database.getGuild(guildId);
+        const logs = guildData.dashboardLogs;
+    
+        const logsWithUsernames = await Promise.all(
+            logs.map(async (log) => {
+                try {
+                    const user = (await client).users.cache.get(log.authorId) || (await client).users.fetch(log.authorId);
+                    return { 
+                        author: (await user).username,
+                        authorId: log.authorId,
+                        actionType: log.actionType,
+                        date: log.date
+                    };
+                } catch (error) {
+                    return { 
+                        author: 'Unknown',
+                        authorId: log.authorId,
+                        actionType: log.actionType,
+                        date: log.date
+                    };
+                }
+            })
+        );
+    
+        return logsWithUsernames;
+    }    
 }
 
 

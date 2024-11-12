@@ -17,7 +17,7 @@ class DashboardRoutes {
 
     initializeRoutes() {
         /* Get data */
-        this.router.get("/br/user/backgrounds/data", this.routerManager.isAuthenticated, this.getUserBackgrounds);
+        this.router.get("/:lang/user/backgrounds/data", this.routerManager.isAuthenticated, this.getUserBackgrounds);
         this.router.get("/:lang/store/data", this.routerManager.isAuthenticated, this.getStoreData);
         this.router.get("/:lang/dashboard/subscriptions/data", this.routerManager.isAuthenticated, this.getSubscriptionsData);
 
@@ -26,7 +26,6 @@ class DashboardRoutes {
         this.router.get("/:lang/decorations/change/:id", this.routerManager.isAuthenticated, this.changeDecoration);
         this.router.post("/:lang/dashboard/daily/receive", this.routerManager.isAuthenticated, this.receiveDaily);
         this.router.get("/:lang/background/change/:id", this.routerManager.isAuthenticated, this.changeBackground);
-
         this.router.use(this.routerManager.errorHandler);
     }
 

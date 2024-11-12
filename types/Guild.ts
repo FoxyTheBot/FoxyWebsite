@@ -33,8 +33,7 @@ interface guildSettings {
 }
 
 interface dashboardLogs {
-    _id: string;
-    user: string;
-    action: string;
+    authorId: string;
+    actionType: string;
     date: Date;
 }

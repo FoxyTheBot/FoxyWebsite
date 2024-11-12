@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
+    <link rel="stylesheet" href="/styles/loading.css" type="text/css">
+    <link rel="stylesheet" href="/styles/header.css" type="text/css">
+    <link rel="icon" href="/assets/images/foxycake.png">
+    <title>Foxy | Painel de Controle</title>
+
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        crossorigin="anonymous"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-E3J7N4BP8L');
+    </script>
+</head>
+
+<body>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        crossorigin="anonymous"></script>
+    <ins id="adBanner" class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+        data-ad-client="ca-pub-7726590371480649" data-ad-slot="4619028248"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <%- include('../sidebar') %>
+
+
+        <main>
+            <h1 class="cirno-card-title">Alterações recentes:</h1>
+            <div class="checkouts-container" id="checkoutsContainer"></div>
+        </main>
+
+        <script>
+            function getAction(action) {
+                switch (action) {
+                    case "UPDATE_GENERAL_SETTINGS": {
+                        return "Atualizou as configurações gerais";
+                    }
+
+                    case "UPDATE_WELCOMER_MODULE": {
+                        return "Atualizou as configurações de mensagens de entrada/saída";
+                    }
+
+                    default: {
+                        return "Ação desconhecida";
+                    }
+                }
+            }
+            async function loadLogs() {
+                try {
+                    const response = await fetch('/br/servers/<%= guildId %>/logs/data');
+                    if (!response.ok) throw new Error('Erro ao carregar dados da assinatura.');
+
+                    const data = await response.json();
+
+                    const checkoutsContainer = document.getElementById('checkoutsContainer');
+                    data.forEach(log => {
+                        const card = document.createElement('div');
+                        card.className = 'cirno-card';
+                        card.innerHTML = `
+                        <div class="cirno-card-info">
+                            <h2 class="cirno-card-name big-name">${getAction(log.actionType)}</h2>
+                            <h4 class="cirno-card-details">Autor: ${log.author} / ${log.authorId}</h4>
+                            <h4 class="cirno-card-details">Horário: ${new Date(log.date).toLocaleString()}</h4>
+                        </div>
+                    `;
+                        checkoutsContainer.appendChild(card);
+                    });
+
+                } catch (error) {
+                    console.error('Erro ao buscar dados:', error);
+                    document.getElementById('subscriptionName').textContent = 'Erro ao carregar dados';
+                } finally {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', loadLogs);
+        </script>
+</body>
+
+
+</html>
