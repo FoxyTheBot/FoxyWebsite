@@ -476,14 +476,16 @@ class GuildDashboardRoutes {
                         author: (await user).username,
                         authorId: log.authorId,
                         actionType: log.actionType,
-                        date: log.date
+                        date: log.date,
+                        avatar: `https://cdn.discordapp.com/avatars/${log.authorId}/${(await user).avatar}.png`
                     };
                 } catch (error) {
                     return { 
                         author: 'Unknown',
                         authorId: log.authorId,
                         actionType: log.actionType,
-                        date: log.date
+                        date: log.date,
+                        avatar: 'https://cdn.discordapp.com/embed/avatars/0.png'
                     };
                 }
             })
