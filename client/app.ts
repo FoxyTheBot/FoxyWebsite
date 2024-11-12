@@ -9,9 +9,11 @@ import { logger } from '../structures/logger';
 import UpdatePages from '../routes/controller/UpdatePages';
 import DashboardRoutes from '../routes/controller/DashboardRoutes';
 import GuildDashboardRoutes from '../routes/controller/GuildDashboardRoutes';
+import DiscordClient from './DiscordClient';
 
 export class App {
     port: number;
+
     constructor(port) {
         this.port = port;
     }
@@ -62,4 +64,6 @@ export class App {
 
 const database = new DatabaseConnection();
 const rest = new RestManager();
-export { database, rest };
+const client = new DiscordClient().startClient();
+
+export { database, rest, client };

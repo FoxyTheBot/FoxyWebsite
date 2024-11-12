@@ -18,6 +18,10 @@ export default class DatabaseConnection {
     public items: any;
     public checkoutList: any;
     public store: any;
+    public badges: any;
+    private cacheExpiration = 60000;
+    private lastCacheUpdate = 0;
+    private badgesCache: Badge[] = [];
 
     constructor() {
         mongoose.set("strictQuery", true)
@@ -37,6 +41,7 @@ export default class DatabaseConnection {
         this.items = mongoose.model('storeItems', Schemas.storeSchema);
         this.checkoutList = mongoose.model('checkoutList', Schemas.checkoutList);
         this.store = mongoose.model('dailyStore', Schemas.dailyStoreSchema);
+        this.badges = mongoose.model('badges', Schemas.badgesSchema);
     }
 
     async getUser(userId: string): Promise<any> {
@@ -140,6 +145,16 @@ export default class DatabaseConnection {
     async getAllCommands(): Promise<any> {
         let commandsData = await this.commands.find({});
         return commandsData.map(command => command.toJSON());
+    }
+
+    async getBadges(): Promise<Badge[]> {
+        const now = Date.now();
+        if (this.badgesCache.length && now - this.lastCacheUpdate < this.cacheExpiration) {
+            return this.badgesCache;
+        }
+        this.badgesCache = await this.badges.find({}).lean();
+        this.lastCacheUpdate = now;
+        return this.badgesCache;
     }
 
     async getProductFromStore(productId: string): Promise<any> {
@@ -305,4 +320,14 @@ export interface AvatarDecoration {
     inactive: boolean,
     author: string,
     isMask: boolean,
+}
+
+export interface Badge {
+    id: string;
+    name: string;
+    asset: string;
+    description: string;
+    exclusive: boolean;
+    priority: number;
+    isFromGuild: string;
 }
