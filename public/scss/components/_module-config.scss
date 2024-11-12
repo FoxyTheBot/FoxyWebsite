@@ -3,8 +3,8 @@
 
 .config-wrapper {
     padding: 1rem;
-    margin-left: -3rem;
-    margin-right: 3rem;
+    margin-left: 0rem;
+    margin-right: 1rem;
 
     .module-title {
         color: #e7385d;
@@ -320,6 +320,8 @@ form {
 
 @media (max-width: 768px) {
     .config-wrapper {
+        margin-left: 0rem;
+        margin-right: 1rem;
         .config-module-wrapper {
             justify-content: center;
             margin: 0;
@@ -336,7 +338,7 @@ form {
         }
 
         .module-title {
-            margin-left: 0;
+            margin-left: 1rem;
         }
     }
 
