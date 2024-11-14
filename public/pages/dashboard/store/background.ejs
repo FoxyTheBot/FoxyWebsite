@@ -35,7 +35,9 @@
           src="/assets/emojis/foxy_daily.png" class="inline-emoji"></h1>
       <p>Deixe seu perfil mais bonito com os backgrounds e decorações de avatar super fofinhos! (◕‿◕✿)
 
-       <br><br> Todo dia, às 00:00 UTC (21:00 Horário de Brasília), a loja é atualizada, vai que você consiga aquele background ou aquela decoração que você tanto queria?</p>
+        <br><br> Todo dia, às 00:00 UTC (21:00 Horário de Brasília), a loja é atualizada, vai que você consiga aquele
+        background ou aquela decoração que você tanto queria?
+      </p>
       <div class="remaining-time">
         <h2>Tempo restante para a próxima atualização:</h2>
         <h2 id="countdown"></h2>
@@ -143,12 +145,11 @@
             const distance = nextUpdate - now;
 
             if (distance <= 0) {
-              countdownElement.innerHTML = "00:00:00:00";
-              startCountdown(nextUpdate);
+              nextUpdate.setDate(nextUpdate.getDate() + 1);
+              updateCountdown();
               return;
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -159,6 +160,7 @@
           updateCountdown();
           setInterval(updateCountdown, 1000);
         }
+
 
         function showPopup(background, user, userData) {
           document.getElementById('backgroundId').value = background.id;

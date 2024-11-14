@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 @import "components/background";
-@import "components/default-padding";
 @import "components/buttons";
 @import "components/inline-emoji";
+@import "components/footer";
 
 main {
     padding-left: 28%;
@@ -56,12 +56,9 @@ main {
         transition: opacity 0.5s ease-out;
 
         .daily_image {
-            width: 15%;
+            width: 7rem;
             text-align: center;
-            margin-top: 1rem;
-            margin-left: 1rem;
-            margin-right: 1rem;
-            margin-bottom: 1rem;
+            margin: 0rem;
         }
 
         .daily-warning {

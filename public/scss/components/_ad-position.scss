@@ -1,0 +1,9 @@
+.ad {
+    &.vertical {
+        position: absolute;
+        right: 0;
+        margin-left: 1%;
+        top: 100px;
+        z-index: 10;
+    }
+}

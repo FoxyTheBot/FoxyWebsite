@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-@import "components/default-padding";
 @import "components/background";
 @import "components/inline-emoji";
+@import "components/footer";
 
 .store-info {
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
-    margin-left: 1rem;
+    margin-top: -1rem;
+    margin-left: 0rem;
+    margin-bottom: 8rem;
 }
 
 p {
@@ -38,7 +39,7 @@ main {
         width: 20rem;
         height: 20rem;
         text-align: left;
-        margin-left: -21rem;
+        margin-left: -20rem;
         margin-top: -6rem;
     }
 }

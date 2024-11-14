@@ -1,7 +1,6 @@
 @import "https://fonts.googleapis.com/css?family=Roboto:500";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 @import "components/background";
-@import "components/default-padding";
 @import "components/empty-content";
 @import "components/inline-emoji";
 @import "components/forms";
@@ -10,6 +9,10 @@
 @import "components/buttons";
 @import "components/module-config";
 @import "components/cirno-card";
+@import "components/items-wrapper";
+@import "components/servers-wrapper";
+@import "components/footer";
+@import "components/ad-position";
 
 :root {
     font-size: 16px;
@@ -28,102 +31,6 @@
     margin-left: 7em;
 }
 
-.servers {
-    display: flex;
-    position: relative;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: -5rem;
-    margin-left: 18rem;
-    margin-right: 4rem;
-
-    .server {
-        box-sizing: border-box;
-        margin: 10px;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background: #313338;
-        color: #fff;
-        font-family: sans-serif;
-        font-size: 14px;
-        text-decoration: none;
-        flex: 1 0 calc(25% - 20px);
-        max-width: calc(25% - 20px);
-        min-width: 250px;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        transition: transform 0.5s;
-
-        .server__icon {
-            img {
-                width: 40%;
-                border-radius: 50%;
-                margin-bottom: 10px;
-                transition: 0.5s;
-
-                &:hover {
-                    border-radius: 25%;
-                    transition: 0.5s;
-                }
-
-                &:not(:hover) {
-                    border-radius: 50%;
-                }
-            }
-        }
-
-        .server__info {
-            h1 {
-                margin: 0;
-                font-size: 16px;
-                font-weight: bold;
-                flex-direction: column;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                color: #fff;
-                max-width: 100%;
-                display: block;
-            }
-        }
-
-        .server__buttons {
-            margin-top: 10px;
-        }
-
-        .server__button {
-            display: block;
-            padding: 0.625rem 0.626rem;
-            border-radius: 5px;
-            background-color: #e7385d;
-            color: #fafafa;
-            text-align: center;
-            text-decoration: none;
-            font-family: "Poppins";
-            font-size: 0.95rem;
-        }
-
-        &:hover {
-            transform: scale(1.06);
-            transition: 0.5s;
-
-            .server__icon img {
-                border-radius: 25%;
-                transition: 0.5s;
-            }
-        }
-
-        &:not(:hover) {
-            transform: scale(1);
-
-            .server__icon img {
-                border-radius: 50%;
-            }
-        }
-    }
-}
-
 p {
     color: #fff;
     font-size: 1rem;
@@ -140,15 +47,6 @@ p {
     font-family: var(--font-family);
     text-align: center;
     margin-left: 13rem;
-}
-
-#countdown {
-    color: #e7385d;
-    font-size: 1.5rem;
-    font-family: var(--font-family);
-    text-align: center;
-    margin: 1.3rem 0;
-    margin-left: 1rem;
 }
 
 .page-separator {
@@ -200,161 +98,8 @@ main {
     margin-bottom: 20px;
 }
 
-.itens {
-    display: flex;
-    position: relative;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: -5rem;
-    margin-left: 5rem;
-    margin-right: 3rem;
-
-    &.decorations {
-        margin-top: 5rem;
-        margin-bottom: 3rem;
-
-        .item {
-            .item__icon {
-                img {
-                    width: 85%;
-                    border-radius: 0.625rem;
-                    height: auto;
-                }
-            }
-        }
-    }
-
-    .item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0.625rem;
-        margin: 0.595rem;
-        border-radius: 0.625rem;
-        background-color: #313338;
-        transition: transform 0.3s ease-in-out;
-        box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
-
-        .purchased {
-            color: #fff;
-            font-size: 1rem;
-            font-weight: bold;
-            margin-top: 0.3125rem;
-        }
-
-        .item__icon {
-            img {
-                width: 100%;
-                border-radius: 0.625rem;
-                height: auto;
-            }
-        }
-
-        .item_info {
-            text-align: center;
-            margin-top: -0.125rem;
-
-            h1 {
-                margin: 0;
-                font-size: 1rem;
-                font-weight: bold;
-            }
-
-            .item-name {
-                color: #fff;
-                font-size: 1rem;
-                font-family: var(--font-family);
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 1.25rem;
-                font-weight: bold;
-                color: white;
-                padding: 0.3125rem 0.625rem;
-                border-radius: 0.3125rem;
-                display: inline-block;
-            }
-
-            .purchased {
-                display: block;
-                margin-top: 0.3125rem;
-                color: rgb(75, 207, 75);
-                font-size: 1rem;
-                font-weight: bold;
-            }
-
-            .cakes {
-                display: block;
-                margin-top: 0.3125rem;
-                color: #5dabff;
-                font-size: 1rem;
-                font-weight: bold;
-            }
-        }
-    }
-}
-
-.item {
-    margin: 1.25rem;
-    padding: 0.625rem 1.25rem;
-    color: #fff;
-    font-family: var(--font-family);
-    font-size: 0.875rem;
-    text-decoration: none;
-    flex: 1 0 calc(25rem - 2rem);
-    max-width: calc(25rem - 2rem);
-    min-width: 20rem;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.5s;
-
-    &:not(:hover) {
-        transform: scale(1);
-    }
-
-    &:hover {
-        transform: scale(1.06);
-        transition: 0.5s;
-    }
-
-    &.disabled {
-        cursor: not-allowed;
-    }
-}
-
-.selected {
-    border: 0.125rem solid #4caf50;
-}
-
 .hidden {
     display: none !important;
-}
-
-@keyframes scaleIn {
-    from {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes scaleOut {
-    from {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    to {
-        transform: scale(0.5);
-        opacity: 0;
-    }
 }
 
 @media (max-width: 48em) {
@@ -457,14 +202,6 @@ main {
         margin-top: 0.5rem;
         font-size: 1.6875rem;
     }
-}
-
-#adBanner {
-    position: fixed;
-    right: 0;
-    margin-left: 1%;
-    top: 100px;
-    z-index: 10;
 }
 
 #inventory {

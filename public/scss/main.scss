@@ -2,28 +2,104 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Muli&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
-@import url("https://lotus.cakeyfox.live/styles/body.css");
 @import "components/background";
 @import "components/popup";
+@import "components/footer";
+@import "components/ad-position";
 
 :root {
     --primary-color: #ff4655;
     --secondary-color: #eb5362;
 }
 
-/* Main page */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+main .meeting {
+    color: #fff;
+    font-size: 40px;
+    font-family: 'Cookie';
+    margin-left: 5px;
+    margin-top: 5px;
 }
+
+main .meeting-2 {
+    color: #fff;
+    font-size: 40px;
+    font-family: 'Cookie';
+    margin-left: 5px;
+    margin-top: 1px;
+}
+
+.logo {
+    width: 10rem;
+    height: auto;
+    margin-top: 2%;
+    transition-duration: 0.5s;
+}
+
+
+.features {
+    padding: 30px;
+    opacity: inherit;
+    background-color: #36393f;
+    border-color: #000;
+    position: relative;
+    text-align: center;
+}
+
+.shadow__btn {
+    padding: 10px 20px;
+    border: none;
+    font-size: 17px;
+    color: #fff;
+    border-radius: 7px;
+    font-weight: 700;
+    transition: 0.5s;
+    margin-left: 5px;
+    font-family: "Poppins";
+    transition-property: box-shadow;
+    cursor: pointer;
+}
+
+.shadow__btn {
+    background: rgb(0, 140, 255);
+    box-shadow: 0 0 25px rgb(0, 140, 255);
+}
+
+#add {
+    background: rgb(68, 192, 57);
+    box-shadow: 0 0 25px rgb(68, 192, 57);
+}
+
+#add:hover {
+    box-shadow: 0 0 5px rgb(68, 192, 57),
+        0 0 25px rgb(68, 192, 57),
+        0 0 50px rgb(68, 192, 57),
+        0 0 100px rgb(68, 192, 57);
+}
+
+.shadow__btn:hover {
+    box-shadow: 0 0 5px rgb(0, 140, 255),
+        0 0 25px rgb(0, 140, 255),
+        0 0 50px rgb(0, 140, 255),
+        0 0 100px rgb(0, 140, 255);
+}
+
+main {
+    padding-left: 30%;
+    padding-right: 50%;
+    margin-top: 15%;
+    margin-left: -25%;
+    transition-duration: 0.5s;
+    text-align: center;
+    cursor: default;
+}
+
 
 main .foxy {
     margin-left: 135% !important;
     margin-top: -20rem !important;
     margin-bottom: 19% !important;
-    width: 47% !important;
-    height: 65% !important;
+    width: 18rem;
+    height: auto;
     display: inline !important;
     border-radius: 50% !important;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -41,6 +117,16 @@ main .foxy:hover {
     position: relative;
     text-align: center;
 
+    .title {
+        font-family: "Poppins";
+        font-size: 200%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        color: #e7385d;
+    }
+    
     p {
         font-family: "Poppins";
         font-size: 15px;
@@ -67,7 +153,7 @@ main .foxy:hover {
         border-radius: 10px;
         background-color: #2b2d31;
         align-items: flex-start;
-
+        margin-top: 1rem;
         &.right {
             flex-direction: row;
         }
@@ -104,7 +190,7 @@ main .foxy:hover {
         }
 
         .feature-image {
-            width: 15%;
+            width: 10rem;
             height: auto;
             margin-left: 20px;
         }

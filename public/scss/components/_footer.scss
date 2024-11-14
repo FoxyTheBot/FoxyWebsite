@@ -19,6 +19,12 @@ footer {
     margin-top: auto;
     text-align: center;
 
+    .footer-paragraph {
+        font-size: 1em;
+        margin: 0;
+        font-family: $footer-font-family;
+    }
+
     .social-networks {
         display: flex;
         justify-content: center;
