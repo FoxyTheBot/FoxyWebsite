@@ -194,6 +194,12 @@ class DashboardRoutes {
             const userId = req.session.user_info.id;
             const userData = await database.getUser(userId);
             const decoration = await database.getDecoration(req.params.id);
+            
+            if (req.params.id === "none") {
+                userData.userProfile.decoration = null;
+                await userData.save();
+                return res.redirect(constants.USER_DECORATIONS);
+            }
 
             if (!decoration) {
                 return this.routerManager.redirectTo(res, constants.USER_STORE);

@@ -20,10 +20,31 @@
 </head>
 
 <body>
+  <div class="ad vertical">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+      crossorigin="anonymous"></script>
+    <ins id="adBanner" class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+      data-ad-client="ca-pub-7726590371480649" data-ad-slot="4619028248"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <%- include('../../sidebar') %>
     <% if (userDecorations && userDecorations.length> 0) { %>
       <main>
-        <div class="itens" id="inventory">
+        <div class="itens decorations" id="inventory">
+          <div class="item <%= currentDecoration === null ? 'disabled' : '' %>"
+            onclick="window.location.href='/br/decorations/change/none'">
+            <div class="item__icon">
+              <img class="background" src="/assets/images/none.png">
+            </div>
+            
+            <% if (!currentDecoration) { %>
+              <span class="purchased">Selecionado</span>
+              <% } %>
+          </div>
+
           <% userDecorations.forEach(decoration=> { %>
             <div class="item <%= currentDecoration === decoration.id ? 'disabled' : '' %>" <% if (currentDecoration
               !==decoration.id) { %>
