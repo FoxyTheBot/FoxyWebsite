@@ -300,6 +300,9 @@ export interface Background {
     author: string,
     inactive: boolean,
     releaseDate: Date,
+    limitedEdition: boolean,
+    collection: string,
+    rarity: string,
 }
 
 export interface Layout {

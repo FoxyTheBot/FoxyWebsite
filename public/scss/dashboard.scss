@@ -37,8 +37,8 @@ p {
     font-family: sans-serif;
     text-align: center;
     margin: 1rem 0;
-    margin-left: 26rem !important;
-    margin-right: 13rem !important;
+    margin-left: 26rem;
+    margin-right: 13rem;
 }
 
 .remaining-time {
@@ -222,7 +222,7 @@ main {
         margin-left: 0rem !important;
         margin-right: 1rem !important;
     }
-    
+
     .servers {
         margin-top: 0;
         margin-left: 0;
@@ -323,7 +323,6 @@ main {
 
     .page-title {
         font-size: 1.90rem;
-        margin: 4rem 0;
     }
 
     p {

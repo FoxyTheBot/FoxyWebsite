@@ -3,15 +3,17 @@
 
 .config-wrapper {
     padding: 1rem;
-    margin-left: -3rem;
-    margin-right: 5rem;
+    margin-left: 22rem;
+    margin-right: 8rem;
+    border-radius: 1%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 
     .module-title {
         color: #e7385d;
         font-size: 2rem;
         font-family: var(--font-family);
         margin: 2rem 0 1rem;
-        margin-left: 20rem;
         text-align: center;
     }
 
@@ -20,12 +22,12 @@
         font-size: 1rem;
         font-family: var(--font-family);
         text-align: center;
-        margin-left: 30rem !important;
+        margin-left: 0rem;
+        margin-right: 0;
     }
 
     .config-module-wrapper {
         justify-content: center;
-        margin: 0 0 0 5rem;
 
         .config-module-form {
             margin-left: auto;
@@ -40,8 +42,8 @@
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                margin-left: 14rem;
-                margin-right: 0rem;
+                margin-left: -3rem;
+                margin-right: -3rem;
 
                 .module-name {
                     color: #fafafa;
@@ -321,7 +323,12 @@ form {
 @media (max-width: 768px) {
     .config-wrapper {
         margin-left: 0rem;
-        margin-right: 1rem;
+        margin-right: 0rem;
+        
+        .module-description {
+            display: block;
+        }
+        
         .config-module-wrapper {
             justify-content: center;
             margin: 0;

@@ -170,6 +170,8 @@ const backgroundSchema = new mongoose.Schema({
     inactive: Boolean,
     releaseDate: Date,
     limitedEdition: Boolean,
+    rarity: String,
+    collection: String,
 }, { versionKey: false, id: false });
 
 const layoutSchema = new mongoose.Schema({

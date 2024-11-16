@@ -1,4 +1,4 @@
-.popup {
+.popup-wrapper {
     position: fixed;
     z-index: 9999;
     left: 0;
@@ -29,20 +29,41 @@
         z-index: 0;
     }
 
-    .popup-content {
+    .popup {
         background-color: #fff;
         margin: 10% auto;
-        padding: 20px;
         width: 80%;
         border-radius: 5px;
-        max-width: 500px;
-        text-align: center;
+        max-width: 35rem;
+        margin-left: auto;
+        margin-right: auto;
         animation: scaleIn 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
 
+        .content {
+            padding: 1rem;
+            
+            .title {
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+        }
+
+        #purchaseForm {
+            padding: 0rem;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
 
         .popup-buttons {
+            padding: 1em;
+            background-color: #e6e6e6;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1em;
+            border-radius: 0px 0px 7px 7px;
+
             button {
-                margin: 0px 10rem;
                 background-color: #359553;
                 color: white;
                 border: none;
@@ -78,11 +99,24 @@
             margin-bottom: 10px;
         }
 
+        .description {
+            color: #000;
+            font-size: 15px;
+            margin-bottom: 10px;
+            margin-left: 0rem;
+            text-align: left;
+            margin-right: 0rem;
+        }
+
+        
         h3 {
             color: #000;
             font-size: 15px;
             font-family: var(--font-family);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            margin-top: 3%;
+            margin-right: 12%;
+            text-align: left;
         }
 
         .avatar-wrapper {
@@ -120,7 +154,6 @@
         padding: 10px;
         margin: 25% auto;
     }
-
     .popup-content h2 {
         font-size: 18px;
     }
@@ -139,7 +172,7 @@
     #save {
         color: #fff;
         display: block;
-        padding: 10px 20px;
+        padding: 10px 10px;
         border-radius: 5px;
         background-color: #359553;
         border: none;
@@ -149,7 +182,6 @@
         margin-bottom: 0rem;
         box-sizing: border-box;
         cursor: pointer;
-        margin-left: 6.6rem;
     }
 
     .popup-content {

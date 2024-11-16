@@ -53,15 +53,20 @@
 
             h1 {
                 margin: 0;
-                font-size: 1rem;
+                font-size: 1.25rem;
                 font-weight: bold;
             }
 
             .item-name {
-                color: #fff;
-                font-size: 1rem;
+                color: #35aeff;
+                font-size: 1.35rem;
                 font-family: var(--font-family);
                 text-align: center;
+
+                &.limited {
+                    color: #e7385d;
+                }
+                
             }
 
             h1 {

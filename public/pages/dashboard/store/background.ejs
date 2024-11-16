@@ -50,16 +50,18 @@
         </main>
       </div>
 
-      <div id="popup" class="popup hidden">
-        <div class="popup-content">
-          <span class="close" onclick="hidePopup()">&times;</span>
-          <h2 id="bg-title"></h2>
-          <img id="popup-img" src="" alt="Background Image">
-          <h3 id="bg-description"></h3>
-          <h3>Você possui <strong style="color: #e7385d;" id="user-cakes"></strong> Cakes</h3>
+      <div id="popup" class="popup-wrapper hidden">
+        <div class="popup">
+          <div class="content">
+            <span class="close" onclick="hidePopup()">&times;</span>
+            <h2 id="bg-title" class="title"></h2>
+            <img id="popup-img" src="" alt="Background Image">
+            <p id="bg-description" class="description"></p>
+          </div>
           <form id="purchaseForm" method="POST">
             <input type="hidden" name="backgroundId" id="backgroundId">
             <div class="popup-buttons">
+              <h3>Comprar por <strong style="color: #e7385d;" id="price-in-cakes"></strong> Cakes</h3>
               <button id="save" type="submit">Comprar</button>
             </div>
           </form>
@@ -89,7 +91,48 @@
                   const currentDate = new Date();
                   const diffTime = currentDate - releaseDate;
                   const isNew = diffTime < 2 * 24 * 60 * 60 * 1000;
+                  let itemType;
 
+                  switch (type) {
+                    case 'backgrounds':
+                      itemType = 'Fundo para Perfil';
+                      break;
+                    case 'decorations':
+                      itemType = 'Decoração de Avatar';
+                      break;
+                    case 'layouts':
+                      itemType = 'Design para Perfil';
+                      break;
+                    default:
+                      itemType = 'item';
+                  }
+
+                  let rarity;
+
+                  switch (item?.rarity?.toLowerCase()) {
+                    case 'common':
+                      itemType += ' (Comum)';
+                      rarity = item.rarity.toLowerCase();
+                      break;
+                    case 'uncommon':
+                      itemType += ' (Incomum)';
+                      rarity = item.rarity.toLowerCase();
+                      break;
+                    case 'rare':
+                      itemType += ' (Raro)';
+                      rarity = item.rarity.toLowerCase();
+                      break;
+                    case 'epic':
+                      itemType += ' (Épico)';
+                      rarity = item.rarity.toLowerCase();
+                      break;
+                    case 'legendary':
+                      itemType += ' (Lendário)';
+                      rarity = item.rarity.toLowerCase();
+                      break;
+                    default:
+                      itemType += '';
+                  }
                   const isLimitedEdition = item.limitedEdition;
 
                   return `
@@ -102,7 +145,8 @@
             alt="${item.name}">
         </div>
         <div class="item_info">
-          <h1 class="item-name">${item.name}</h1>
+          <h1 class="item-name ${isLimitedEdition ? 'limited' : ''}">${item.name}</h1>
+          <h5>${itemType}</h5>
           ${isPurchased ? `
             <span class="purchased">💖 Já comprado</span>
           ` : `
@@ -124,9 +168,6 @@
     ${generateItems(layouts, 'layouts', data.userData.userProfile.layoutList)}
   </div>
 `;
-
-              document.getElementById('user-cakes').innerText =
-                data.userData.userCakes.balance.toLocaleString("pt-BR");
               startCountdown(data.lastUpdate);
             })
             .catch(error => {
@@ -186,6 +227,7 @@
           const bgTitle = document.getElementById('bg-title');
           const bgDescription = document.getElementById('bg-description');
           const saveButton = document.getElementById('save');
+          const price = document.getElementById('price-in-cakes');
 
           let imageUrl = `https://orchid.cakeyfox.live/assets/previews/item_${background.id}.png`;
           if (background.id === "red" && background.profileSettings && typeof background.profileSettings === "object") {
@@ -195,11 +237,16 @@
           document.getElementById('backgroundId').value = background.id;
           document.getElementById('popup').classList.add('visible');
           document.getElementById('popup').classList.remove('hidden');
+          price.innerText = background.cakes.toLocaleString("pt-BR");
 
           bgTitle.innerText = background.name;
-          bgDescription.innerText = background.description;
+          if (background.description && background.collection) {
+            bgDescription.innerText = `${background.description} \n\nColeção: ${background.collection}`;
+          } else {
+            bgDescription.innerText = "";
+          }
 
-          const userCakes = parseInt(document.getElementById('user-cakes').innerText.replace(/\D/g, ''));
+          const userCakes = user.cakes;
           console.log(background.id)
           if (
             userData.userProfile.backgroundList.includes(background.id)
