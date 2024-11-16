@@ -18,52 +18,103 @@ class DashboardRoutes {
     initializeRoutes() {
         /* Get data */
         this.router.get("/:lang/user/backgrounds/data", this.routerManager.isAuthenticated, this.getUserBackgrounds);
+        this.router.get("/:lang/user/layouts/data", this.routerManager.isAuthenticated, this.getUserLayouts);
         this.router.get("/:lang/store/data", this.routerManager.isAuthenticated, this.getStoreData);
         this.router.get("/:lang/dashboard/subscriptions/data", this.routerManager.isAuthenticated, this.getSubscriptionsData);
-
+        this.router.get("/:lang/user/layouts", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/user/inventory/layouts.ejs"));
+       
         /* Save data */
         this.router.post("/:lang/store/confirm/:id", this.routerManager.isAuthenticated, this.confirmStore);
         this.router.get("/:lang/decorations/change/:id", this.routerManager.isAuthenticated, this.changeDecoration);
         this.router.post("/:lang/dashboard/daily/receive", this.routerManager.isAuthenticated, this.receiveDaily);
         this.router.get("/:lang/background/change/:id", this.routerManager.isAuthenticated, this.changeBackground);
+        this.router.get("/:lang/layouts/change/:id", this.routerManager.isAuthenticated, this.changeLayout);
         this.router.use(this.routerManager.errorHandler);
     }
 
     getRouter() {
         return this.router;
     }
+
+    async getUserLayouts(req, res) {
+        const userId = req.session.user_info.id;
+        const userData = await database.getUser(userId);
+        const layouts = await database.getAllLayouts();
+        const userLayouts = await Promise.all(userData.userProfile.layoutList.map(id => database.getLayout(id)));
+
+        const responseData = {
+            user: req.session.user_info,
+            userLayouts: userLayouts,
+            currentLayout: userData.userProfile.layout,
+            storeContent: { layouts }
+        };
+
+        res.status(200).json(responseData);
+    }
+
+    async changeLayout(req, res, next) {
+        try {
+            const userId = req.session.user_info.id;
+            const userData = await database.getUser(userId);
+            const layout = await database.getLayout(req.params.id);
+
+            if (!layout) {
+                return this.routerManager.redirectTo(res, constants.USER_STORE);
+            }
+
+            if (!userData.userProfile.layoutList.includes(layout.id)) {
+                return this.routerManager.redirectTo(res, constants.USER_STORE);
+            }
+
+            userData.userProfile.layout = layout.id;
+            await userData.save();
+            return res.status(200).json({ success: true });
+        } catch (error) {
+            next(error);
+        }
+    }
+
     async getStoreData(req, res) {
         try {
             const userId = req.session.user_info.id;
-            const [userData, storeItems, allDecorations] = await Promise.all([
+            const [userData, storeItems, allDecorations, allLayouts] = await Promise.all([
                 database.getUser(userId),
                 database.getStore(),
-                database.getAllDecorations()
+                database.getAllDecorations(),
+                database.getAllLayouts()
             ]);
-    
+
             const backgroundsInStore = storeItems.itens
                 .filter(item => item.type === 'background')
                 .map(item => item.id);
-    
+
             const decorationsInStore = storeItems.itens
                 .filter(item => item.type === 'decoration')
                 .map(item => item.id);
-    
+
+            const layoutsInStore = storeItems.itens
+                .filter(item => item.type === 'layout')
+                .map(item => item.id);
+
             const storeBackgrounds = await Promise.all(
                 backgroundsInStore.map(id => database.getBackground(id))
             );
-    
+
             const storeDecorations = decorationsInStore.map(id =>
                 allDecorations.find(decoration => decoration.id === id)
             );
-    
+
+            const storeLayouts = layoutsInStore.map(id =>
+                allLayouts.find(layout => layout.id === id)
+            );
+
             const premiumType = userData.userPremium.premiumType;
             if (premiumType === "2" || premiumType === "3" || premiumType === "Foxy Premium II" || premiumType === "Foxy Premium III") {
                 storeDecorations.forEach(decoration => {
                     decoration.cakes = decoration.cakes * 0.5;
                 });
             }
-    
+
             const responseData = {
                 user: req.session.user_info,
                 userData: userData,
@@ -71,19 +122,20 @@ class DashboardRoutes {
                 userDecorations: userData.userProfile.decorationList,
                 storeContent: {
                     backgrounds: storeBackgrounds,
-                    decorations: storeDecorations
+                    decorations: storeDecorations,
+                    layouts: storeLayouts
                 },
                 lastUpdate: storeItems.lastUpdate
             };
-    
+
             res.status(200).json(responseData);
         } catch (error) {
             console.error(`[API] Error fetching store data: ${error.message}`);
             res.status(500).json({ error: 'Failed to load store data' });
         }
     }
-    
-    
+
+
 
     async getSubscriptionsData(req, res) {
         const userId = req.session.user_info.id;
@@ -108,7 +160,8 @@ class DashboardRoutes {
         const userId = req.session.user_info.id;
         const userData = await database.getUser(userId);
         const backgrounds = await database.getAllBackgrounds();
-        const userBackgrounds = await Promise.all(userData.userProfile.backgroundList.map(id => database.getBackground(id)));
+        const userBackgrounds = await Promise.all(userData.userProfile.backgroundList.map(
+            id => database.getBackground(id)));
 
         const responseData = {
             user: req.session.user_info,
@@ -126,8 +179,9 @@ class DashboardRoutes {
             const userData = await database.getUser(userId);
             const decoration = await database.getDecoration(req.params.id);
             const background = await database.getBackground(req.params.id);
-            const item = decoration || background;
-            const itemType = decoration ? 'decoration' : background ? 'background' : null;
+            const layout = await database.getLayout(req.params.id);
+            const item = decoration || background || layout;
+            const itemType = decoration ? 'decoration' : background ? 'background' : layout ? 'layout' : null;
 
             if (!item) {
                 return this.routerManager.redirectTo(res, constants.USER_STORE);
@@ -138,7 +192,8 @@ class DashboardRoutes {
             }
 
             const alreadyPurchased = (itemType === 'decoration' && userData.userProfile.decorationList.includes(item.id)) ||
-                (itemType === 'background' && userData.userProfile.backgroundList.includes(item.id));
+                (itemType === 'background' && userData.userProfile.backgroundList.includes(item.id) ||
+                    (itemType === 'layout' && userData.userProfile.layoutList.includes(item.id)));
 
             if (alreadyPurchased) {
                 return this.routerManager.redirectTo(res, constants.USER_STORE);
@@ -147,8 +202,10 @@ class DashboardRoutes {
             userData.userCakes.balance -= item.cakes;
             if (itemType === 'decoration') {
                 userData.userProfile.decorationList.push(item.id);
-            } else {
+            } else if (itemType === 'background') {
                 userData.userProfile.backgroundList.push(item.id);
+            } else {
+                userData.userProfile.layoutList.push(item.id);
             }
 
             userData.userTransactions.push({
@@ -161,7 +218,7 @@ class DashboardRoutes {
             });
 
             await userData.save();
-            return res.redirect(itemType === 'decoration' ? "/br/user/decorations" : "/br/dashboard");
+            return res.redirect(constants.USER_STORE);
         } catch (error) {
             next(error);
         }
@@ -194,7 +251,7 @@ class DashboardRoutes {
             const userId = req.session.user_info.id;
             const userData = await database.getUser(userId);
             const decoration = await database.getDecoration(req.params.id);
-            
+
             if (req.params.id === "none") {
                 userData.userProfile.decoration = null;
                 await userData.save();
@@ -223,17 +280,17 @@ class DashboardRoutes {
             const userData = await database.getUser(userId);
             const timeout = 43200000;
             const daily = userData.userCakes.lastDaily;
-    
+
             if (daily !== null && timeout - (Date.now() - daily) > 0) {
                 return this.routerManager.redirectTo(res, constants.DASHBOARD);
             }
-    
+
             let amount = Math.floor(Math.random() * 8000);
             amount = Math.round(amount / 10) * 10;
-    
+
             let multiplier = 1;
             let maxAmount = 8000;
-    
+
             switch (userData.userPremium.premiumType) {
                 case "Foxy Premium I":
                 case "1":
@@ -251,11 +308,11 @@ class DashboardRoutes {
                     maxAmount = 25000;
                     break;
             }
-    
+
             amount = Math.min(Math.floor(amount * multiplier), maxAmount);
-    
+
             if (amount < 1000) amount = 1000;
-    
+
             userData.userCakes.balance += amount;
             userData.userCakes.lastDaily = Date.now();
             userData.userTransactions.push({
@@ -266,7 +323,7 @@ class DashboardRoutes {
                 received: true,
                 type: TransactionType.DAILY_REWARD
             });
-    
+
             await userData.save();
             res.status(200).json({ coins: amount, totalCoins: userData.userCakes.balance });
         } catch (error) {

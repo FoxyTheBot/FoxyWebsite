@@ -68,7 +68,7 @@
                     const data = await response.json();
 
                     const checkoutsContainer = document.getElementById('checkoutsContainer');
-                    data.forEach(log => {
+                    data.reverse().forEach(log => {
                         const card = document.createElement('div');
                         card.className = 'cirno-card';
                         card.innerHTML = `

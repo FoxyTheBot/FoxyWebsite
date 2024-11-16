@@ -1,4 +1,3 @@
-
 .itens {
     display: flex;
     position: relative;
@@ -120,6 +119,27 @@
 
     &.disabled {
         cursor: not-allowed;
+    }
+}
+
+.flag {
+    position: absolute;
+    top: 4%;
+    left: 0;
+    padding: 5px 10px;
+    background: #e7385d;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 0 0 5px 0;
+    transform: rotate(-40deg);
+    z-index: 1;
+    margin-left: -5%;
+
+    &.limited {
+        margin-left: -10%;
+        background: #e7385d;
     }
 }
 

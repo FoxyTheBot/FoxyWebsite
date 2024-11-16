@@ -56,6 +56,7 @@ const userSchema = new mongoose.Schema({
         repCount: Number,
         lastRep: Date,
         layout: String,
+        layoutList: Array,
         aboutme: String,
     },
     userPremium: {
@@ -166,7 +167,9 @@ const backgroundSchema = new mongoose.Schema({
     filename: String,
     description: String,
     author: String,
-    inactive: Boolean
+    inactive: Boolean,
+    releaseDate: Date,
+    limitedEdition: Boolean,
 }, { versionKey: false, id: false });
 
 const layoutSchema = new mongoose.Schema({

@@ -73,6 +73,7 @@ export default class DatabaseConnection {
                     repCount: 0,
                     lastRep: null,
                     layout: "default",
+                    layoutList: ["default"],
                     aboutme: null,
                 },
                 userPremium: {
@@ -298,6 +299,7 @@ export interface Background {
     description: string,
     author: string,
     inactive: boolean,
+    releaseDate: Date,
 }
 
 export interface Layout {

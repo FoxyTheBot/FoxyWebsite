@@ -18,7 +18,7 @@
     img {
         width: 100%;
         height: auto;
-        border-radius: 10px;
+        border-radius: 5px;
     }
 
     #user-avatar {
@@ -34,15 +34,15 @@
         margin: 10% auto;
         padding: 20px;
         width: 80%;
-        border-radius: 10px;
-        max-width: 400px;
+        border-radius: 5px;
+        max-width: 500px;
         text-align: center;
         animation: scaleIn 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
 
 
         .popup-buttons {
             button {
-                margin: 0px 7rem;
+                margin: 0px 10rem;
                 background-color: #359553;
                 color: white;
                 border: none;
