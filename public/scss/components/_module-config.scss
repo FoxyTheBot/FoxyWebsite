@@ -280,10 +280,7 @@ form {
 }
 
 #saveButton {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #5865F2;
+    background-color: #248045;
     z-index: 999;
     color: white;
     border: none;
@@ -298,6 +295,46 @@ form {
         cursor: not-allowed;
         opacity: 0.5;
     }
+}
+
+.actions-wrapper {
+    color: white;
+    display: flex;
+    background-color: #1e1f22;
+    position: sticky;
+    bottom: 1em;
+    border-radius: 5px;
+    padding: 1em;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.01), 0 0px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #333;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1.025);
+    z-index: 25;
+    bottom: -100px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.actions-wrapper.show {
+    bottom: 1em;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.save-message {
+    color: #fff;
+    font-size: 0.925rem;
+    font-family: var(--font-family);
+    text-align: center;
+    margin-top: 0rem;
+}
+
+.actions {
+    margin-left: auto;
+    display: flex;
+    gap: 0.5em;
 }
 
 .embedColor {
@@ -324,11 +361,11 @@ form {
     .config-wrapper {
         margin-left: 0rem;
         margin-right: 0rem;
-        
+
         .module-description {
             display: block;
         }
-        
+
         .config-module-wrapper {
             justify-content: center;
             margin: 0;
@@ -342,6 +379,10 @@ form {
                     margin-bottom: 3rem;
                 }
             }
+        }
+
+        .actions-wrapper {
+            margin-right: -4rem;
         }
 
         .module-title {
