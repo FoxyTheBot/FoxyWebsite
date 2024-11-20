@@ -19,6 +19,8 @@ class PartialsRoutes {
         this.router.get("/partials/servers", this.routerManager.isAuthenticated, this.getServersData.bind(this));
         this.router.get("/partials/server/:id/welcomer", this.routerManager.isAuthenticated, this.getServerWelcomer.bind(this));
         this.router.get("/partials/server/:id/logs", this.routerManager.isAuthenticated, this.getServerLogs.bind(this));
+        this.router.get("/partials/daily-shop", this.routerManager.isAuthenticated, this.getDailyShop.bind(this));
+        this.router.get("/partials/user/background-inventory", this.routerManager.isAuthenticated, this.getUserBackgroundInventory.bind(this));
     }
 
     getRouter() {
@@ -75,6 +77,24 @@ class PartialsRoutes {
             guildId,
             logs: logsWithUsernames
         });
+    }
+
+    private async getUserBackgroundInventory(req, res) {
+        const userId = req.session.user_info.id;
+        const userData = await database.getUser(userId);
+        const backgrounds = await database.getAllBackgrounds();
+        const userBackgrounds = await Promise.all(userData.userProfile.backgroundList.map(
+            id => database.getBackground(id)));
+        
+        this.routerManager.renderPartial(req, res, 'background-inventory', false, {
+            userBackgrounds,
+            currentBackground: userData.userProfile.background,
+            storeContent: backgrounds
+        });
+    }
+
+    private async getDailyShop(req, res) {
+        this.routerManager.renderPartial(req, res, 'daily-shop', false, {});
     }
 
     private getAction(action) {

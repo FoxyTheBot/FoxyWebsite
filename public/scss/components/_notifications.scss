@@ -17,16 +17,7 @@
     }
 
     &.error {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        font-family: var(--font-family);
-        padding: 10px 20px;
         background-color: #ed4245;
-        color: #fff;
-        border-radius: 5px;
-        display: none;
-        animation: fadeOut 3s ease-in-out;
     }
 }
 
