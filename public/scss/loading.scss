@@ -13,6 +13,22 @@
     font-size: 24px;
     color: #fff;
 
+    &.new {
+        position: absolute;
+        margin-top: 5rem;
+    
+        img {
+            width: 6rem !important;
+        }
+
+        .title {
+            margin-top: 1rem;
+            color: #fff;
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+    }
+
     img {
         width: 8rem;
     }
