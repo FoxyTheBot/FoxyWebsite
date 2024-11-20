@@ -8,10 +8,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     z-index: 1000;
     font-size: 24px;
     color: #fff;
+
+    img {
+        width: 8rem;
+    }
+
+    .title {
+        margin-top: 1rem;
+        color: #fff;
+        font-size: 2rem;
+    }
 
     .icon {
         width: 100px;

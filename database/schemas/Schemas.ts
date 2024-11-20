@@ -172,7 +172,7 @@ const backgroundSchema = new mongoose.Schema({
     limitedEdition: Boolean,
     rarity: String,
     collection: String,
-}, { versionKey: false, id: false });
+}, { versionKey: false, id: false, suppressReservedKeysWarning: true });
 
 const layoutSchema = new mongoose.Schema({
     id: String,

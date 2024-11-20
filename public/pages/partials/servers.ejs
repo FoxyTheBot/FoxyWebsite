@@ -1,0 +1,16 @@
+<% guilds.forEach(guild=> { %>
+    <div class="server">
+        <div class="server__icon">
+            <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>.png" alt="<%= guild.name %>"
+                onerror="this.src='https://m.media-amazon.com/images/I/51G22XSlZDL.jpg'">
+        </div>
+        <div class="server__info">
+            <h1>
+                <%= guild.name %>
+            </h1>
+        </div>
+        <div class="server__buttons">
+            <a href="/br/servers/<%= guild.id %>/general" class="server__button">Gerenciar</a>
+        </div>
+    </div>
+    <% }) %>

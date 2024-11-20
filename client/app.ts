@@ -10,6 +10,8 @@ import UpdatePages from '../routes/controller/UpdatePages';
 import DashboardRoutes from '../routes/controller/DashboardRoutes';
 import GuildDashboardRoutes from '../routes/controller/GuildDashboardRoutes';
 import DiscordClient from './DiscordClient';
+import APIRoutes from '../routes/controller/APIRoutes';
+import PartialsRoutes from '../routes/controller/PartialsRoutes';
 
 export class App {
     port: number;
@@ -40,6 +42,8 @@ export class App {
         app.use('/', new UpdatePages().getRouter());
         app.use('/', new DashboardRoutes().getRouter());
         app.use('/', new GuildDashboardRoutes().getRouter());
+        app.use('/', new APIRoutes().getRouter());
+        app.use('/', new PartialsRoutes().getRouter());
         app.use('/', require("../routes/auth/oauthDiscord"));
         app.use('/', require("../routes/controller/RedirectPages"));
 

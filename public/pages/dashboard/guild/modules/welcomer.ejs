@@ -43,7 +43,7 @@
             </p>
 
             <div class="config-module-wrapper">
-                <form action="/br/servers/<%= guildId %>/modules/welcomer" method="POST" class="config-module-form">
+                <form action="api/v1/servers/<%= guildId %>/modules/welcomer" method="POST" class="config-module-form">
                     <div class="config-module">
                         <label class="module-name">Enviar mensagem quando alguém entrar no servidor</label>
                         <label class="switch">
@@ -163,7 +163,7 @@
                 const form = document.querySelector(".config-module-form");
                 const originalAction = form.action;
                 const guildId = "<%= guildId %>";
-                const testAction = `/br/servers/${guildId}/modules/welcomer/test/module/goodbyeModule`;
+                const testAction = `/api/v1/servers/${guildId}/modules/welcomer/test/module/goodbyeModule`;
 
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
@@ -199,7 +199,7 @@
                 const form = document.querySelector(".config-module-form");
                 const originalAction = form.action;
                 const guildId = "<%= guildId %>";
-                const testAction = `/br/servers/${guildId}/modules/welcomer/test/module/welcomeModule`;
+                const testAction = `/api/v1/servers/${guildId}/modules/welcomer/test/module/welcomeModule`;
 
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
@@ -247,7 +247,7 @@
                 });
 
                 try {
-                    const response = await fetch('/br/servers/<%= guildId %>/data');
+                    const response = await fetch('/api/v1/servers/<%= guildId %>/data');
                     const data = await response.json();
 
                     toggleWelcomeModule.checked = data.GuildJoinLeaveModule.isEnabled || false;
@@ -305,7 +305,7 @@
                         }
                     }
 
-                    const channelsResponse = await fetch(`/br/servers/<%= guildId %>/channels`);
+                    const channelsResponse = await fetch(`/api/v1/servers/<%= guildId %>/channels`);
                     const channelsData = await channelsResponse.json();
 
                     const joinChannelId = data.GuildJoinLeaveModule.joinChannel || '';

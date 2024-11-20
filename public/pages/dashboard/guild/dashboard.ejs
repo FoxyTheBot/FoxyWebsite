@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/styles/loading.css" type="text/css">
     <link rel="stylesheet" href="/styles/header.css" type="text/css">
     <link rel="icon" href="/assets/images/foxycake.png">
+    <script src="https://unpkg.com/htmx.org"></script>
     <title>Foxy | Painel de Controle</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
         crossorigin="anonymous"></script>
@@ -22,62 +23,19 @@
 
 <body>
     <%- include('../sidebar') %>
+
         <div class="ad vertical">
-            <script async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
-                crossorigin="anonymous"></script>
             <ins id="adBanner" class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
                 data-ad-client="ca-pub-7726590371480649" data-ad-slot="4619028248"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </div>
 
-        <main id="content" class="hidden">
-            <div class="servers">
+        <main id="content">
+            <div class="servers" hx-get="/partials/servers" hx-trigger="load" hx-target=".servers" hx-swap="innerHTML">
+                <div id="loadingOverlay" class="loading-overlay">
+                    <%- include('../../global/loading') %>
+                </div>
             </div>
         </main>
-
-        <div id="loadingOverlay" class="loading-overlay">
-            <%- include('../../global/loading') %>
-        </div>
-
-        <script>
-            window.addEventListener('load', async function () {
-                await fetch('/br/user/servers/data')
-                    .then(response => response.json())
-                    .then(data => {
-
-                        renderServers(data);
-                    })
-                    .catch(error => {
-                        console.error('Error fetching data:', error);
-                        return document.getElementById('loadingOverlay').innerText = 'Falha ao carregar conteúdo. Tente novamente mais tarde.';
-                    });
-                document.getElementById('content').classList.remove('hidden');
-                document.getElementById('loadingOverlay').classList.add('hidden');
-            });
-
-            function renderServers(data) {
-                const contentDiv = document.querySelector('.servers');
-                contentDiv.innerHTML = data.guilds.map(guild => `
-                    <div class="server">
-                        <div class="server__icon">
-                            <img src="https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png" alt=""
-                    onerror="this.src='https://m.media-amazon.com/images/I/51G22XSlZDL.jpg'">
-                        </div>
-                        <div class="server__info">
-                            <h1>${guild.name}</h1>
-                        </div>
-                        <div class="server__buttons">
-                            <a href="/br/servers/${guild.id}" class="server__button">Gerenciar</a>
-                        </div>
-                    </div>
-    `).join('');
-            }
-        </script>
-
-
 </body>
 
 </html>

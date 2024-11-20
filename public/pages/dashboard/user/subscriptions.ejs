@@ -31,103 +31,102 @@
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-            <div class="ad vertical">
+        </div>
+        <div class="store-content">
+            <h1 class="page-title">Gerenciar assinaturas</h1>
+            <p>Comprou algum plano premium da Foxy mas não recebeu uma DM dela, pois você esqueceu sua DM
+                fechada? Veja
+                as informações do seu plano aqui!</p>
 
-                <div class="store-content">
-                    <h1 class="page-title">Gerenciar assinaturas</h1>
-                    <p>Comprou algum plano premium da Foxy mas não recebeu uma DM dela, pois você esqueceu sua DM
-                        fechada? Veja
-                        as informações do seu plano aqui!</p>
-
-                    <main>
-                        <h1 class="cirno-card-title">Plano atual:</h1>
-                        <div class="cirno-card">
-                            <div class="cirno-card-info">
-                                <h2 class="cirno-card-name" id="subscriptionName"></h2>
-                                <h4 class="cirno-card-details" id="expirationDate"></h4>
-                                <div class="cirno-card-buttons" id="buttons">
-                                    <a href="/br/premium">
-                                        <button id="subscriptionButton" class="button"></button>
-                                    </a>
-                                </div>
-                            </div>
+            <main>
+                <h1 class="cirno-card-title">Plano atual:</h1>
+                <div class="cirno-card">
+                    <div class="cirno-card-info">
+                        <h2 class="cirno-card-name" id="subscriptionName"></h2>
+                        <h4 class="cirno-card-details" id="expirationDate"></h4>
+                        <div class="cirno-card-buttons" id="buttons">
+                            <a href="/br/premium">
+                                <button id="subscriptionButton" class="button"></button>
+                            </a>
                         </div>
-                        <br>
-                        <h1 class="cirno-card-title">Meus Checkouts:</h1>
-                        <div class="checkouts-container" id="checkoutsContainer"></div>
-                    </main>
+                    </div>
                 </div>
+                <br>
+                <h1 class="cirno-card-title">Meus Checkouts:</h1>
+                <div class="checkouts-container" id="checkoutsContainer"></div>
+            </main>
+        </div>
 
 
 
-                <script>
-                    function getPlanName(premiumType) {
-                        switch (premiumType) {
-                            case "3":
-                            case "Foxy Premium III":
-                            case "a3b4c5d6-f7g8-9012-cdef-34567890123":
-                                return "Plano Completo";
-                            case "2":
-                            case "Foxy Premium II":
-                            case "a2b3c4d5-e6f7-8901-bcde-f23456789012":
-                                return "Plano Recomendado";
-                            case "1":
-                            case "Foxy Premium I":
+        <script>
+            function getPlanName(premiumType) {
+                switch (premiumType) {
+                    case "3":
+                    case "Foxy Premium III":
+                    case "a3b4c5d6-f7g8-9012-cdef-34567890123":
+                        return "Plano Completo";
+                    case "2":
+                    case "Foxy Premium II":
+                    case "a2b3c4d5-e6f7-8901-bcde-f23456789012":
+                        return "Plano Recomendado";
+                    case "1":
+                    case "Foxy Premium I":
 
-                            /* Cakes */
-                            case "a1b2c3d4-e5f6-7890-abcd-ef1234567890":
-                                return "Plano Básico";
-                            case "6987dfff-ced0-40c5-913f-43395d3e6e90":
-                                return "100.000 Cakes";
-                            case "cf9a9137-c2c1-46d1-9b6b-6831db809380":
-                                return "300.000 Cakes";
-                            case "ddb6bff9-ccb6-40be-9dfa-a16a4e11dea4":
-                                return "1.000.000 Cakes";
-                            case "8068fd2e-a799-43e4-9b50-e7505cc9ab95":
-                                return "2.000.000 Cakes";
-                            case "0":
-                            case null:
-                                return "Plano Gratuito";
-                            default:
-                                return "Plano Desconhecido";
-                        }
+                    /* Cakes */
+                    case "a1b2c3d4-e5f6-7890-abcd-ef1234567890":
+                        return "Plano Básico";
+                    case "6987dfff-ced0-40c5-913f-43395d3e6e90":
+                        return "100.000 Cakes";
+                    case "cf9a9137-c2c1-46d1-9b6b-6831db809380":
+                        return "300.000 Cakes";
+                    case "ddb6bff9-ccb6-40be-9dfa-a16a4e11dea4":
+                        return "1.000.000 Cakes";
+                    case "8068fd2e-a799-43e4-9b50-e7505cc9ab95":
+                        return "2.000.000 Cakes";
+                    case "0":
+                    case null:
+                        return "Plano Gratuito";
+                    default:
+                        return "Plano Desconhecido";
+                }
+            }
+
+            async function loadSubscriptionData() {
+                try {
+                    const response = await fetch('/br/dashboard/subscriptions/data');
+                    if (!response.ok) throw new Error('Erro ao carregar dados da assinatura.');
+
+                    const data = await response.json();
+
+                    const { currentSubscription } = data;
+
+                    const planName = getPlanName(currentSubscription.premiumType);
+
+                    const premiumDate = currentSubscription.premiumDate
+                        ? `Ativo até: ${new Date(currentSubscription.premiumDate).toLocaleDateString('pt-BR', {
+                            day: '2-digit',
+                            month: 'long',
+                            year: 'numeric'
+                        })}`
+                        : 'Vitalício';
+
+                    document.getElementById('subscriptionName').textContent = planName;
+                    document.getElementById('expirationDate').textContent = premiumDate;
+
+                    const buttonContainer = document.getElementById('buttons');
+                    const subscriptionButton = document.getElementById('subscriptionButton');
+                    if (planName === "Plano Gratuito") {
+                        subscriptionButton.textContent = "Comprar";
+                    } else {
+                        subscriptionButton.textContent = "Alterar";
                     }
 
-                    async function loadSubscriptionData() {
-                        try {
-                            const response = await fetch('/br/dashboard/subscriptions/data');
-                            if (!response.ok) throw new Error('Erro ao carregar dados da assinatura.');
-
-                            const data = await response.json();
-
-                            const { currentSubscription } = data;
-
-                            const planName = getPlanName(currentSubscription.premiumType);
-
-                            const premiumDate = currentSubscription.premiumDate
-                                ? `Ativo até: ${new Date(currentSubscription.premiumDate).toLocaleDateString('pt-BR', {
-                                    day: '2-digit',
-                                    month: 'long',
-                                    year: 'numeric'
-                                })}`
-                                : 'Vitalício';
-
-                            document.getElementById('subscriptionName').textContent = planName;
-                            document.getElementById('expirationDate').textContent = premiumDate;
-
-                            const buttonContainer = document.getElementById('buttons');
-                            const subscriptionButton = document.getElementById('subscriptionButton');
-                            if (planName === "Plano Gratuito") {
-                                subscriptionButton.textContent = "Comprar";
-                            } else {
-                                subscriptionButton.textContent = "Alterar";
-                            }
-
-                            const checkoutsContainer = document.getElementById('checkoutsContainer');
-                            data.userCheckouts.forEach(checkout => {
-                                const card = document.createElement('div');
-                                card.className = 'cirno-card';
-                                card.innerHTML = `
+                    const checkoutsContainer = document.getElementById('checkoutsContainer');
+                    data.userCheckouts.forEach(checkout => {
+                        const card = document.createElement('div');
+                        card.className = 'cirno-card';
+                        card.innerHTML = `
                             <div class="cirno-card-info">
                                 <h2 class="cirno-card-name">${getPlanName(checkout.itemId)}</h2>
                                 <h4 class="cirno-card-details">${checkout.paymentId ? `Referência: ${checkout.paymentId}` : "Pagamento não realizado"}</h4>
@@ -138,19 +137,19 @@
                                 </div>
                             </div>
                         `;
-                                checkoutsContainer.appendChild(card);
-                            });
+                        checkoutsContainer.appendChild(card);
+                    });
 
-                        } catch (error) {
-                            console.error('Erro ao buscar dados:', error);
-                            document.getElementById('subscriptionName').textContent = 'Erro ao carregar dados';
-                        } finally {
-                            document.getElementById('loadingOverlay').style.display = 'none';
-                        }
-                    }
+                } catch (error) {
+                    console.error('Erro ao buscar dados:', error);
+                    document.getElementById('subscriptionName').textContent = 'Erro ao carregar dados';
+                } finally {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }
+            }
 
-                    document.addEventListener('DOMContentLoaded', loadSubscriptionData);
-                </script>
+            document.addEventListener('DOMContentLoaded', loadSubscriptionData);
+        </script>
 </body>
 
 </html>
