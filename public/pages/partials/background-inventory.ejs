@@ -1,0 +1,40 @@
+<% userBackgrounds.reverse().forEach(background=> {
+    const isSelected = currentBackground === background.id;
+    %>
+    <div class="item<%= isSelected ? ' selected' : '' %>" hx-get="/br/background/change/<%= background.id %>"
+        hx-trigger="click" hx-target="this" hx-swap="none" id="<%= background.id %>">
+        <div class="item__icon">
+            <img class="background" src="https://orchid.cakeyfox.live/assets/backgrounds/<%= background.filename %>"
+                onerror="this.src='https://cakey.foxybot.win/assets/backgrounds/<%= background.filename %>'"
+                alt="<%= background.name %>">
+        </div>
+        <div class="item_info">
+            <h1 class="item-name">
+                <%= background.name %>
+            </h1>
+        </div>
+    </div>
+    <% }); %>
+
+        <div id="notification" class="notification"></div>
+
+
+        <script type="module">
+            import { showNotification } from "/js/notification.js";
+
+            document.body.addEventListener('htmx:afterRequest', function (event) {
+                const target = event.target;
+
+                if (target && target.classList.contains('item')) {
+                    document.querySelectorAll('.item.selected').forEach(item => {
+                        item.classList.remove('selected');
+                    });
+
+                    target.classList.add('selected');
+
+                    showNotification("sucess", "Background alterado com sucesso!");
+                } else {
+                    showNotification("error", "Erro ao alterar o background.");
+                }
+            });
+        </script>
