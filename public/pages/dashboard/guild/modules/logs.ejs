@@ -41,15 +41,13 @@
     <%- include('../sidebar') %>
 
 
-        <main>
-            <h1 class="cirno-card-title">Alterações recentes:</h1>
-            <div class="checkouts-container" id="checkoutsContainer" hx-get="/partials/server/<%= guildId %>/logs" hx-trigger="load"
-                hx-target=".checkouts-container" hx-swap="innerHTML">
-                <div id="loadingOverlay" class="loading-overlay">
-                    <%- include('../../../global/loading') %>
-                </div>
+        <main hx-get="/partials/server/<%= guildId %>/logs" hx-trigger="load" hx-target="main"
+            hx-swap="innerHTML">
+            <div id="loadingOverlay" class="loading-overlay">
+                <%- include('../../../global/loading') %>
             </div>
-        </main> 
+            </div>
+        </main>
 </body>
 
 
