@@ -4,7 +4,6 @@
 <head>
     <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
     <link rel="stylesheet" href="/styles/loading.css" type="text/css">
-    <link rel="stylesheet" href="/styles/header.css" type="text/css">
     <link rel="icon" href="/assets/images/foxycake.png">
     <script src="https://unpkg.com/htmx.org"></script>
     <title>Foxy | Painel de Controle</title>
@@ -29,11 +28,9 @@
                 data-ad-client="ca-pub-7726590371480649" data-ad-slot="4619028248"></ins>
         </div>
 
-        <main id="content">
-            <div class="servers" hx-get="/partials/servers" hx-trigger="load" hx-target=".servers" hx-swap="innerHTML">
-                <div id="loadingOverlay" class="loading-overlay new">
-                    <%- include('../../global/loading') %>
-                </div>
+        <main id="content" hx-get="/partials/servers" hx-trigger="load" hx-target="main" hx-swap="innerHTML">
+            <div id="loadingOverlay" class="loading-overlay">
+                <%- include('../../global/loading') %>
             </div>
         </main>
 </body>
