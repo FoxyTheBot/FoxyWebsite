@@ -60,9 +60,7 @@
       function renderBackgrounds(data) {
         const contentDiv = document.getElementById('content');
         contentDiv.innerHTML = `
-        <div class="itens" id="inventory" style="
-
-        ">
+        <div class="itens" id="inventory">
           ${data.userLayouts.reverse().map(background => {
           const isSelected = data.currentLayout === background.id;
           return `
@@ -94,7 +92,7 @@
           })
           .then(data => {
             if (typeof data === 'object' && data.success !== undefined) {
-              showNotification('Fundo alterado com sucesso!');
+              showNotification('Design de perfil alterado com sucesso!');
 
               fetch('/br/user/layouts/data')
                 .then(response => response.json())

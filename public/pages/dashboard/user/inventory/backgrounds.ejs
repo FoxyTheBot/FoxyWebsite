@@ -32,15 +32,14 @@
     </script>
   </div>
 
-  <main id="content">
-    <div class="itens" id="inventory" hx-get="/partials/user/background-inventory" hx-trigger="load" hx-target=".itens"
-      hx-swap="innerHTML">
-      <div id="loadingOverlay" class="loading-overlay new">
-        <%- include('../../../global/loading') %>
-      </div>
+  <main id="content" hx-get="/partials/user/background-inventory" hx-trigger="load" hx-target="#content"
+    hx-swap="innerHTML">
+    <div id="loadingOverlay" class="loading-overlay">
+      <%- include('../../../global/loading') %>
     </div>
   </main>
 
   <%- include('../../sidebar') %>
 </body>
+
 </html>
