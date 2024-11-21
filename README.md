@@ -3,9 +3,9 @@
 <br>
 
 ### ✨ | Requirements
-- NodeJS v18.x or higher
+- NodeJS v21.x or higher
 - Git
-- yarn or npm
+- yarn
 
 ### Configuring the environment
 
