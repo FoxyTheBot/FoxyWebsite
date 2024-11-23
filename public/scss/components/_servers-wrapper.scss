@@ -28,7 +28,7 @@
 
         .server__icon {
             img {
-                width: 5rem;
+                width: 5.826rem;
                 border-radius: 50%;
                 margin-bottom: 10px;
                 transition: 0.5s;
@@ -60,6 +60,7 @@
         }
 
         .server__buttons {
+            justify-content: center;
             margin-top: 10px;
         }
 

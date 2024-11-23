@@ -25,7 +25,7 @@ class APIRoutes {
     }
 
     initializeRoutes() {
-        this.router.use(this.routerManager.errorHandler);    
+        this.router.use(this.routerManager.errorHandler);
         this.router.get("/api/v1/servers/:id/data", this.routerManager.isAuthenticated, this.getServerConfig.bind(this));
         this.router.get("/api/v1/servers/:id/welcomer/data", this.routerManager.isAuthenticated, this.getServerWelcomer.bind(this));
         this.router.get("/api/v1/servers/:id/channels", this.routerManager.isAuthenticated, this.getServerChannels.bind(this));
@@ -133,22 +133,34 @@ class APIRoutes {
             welcomeShowAvatar,
             goodbyeShowAvatar,
             goodbyeEmbedFields,
+            embedFooter,
+            imageLink,
+            goodbyeEmbedFooter,
+            goodbyeImageLink
         } = req.body;
+
+        const imageLinkRegex = /https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp)/;
 
         try {
             switch (module) {
                 case 'welcomeModule': {
+                    if (imageLink && !imageLinkRegex.test(imageLink)) {
+                        return res.status(400).json({ message: 'Invalid image link.' });
+                    }
+
                     const joinMessage = {
                         content: this.replacePlaceholders(messageContent, placeholders),
                         embeds: [
                             {
-                                title: embedTitle || null,
+                                title: this.replacePlaceholders(embedTitle, placeholders) || null,
                                 description: this.replacePlaceholders(embedDescription, placeholders),
                                 color: parseInt(embedColor.replace('#', '0x')) || null,
                                 thumbnail: welcomeShowAvatar
                                     ? { url: placeholders['{user.avatar}'] }
                                     : null,
                                 fields: Array.isArray(embedFields) && embedFields.length > 0 ? embedFields : [],
+                                image: imageLink ? { url: imageLink } : null,
+                                footer: embedFooter ? { text: this.replacePlaceholders(embedFooter, placeholders) } : null
                             },
                         ].filter((embed) => embed.title || embed.description || embed.fields.length > 0),
                         components: buttons?.length
@@ -169,17 +181,22 @@ class APIRoutes {
                 }
 
                 case 'goodbyeModule': {
+                    if (goodbyeImageLink && !imageLinkRegex.test(goodbyeImageLink)) {
+                        return res.status(400).json({ message: 'Invalid image link.' });
+                    }
                     const leaveMessage = {
                         content: this.replacePlaceholders(goodbyeMessage, placeholders),
                         embeds: [
                             {
-                                title: goodbyeEmbedTitle || null,
+                                title: this.replacePlaceholders(goodbyeEmbedTitle, placeholders) || null,
                                 description: this.replacePlaceholders(goodbyeEmbedDescription, placeholders),
                                 color: parseInt(goodbyeEmbedColor.replace('#', '0x')) || null,
                                 thumbnail: goodbyeShowAvatar
                                     ? { url: placeholders['{user.avatar}'] }
                                     : null,
+                                image: goodbyeImageLink ? { url: goodbyeImageLink } : null,
                                 fields: Array.isArray(goodbyeEmbedFields) && goodbyeEmbedFields.length > 0 ? goodbyeEmbedFields : [],
+                                footer: embedFooter ? { text: this.replacePlaceholders(goodbyeEmbedFooter, placeholders) } : null
                             },
                         ].filter((embed) => embed.title || embed.description || embed.fields.length > 0),
                     };
@@ -225,6 +242,7 @@ class APIRoutes {
             '{@user}': `<@${user.id}>`,
             '{user.id}': user.id.toString(),
             '{user.avatar}': constants.USER_AVATAR(user.id, user.avatar) || '',
+            '{guild.name}': "Servidor super incrível 💫"
         };
     }
 
@@ -306,10 +324,20 @@ class APIRoutes {
             welcomeShowAvatar,
             goodbyeShowAvatar,
             goodbyeEmbedFields,
-            goodbyeButtons
+            goodbyeButtons,
+            embedFooter,
+            goodbyeEmbedFooter,
+            imageLink,
+            goodbyeImageLink
         } = req.body;
 
         try {
+            if (imageLink && !/https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp)/.test(imageLink)) {
+                return res.status(400).json({ message: 'Invalid image link.' });
+            } else if (goodbyeImageLink && !/https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp)/.test(goodbyeImageLink)) {
+                return res.status(400).json({ message: 'Invalid image link.' });
+            }
+
             const joinMessage = {
                 content: messageContent || "<@{user.id}>",
                 embeds: [
@@ -318,7 +346,9 @@ class APIRoutes {
                         description: embedDescription || null,
                         color: parseInt(embedColor.replace('#', '0x')) || null,
                         thumbnail: welcomeShowAvatar ? { url: "{user.avatar}" } : null,
-                        fields: Array.isArray(embedFields) && embedFields.length > 0 ? embedFields : []
+                        image: imageLink ? { url: imageLink } : null,
+                        fields: Array.isArray(embedFields) && embedFields.length > 0 ? embedFields : [],
+                        footer: embedFooter ? { text: embedFooter } : null
                     }
                 ].filter(embed => embed.title || embed.description || embed.fields.length > 0),
                 components: buttons && buttons.length > 0 ? {
@@ -335,7 +365,9 @@ class APIRoutes {
                         description: goodbyeEmbedDescription || null,
                         color: parseInt(goodbyeEmbedColor.replace('#', '0x')) || null,
                         thumbnail: goodbyeShowAvatar ? { url: "{user.avatar}" } : null,
-                        fields: Array.isArray(goodbyeEmbedFields) && goodbyeEmbedFields.length > 0 ? goodbyeEmbedFields : []
+                        image: goodbyeImageLink ? { url: goodbyeImageLink } : null,
+                        fields: Array.isArray(goodbyeEmbedFields) && goodbyeEmbedFields.length > 0 ? goodbyeEmbedFields : [],
+                        footer: embedFooter ? { text: goodbyeEmbedFooter } : null
                     }
                 ].filter(embed => embed.title || embed.description || embed.fields.length > 0),
                 components: goodbyeButtons && goodbyeButtons.length > 0 ? {

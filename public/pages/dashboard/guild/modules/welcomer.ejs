@@ -22,7 +22,7 @@
         gtag('js', new Date());
         gtag('config', 'G-E3J7N4BP8L');
     </script>
-    <script src="/js/moduleHasChanges.js" defer></script>
+    <script src="/js/moduleHasChanges.js" defer type="module"></script>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
             </p>
 
             <div class="config-module-wrapper">
-                <form action="api/v1/servers/<%= guildId %>/modules/welcomer" method="POST" class="config-module-form">
+                <form action="/api/v1/servers/<%= guildId %>/modules/welcomer" method="POST" class="config-module-form">
                     <div class="config-module">
                         <label class="module-name">Enviar mensagem quando alguém entrar no servidor</label>
                         <label class="switch">
@@ -53,7 +53,7 @@
 
                         <div class="toggleable-options hidden" id="toggleableWelcomeOptions">
                             <div class="toggleable-option">
-                                <label class="toggleable-option-title">Canal de boas-vindas</label>
+                                <label class="toggleable-option-title">Selecione um canal de boas-vindas</label>
                                 <select name="welcomeChannel" id="welcomeChannel">
                                     <option value="" disabled selected>Selecione um canal</option>
                                 </select>
@@ -67,36 +67,40 @@
                                     <input type="text" name="messageContent" id="messageContent"
                                         placeholder="Conteúdo da mensagem">
                                 </div>
-                                <div>
-                                    <label class="toggleable-option-title">Título do Embed</label>
-                                    <input type="text" name="embedTitle" id="embedTitle" placeholder="Título do embed">
+                                <div class="toggleable-option embed-config">
+                                    <label class="module-name">Configurar Embed</label>
+                                    <br><br>
+                                    <div>
+                                        <label class="toggleable-option-title">Título do Embed</label>
+                                        <input type="text" name="embedTitle" id="embedTitle"
+                                            placeholder="Título do embed">
+                                    </div>
+                                    <div>
+                                        <label class="toggleable-option-title">Descrição do Embed</label>
+                                        <textarea name="embedDescription" id="embedDescription" rows="10" cols="50"
+                                            placeholder="Descrição do embed"></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="toggleable-option-title">Imagem (link)</label>
+                                        <input type="text" name="imageLink" id="imageLink" placeholder="Link da imagem">
+                                    </div>
+                                    <div>
+                                        <label class="toggleable-option-title">Footer</label>
+                                        <input type="text" name="embedFooter" id="embedFooter"
+                                            placeholder="Footer da embed">
+                                    </div>
+                                    <div>
+                                        <label class="toggleable-option-title">Cor do Embed</label>
+                                        <input type="color" name="embedColor" id="embedColor" value="#ffffff"
+                                            class="embedColor">
+                                    </div>
+                                    <div>
+                                        <label class="toggleable-option-title">Mostrar avatar do usuário</label>
+                                        <label class="switch small">
+                                            <input type="checkbox" name="welcomeShowAvatar" id="showAvatar">
+                                            <span class="slider round"></span></label>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label class="toggleable-option-title">Descrição do Embed</label>
-                                    <textarea name="embedDescription" id="embedDescription" rows="10" cols="50"
-                                        placeholder="Descrição do embed"></textarea>
-                                </div>
-                                <div>
-                                    <label class="toggleable-option-title">Cor do Embed</label>
-                                    <input type="color" name="embedColor" id="embedColor" value="#ffffff"
-                                        class="embedColor">
-                                </div>
-                                <div>
-                                    <label class="toggleable-option-title">Mostrar avatar do usuário</label>
-                                    <label class="switch small">
-                                        <input type="checkbox" name="welcomeShowAvatar" id="showAvatar">
-                                        <span class="slider round"></span></label>
-                                </div>
-                                <!-- <div>
-                                    <h4>Fields do Embed</h4>
-                                    <div id="embedFieldsContainer" data-max-fields="10"></div>
-                                    <button type="button" id="addFieldButton">Adicionar Field</button>
-                                </div>
-                                <div>
-                                    <h4>Botões</h4>
-                                    <div id="buttonsContainer" data-max-fields="5"></div>
-                                    <button type="button" id="addButton">Adicionar Botão</button>
-                                </div> -->
                             </div>
                             <button id="welcomeTestButton" class="test-btn" type="button">Testar</button>
                         </div>
@@ -128,6 +132,14 @@
                                 <textarea name="goodbyeEmbedDescription" id="goodbyeEmbedDescription" rows="10"
                                     cols="50" placeholder="Descrição do embed"></textarea>
 
+                                <label class="toggleable-option-title">Imagem (link)</label>
+                                <input type="text" name="goodbyeImageLink" id="goodbyeImageLink"
+                                    placeholder="Link da imagem">
+
+                                <label class="toggleable-option-title">Footer</label>
+                                <input type="text" name="goodbyeEmbedFooter" id="goodbyeEmbedFooter"
+                                    placeholder="Footer da embed">
+
                                 <label class="toggleable-option-title">Cor do Embed</label>
                                 <input type="color" name="goodbyeEmbedColor" id="goodbyeEmbedColor" value="#ffffff"
                                     class="embedColor">
@@ -155,6 +167,26 @@
             <%- include('../../../global/loading') %>
         </div>
         <script>
+            document.getElementById('imageLink').addEventListener('input', function (event) {
+                const imageRegex = /\.(jpeg|jpg|png|gif|bmp|webp|svg)$/i;
+                const input = event.target.value;
+                const imageLink = document.getElementById('imageLink');
+                const saveButton = document.getElementById('saveButton');
+
+                if (input && !imageRegex.test(input)) {
+                    imageLink.style.border = '2px solid red';
+                    saveButton.disabled = true;
+                } else {
+                    imageLink.style.border = 'none';
+                    saveButton.disabled = false;
+                }
+            });
+        </script>
+
+
+        <script>
+            const imageLinkRegex = /https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp)/;
+
             const saveButton = document.getElementById("saveButton");
             const testButtons = document.querySelectorAll(".test-btn");
             const loadingOverlay = document.getElementById('loadingOverlay');
@@ -166,6 +198,11 @@
                 const testAction = `/api/v1/servers/${guildId}/modules/welcomer/test/module/goodbyeModule`;
 
                 const formData = new FormData(form);
+                if (!imageLinkRegex.test(formData.get('goodbyeImageLink'))) {
+                    alert('Link da imagem inválido');
+                    return;
+                }
+
                 const data = Object.fromEntries(formData.entries());
                 saveButton.disabled = true;
                 loadingOverlay.classList.remove('hidden');
@@ -202,6 +239,18 @@
                 const testAction = `/api/v1/servers/${guildId}/modules/welcomer/test/module/welcomeModule`;
 
                 const formData = new FormData(form);
+                if (!imageLinkRegex.test(formData.get('imageLink'))) {
+                    const imageLink = document.getElementById('imageLink');
+                    imageLink.style.border = '2px solid red';
+                    imageLink.classList.add('shake');
+
+                    setTimeout(() => {
+                        imageLink.classList.remove('shake');
+                    }, 500);
+
+                    return;
+                }
+
                 const data = Object.fromEntries(formData.entries());
                 saveButton.disabled = true;
                 loadingOverlay.classList.remove('hidden');
@@ -271,6 +320,9 @@
                         document.querySelector('#messageContent').value = joinMessage.content || '';
                         document.querySelector('#embedTitle').value = joinMessage.embeds[0]?.title || '';
                         document.querySelector('#embedDescription').value = joinMessage.embeds[0]?.description || '';
+                        document.querySelector('#embedFooter').value = joinMessage.embeds[0]?.footer?.text || '';
+                        document.querySelector('#imageLink').value = joinMessage.embeds[0]?.image?.url || '';
+
                         if (joinMessage.embeds[0]?.thumbnail?.url) {
                             document.querySelector('#showAvatar').checked = true;
                         }
@@ -290,6 +342,9 @@
                         document.querySelector('#goodbyeMessage').value = leaveMessage.content || '';
                         document.querySelector('#goodbyeEmbedTitle').value = leaveMessage.embeds[0]?.title || '';
                         document.querySelector('#goodbyeEmbedDescription').value = leaveMessage.embeds[0]?.description || '';
+                        document.querySelector('#goodbyeEmbedFooter').value = leaveMessage.embeds[0]?.footer?.text || '';
+                        document.querySelector('#goodbyeImageLink').value = leaveMessage.embeds[0]?.image?.url || '';
+
                         if (leaveMessage.embeds[0]?.thumbnail?.url) {
                             document.querySelector('#goodbyeShowAvatar').checked = true;
                         }
@@ -314,12 +369,12 @@
                     channelsData.channels.forEach(channel => {
                         const welcomeOption = document.createElement('option');
                         welcomeOption.value = channel.id;
-                        welcomeOption.textContent = channel.name;
+                        welcomeOption.textContent = "# " + channel.name;
                         welcomeChannelSelect.appendChild(welcomeOption);
 
                         const goodbyeOption = document.createElement('option');
                         goodbyeOption.value = channel.id;
-                        goodbyeOption.textContent = channel.name;
+                        goodbyeOption.textContent = "# " + channel.name;
                         goodbyeChannelSelect.appendChild(goodbyeOption);
 
                         if (channel.id === joinChannelId) {

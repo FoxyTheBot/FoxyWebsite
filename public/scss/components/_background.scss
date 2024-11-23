@@ -1,8 +1,9 @@
 html {
     background: url("/assets/images/background.png"), linear-gradient(90deg, #0f1923, #0f1923) !important;
     background-size: cover !important;
-    width: 100%;
+    background-attachment: fixed !important;
     height: 100%;
+    width: 100%;
 }
 
 body {

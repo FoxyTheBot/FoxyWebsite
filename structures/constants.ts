@@ -10,7 +10,7 @@ export const constants = {
     /* Redirects */
 
     DASHBOARD: "/br/dashboard",
-    SERVER_MODULES: (guildId: string, module: string) => `/br/servers/${guildId}/modules/${module}`,
+    SERVER_MODULES: (guildId: string, module: string) => `/br/servers/${guildId}/${module}`,
     SERVER_SETTINGS: (guildId: string) => `/br/servers/${guildId}`,
     USER_DECORATIONS: "/br/user/decorations",
     USER_STORE: "/br/store",

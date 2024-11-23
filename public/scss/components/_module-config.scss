@@ -12,7 +12,7 @@
     .module-title {
         color: #e7385d;
         font-size: 2rem;
-        font-family: var(--font-family);
+        font-family: sans-serif;
         margin: 2rem 0 1rem;
         text-align: center;
     }
@@ -20,7 +20,7 @@
     .module-description {
         color: #fafafa;
         font-size: 1rem;
-        font-family: var(--font-family);
+        font-family: sans-serif;
         text-align: center;
         margin-left: 0rem;
         margin-right: 0;
@@ -48,7 +48,7 @@
                 .module-name {
                     color: #fafafa;
                     font-size: 1rem;
-                    font-family: var(--font-family);
+                    font-family: sans-serif;
                     font-weight: 700;
                     margin-right: 1rem;
                 }
@@ -66,13 +66,17 @@
                     .toggleable-option-title {
                         color: #fafafa;
                         font-size: 1rem;
-                        font-family: var(--font-family);
+                        font-family: sans-serif;
                         margin-bottom: 0.5rem;
                     }
 
                     .toggleable-option {
                         margin-top: 0.5rem;
                         margin-right: 0;
+
+                        &.embed-config {
+                            margin-top: 2rem;
+                        }
                     }
 
                     .toggleable-option:not(:last-child) {
@@ -123,13 +127,13 @@ form {
 
     select {
         display: block;
-        padding: 10px 20px;
+        padding: 1rem;
         border-radius: 5px;
         background-color: #fff;
         border: 2px solid #ccc;
         outline: none;
         font-family: sans-serif;
-        font-size: 14px;
+        font-size: 15px;
         margin-bottom: 10px;
         margin-top: 0.625rem;
         box-sizing: border-box;
@@ -146,13 +150,13 @@ form {
 
     input {
         display: block;
-        padding: 10px 20px;
+        padding: 10px 10px;
         border-radius: 5px;
         background-color: #fff;
         border: 2px solid #ccc;
         outline: none;
         font-family: sans-serif;
-        font-size: 19px;
+        font-size: 15px;
         margin-bottom: 10px;
         margin-top: 0.625rem;
         box-sizing: border-box;
@@ -165,12 +169,12 @@ form {
 
     textarea {
         display: block;
-        padding: 12px 20px;
+        padding: 12px 10px;
         border-radius: 8px;
         background-color: #f9f9f9;
         border: 2px solid #d1d1d1;
         outline: none;
-        font-family: 'Arial', sans-serif;
+        font-family: sans-serif;
         font-size: 15px;
         margin-bottom: 12px;
         margin-top: 0.625rem;
@@ -326,7 +330,7 @@ form {
 .save-message {
     color: #fff;
     font-size: 0.925rem;
-    font-family: var(--font-family);
+    font-family: sans-serif;
     text-align: center;
     margin-top: 0rem;
 }
@@ -338,7 +342,7 @@ form {
 }
 
 .embedColor {
-    width: 50%;
+    width: 10%;
     height: 40px;
     border: 2px solid #ccc;
     border-radius: 5px;
@@ -390,4 +394,30 @@ form {
         }
     }
 
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(-10px, 0);
+    }
+
+    50% {
+        transform: translate(10px, 0);
+    }
+
+    75% {
+        transform: translate(-10px, 0);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
 }

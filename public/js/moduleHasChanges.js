@@ -1,15 +1,15 @@
+const actionsWrapper = document.querySelector('.actions-wrapper');
+
+function showActionsWrapper() {
+    if (!actionsWrapper.classList.contains('show')) {
+        actionsWrapper.classList.add('show');
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.config-module-form');
-    const actionsWrapper = document.querySelector('.actions-wrapper');
 
     if (form && actionsWrapper) {
-        const showActionsWrapper = () => {
-            if (!actionsWrapper.classList.contains('show')) {
-                actionsWrapper.classList.add('show');
-            }
-        };
-
-
         form.addEventListener('input', showActionsWrapper);
         form.addEventListener('change', showActionsWrapper);
 
@@ -17,3 +17,5 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Formulário ou wrapper de ações não encontrado.');
     }
 });
+
+export { showActionsWrapper };

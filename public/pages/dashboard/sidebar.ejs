@@ -8,7 +8,10 @@
 
 <!-- Sidebar -->
 <div class="left-sidebar" id="sidebar">
-  <a href="/"> <img src="/assets/images/logo.png" alt="Foxy" class="logo"> </a>
+  <a href="/"> <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png?size=2048" alt="Foxy"
+      class="logo avatar"> </a>
+  <h1 class="section-title greetings">Olá, <%= user.global_name || user.username %>
+  </h1>
   <hr class="separator">
   <div class="entries">
     <h2 class="section-title">Seus Servidores</h2>

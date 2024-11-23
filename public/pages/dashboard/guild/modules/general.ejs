@@ -22,12 +22,15 @@
         gtag('js', new Date());
         gtag('config', 'G-E3J7N4BP8L');
     </script>
-    <script src="/js/moduleHasChanges.js" defer></script>
+    <script src="/js/moduleHasChanges.js" defer type="module">
+        import { showActionsWrapper } from '/js/moduleHasChanges.js';
+    </script>
 </head>
 
 <body>
     <div class="ad vertical">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
             crossorigin="anonymous"></script>
         <ins id="adBanner" class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
             data-ad-client="ca-pub-7726590371480649" data-ad-slot="4619028248"></ins>
@@ -37,7 +40,6 @@
     </div>
 
     <%- include('../sidebar') %>
-
         <div class="config-wrapper">
 
             <h1 class="module-title">Configurações gerais</h1>
@@ -94,7 +96,9 @@
         <div id="loadingOverlay" class="loading-overlay">
             <%- include('../../../global/loading') %>
         </div>
-        <script>
+        <script type="module">
+            import { showActionsWrapper } from '/js/moduleHasChanges.js'
+
             window.addEventListener('load', async function () {
                 const loadingOverlay = document.getElementById('loadingOverlay');
                 const botPrefix = document.getElementById('botPrefix');
@@ -153,9 +157,11 @@
 
                         const removeBtn = document.createElement('button');
                         removeBtn.innerText = 'Remover';
+                        removeBtn.className = 'remove-channel';
                         removeBtn.onclick = function () {
                             document.getElementById('selectedChannels').removeChild(channelDisplay);
                             blockedChannelsArray = blockedChannelsArray.filter(id => id !== channelId);
+                            showActionsWrapper();
                         };
 
                         channelDisplay.appendChild(removeBtn);
