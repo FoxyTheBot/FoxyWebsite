@@ -20,7 +20,6 @@ $default-color: #e7385d;
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
-    box-shadow: 0 0 2px;
     scrollbar-color: #4f545c #36393f;
     z-index: 900;
     scrollbar-color: $default-color $sidebar-background;
@@ -68,7 +67,7 @@ $default-color: #e7385d;
 
         &.greetings {
             text-align: center !important;
-            margin: 1rem 0 0 0;
+            margin: 1rem 0 0 0 !important;
         }
     }
 
