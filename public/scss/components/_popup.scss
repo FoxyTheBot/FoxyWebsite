@@ -41,7 +41,7 @@
 
         .content {
             padding: 1rem;
-            
+
             .title {
                 text-align: center;
                 margin-bottom: 1rem;
@@ -95,7 +95,7 @@
             color: #ff4655;
             font-size: 24px;
             margin-left: 5px;
-            font-family: var(--font-family);
+            font-family: var(--reimu-default-font-family);
             margin-bottom: 10px;
         }
 
@@ -108,11 +108,11 @@
             margin-right: 0rem;
         }
 
-        
+
         h3 {
             color: #000;
             font-size: 15px;
-            font-family: var(--font-family);
+            font-family: var(--reimu-default-font-family);
             margin-bottom: 5px;
             margin-top: 3%;
             margin-right: 12%;
@@ -154,6 +154,7 @@
         padding: 10px;
         margin: 25% auto;
     }
+
     .popup-content h2 {
         font-size: 18px;
     }
@@ -177,7 +178,7 @@
         background-color: #359553;
         border: none;
         outline: none;
-        font-family: var(--font-family);
+        font-family: var(--reimu-default-font-family);
         font-size: 14px;
         margin-bottom: 0rem;
         box-sizing: border-box;

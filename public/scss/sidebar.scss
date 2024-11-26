@@ -13,7 +13,6 @@ $default-color: #e7385d;
     top: 0;
     bottom: 0;
     left: 0;
-    padding: 0.5rem;
     width: 330px;
     background-color: $sidebar-background;
     transition: left 0.3s ease;
@@ -76,6 +75,7 @@ $default-color: #e7385d;
         width: 150px;
         margin: 1rem auto 10px;
         margin-bottom: 5px;
+        margin-top: 1rem !important;
         display: block;
 
         &.avatar {

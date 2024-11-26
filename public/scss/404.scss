@@ -21,7 +21,7 @@ main .store_image {
 main h1 {
     color: #e7385d;
     font-size: 25px;
-    font-family: "Poppins";
+    font-family: var(--reimu-default-font-family);
 
     margin-top: 5%;
 }
@@ -75,7 +75,7 @@ main .ad {
 main .daily-page .title {
     color: #e7385d;
     font-size: 40px;
-    font-family: "Poppins";
+    font-family: var(--reimu-default-font-family);
     margin-top: -60%;
     margin-left: 30%;
 }
@@ -146,7 +146,7 @@ main h3 {
 main h4 {
     color: #fff;
     font-size: 15px;
-    font-family: "Poppins";
+    font-family: var(--reimu-default-font-family);
     margin-left: 5px;
 }
 
@@ -173,7 +173,7 @@ main h2 {
 h1,
 h2,
 h3 {
-    font-family: "Poppins" !important;
+    font-family: var(--reimu-default-font-family) !important;
 }
 
 @media (max-width: 768px) {
@@ -200,6 +200,7 @@ h3 {
         margin-right: 0;
         margin-bottom: 10px;
     }
+
     main .products {
         flex-direction: column;
         margin-left: 0;
@@ -210,7 +211,8 @@ h3 {
         width: 100%;
     }
 
-    main .store_image, main .daily_image {
+    main .store_image,
+    main .daily_image {
         width: 80%;
         height: auto;
         margin-top: 5%;
@@ -226,7 +228,9 @@ h3 {
         height: auto;
     }
 
-    main h2, main h3, main h4 {
+    main h2,
+    main h3,
+    main h4 {
         font-size: 16px;
     }
 }
@@ -252,7 +256,8 @@ h3 {
         width: 100%;
     }
 
-    main .store_image, main .daily_image {
+    main .store_image,
+    main .daily_image {
         width: 100%;
         height: auto;
     }
@@ -275,7 +280,9 @@ h3 {
         height: auto;
     }
 
-    main h2, main h3, main h4 {
+    main h2,
+    main h3,
+    main h4 {
         font-size: 14px;
     }
 }

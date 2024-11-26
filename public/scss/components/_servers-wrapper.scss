@@ -1,11 +1,10 @@
-
 .servers {
     display: flex;
     position: relative;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: -5rem;
-    margin-left: 18.6rem;
+    margin-left: 19.6rem;
     margin-right: 7.20rem;
 
     .server {
@@ -72,7 +71,7 @@
             color: #fafafa;
             text-align: center;
             text-decoration: none;
-            font-family: "Poppins";
+            font-family: var(--reimu-default-font-family);
             font-size: 0.95rem;
         }
 

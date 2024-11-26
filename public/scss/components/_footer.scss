@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 $footer-color: #ff4655;
-$footer-font-family: 'Poppins', sans-serif;
+$footer-font-family: var(--reimu-default-font-family);
 $default-color: #e7385d;
 $footer-add-color: #3ba55c;
 $footer-add-button-font-family: 'Roboto', sans-serif;
@@ -14,7 +14,7 @@ footer {
     margin-top: auto;
     padding: 16px 72px;
     overflow: hidden;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--reimu-default-font-family);
     position: relative;
     margin-top: auto;
     text-align: center;

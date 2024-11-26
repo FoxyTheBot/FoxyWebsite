@@ -21,7 +21,7 @@ main {
     h1 {
         color: #e7385d;
         font-size: 25px;
-        font-family: "Poppins";
+        font-family: var(--reimu-default-font-family);
         margin-top: 6rem !important;
     }
 
@@ -49,7 +49,7 @@ main {
 
     .daily-page {
         text-align: center;
-        margin-left: 26rem;
+        margin-left: 22rem;
         margin-right: 4rem;
         margin-top: -6rem;
         opacity: 1;
@@ -76,7 +76,7 @@ main {
         .title {
             color: #e7385d;
             font-size: 2.5rem;
-            font-family: var(--font-family);
+            font-family: var(--reimu-default-font-family);
             margin-top: -60%;
             margin-left: 30%;
         }
@@ -152,7 +152,7 @@ main h3 {
 main h4 {
     color: #fff;
     font-size: 15px;
-    font-family: "Poppins";
+    font-family: var(--reimu-default-font-family);
     margin-left: 5px;
 }
 
@@ -169,7 +169,7 @@ main h2 {
 h1,
 h2,
 h3 {
-    font-family: "Poppins" !important;
+    font-family: var(--reimu-default-font-family) !important;
 }
 
 @media (max-width: 768px) {

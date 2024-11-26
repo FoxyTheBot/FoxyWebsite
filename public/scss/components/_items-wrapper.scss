@@ -60,13 +60,13 @@
             .item-name {
                 color: #fff;
                 font-size: 1rem;
-                font-family: var(--font-family);
+                font-family: var(--reimu-default-font-family);
                 text-align: center;
 
                 &.limited {
                     color: #e7385d;
                 }
-                
+
             }
 
             h1 {
@@ -101,7 +101,7 @@
     margin: 1.25rem;
     padding: 0.625rem 1.25rem;
     color: #fff;
-    font-family: var(--font-family);
+    font-family: var(--reimu-default-font-family);
     font-size: 0.875rem;
     text-decoration: none;
     flex: 1 0 calc(25rem - 2rem);
@@ -155,7 +155,7 @@
 #countdown {
     color: #e7385d;
     font-size: 1.5rem;
-    font-family: var(--font-family);
+    font-family: var(--reimu-default-font-family);
     text-align: center;
     margin: 1.3rem 0;
     margin-left: 1rem;

@@ -37,7 +37,7 @@
             <img src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png">
             <div></div>
             <span>
-              <%= user.username.toUpperCase() %>
+              <%= user.global_name ? user.global_name : "@" + user.username %>
             </span>
           </a>
         </div>
@@ -47,7 +47,7 @@
             <a href="/br/dashboard" id="login-button">
               <div></div>
               <span>
-                Entrar
+                Login
               </span>
             </a>
           </div>
@@ -66,7 +66,7 @@
     <% if (user) { %>
       <a id="login-button" href="/br/dashboard">Dashboard</a>
       <% } else { %>
-        <a id="login-button" href="/br/dashboard">Entrar</a>
+        <a id="login-button" href="/br/dashboard">Login</a>
         <% } %>
   </div>
 </div>

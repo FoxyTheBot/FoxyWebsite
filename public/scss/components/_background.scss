@@ -1,5 +1,27 @@
+:root {
+    --reimu-primary-color: #0f1923;
+    --reimu-secondary-color: #0f1923;
+    --reimu-tertiary-color: #ff4655;
+    --reimu-button-color: #e7385d;
+    --reimu-button-hover-color: #e71946;
+    --reimu-server-card-color: #e85261;
+    
+    --reimu-default-button-font-family: Roboto,
+        sans-serif;
+    --reimu-default-font-family: Inter,
+        SF Pro,
+        Segoe UI,
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Helvetica Neue,
+        Helvetica,
+        Arial,
+        sans-serif
+}
+
 html {
-    background: linear-gradient(90deg, #0f1923, #0f1923) !important;
+    background: url("/assets/images/background.png"), linear-gradient(90deg, #0f1923, #0f1923) !important;
     background-size: cover !important;
     background-attachment: fixed !important;
     height: 100%;

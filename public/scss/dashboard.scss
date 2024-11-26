@@ -19,13 +19,13 @@
     --primary-color: #ff4655;
     --secondary-color: #eb5362;
     --background-color: linear-gradient(90deg, #0f1923, #0f1923);
-    --font-family: "Poppins";
+    --font-family: var(--reimu-default-font-family);
 }
 
 .page-title {
     color: #e7385d;
     font-size: 2rem;
-    font-family: var(--font-family);
+    font-family: var(--reimu-default-font-family);
     text-align: center;
     margin: 2rem 0 1rem 5rem;
     margin-left: 7em;
@@ -44,7 +44,7 @@ p {
 .remaining-time {
     color: #fff;
     font-size: 0.7545rem;
-    font-family: var(--font-family);
+    font-family: var(--reimu-default-font-family);
     text-align: center;
     margin-left: 13rem;
 }
@@ -68,7 +68,7 @@ main {
     .title {
         color: #e7385d;
         font-size: 2.5rem;
-        font-family: var(--font-family);
+        font-family: var(--reimu-default-font-family);
         text-align: center;
         margin-top: -3rem;
     }
@@ -84,7 +84,7 @@ main {
 .item-name {
     color: #fff;
     font-size: 2.5rem;
-    font-family: var(--font-family);
+    font-family: var(--reimu-default-font-family);
     text-align: center;
     margin-top: -3rem;
 }

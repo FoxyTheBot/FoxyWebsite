@@ -5,6 +5,18 @@
 @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
 @import "components/footer";
 
+:root {
+    --reimu-navbar-color: #ff4655;
+    --reimu-navbar-text-color: #f2f2f2;
+    --reimu-navbar-text-hover-color: #dddddd;
+    --reimu-navbar-font-size: 17px;
+    --reimu-navbar-font-family: var(--reimu-default-font-family);
+
+    /* Mobile Nav */
+    --reimu-mobile-nav-color: #24252a;
+    --reimu-mobile-nav-text-color: #edf0f1;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -41,15 +53,14 @@
 }
 
 nav.navigation-bar {
+    background-color: var(--reimu-navbar-color);
     top: 0;
     width: 100%;
     height: 46px;
-    background-color: #ff4655;
     text-shadow: 0 1px rgb(0 0 0 / 20%);
-    font-family: "Oswald" !important;
-    font-weight: 500;
+    font-family: var(--reimu-default-font-family);
+    font-weight: 501;
     font-size: 17px;
-    text-transform: uppercase;
     line-height: 1;
     z-index: 999;
     position: fixed;
@@ -62,10 +73,14 @@ nav.navigation-bar {
 
     .left-entries {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-around;
         flex-grow: 1;
         flex-flow: wrap;
         overflow: hidden;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: space-around;
+        align-items: flex-start;
     }
 
     .right-entries {
@@ -215,7 +230,7 @@ nav.navigation-bar {
     justify-content: center;
 
     a {
-        font-family: "Poppins", sans-serif;
+        font-family: var(--reimu-default-font-family);
         font-weight: 500;
         color: #edf0f1;
         text-decoration: none;
