@@ -4,6 +4,8 @@ function showNotification(type, message) {
 
     if (type === 'error') {
         notificationWrapper.classList.add('error');
+    } else {
+        notificationWrapper.classList.remove('error');
     }
     
     notificationWrapper.textContent = message;

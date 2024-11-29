@@ -44,7 +44,8 @@ main .meeting-2 {
     padding: 10px 20px;
     border: none;
     font-size: 17px;
-    color: #fff;
+    color: #ffffff;
+    background-color: #0569ff;
     border-radius: 7px;
     font-weight: 700;
     transition: 0.5s;
@@ -52,30 +53,28 @@ main .meeting-2 {
     font-family: var(--reimu-default-font-family);
     transition-property: box-shadow;
     cursor: pointer;
-}
 
-.shadow__btn {
-    background: rgb(0, 140, 255);
-    box-shadow: 0 0 25px rgb(0, 140, 255);
-}
+    &#add {
+        background-color: var(--reimu-primary-color);
 
-#add {
-    background: rgb(68, 192, 57);
-    box-shadow: 0 0 25px rgb(68, 192, 57);
-}
+        &:hover {
+            background-color: var(--reimu-button-hover-color);
+            transition: 0.5s;
+        }
 
-#add:hover {
-    box-shadow: 0 0 5px rgb(68, 192, 57),
-        0 0 25px rgb(68, 192, 57),
-        0 0 50px rgb(68, 192, 57),
-        0 0 100px rgb(68, 192, 57);
+        &:active {
+            background-color: var(--reimu-primary-color);
+            transition: 0.5s;
+        }
+
+        &:not(:hover) {
+            transition: 0.5s;
+        }
+    }
 }
 
 .shadow__btn:hover {
-    box-shadow: 0 0 5px rgb(0, 140, 255),
-        0 0 25px rgb(0, 140, 255),
-        0 0 50px rgb(0, 140, 255),
-        0 0 100px rgb(0, 140, 255);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 main {
@@ -107,7 +106,7 @@ main .foxy:hover {
 
 .features {
     padding: 30px;
-    background-color: #2b2d31;
+    background-color: #23272b;
     border-color: #000;
     position: relative;
     text-align: center;
@@ -121,7 +120,7 @@ main .foxy:hover {
         margin-top: 10px;
         color: #e7385d;
     }
-    
+
     p {
         font-family: var(--reimu-default-font-family);
         font-size: 15px;
@@ -146,9 +145,10 @@ main .foxy:hover {
         margin: 20px;
         padding: 2rem;
         border-radius: 10px;
-        background-color: #2b2d31;
+        background-color: #23272b;
         align-items: flex-start;
         margin-top: 1rem;
+
         &.right {
             flex-direction: row;
         }
@@ -221,7 +221,7 @@ main {
     .meeting {
         color: #fff;
         font-size: 40px;
-        font-family: 'Cookie';
+        font-family: var(--reimu-greetings-font);
         margin-left: 5px;
         margin-top: 1rem;
     }
@@ -229,26 +229,17 @@ main {
     .meeting-2 {
         color: #fff;
         font-size: 40px;
-        font-family: 'Cookie';
+        font-family: var(--reimu-greetings-font);
         margin-left: 5px;
         margin-top: 1px;
     }
 }
 
-.server-container {
-    margin-bottom: -5rem;
-}
-
 .server-card {
-    width: 200px;
-    height: 170px;
-    background-color: var(--reimu-server-card-color);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
     color: #fff;
     text-align: center;
-    margin-right: 20px;
     display: inline-block;
     vertical-align: top;
     transition: transform 0.3s;
@@ -262,6 +253,7 @@ main {
     .server-name {
         font-size: 20px;
         margin-bottom: -10px;
+        display: none;
     }
 
     h2 {
@@ -276,10 +268,6 @@ main {
 
     &:hover {
         transform: scale(1.1);
-    }
-
-    &:last-child {
-        margin-right: 1.1rem;
     }
 
     &:active {

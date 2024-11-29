@@ -22,6 +22,9 @@
     --font-family: var(--reimu-default-font-family);
 }
 
+html {
+    background: var(--reimu-background-color) !important;
+}
 .page-title {
     color: #e7385d;
     font-size: 2rem;

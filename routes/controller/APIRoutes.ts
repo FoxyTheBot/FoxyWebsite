@@ -6,6 +6,7 @@ import { logger } from '../../structures/logger';
 import { constants } from '../../structures/constants';
 import { FoxyGuild } from '../../types/Guild';
 import { ActionType } from '../../types/dashboardLog';
+import { ButtonStyle, ComponentType } from 'discord.js';
 class APIRoutes {
     router: express.Router;
     routerManager: RouterManager;
@@ -144,7 +145,7 @@ class APIRoutes {
         try {
             switch (module) {
                 case 'welcomeModule': {
-                    if (imageLink && !imageLinkRegex.test(imageLink)) {
+                    if (imageLink && imageLink  !== "" && !imageLinkRegex.test(imageLink)) {
                         return res.status(400).json({ message: 'Invalid image link.' });
                     }
 
@@ -163,9 +164,20 @@ class APIRoutes {
                                 footer: embedFooter ? { text: this.replacePlaceholders(embedFooter, placeholders) } : null
                             },
                         ].filter((embed) => embed.title || embed.description || embed.fields.length > 0),
-                        components: buttons?.length
-                            ? [{ type: 1, components: buttons }]
-                            : [],
+                        components: [{
+                            type: ComponentType.ActionRow,
+                            components: [{
+                                type: ComponentType.Button,
+                                disabled: true,
+                                label: "Mensagem enviada pelo painel",
+                                emoji: {
+                                    id: "1131035090277896232"
+                                },
+                                style: ButtonStyle.Secondary,
+                                url: null,
+                                custom_id: "im_gonna_highway_to_hell", // This is a joke, don't take it seriously
+                            }]
+                        }]
                     };
 
                     const joinChannel = welcomeChannel || guildData.GuildJoinLeaveModule.joinChannel;
@@ -181,7 +193,7 @@ class APIRoutes {
                 }
 
                 case 'goodbyeModule': {
-                    if (goodbyeImageLink && !imageLinkRegex.test(goodbyeImageLink)) {
+                    if (goodbyeImageLink && goodbyeImageLink !== "" && !imageLinkRegex.test(goodbyeImageLink)) {
                         return res.status(400).json({ message: 'Invalid image link.' });
                     }
                     const leaveMessage = {
@@ -199,6 +211,20 @@ class APIRoutes {
                                 footer: embedFooter ? { text: this.replacePlaceholders(goodbyeEmbedFooter, placeholders) } : null
                             },
                         ].filter((embed) => embed.title || embed.description || embed.fields.length > 0),
+                        components: [{
+                            type: ComponentType.ActionRow,
+                            components: [{
+                                type: ComponentType.Button,
+                                disabled: true,
+                                label: "Mensagem enviada pelo painel",
+                                emoji: {
+                                    id: "1131035090277896232"
+                                },
+                                style: ButtonStyle.Secondary,
+                                url: null,
+                                custom_id: "im_gonna_highway_to_hell", // This is a joke, don't take it seriously
+                            }]
+                        }]
                     };
 
                     const leaveChannel = goodbyeChannel || guildData.GuildJoinLeaveModule.leaveChannel;

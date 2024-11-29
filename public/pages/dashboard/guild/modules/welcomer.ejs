@@ -23,6 +23,10 @@
         gtag('config', 'G-E3J7N4BP8L');
     </script>
     <script src="/js/moduleHasChanges.js" defer type="module"></script>
+    <script src="/js/jsonImport/importJson.js" defer type="module"></script>
+    <script src="/js/popupHandler.js" defer type="module"></script>
+    <script src="/js/updateBotImage.js" defer type="module"></script>
+    <script src="/js/welcomerImageVerify.js" defer type="module"></script>
 </head>
 
 <body>
@@ -31,17 +35,65 @@
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
             crossorigin="anonymous"></script>
         <ins id="adBanner" class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
-            data-ad-client="ca-pub-7726590371480649" data-ad-slot="4619028248"></ins>
+            data-ad-client="ca-pub-7726590371480649" data-ad-slot="4619028248">
+        </ins>
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
     <%- include('../sidebar') %>
+        <div id="popup" class="popup-wrapper hidden">
+            <div class="popup">
+                <div class="content">
+                    <h2 class="title">Importar JSON</h2>
+                    <p class="description" style="text-align: center;">Importe embeds em JSON de outros bots para
+                        funcionar com a Foxy!
+                        <br><br>Campos incompatíveis serão removidos durante a importação.
+                    </p>
+                </div>
+                <form id="importForm" style="width: 100%;" data-gtm-form-interact-id="0">
+                    <div class="form-content">
+                        <input type="hidden" name="backgroundId" id="backgroundId">
+
+                        <div class="form-group" style="display: flex;align-items: center;gap: 51%;width: 100%;">
+                            <div>
+                                <label for="botSelect">Selecione o bot:</label>
+                                <select id="botSelect" name="botSelect" required="" onchange="updateBotImage()"
+                                    style="width: 250%;" data-gtm-form-interact-field-id="0">
+                                    <option value="" disabled="" selected="">Escolha um bot</option>
+                                    <option value="loritta">Loritta</option>
+                                    <option value="carl-bot">Carl-bot</option>
+                                </select>
+                            </div>
+
+                            <div id="botImageContainer" style="text-align: center;">
+                                <img id="botImage" src="https://cdn.discordapp.com/embed/avatars/0.png"
+                                    style="max-width: 85px;display: block;border-radius: 50%;">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jsonInput">Cole o JSON:</label>
+                            <textarea id="jsonInput" name="jsonInput" rows="8" placeholder="Cole o JSON aqui..."
+                                required=""></textarea>
+                        </div>
+
+                    </div>
+                    <div class="popup-buttons">
+                        <button type="button" id="cancel" onclick="hidePopup()"
+                            class="popup-button cancel">Fechar</button>
+                        <button type="button" id="import" onclick="importJsonFromForm()"
+                            class="popup-button">Importar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
         <div class="config-wrapper">
             <h1 class="module-title">Mensagens de Entrada/Saída</h1>
             <p class="module-description">Configure a Foxy para notificar quando um membro entra ou sai do seu servidor!
             </p>
-
             <div class="config-module-wrapper">
                 <form action="/api/v1/servers/<%= guildId %>/modules/welcomer" method="POST" class="config-module-form">
                     <div class="config-module">
@@ -55,13 +107,18 @@
                             <div class="toggleable-option">
                                 <label class="toggleable-option-title">Selecione um canal de boas-vindas</label>
                                 <select name="welcomeChannel" id="welcomeChannel">
-                                    <option value="" disabled selected>Selecione um canal</option>
                                 </select>
                             </div>
 
                             <div class="toggleable-option">
                                 <label class="module-name">Mensagem de boas-vindas</label>
-                                <br><br>
+                                <div class="button-wrapper">
+                                    <button type="button" id="importJsonButton" class="btn"
+                                        onclick="showPopup()">Importar JSON</button>
+                                    <button id="welcomeTestButton" type="button">Testar Mensagem</button>
+
+                                </div>
+                                <br>
                                 <div>
                                     <label class="toggleable-option-title">Conteúdo da mensagem</label>
                                     <input type="text" name="messageContent" id="messageContent"
@@ -102,7 +159,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <button id="welcomeTestButton" class="test-btn" type="button">Testar</button>
                         </div>
                     </div>
 
@@ -166,23 +222,8 @@
         <div id="loadingOverlay" class="loading-overlay">
             <%- include('../../../global/loading') %>
         </div>
-        <script>
-            document.getElementById('imageLink').addEventListener('input', function (event) {
-                const imageRegex = /\.(jpeg|jpg|png|gif|bmp|webp|svg)$/i;
-                const input = event.target.value;
-                const imageLink = document.getElementById('imageLink');
-                const saveButton = document.getElementById('saveButton');
 
-                if (input && !imageRegex.test(input)) {
-                    imageLink.style.border = '2px solid red';
-                    saveButton.disabled = true;
-                } else {
-                    imageLink.style.border = 'none';
-                    saveButton.disabled = false;
-                }
-            });
-        </script>
-
+        <div id="notification" class="notification"></div>
 
         <script>
             const imageLinkRegex = /https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp)/;
@@ -198,8 +239,16 @@
                 const testAction = `/api/v1/servers/${guildId}/modules/welcomer/test/module/goodbyeModule`;
 
                 const formData = new FormData(form);
-                if (!imageLinkRegex.test(formData.get('goodbyeImageLink'))) {
-                    alert('Link da imagem inválido');
+
+                if (!imageLinkRegex.test(formData.get('goodbyeImageLink')) && formData.get('goodbyeImageLink')) {
+                    const imageLink = document.getElementById('goodbyeImageLink');
+                    imageLink.style.border = '2px solid red';
+                    imageLink.classList.add('shake');
+
+                    setTimeout(() => {
+                        imageLink.classList.remove('shake');
+                    }, 500);
+
                     return;
                 }
 
@@ -239,7 +288,7 @@
                 const testAction = `/api/v1/servers/${guildId}/modules/welcomer/test/module/welcomeModule`;
 
                 const formData = new FormData(form);
-                if (!imageLinkRegex.test(formData.get('imageLink'))) {
+                if (!imageLinkRegex.test(formData.get('imageLink')) && formData.get('imageLink')) {
                     const imageLink = document.getElementById('imageLink');
                     imageLink.style.border = '2px solid red';
                     imageLink.classList.add('shake');
@@ -371,7 +420,6 @@
                         welcomeOption.value = channel.id;
                         welcomeOption.textContent = "# " + channel.name;
                         welcomeChannelSelect.appendChild(welcomeOption);
-
                         const goodbyeOption = document.createElement('option');
                         goodbyeOption.value = channel.id;
                         goodbyeOption.textContent = "# " + channel.name;
@@ -385,6 +433,9 @@
                             goodbyeOption.selected = true;
                         }
                     });
+
+                    welcomeChannelSelect.value = joinChannelId || channelsData.channels[0]?.id;
+                    goodbyeChannelSelect.value = leaveChannelId || channelsData.channels[0]?.id;
 
                 } catch (error) {
                     console.error('Error fetching data:', error);

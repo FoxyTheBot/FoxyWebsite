@@ -5,8 +5,9 @@
     margin-left: 25rem;
     margin-bottom: 3rem;
     font-family: sans-serif;
-    background-color: #f5f5f5;
-    color: #000;
+    background-color: #23272b;
+    border: 1px solid #23282c;
+    color: #fff;
     transition: 0.3s;
     box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
     margin-right: 8rem;
@@ -29,18 +30,19 @@
         justify-content: center;
         border: none;
         outline: none;
-        font-family: Roboto, sans-serif;
+        font-family: var(--reimu-default-font-family);
         line-height: 20px;
         font-size: 17px;
         color: #fff;
         min-width: 36px;
+        font-weight: var(--reimu-button-font-weight);
         margin-left: 1.5%;
         padding: .55rem 1rem;
         box-sizing: border-box;
-        border-radius: 4px;
+        border-radius: var(--reimu-button-border-radius);
         cursor: pointer;
         text-decoration: none;
-        background: #5865f2;
+        background: var(--reimu-button-color);
         animation: float 5s ease-in-out infinite;
     }
 }
@@ -107,5 +109,5 @@
 .cirno-card-details {
     font-size: 1rem;
     font-family: var(--reimu-default-font-family);
-    color: #242424;
+    color: #fff;
 }

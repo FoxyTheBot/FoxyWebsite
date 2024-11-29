@@ -18,4 +18,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+window.showActionsWrapper = showActionsWrapper;
 export { showActionsWrapper };

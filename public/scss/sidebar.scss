@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-$sidebar-background: #313338;
+$sidebar-background: #3a4149;
 $separator-color: #2f3136;
 $default-color: #e7385d;
 
@@ -21,6 +21,7 @@ $default-color: #e7385d;
     scrollbar-width: thin;
     scrollbar-color: #4f545c #36393f;
     z-index: 900;
+    border: 1px solid #23282c;
     scrollbar-color: $default-color $sidebar-background;
 
     .entry {

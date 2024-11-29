@@ -30,7 +30,7 @@
     }
 
     .popup {
-        background-color: #fff;
+        background-color: var(--reimu-background-color);
         margin: 10% auto;
         width: 80%;
         border-radius: 5px;
@@ -55,27 +55,35 @@
             width: 100%;
         }
 
+        #importForm {
+            padding: 0rem !important;
+        }
+
+        .form-content {
+            padding: 1rem;
+            font-family: var(--reimu-default-font-family);
+        }
+
         .popup-buttons {
             padding: 1em;
-            background-color: #e6e6e6;
+            background-color: #1e2328;
             display: flex;
             justify-content: flex-end;
             gap: 1em;
             border-radius: 0px 0px 7px 7px;
 
-            button {
-                background-color: #359553;
+            .popup-button {
+                background-color: var(--reimu-button-color);
                 color: white;
                 border: none;
-                padding: 10px 20px;
-                border-radius: 5px;
+                padding: var(--reimu-button-padding);
+                border-radius: var(--reimu-button-border-radius);
                 cursor: pointer;
                 font-size: 14px;
                 transition: background-color 0.3s ease, transform 0.2s ease;
 
                 &:hover {
-                    background-color: #2f7e46;
-                    transform: translateY(-2px);
+                    background-color: var(--reimu-button-hover-color);
                 }
 
                 &:disabled {
@@ -84,8 +92,18 @@
                 }
 
                 &:active {
-                    transform: translateY(0);
                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+
+                &.cancel {
+                    background-color: transparent;
+                    color: #fff;
+                    border: 1px solid #616161;
+
+                    &:hover {
+                        background-color: #555555;
+                        color: #fff;
+                    }
                 }
             }
 
@@ -100,7 +118,7 @@
         }
 
         .description {
-            color: #000;
+            color: #ffffff;
             font-size: 15px;
             margin-bottom: 10px;
             margin-left: 0rem;
@@ -110,7 +128,7 @@
 
 
         h3 {
-            color: #000;
+            color: #ffffff;
             font-size: 15px;
             font-family: var(--reimu-default-font-family);
             margin-bottom: 5px;

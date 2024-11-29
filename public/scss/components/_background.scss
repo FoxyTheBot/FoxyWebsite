@@ -1,31 +1,44 @@
 :root {
-    --reimu-primary-color: #0f1923;
-    --reimu-secondary-color: #0f1923;
-    --reimu-tertiary-color: #ff4655;
+    /* Primary Colors */
+    --reimu-primary-color: #e7385d;
+    --reimu-secondary-color: #ff4655;
+    --reimu-tertiary-color: #0f1923;
+
+    /* Backgrounds and Gradients */
+    --reimu-background-color: #2e343a;
+    --reimu-loading-overlay-color: rgba(29, 29, 29, 0.8);
+
+    /* Buttons */
     --reimu-button-color: #e7385d;
     --reimu-button-hover-color: #e71946;
+
+    /* Specific Element Colors */
     --reimu-server-card-color: #e85261;
-    
-    --reimu-default-button-font-family: Roboto,
-        sans-serif;
-    --reimu-default-font-family: Inter,
-        SF Pro,
-        Segoe UI,
-        Roboto,
-        Oxygen,
-        Ubuntu,
-        Helvetica Neue,
-        Helvetica,
-        Arial,
-        sans-serif
+    --reimu-backdrop-blur: blur(12px);
+
+    /* Fonts */
+    --reimu-greetings-font: "Cookie";
+    --reimu-default-button-font-family: Roboto, sans-serif;
+    --reimu-default-font-family: Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
+
+    /* Buttons */
+    --reimu-button-color: #e7385d;
+    --reimu-button-hover-color: #e71946;
+    --reimu-button-active-color: #e7385d;
+    --reimu-button-font-size: 14px;
+    --reimu-button-font-weight: 500;
+    --reimu-button-border-radius: 2px;
+    --reimu-button-padding: 10px 20px;
 }
 
 html {
-    background: url("/assets/images/background.png"), linear-gradient(90deg, #0f1923, #0f1923) !important;
+    background: url("/assets/images/background.png"), var(--reimu-background-color) !important;
     background-size: cover !important;
     background-attachment: fixed !important;
     height: 100%;
     width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: var(--reimu-primary-color) #0f1923;
 }
 
 body {

@@ -44,7 +44,7 @@ export default class RestManager {
         const filteredContent: any = {
             content: jsonContent.content || null,
             embeds: jsonContent.embeds || [],
-            components: this.normalizeComponents(jsonContent.components || []),
+            components: jsonContent.components || [],
         };
 
         try {
