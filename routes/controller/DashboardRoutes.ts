@@ -4,6 +4,7 @@ import { database } from '../../client/app';
 import RouterManager from './RouterManager';
 import { TransactionType } from '../../types/Transactions';
 import { constants } from '../../structures/constants';
+import { logger } from '../../structures/logger';
 
 class DashboardRoutes {
     router: express.Router;
@@ -22,7 +23,7 @@ class DashboardRoutes {
         this.router.get("/:lang/store/data", this.routerManager.isAuthenticated, this.getStoreData);
         this.router.get("/:lang/dashboard/subscriptions/data", this.routerManager.isAuthenticated, this.getSubscriptionsData);
         this.router.get("/:lang/user/layouts", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/user/inventory/layouts.ejs"));
-       
+
         /* Save data */
         this.router.post("/:lang/store/confirm/:id", this.routerManager.isAuthenticated, this.confirmStore);
         this.router.get("/:lang/decorations/change/:id", this.routerManager.isAuthenticated, this.changeDecoration);
@@ -59,11 +60,11 @@ class DashboardRoutes {
             const layout = await database.getLayout(req.params.id);
 
             if (!layout) {
-                return this.routerManager.redirectTo(res, constants.USER_STORE);
+                return res.redirect(constants.USER_STORE);
             }
 
             if (!userData.userProfile.layoutList.includes(layout.id)) {
-                return this.routerManager.redirectTo(res, constants.USER_STORE);
+                return res.redirect(constants.USER_STORE);
             }
 
             userData.userProfile.layout = layout.id;
@@ -109,10 +110,12 @@ class DashboardRoutes {
             );
 
             const premiumType = userData.userPremium.premiumType;
-            if (premiumType === "2" || premiumType === "3" || premiumType === "Foxy Premium II" || premiumType === "Foxy Premium III") {
-                storeDecorations.forEach(decoration => {
-                    decoration.cakes = decoration.cakes * 0.5;
-                });
+            if (userData.userPremium.premiumDate > Date.now()) {
+                if (premiumType === "2" || premiumType === "3" || premiumType === "Foxy Premium II" || premiumType === "Foxy Premium III") {
+                    storeDecorations.forEach(decoration => {
+                        decoration.cakes = decoration.cakes * 0.5;
+                    });
+                }
             }
 
             const responseData = {
@@ -183,12 +186,39 @@ class DashboardRoutes {
             const item = decoration || background || layout;
             const itemType = decoration ? 'decoration' : background ? 'background' : layout ? 'layout' : null;
 
+
+            function isUserPremium(userData) {
+                if (userData.userPremium.premiumDate > Date.now()) {
+                    return {
+                        isPremium: true,
+                        premiumType: userData.userPremium.premiumType
+                    }
+                } else {
+                    return {
+                        isPremium: false,
+                        premiumType: null
+                    }
+                }
+            }
+
+            if (itemType === 'decoration' && isUserPremium(userData).isPremium) {
+                if (userData.userPremium.premiumType === "2" ||
+                    userData.userPremium.premiumType === "3" ||
+                    userData.userPremium.premiumType === "Foxy Premium II" ||
+                    userData.userPremium.premiumType === "Foxy Premium III") {
+                    item.cakes = item.cakes * 0.5;
+                    logger.info(`User ${userId} has a premium account and received a 50% discount on the item ${item.id}`);
+                }
+            }
+
             if (!item) {
-                return this.routerManager.redirectTo(res, constants.USER_STORE);
+                logger.info(`User ${userId} tried to purchase an invalid item from the store`);
+                return res.redirect(constants.USER_STORE);
             }
 
             if (userData.userCakes.balance < item.cakes) {
-                return this.routerManager.redirectTo(res, constants.USER_STORE);
+                logger.info(`User ${userId} tried to purchase an item without enough cakes`);
+                return res.redirect(constants.USER_STORE);
             }
 
             const alreadyPurchased = (itemType === 'decoration' && userData.userProfile.decorationList.includes(item.id)) ||
@@ -196,10 +226,12 @@ class DashboardRoutes {
                     (itemType === 'layout' && userData.userProfile.layoutList.includes(item.id)));
 
             if (alreadyPurchased) {
-                return this.routerManager.redirectTo(res, constants.USER_STORE);
+                logger.info(`User ${userId} tried to purchase an item they already own`);
+                return res.redirect(constants.USER_STORE);
             }
 
             userData.userCakes.balance -= item.cakes;
+
             if (itemType === 'decoration') {
                 userData.userProfile.decorationList.push(item.id);
             } else if (itemType === 'background') {
@@ -231,11 +263,11 @@ class DashboardRoutes {
             const background = await database.getBackground(req.params.id);
 
             if (!background) {
-                return this.routerManager.redirectTo(res, constants.USER_STORE);
+                return res.redirect(constants.USER_STORE);
             }
 
             if (!userData.userProfile.backgroundList.includes(background.id)) {
-                return this.routerManager.redirectTo(res, constants.USER_STORE);
+                return res.redirect(constants.USER_STORE);
             }
 
             userData.userProfile.background = background.id;
@@ -259,11 +291,11 @@ class DashboardRoutes {
             }
 
             if (!decoration) {
-                return this.routerManager.redirectTo(res, constants.USER_STORE);
+                return res.redirect(constants.USER_STORE);
             }
 
             if (!userData.userProfile.decorationList.includes(decoration.id)) {
-                return this.routerManager.redirectTo(res, constants.USER_STORE);
+                return res.redirect(constants.USER_STORE);
             }
 
             userData.userProfile.decoration = decoration.id;
@@ -282,7 +314,7 @@ class DashboardRoutes {
             const daily = userData.userCakes.lastDaily;
 
             if (daily !== null && timeout - (Date.now() - daily) > 0) {
-                return this.routerManager.redirectTo(res, constants.DASHBOARD);
+                return res.redirect(constants.DASHBOARD);
             }
 
             let amount = Math.floor(Math.random() * 8000);
