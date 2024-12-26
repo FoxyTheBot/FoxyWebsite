@@ -35,5 +35,5 @@ interface guildSettings {
 interface dashboardLogs {
     authorId: string;
     actionType: string;
-    date: Date;
+    date: BigInt;
 }

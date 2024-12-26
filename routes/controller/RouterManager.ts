@@ -114,7 +114,7 @@ export default class RouterManager {
         const log = {
             authorId,
             actionType: action.toString(),
-            date: new Date()
+            date: BigInt(Date.now())
         }
 
         const guildData = await database.getGuild(guildId);

@@ -106,9 +106,23 @@ const keySchemaForGuilds = new mongoose.Schema({
 const dashboardLogsSchema = new mongoose.Schema({
     authorId: String,
     actionType: String,
-    date: Date
-}, { versionKey: false, id: false });
+    date: {
+        type: mongoose.Schema.Types.BigInt,
+        get: (value: BigInt) => Number(value),
+        set: (value: any) => BigInt(value)
+    }
+}, { versionKey: false, id: false, _id: false });
 
+dashboardLogsSchema.set('toJSON', {
+    transform: (doc: any, ret: any) => {
+      if (ret.date && typeof ret.date === 'bigint') {
+        ret.date = Number(ret.date);
+      }
+      return ret;
+    }
+  });
+
+  
 const guildSchema = new mongoose.Schema({
     _id: String,
     GuildJoinLeaveModule: {
@@ -132,7 +146,7 @@ const guildSchema = new mongoose.Schema({
         deleteMessageIfCommandIsExecuted: Boolean,
         usersWhoCanAccessDashboard: Array,
     },
-    dashboardLogs: [dashboardLogsSchema]
+    dashboardLogs: [dashboardLogsSchema],
 }, { versionKey: false, id: false });
 
 /* End of guild related schemas */
