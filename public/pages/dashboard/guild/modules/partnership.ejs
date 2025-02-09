@@ -3,184 +3,151 @@
         // Get rick rolled lol
         window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     </script>
-<% } %>
+    <% } %>
 
-<DOCTYPE html>
-<html>
-    
-<head>
-    <link rel="canonical" href="https://foxybot.win/">
-  
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
-      <link rel="stylesheet" href="/styles/loading.css" type="text/css">
-      <link rel="stylesheet" href="/styles/header.css" type="text/css">
-      <link rel="icon" href="/assets/images/foxycake.png">
-      <title>Foxy | Painel de Controle</title>
-  
-      <!-- Google Ads -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
-          crossorigin="anonymous"></script>
-  
-      <!-- Google Analytics -->
-       
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
-      <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag() { dataLayer.push(arguments); }
-          gtag('js', new Date());
-          gtag('config', 'G-E3J7N4BP8L');
-      </script>
-      <script src="https://unpkg.com/htmx.org"></script>
-  </head>
-  
-  <body>
-    <%- include('../sidebar') %>
-    <div class="config-wrapper">
+        <DOCTYPE html>
+            <html>
 
-        <h1 class="module-title">Gerenciar Parceria</h1>
-        <p class="module-description">Configure o que a Patchouli pode ou não fazer no seu servidor!</p>
+            <head>
+                <link rel="canonical" href="https://foxybot.win/">
 
-        <div class="config-module-wrapper">
-            <form action="/api/v1/servers/<%= guildId %>/modules/partnership" method="POST" class="config-module-form">
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
+                <link rel="stylesheet" href="/styles/loading.css" type="text/css">
+                <link rel="stylesheet" href="/styles/header.css" type="text/css">
+                <link rel="icon" href="/assets/images/foxycake.png">
+                <title>Foxy | Painel de Controle</title>
 
-                <div class="config-module">
-                    <label class="module-name">Dar o premium recomendado caso o servidor seja impulsionado</label>
-                    <label class="switch">
-                        <input type="checkbox" id="isPremiumIfBoostedEnabled"
-                            name="isPremiumIfBoostedEnabled">
-                        <span class="slider round"></span>
-                </div>
+                <!-- Google Ads -->
+                <script async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+                    crossorigin="anonymous"></script>
 
-                
-                <div class="config-module">
-                    <label class="module-name">Notificar um usuário quando ele receber o premium</label>
-                    <label class="switch">
-                        <input type="checkbox" id="notifyUserOnPremium"
-                            name="notifyUserOnPremium">
-                        <span class="slider round"></span>
-                </div>
+                <!-- Google Analytics -->
 
-                <div class="config-module">
-                    <label class="module-name">Canal onde pode ser resgatado</label>
-                    <div class="channel-selector" style="display: flex; align-items: center;">
-                        <select name="redeemChannel" id="redeemChannel" style="width: 100%">
-                            <option value="" disabled selected>Selecione um canal</option>
-                        </select>
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
+                <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-E3J7N4BP8L');
+                </script>
+                <script src="https://unpkg.com/htmx.org"></script>
+            </head>
+
+            <body>
+                <%- include('../sidebar') %>
+                    <div class="config-wrapper">
+
+                        <h1 class="module-title">Gerenciar Parceria</h1>
+                        <p class="module-description">Configurações relacionadas a parceria entre a Foxy e outros
+                            servidores!
+                            <br><br>
+                            Entre no no nosso servidor de suporte para acompanhar as novidades para servidores
+                            parceiros!
+                        </p>
+
+                        <div class="config-module-wrapper">
+                            <form action="/api/v1/servers/<%= guildId %>/partnership" method="POST"
+                                class="config-module-form">
+
+                                <div class="config-module">
+                                    <label class="module-name">Dar o premium recomendado caso o servidor seja
+                                        impulsionado</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="isPremiumIfBoostedEnabled"
+                                            name="isPremiumIfBoostedEnabled">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+
+
+                                <div class="config-module">
+                                    <label class="module-name">Notificar um usuário quando ele receber o premium</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="notifyUserOnPremium" name="notifyUserOnPremium">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+
+                                <div class="config-module">
+                                    <label class="module-name">Convite do servidor</label>
+                                    <div class="text-area" style="display: flex; align-items: center;">
+                                        <input type="text" name="serverInvite" id="serverInvite"
+                                            placeholder="Convite do servidor" maxlength="200" minlength="1" required
+                                            style="width: 120%">
+                                    </div>
+                                </div>
+
+                                <div class="config-module">
+                                    <label class="module-name">Canal onde pode ser resgatado</label>
+                                    <div class="channel-selector" style="display: flex; align-items: center;">
+                                        <select name="redeemChannel" id="redeemChannel" style="width: 100%">
+                                            <option value="" disabled selected>Selecione um canal</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="actions-wrapper">
+                                    <h3 class="save-message">Clique em salvar para aplicar as alterações</h3>
+                                    <div class="actions">
+                                        <button id="saveButton" type="submit">Salvar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
 
-                <div class="actions-wrapper">
-                    <h3 class="save-message">Clique em salvar para aplicar as alterações</h3>
-                    <div class="actions">
-                        <button id="saveButton" type="submit">Salvar</button>
+                    <div id="loadingOverlay" class="loading-overlay">
+                        <%- include('../../../global/loading') %>
                     </div>
-                </div>
-            </form>
-        </div>
-    </div>
 
-    <div id="loadingOverlay" class="loading-overlay">
-        <%- include('../../../global/loading') %>
-    </div>
+                    <script type="module">
+                        import { showActionsWrapper } from '/js/moduleHasChanges.js'
 
-    <script type="module">
-        import { showActionsWrapper } from '/js/moduleHasChanges.js'
+                        window.addEventListener('load', async function () {
+                            const loadingOverlay = document.getElementById('loadingOverlay');
+                            const isPremiumIfBoostedEnabled = document.getElementById('isPremiumIfBoostedEnabled');
+                            const notifyUserOnPremium = document.getElementById('notifyUserOnPremium');
+                            const redeemChannel = document.getElementById('redeemChannel');
+                            const serverInvite = document.getElementById('serverInvite');
 
-        window.addEventListener('load', async function () {
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            const repeatedCharsThreshold = document.getElementById('repeatedCharsThreshold');
-            const messagesThreshold = document.getElementById('messagesThreshold');
-            const newUsersThreshold = document.getElementById('newUsersThreshold');
-            const handleMultipleMessages = document.getElementById('handleMultipleMessages');
-            const handleMultipleJoins = document.getElementById('handleMultipleJoins');
-            const handleMultipleChars = document.getElementById('handleMultipleChars');
-            const whitelistedChannels = document.getElementById('whitelistedChannels');
-            const alertChannel = document.getElementById('alertChannel');
-            const saveButton = document.getElementById('saveButton');
+                            const saveButton = document.getElementById('saveButton');
 
-            saveButton.addEventListener('click', function () {
-                loadingOverlay.classList.remove('hidden');
-            });
+                            saveButton.addEventListener('click', function () {
+                                loadingOverlay.classList.remove('hidden');
+                            });
 
-            let blockedChannelsArray = [];
+                            let blockedChannelsArray = [];
 
-            try {
-                const response = await fetch('/api/v1/servers/<%= guildId %>/data');
-                const data = await response.json();
+                            try {
+                                const response = await fetch('/api/v1/servers/<%= guildId %>/data');
+                                const data = await response.json();
 
-                alertChannel.value = data.antiRaidModule.alertChannel;
-                repeatedCharsThreshold.value = data.antiRaidModule.repeatedCharsThreshold;
-                messagesThreshold.value = data.antiRaidModule.messagesThreshold;
-                newUsersThreshold.value = data.antiRaidModule.newUsersThreshold;
-                handleMultipleMessages.checked = data.antiRaidModule.handleMultipleMessages;
-                handleMultipleJoins.checked = data.antiRaidModule.handleMultipleJoins;
-                handleMultipleChars.checked = data.antiRaidModule.handleMultipleChars;
+                                isPremiumIfBoostedEnabled.checked = data.foxyVerseGuild.serverBenefits.givePremiumIfBoosted.isEnabled;
+                                notifyUserOnPremium.checked = data.foxyVerseGuild.serverBenefits.givePremiumIfBoosted.notifyUser;
+                                serverInvite.value = data.foxyVerseGuild.serverInvite;
 
-                const channelsResponse = await fetch(`/api/v1/servers/<%= guildId %>/channels`);
-                const channelsData = await channelsResponse.json();
+                                const channelsResponse = await fetch(`/api/v1/servers/<%= guildId %>/channels`);
+                                const channelsData = await channelsResponse.json();
 
-                channelsData.channels.forEach(channel => {
-                    const channelOption = document.createElement('option');
-                    channelOption.value = channel.id;
-                    channelOption.textContent = channel.name;
-                    whitelistedChannels.appendChild(channelOption);
-                    alertChannel.appendChild(channelOption.cloneNode(true));
-                });
+                                channelsData.channels.forEach(channel => {
+                                    const channelOption = document.createElement('option');
+                                    channelOption.value = channel.id;
+                                    channelOption.textContent = channel.name;
+                                    redeemChannel.appendChild(channelOption.cloneNode(true));
+                                })
+                                redeemChannel.value = data.foxyVerseGuild.serverBenefits.givePremiumIfBoosted.textChannelToRedeem;
 
-                const blockedChannels = data.guildSettings.blockedChannels || [];
-                blockedChannelsArray = [...blockedChannels];
-                blockedChannels.forEach(blockedChannelId => {
-                    const option = whitelistedChannels.querySelector(`option[value="${blockedChannelId}"]`);
-                    if (option) addChannelDisplay(blockedChannelId, option.textContent);
-                });
 
-                document.getElementById('addChannelButton').addEventListener('click', function () {
-                    const select = document.getElementById('whitelistedChannels');
-                    const selectedChannelId = select.value;
-                    const selectedChannelText = select.options[select.selectedIndex].text;
+                            } catch (error) {
+                                console.error('Error fetching data:', error);
+                            } finally {
+                                loadingOverlay.classList.add('hidden');
+                            }
+                        });
+                    </script>
+            </body>
 
-                    if (selectedChannelId && !document.getElementById(`channel-${selectedChannelId}`)) {
-                        blockedChannelsArray.push(selectedChannelId);
-                        addChannelDisplay(selectedChannelId, selectedChannelText);
-                    }
-                });
-
-                function addChannelDisplay(channelId, channelName) {
-                    const channelDisplay = document.createElement('span');
-                    channelDisplay.className = 'channel-mention';
-                    channelDisplay.id = `channel-${channelId}`;
-                    channelDisplay.innerHTML = `#${channelName}`;
-
-                    const removeBtn = document.createElement('button');
-                    removeBtn.innerText = 'Remover';
-                    removeBtn.className = 'remove-channel';
-                    removeBtn.onclick = function () {
-                        document.getElementById('selectedChannels').removeChild(channelDisplay);
-                        blockedChannelsArray = blockedChannelsArray.filter(id => id !== channelId);
-                        showActionsWrapper();
-                    };
-
-                    channelDisplay.appendChild(removeBtn);
-                    document.getElementById('selectedChannels').appendChild(channelDisplay);
-                }
-
-                document.querySelector('.config-module-form').addEventListener('submit', function (e) {
-                    const hiddenInput = document.createElement('input');
-                    hiddenInput.type = 'hidden';
-                    hiddenInput.name = 'blockedChannels';
-                    hiddenInput.value = JSON.stringify(blockedChannelsArray);
-                    this.appendChild(hiddenInput);
-                });
-
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                loadingOverlay.classList.add('hidden');
-            }
-        });
-    </script>
-</body>
-
-</html>
+            </html>

@@ -21,6 +21,7 @@ import ChangeLayoutRoute from './api/v1/ChangeLayoutRoute';
 import ChangeDecorationRoute from './api/v1/ChangeDecorationRoute';
 import ChangeBackgroundRoute from './api/v1/ChangeBackgroundRoute';
 import GetClustersInfoRoute from './api/v1/GetClustersInfoRoute';
+import PostPartnershipRoute from './api/v1/PostPartnershipRoute';
 
 class RouterManager {
     router: express.Router;
@@ -44,6 +45,7 @@ class RouterManager {
         new SaveGeneralSettingsRoute(this.router);
         new SaveWelcomerModuleRoute(this.router);
         new GetClustersInfoRoute(this.router);
+        new PostPartnershipRoute(this.router);
 
         /* ===[Partials Routes]=== */
         new GetDailyShopRoute(this.router);
