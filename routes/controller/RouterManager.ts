@@ -1,124 +1,76 @@
-import { database } from "../../client/app";
-import { constants } from "../../structures/constants";
-import { logger } from "../../structures/logger";
-import { ActionType } from "../../types/dashboardLog";
+import express from 'express';
+import RouterUtils from './RouterUtils';
+import GetServerConfigRoute from './api/v1/GetServerConfigRoute';
+import GetServerWelcomerRoute from './api/v1/GetServerWelcomerRoute';
+import SaveGeneralSettingsRoute from './api/v1/SaveGeneralSettingsRoute';
+import SaveWelcomerModuleRoute from './api/v1/SaveWelcomerModuleRoute';
+import GetServerChannelsRoute from './api/v1/GetServerChannelsRoute';
+import GetDailyShopRoute from './partials/GetDailyShopRoute';
+import GetModuleRoute from './partials/GetModuleRoute';
+import GetServerLogsRoute from './partials/GetServerLogsRoute';
+import GetServersDataRoute from './partials/GetServersDataRoute';
+import GetUserBackgroundInventoryRoute from './partials/GetUserBackgroundInventoryRoute';
+import GetUserBackgrounds from './api/v1/GetUserBackgroundsRoute';
+import ModuleRoute from './dashboard/guild/ModuleRoute';
+import GetUserLayoutRoute from './api/v1/GetUserLayoutsRoute';
+import ReceiveDailyRoute from './api/v1/ReceiveDailyRoute';
+import GetSubscriptionsDataRoute from './api/v1/GetSubscriptionsDataRoute';
+import GetStoreDataRoute from './api/v1/GetStoreDataRoute';
+import ConfirmStorePurchaseRoute from './api/v1/ConfirmStorePurchaseRoute';
+import ChangeLayoutRoute from './api/v1/ChangeLayoutRoute';
+import ChangeDecorationRoute from './api/v1/ChangeDecorationRoute';
+import ChangeBackgroundRoute from './api/v1/ChangeBackgroundRoute';
+import GetClustersInfoRoute from './api/v1/GetClustersInfoRoute';
 
-export default class RouterManager {
-    constructor() { }
+class RouterManager {
+    router: express.Router;
+    routerManager: RouterUtils;
 
-    public checkSession = (req, res, next) => {
-        if (!req.session.bearer_token) {
-            req.session.user_info = null;
-        }
-        next();
+    constructor() {
+        this.router = express.Router();
+        this.routerManager = new RouterUtils();
+        this.initializeRoutes();
     }
 
-    public isAuthenticated = (req, res, next) => {
-        if (!req.session.bearer_token) {
-            return res.redirect('/login');
-        }
-        next();
+    initializeRoutes() {
+        this.router.use(this.routerManager.errorHandler);
+        this.router.get("/:lang/user/layouts", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/user/inventory/layouts.ejs"));
+
+        /* ===[API Routes]=== */
+        new GetServerConfigRoute(this.router);
+        new GetServerWelcomerRoute(this.router);
+        new GetServerConfigRoute(this.router);
+        new GetServerChannelsRoute(this.router);
+        new SaveGeneralSettingsRoute(this.router);
+        new SaveWelcomerModuleRoute(this.router);
+        new GetClustersInfoRoute(this.router);
+
+        /* ===[Partials Routes]=== */
+        new GetDailyShopRoute(this.router);
+        new GetModuleRoute(this.router);
+        new GetServerLogsRoute(this.router);
+        new GetServersDataRoute(this.router);
+        new GetUserBackgroundInventoryRoute(this.router);
+
+        /* ===[User Dashboard Routes]=== */
+        new ChangeBackgroundRoute(this.router);
+        new ChangeDecorationRoute(this.router);
+        new ChangeLayoutRoute(this.router);
+        new ConfirmStorePurchaseRoute(this.router);
+        new GetStoreDataRoute(this.router);
+        new GetSubscriptionsDataRoute(this.router);
+        new GetUserBackgrounds(this.router);
+        new GetUserLayoutRoute(this.router);
+        new ReceiveDailyRoute(this.router);
+
+        /* ===[Guild Dashboard Routes]=== */
+        new ModuleRoute(this.router);
     }
 
-    public errorHandler = (err, req, res, next) => {
-        console.error(err);
-        res.status(500).send("Internal Server Error");
-    }
-
-    public renderPage = (page, options = {}) => (req, res) => {
-        res.status(200).render(page, {
-            user: req.session.user_info,
-            ...options
-        });
-    }
-
-    public redirectTo(res, redirectUrl) {
-        return res.redirect(redirectUrl);
-    }
-
-    public renderPartial = async (req, res, page, isModule = false, data) => {
-        try {
-            if (isModule) {
-                res.status(200).render(`../public/pages/partials/modules/${page}.ejs`, {
-                    user: req.session.user_info,
-                    ...data
-                });
-            } else {
-                res.status(200).render(`../public/pages/partials/${page}.ejs`, {
-                    user: req.session.user_info,
-                    ...data
-                });
-            }
-        } catch (err) {
-            logger.error(err);
-        }
-    }
-
-    public getUserCurrentGuild = async (req, res, guildId) => {
-        if (!guildId) throw new Error('Guild ID not found.');
-        const guildInfo = await database.getGuild(guildId);
-
-        if (!guildInfo) {
-            res.redirect(constants.INVITE_BOT(guildId));
-            return true;
-        }
-
-        let userGuildsResponse;
-        let attempts = 0;
-
-        while (attempts < 3) {
-            userGuildsResponse = await fetch(constants.USER_GUILDS, {
-                headers: {
-                    authorization: `${req.session.oauth_type} ${req.session.bearer_token}`
-                }
-            });
-
-            if (userGuildsResponse.status === 429) {
-                const rateLimitData = await userGuildsResponse.json();
-                const waitTime = rateLimitData.retry_after * 1000;
-                await new Promise(resolve => setTimeout(resolve, waitTime));
-                attempts++;
-            } else {
-                break;
-            }
-        }
-
-        if (userGuildsResponse.status === 429) {
-            logger.error("Rate limit exceeded. Please try again later.");
-            return true;
-        }
-
-        const guilds = await userGuildsResponse.json();
-        const currentGuild = guilds.find((g) => g.id === guildId);
-        if (!currentGuild) {
-            res.redirect(constants.DASHBOARD);
-            return true;
-        }
-
-        const isUserAuthorized = this.checkUserPermissions(currentGuild.permissions);
-
-        if (!currentGuild.permissions || !isUserAuthorized) {
-            res.redirect(constants.DASHBOARD);
-            return true;
-        }
-
-        return false;
-    }
-
-    checkUserPermissions(permission): boolean {
-        return (permission & (8 | 32)) !== 0;
-    }
-
-
-    public async saveToLog(authorId: string, guildId: string, action: ActionType) {
-        const log = {
-            authorId,
-            actionType: action.toString(),
-            date: BigInt(Date.now())
-        }
-
-        const guildData = await database.getGuild(guildId);
-        guildData.dashboardLogs.push(log);
-        await guildData.save();
+    getRouter() {
+        return this.router;
     }
 }
+
+
+export default RouterManager;

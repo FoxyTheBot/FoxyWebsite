@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-$sidebar-background: #3a4149;
+$sidebar-background: #251a35;
 $separator-color: #2f3136;
 $default-color: #e7385d;
 
@@ -14,18 +14,17 @@ $default-color: #e7385d;
     bottom: 0;
     left: 0;
     width: 330px;
-    background-color: $sidebar-background;
+    background-color: var(--reimu-sidebar-color);
     transition: left 0.3s ease;
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
-    scrollbar-color: #4f545c #36393f;
+    scrollbar-color: var(--reimu-sidebar-color);
     z-index: 900;
     border: 1px solid #23282c;
-    scrollbar-color: $default-color $sidebar-background;
 
     .entry {
-        color: #fff;
+        color: var(--reimu-sidebar-font-color);
         font-family: "Poppins";
         font-size: 0.895rem;
         display: flex;
@@ -36,16 +35,17 @@ $default-color: #e7385d;
         transition: background-color 0.2s ease, color 0.2s ease;
 
         &:hover {
-            background-color: #5865f2;
+            background-color: var(--reimu-primary-color);
             color: #fff;
         }
     }
 
     .separator {
-        height: 1px;
-        width: 100%;
-        color: $separator-color;
-        margin: 10px 0;
+        clear: both;
+        border: 1px solid var(--reimu-primary-color);
+        height: 0px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 
     .sidebar-server-icon {

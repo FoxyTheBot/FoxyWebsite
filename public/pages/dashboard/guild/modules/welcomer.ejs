@@ -2,6 +2,8 @@
 <html lang="pt-BR">
 
 <head>
+    <link rel="canonical" href="https://foxybot.win/">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
@@ -62,7 +64,7 @@
                                     style="width: 250%;" data-gtm-form-interact-field-id="0">
                                     <option value="" disabled="" selected="">Escolha um bot</option>
                                     <option value="loritta">Loritta</option>
-                                    <option value="carl-bot">Carl-bot</option>
+                                    <option value="carl-bot">Carl Bot</option>
                                 </select>
                             </div>
 
@@ -89,7 +91,6 @@
             </div>
         </div>
 
-
         <div class="config-wrapper">
             <h1 class="module-title">Mensagens de Entrada/Saída</h1>
             <p class="module-description">Configure a Foxy para notificar quando um membro entra ou sai do seu servidor!
@@ -113,10 +114,8 @@
                             <div class="toggleable-option">
                                 <label class="module-name">Mensagem de boas-vindas</label>
                                 <div class="button-wrapper">
-                                    <button type="button" id="importJsonButton" class="btn"
-                                        onclick="showPopup()">Importar JSON</button>
                                     <button id="welcomeTestButton" type="button">Testar Mensagem</button>
-
+                                    <button type="button" onclick="showPopup()">Importar JSON</button>
                                 </div>
                                 <br>
                                 <div>
@@ -168,15 +167,17 @@
                             <input type="checkbox" id="toggleGoodbyeModule" name="toggleGoodbyeModule">
                             <span class="slider round"></span>
                         </label>
-
                         <div class="toggleable-options hidden" id="toggleableGoodbyeOptions">
                             <div class="toggleable-option">
                                 <label class="toggleable-option-title">Canal de despedidas</label>
                                 <select name="goodbyeChannel" id="goodbyeChannel">
                                     <option value="" disabled selected>Selecione um canal</option>
                                 </select>
-
                                 <label class="toggleable-option-title">Mensagem de despedida</label>
+                                <div class="button-wrapper">
+                                    <button id="goodbyeTestButton" type="button">Testar Mensagem</button>
+                                    <button type="button" onclick="showPopup()">Importar JSON</button>
+                                </div>
                                 <input type="text" name="goodbyeMessage" id="goodbyeMessage"
                                     placeholder="Mensagem de despedida">
 
@@ -206,7 +207,6 @@
                                     <span class="slider round"></span>
 
                             </div>
-                            <button id="goodbyeTestButton" class="test-btn" type="button">Testar</button>
                         </div>
                     </div>
                     <div class="actions-wrapper">
@@ -445,6 +445,4 @@
             });
         </script>
 </body>
-
-
 </html>

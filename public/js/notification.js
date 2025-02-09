@@ -13,6 +13,10 @@ function showNotification(type, message) {
 
     setTimeout(() => {
         notificationWrapper.classList.remove('show');
+        notificationWrapper.textContent = '';
+        if (notificationWrapper.classList.contains('error')) {
+            notificationWrapper.classList.remove('error');
+        }
     }, 3000);
 }
 

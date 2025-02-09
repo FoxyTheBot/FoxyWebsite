@@ -7,7 +7,14 @@
 @import "components/footer";
 @import "components/ad-position";
 
-main .meeting {
+/* Will be used for unauthorized deprecated copies */
+.meeting, .meeting-2, .logo, .features, .shadow__btn, .navigation-bar {
+    display: none !important;
+}
+
+/* end */
+
+main .greetings {
     color: #fff;
     font-size: 40px;
     font-family: 'Cookie';
@@ -15,7 +22,7 @@ main .meeting {
     margin-top: 5px;
 }
 
-main .meeting-2 {
+main .greetings-2 {
     color: #fff;
     font-size: 40px;
     font-family: 'Cookie';
@@ -23,7 +30,7 @@ main .meeting-2 {
     margin-top: 1px;
 }
 
-.logo {
+.foxy-logo {
     width: 10rem;
     height: auto;
     margin-top: 2%;
@@ -31,7 +38,7 @@ main .meeting-2 {
 }
 
 
-.features {
+.feature-card-section {
     padding: 30px;
     opacity: inherit;
     background-color: #36393f;
@@ -40,7 +47,7 @@ main .meeting-2 {
     text-align: center;
 }
 
-.shadow__btn {
+.main-buttons {
     padding: 10px 20px;
     border: none;
     font-size: 17px;
@@ -73,40 +80,25 @@ main .meeting-2 {
     }
 }
 
-.shadow__btn:hover {
+.main-buttons:hover {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 main {
-    padding-left: 30%;
-    padding-right: 50%;
+    margin-bottom: 6rem;
+    /* padding-left: 30%; */
+    /* padding-right: 37%; */
     margin-top: 15%;
-    margin-left: -25%;
+    /* margin-left: -40%; */
     transition-duration: 0.5s;
     text-align: center;
     cursor: default;
 }
 
 
-main .foxy {
-    margin-left: 135% !important;
-    margin-top: -20rem !important;
-    margin-bottom: 19% !important;
-    width: 18rem;
-    height: auto;
-    display: inline !important;
-    border-radius: 50% !important;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    animation: float 2s ease-in-out infinite;
-}
-
-main .foxy:hover {
-    transform: scale(1.1);
-}
-
-.features {
+.feature-card-section {
     padding: 30px;
-    background-color: #23272b;
+    background-color: #2d184b;
     border-color: #000;
     position: relative;
     text-align: center;
@@ -128,7 +120,7 @@ main .foxy:hover {
         margin-left: auto;
     }
 
-    .feature__title {
+    .feature-card__title {
         font-family: var(--reimu-default-font-family);
         font-size: 20px;
         margin-top: 20px;
@@ -140,12 +132,12 @@ main .foxy:hover {
         color: #fff;
     }
 
-    .feature {
+    .feature-card {
         display: flex;
         margin: 20px;
         padding: 2rem;
         border-radius: 10px;
-        background-color: #23272b;
+        background-color: #251739;
         align-items: flex-start;
         margin-top: 1rem;
 
@@ -184,7 +176,7 @@ main .foxy:hover {
             color: #ffffff;
         }
 
-        .feature-image {
+        .feature-card-image {
             width: 10rem;
             height: auto;
             margin-left: 20px;
@@ -192,7 +184,7 @@ main .foxy:hover {
     }
 
     @media (max-width: 768px) {
-        .feature {
+        .feature-card {
             flex-direction: column;
             align-items: center;
             text-align: center;
@@ -203,7 +195,7 @@ main .foxy:hover {
                 margin-top: 20px;
             }
 
-            .feature-image {
+            .feature-card-image {
                 display: none;
             }
         }
@@ -216,9 +208,9 @@ main .foxy:hover {
 }
 
 main {
-    margin-top: 11rem;
+    margin-top: 8rem;
 
-    .meeting {
+    .title {
         color: #fff;
         font-size: 40px;
         font-family: var(--reimu-greetings-font);
@@ -226,7 +218,7 @@ main {
         margin-top: 1rem;
     }
 
-    .meeting-2 {
+    .title-2 {
         color: #fff;
         font-size: 40px;
         font-family: var(--reimu-greetings-font);
@@ -253,7 +245,6 @@ main {
     .server-name {
         font-size: 20px;
         margin-bottom: -10px;
-        display: none;
     }
 
     h2 {
@@ -272,19 +263,6 @@ main {
 
     &:active {
         transform: scale(1);
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    main .foxy {
-        display: none !important;
-    }
-}
-
-@media only screen and (max-width: 320px) {
-
-    main .foxy {
-        display: none !important;
     }
 }
 

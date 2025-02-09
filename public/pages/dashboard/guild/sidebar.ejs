@@ -1,4 +1,6 @@
 <head>
+  <link rel="canonical" href="https://foxybot.win/">
+
     <link rel="stylesheet" href="/styles/sidebar.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
@@ -17,19 +19,25 @@
         <a href="/br/servers/<%= guildId %>/general">
           <div class="entry">Configurações gerais</div>
         </a>
-        <!-- <a href="/br/servers/<%= guildId %>/">
-          <div class="entry">Gerenciar comandos</div>
-        </a> -->
+        <% if (guildData.foxyVerseGuild) { %>
+          <hr class="separator">
+          <h2 class="section-title"></h2>
+          <a href="/br/servers/<%= guildId %>/partnership">
+            <div class="entry">Gerenciar Parceria</div>
+          </a>
+        <% } %>
+
       <hr class="separator">
       <h2 class="section-title">Módulos</h2>
       <a href="/br/servers/<%= guildId %>/welcomer">
         <div class="entry">Mensagens de Entrada/Saída</div>
       </a>
-  
-      <!-- <a href="/br/servers/<%= guildId %>/autorole">
+      <a href="/br/servers/<%= guildId %>/antiraid">
+        <div class="entry">Sistema Anti-Raid</div>
+      </a>
+      <a href="/br/servers/<%= guildId %>/autorole">
         <div class="entry">Autorole</div>
-      </a> -->
- 
+      </a>
       <hr class="separator">
       <h2 class="section-title">Configurações</h2>
   

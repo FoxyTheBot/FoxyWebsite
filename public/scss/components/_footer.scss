@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-$footer-color: #ff4655;
+$footer-color: var(--reimu-tertiary-color);
 $footer-font-family: var(--reimu-default-font-family);
 $default-color: #e7385d;
 $footer-add-color: #3ba55c;

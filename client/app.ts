@@ -7,11 +7,8 @@ import config from '../config.json';
 import RestManager from '../structures/RestManager';
 import { logger } from '../structures/logger';
 import UpdatePages from '../routes/controller/UpdatePages';
-import DashboardRoutes from '../routes/controller/DashboardRoutes';
-import GuildDashboardRoutes from '../routes/controller/GuildDashboardRoutes';
 import DiscordClient from './DiscordClient';
-import APIRoutes from '../routes/controller/APIRoutes';
-import PartialsRoutes from '../routes/controller/PartialsRoutes';
+import RouterManager from '../routes/controller/RouterManager';
 
 export class App {
     port: number;
@@ -40,10 +37,9 @@ export class App {
         app.set('view engine', 'ejs');
 
         app.use('/', new UpdatePages().getRouter());
-        app.use('/', new DashboardRoutes().getRouter());
-        app.use('/', new GuildDashboardRoutes().getRouter());
-        app.use('/', new APIRoutes().getRouter());
-        app.use('/', new PartialsRoutes().getRouter());
+        // app.use('/', new DashboardRoutes().getRouter());
+        // app.use('/', new GuildDashboardRoutes().getRouter());
+        app.use('/', new RouterManager().getRouter());
         app.use('/', require("../routes/auth/oauthDiscord"));
         app.use('/', require("../routes/controller/RedirectPages"));
 

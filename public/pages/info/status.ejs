@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="canonical" href="https://foxybot.win/">
+
+    <meta charset="UTF-8">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css">
+    <link rel="stylesheet" href="/styles/footer.css" type="text/css">
+    <link rel="stylesheet" href="/styles/main.css" type="text/css">
+    <link rel="icon" href="/assets/images/foxycake.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+  
+      gtag('config', 'G-E3J7N4BP8L');
+    </script>
+    <meta property="og:type" content="website">
+    <meta content="Foxy" property="og:title" />
+    <meta property="og:site_name" content="Foxy Website">
+    <meta content="Termos de Serviço" property="og:description" />
+    <meta content="https://foxybot.win" property="og:url" />
+    <meta content="#e7385d" data-react-helmet="true" name="theme-color" />
+    <meta content="/assets/images/FoxyAvatar.png" property="og:image" />
+
+    <title>Foxy | Status</title>
+    <style>
+        .cluster-box {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 8px;
+            background-color: #3b3b3b;
+            width: 300px;
+        }
+        
+        h1 {
+            color: #e7385d;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .cluster-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin: 2rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .cluster-title {
+            color: #e7385d;
+        }
+    </style>
+</head>
+<body>
+    <%- include('../global/header') %>
+    <main>
+        <h1>Status da Foxy</h1>
+        <div id="clusters-container" class="cluster-container"></div>
+    </main>
+</body>
+
+<script>
+    async function loadClusters() {
+        try {
+            const response = await fetch('/api/v1/clusters/info');
+            const data = await response.json();
+
+            const container = document.getElementById('clusters-container');
+            container.innerHTML = '';
+
+            data.clusters.forEach(cluster => {
+                const box = document.createElement('div');
+                box.className = 'cluster-box';
+                box.innerHTML = `
+                    <h3 class="cluster-title">Cluster ${cluster.id} (${cluster.name})</h3>
+                    <p>Servidores: ${cluster.guildCount}</p>
+                    <p>Ping: ${Math.round(cluster.ping)}ms</p>
+                    <p>Shards conectadas: ${
+                        cluster.shards.map(shard => shard.status === "CONNECTED" ? shard.id : null).filter(Boolean).length
+                        }</p>
+                        <p>Shards total: ${cluster.shards.length - 1}</p>
+                `;
+                container.appendChild(box);
+            });
+        } catch (error) {
+            console.error('Erro ao carregar clusters:', error);
+        }
+    }
+
+    // Carrega os clusters ao carregar a página
+    window.onload = loadClusters;
+</script>
+</html>

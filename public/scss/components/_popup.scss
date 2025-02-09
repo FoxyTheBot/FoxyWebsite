@@ -30,7 +30,7 @@
     }
 
     .popup {
-        background-color: var(--reimu-background-color);
+        background-color: #fff;
         margin: 10% auto;
         width: 80%;
         border-radius: 5px;
@@ -66,7 +66,7 @@
 
         .popup-buttons {
             padding: 1em;
-            background-color: #1e2328;
+            background-color: #cecece;
             display: flex;
             justify-content: flex-end;
             gap: 1em;
@@ -97,11 +97,11 @@
 
                 &.cancel {
                     background-color: transparent;
-                    color: #fff;
+                    color: #000000;
                     border: 1px solid #616161;
 
                     &:hover {
-                        background-color: #555555;
+                        background-color: #616161;
                         color: #fff;
                     }
                 }
@@ -118,7 +118,7 @@
         }
 
         .description {
-            color: #ffffff;
+            color: #000000;
             font-size: 15px;
             margin-bottom: 10px;
             margin-left: 0rem;
@@ -128,7 +128,7 @@
 
 
         h3 {
-            color: #ffffff;
+            color: #000000;
             font-size: 15px;
             font-family: var(--reimu-default-font-family);
             margin-bottom: 5px;

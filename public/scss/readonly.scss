@@ -3,6 +3,8 @@
 @import "components/background";
 @import "components/discord-invite";
 @import "components/footer";
+@import "components/buttons";
+@import "components/inline-emoji";
 
 .command-category-name {
     color: #fff;
@@ -13,10 +15,33 @@
     margin-bottom: 1%;
 }
 
+.pocket-foxy-wrapper {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 64fr 36fr;
+
+    .pocket-foxy {
+        max-height: 100%;
+        width: 15rem;
+        object-fit: contain;
+        text-align: center;
+        aspect-ratio: 16 / 12;
+
+        @media only screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        display: block;
+        
+    }
+}
+
 main {
     padding-left: 25%;
     padding-right: 5%;
-    margin-top: 10%;
+    margin-top: 8%;
     margin-left: 5%;
     transition-duration: 0.5s;
 }
@@ -53,12 +78,12 @@ a {
     transition-duration: 0.5s;
 }
 
-.features {
+.feature-card-section {
     padding: 30px;
     opacity: inherit;
 }
 
-.features .title {
+.feature-card-section .title {
     font-family: Montserrat;
     font-size: 150%;
     text-align: center;
@@ -68,7 +93,7 @@ a {
     color: rgb(255, 255, 255);
 }
 
-.features .feature__title {
+.feature-card-section .feature-card__title {
     font-family: Montserrat;
     font-size: 20px;
     text-align: center;
@@ -126,13 +151,13 @@ a {
     background-color: #2f3136;
 }
 
-.features .description {
+.feature-card-section .description {
     font-family: Montserrat;
     text-align: center;
     color: #fff;
 }
 
-.features .card-row {
+.feature-card-section .card-row {
     margin-top: 10px;
     text-align: center;
     display: flex;
@@ -140,7 +165,7 @@ a {
     flex-flow: wrap;
 }
 
-.features .card-row .card {
+.feature-card-section .card-row .card {
     width: 80%;
     max-width: 250px;
     padding: 35px 20px 35px 20px;
@@ -150,7 +175,7 @@ a {
     margin-bottom: 5%;
 }
 
-.features .card-row .card p {
+.feature-card-section .card-row .card p {
     font-family: Montserrat;
     font-size: 15px;
     color: #fff;
@@ -256,7 +281,7 @@ table {
 }
 
 th {
-    background-color: #e7385d;
+    background-color: var(--reimu-default-font-family);
     color: #fff;
     padding: 12px 15px;
     font-weight: 600;
@@ -384,12 +409,6 @@ main a {
 
 @media only screen and (max-width: 768px) {
 
-    header {
-        padding-left: 5%;
-        padding-right: 5%;
-        transition-duration: 0.5s;
-    }
-
     .left-sidebar {
         display: none;
     }
@@ -429,19 +448,5 @@ main a {
 
     main h3 {
         font-size: 4vw;
-    }
-}
-
-@keyframes float {
-    0% {
-        transform: rotate(1deg);
-    }
-
-    50% {
-        transform: rotate(-1deg);
-    }
-
-    100% {
-        transform: rotate(1deg);
     }
 }

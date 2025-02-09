@@ -1,7 +1,7 @@
 import express from 'express';
 import { database } from '../../client/app';
 import { logger } from '../../structures/logger';
-import RouterManager from './RouterManager';
+import RouterManager from './RouterUtils';
 import { constants } from '../../structures/constants';
 
 class UpdatePages {
@@ -36,6 +36,7 @@ class UpdatePages {
         };
         this.initializeRoutes();
     }
+    // TODO: Refactor this method
 
     initializeRoutes() {
         this.router.use(this.routerManager.checkSession);
@@ -44,12 +45,10 @@ class UpdatePages {
         this.router.get('/:lang/premium', this.routerManager.renderPage("../public/pages/info/premium.ejs"));
         this.router.get("/:lang/support/terms", this.routerManager.renderPage("../public/pages/info/privacy.ejs"));
         this.router.get("/:lang/store", this.routerManager.isAuthenticated, this.storeHandler);
-        this.router.get("/:lang/store/layouts", this.routerManager.isAuthenticated, this.layoutHandler);
         this.router.get("/checkout", this.routerManager.isAuthenticated, this.checkoutHandler);
         this.router.get("/:lang/dashboard", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/guild/dashboard.ejs"));
         this.router.get("/:lang/user/backgrounds", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/user/inventory/backgrounds.ejs"));
         this.router.get("/:lang/user/decorations", this.routerManager.isAuthenticated, this.userDecorationsHandler);
-        this.router.get("/riot/connection/status=:status", this.riotConnectionStatusHandler);
         this.router.get('/:lang/daily', this.routerManager.isAuthenticated, this.dailyHandler);
         this.router.get('/:lang/delete', this.routerManager.isAuthenticated, this.deleteUserHandler);
         this.router.get("/:lang/commands/", this.commandsHandler);
@@ -60,6 +59,8 @@ class UpdatePages {
         this.router.get("/:lang/dashboard/subscriptions", this.routerManager.isAuthenticated, this.routerManager.renderPage("../public/pages/dashboard/user/subscriptions.ejs"));
         this.router.get('/:lang/error', this.errorHandler);
         this.router.get('/:lang/404', this.notFoundHandler);
+        this.router.get("/:lang/pocket-foxy", this.pocketFoxyHandler);
+        this.router.get("/:lang/status", this.routerManager.renderPage("../public/pages/info/status.ejs"));
         this.router.use(this.routerManager.errorHandler);
     }
 
@@ -71,10 +72,6 @@ class UpdatePages {
         } catch (error) {
             next(error);
         }
-    }
-
-    layoutHandler = (req, res) => {
-        res.status(200).send("Soon");
     }
 
     checkoutHandler = async (req, res) => {
@@ -110,24 +107,6 @@ class UpdatePages {
         }
     }
 
-    riotConnectionStatusHandler = (req, res) => {
-        const status = req.params.status;
-        let message, description;
-        if (status === "200") {
-            message = "Sua conta da Riot Games foi conectada a Foxy";
-            description = "Pode fechar esta página e voltar para o Discord";
-        } else {
-            message = "Sua conta da Riot Games não foi conectada a Foxy";
-            description = "Desculpe, mas ocorreu um problema estranho ao conectar sua conta da Riot Games a Foxy. Tente novamente mais tarde.";
-        }
-
-        res.status(200).render("../public/pages/info/riotAccountConnected.ejs", {
-            user: req.session.bearer_token ? req.session.user_info : null,
-            message,
-            description
-        });
-    }
-
     dailyHandler = async (req, res, next) => {
         try {
             const userId = req.session.user_info.id;
@@ -159,6 +138,16 @@ class UpdatePages {
         }
     }
 
+    pocketFoxyHandler = async (req, res, next) => {
+        try {
+            res.status(200).render("../public/pages/utils/pocketFoxy.ejs", {
+                user: req.session.user_info
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+    
     commandsHandler = async (req, res, next) => {
         try {
             const commandsList = await database.getAllCommands();

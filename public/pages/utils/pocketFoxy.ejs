@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="canonical" href="https://foxybot.win/">
+
+    <title>Foxy To Go</title>
+    <link rel="icon" href="../assets/images/foxycake.png">
+    <link rel="stylesheet" href="/styles/readonly.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-E3J7N4BP8L');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <meta property="og:type" content="website">
+    <meta content="Use a Foxy em qualquer lugar" property="og:title" />
+    <meta property="og:site_name" content="Foxy">
+    <meta content="Leve a Foxy para qualquer lugar! Utilize os comandos da Foxy no privado, em grupos privados e até em servidores onde a Foxy ainda não foi adicionada!" property="og:description" />
+    <meta content="https://foxybot.win/br/pocket-foxy" property="og:url" />
+    <meta content="#e7385d" data-react-helmet="true" name="theme-color" />
+    <meta content="/assets/images/FoxyAvatar.png" property="og:image" />
+</head>
+
+<body>
+    <%- include('../global/header') %>
+        <main>
+            <%- include("../info/InfoSidebar.ejs"); %>
+                <div class="pocket-foxy-wrapper">
+                    <h1 class="title">Use a Foxy em qualquer lugar</h1>
+                    <br>
+                    <h3 class="description">Leve a Foxy para qualquer lugar! Utilize os comandos da Foxy no privado, em
+                        grupos
+                        privados e até em servidores onde a Foxy ainda não foi adicionada!
+                        <br><br>
+                        Quer remover a Foxy da sua conta? Basta desautorizar a Foxy na sua conta do Discord na aba
+                        "Aplicativos
+                        autorizados".
+                    </h3>
+
+                    <img class="pocket-foxy" src="../assets/images/pocket-foxy.png">
+
+                    <div class="discord-buttons">
+                        <a
+                            href="https://discord.com/oauth2/authorize?client_id=1006520438865801296&scope=applications.commands&integration_type=1"><button
+                                class="button">Adicionar Foxy</button></a>
+                    </div>
+                </div>
+        </main>
+</body>
+<script src="../js/HeaderMobile.js"></script>
+
+</html>

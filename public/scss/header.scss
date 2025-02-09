@@ -6,14 +6,14 @@
 @import "components/footer";
 
 :root {
-    --reimu-navbar-color: #ff4655;
+    --reimu-navbar-color: #2d184b;
     --reimu-navbar-text-color: #f2f2f2;
     --reimu-navbar-text-hover-color: #dddddd;
     --reimu-navbar-font-size: 17px;
     --reimu-navbar-font-family: var(--reimu-default-font-family);
 
     /* Mobile Nav */
-    --reimu-mobile-nav-color: #24252a;
+    --reimu-mobile-nav-color: #2d184b;
     --reimu-mobile-nav-text-color: #edf0f1;
 }
 
@@ -52,7 +52,7 @@
     }
 }
 
-nav.navigation-bar {
+nav.marisa-navbar {
     background-color: var(--reimu-navbar-color);
     top: 0;
     width: 100%;
@@ -201,7 +201,7 @@ nav.navigation-bar {
     z-index: 1;
     left: 0;
     top: 0;
-    background-color: #24252a;
+    background-color: #2d184b;
     overflow-x: hidden;
     transition: all 0.5s ease 0s;
 
@@ -259,7 +259,6 @@ nav.navigation-bar {
         top: 0;
         width: 126%;
         height: 50px;
-        background-color: #ff4655;
         text-shadow: 0 1px rgba(0, 0, 0, 0.2);
         font-family: "Oswald" !important;
         font-weight: 500;

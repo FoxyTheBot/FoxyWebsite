@@ -2,6 +2,8 @@
 <html>
 
 <head>
+  <link rel="canonical" href="https://foxybot.win/">
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/styles/header.css" type="text/css">
@@ -130,20 +132,20 @@
                   default:
                     itemType += '';
                 }
+
                 const isLimitedEdition = item.limitedEdition;
 
                 return `
-    <div class="item ${isPurchased ? 'disabled' : ''}"
+    <div class="item ${isPurchased ? 'disabled' : ''} ${rarity ?? ""}"
       onclick="showPopup(${itemStr}, ${userStr}, ${userDataStr})">
       <div class="item__icon">
         <img class="${type}" 
-          src="https://cakey.foxybot.win/assets/${type}/${item.filename}" 
-          onerror="this.src='https://cakey.foxybot.win/assets/masks/${item.filename}'" 
+          src="https://stuff.foxybot.win/${type}/${item.filename}" 
           alt="${item.name}">
       </div>
       <div class="item_info">
         <h1 class="item-name ${isLimitedEdition ? 'limited' : ''}">${item.name}</h1>
-        <h5>${itemType}</h5>
+        <h5 id="${rarity ?? ""}">${itemType}</h5>
         ${isPurchased ? `
           <span class="purchased">💖 Já comprado</span>
         ` : `
@@ -155,7 +157,6 @@
   `;
               }).join('');
             }
-
             const { backgrounds, decorations, layouts } = data.storeContent;
 
             contentDiv.innerHTML = `
@@ -226,9 +227,9 @@
         const saveButton = document.getElementById('save');
         const price = document.getElementById('price-in-cakes');
 
-        let imageUrl = `https://orchid.cakeyfox.live/assets/previews/item_${background.id}.png`;
+        let imageUrl = `https://cakey.foxybot.win/assets/previews/item_${background.id}.png`;
         if (background.id === "red" && background.profileSettings && typeof background.profileSettings === "object") {
-          imageUrl = `https://orchid.cakeyfox.live/assets/previews/item_${background.id}_layout.png`;
+          imageUrl = `https://cakey.foxybot.win/assets/previews/item_${background.id}_layout.png`;
         }
 
         document.getElementById('backgroundId').value = background.id;

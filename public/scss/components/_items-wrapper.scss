@@ -27,11 +27,32 @@
         flex-direction: column;
         align-items: center;
         padding: 0rem;
+        padding-top: 0.625rem;
         padding-bottom: 0.625rem;
         margin: 0.595rem;
-        background-color: #313131;
+        background-color: #252525;
+        border-radius: 0.625rem;
         transition: transform 0.3s ease-in-out;
-        box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+
+        &.common {
+            border: 0.125rem solid #2196f3;
+        }
+
+        &.uncommon {
+            border: 0.125rem solid #4caf50;
+        }
+
+        &.rare {
+            border: 0.125rem solid #ff9800;
+        }
+
+        &.epic {
+            border: 0.125rem solid #9c27b0;
+        }
+
+        &.legendary {
+            border: 0.125rem solid #e7385d;
+        }
 
         .purchased {
             color: #fff;
@@ -54,17 +75,40 @@
             h1 {
                 margin: 0;
                 font-size: 1.25rem;
-                font-weight: bold;
+            }
+
+            h5 {
+                font-size: 0.999rem;
+            }
+
+            #common {
+                color: #2196f3;
+            }
+
+            #uncommon {
+                color: #4caf50;
+            }
+
+            #rare {
+                color: #ff9800;
+            }
+
+            #epic {
+                color: #9c27b0;
+            }
+
+            #legendary {
+                color: #e7385d;
             }
 
             .item-name {
                 color: #fff;
-                font-size: 1rem;
+                font-size: 1.2rem;
                 font-family: var(--reimu-default-font-family);
                 text-align: center;
 
                 &.limited {
-                    color: #e7385d;
+                    color: (--reimu-secondary-color);
                 }
 
             }
@@ -72,7 +116,6 @@
             h1 {
                 font-size: 1.25rem;
                 font-weight: bold;
-                color: white;
                 padding: 0.3125rem 0.625rem;
                 border-radius: 0.3125rem;
                 display: inline-block;
@@ -89,7 +132,6 @@
             .cakes {
                 display: block;
                 margin-top: 0.3125rem;
-                color: #5dabff;
                 font-size: 1rem;
                 font-weight: bold;
             }
@@ -132,7 +174,7 @@
     top: 4%;
     left: 0;
     padding: 5px 10px;
-    background: #e7385d;
+    background: var(--reimu-secondary-color);
     color: #fff;
     font-size: 12px;
     font-weight: bold;

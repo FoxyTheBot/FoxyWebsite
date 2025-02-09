@@ -11,7 +11,7 @@ export const constants = {
 
     DASHBOARD: "/br/dashboard",
     SERVER_MODULES: (guildId: string, module: string) => `/br/servers/${guildId}/${module}`,
-    SERVER_SETTINGS: (guildId: string) => `/br/servers/${guildId}`,
+    SERVER_SETTINGS: (guildId: string) => `/br/servers/${guildId}/general`,
     USER_DECORATIONS: "/br/user/decorations",
     USER_STORE: "/br/store",
 
@@ -28,4 +28,5 @@ export const constants = {
     TRANSLATE_URL: 'https://translate.foxybot.win',
     STATUS_PAGE_URL: 'https://foxybot.statuspage.io/',
     UPVOTE_URL: 'https://top.gg/bot/1006520438865801296',
+    EXITLAG_URL: "https://www.exitlag.com/aff.php?aff=10102649"
 }

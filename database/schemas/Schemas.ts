@@ -125,6 +125,11 @@ dashboardLogsSchema.set('toJSON', {
   
 const guildSchema = new mongoose.Schema({
     _id: String,
+    guildAddedAt: {
+        type: mongoose.Schema.Types.BigInt,
+        get: (value: BigInt) => Number(value),
+        set: (value: any) => BigInt(value)
+    },
     GuildJoinLeaveModule: {
         isEnabled: Boolean,
         joinMessage: String,
@@ -146,12 +151,57 @@ const guildSchema = new mongoose.Schema({
         deleteMessageIfCommandIsExecuted: Boolean,
         usersWhoCanAccessDashboard: Array,
     },
+    antiRaidModule: {
+        handleMultipleMessages: Boolean,
+        handleMultipleJoins: Boolean,
+        handleMultipleChars: Boolean,
+        messagesThreshold: {
+            type: mongoose.Schema.Types.Number,
+            default: 8,
+        },
+        newUsersThreshold: {
+            type: mongoose.Schema.Types.Number,
+            default: 5,
+        },
+        repeatedCharsThreshold: {
+            type: mongoose.Schema.Types.Number,
+            default: 10,
+        },
+        warnsThreshold: {
+            type: mongoose.Schema.Types.Number,
+            default: 3,
+        },
+        alertChannel: String || null,
+        actionForMassJoin: String || "NOTHING",
+        actionForMassMessage: String || "TIMEOUT",
+        actionForMassChars: String || "WARN",
+        timeoutDuration: {
+            type: mongoose.Schema.Types.Number,
+            default: 10000,
+        },
+        whitelistedChannels: Array,
+        whitelistedRoles: Array,
+    },
     dashboardLogs: [dashboardLogsSchema],
 }, { versionKey: false, id: false });
 
 /* End of guild related schemas */
 
 /* Bot related schemas */
+
+const foxyVerseSchema = new mongoose.Schema({
+    _id: String,
+    serverBenefits: {
+        givePremiumIfBoosted: {
+            isEnabled: Boolean,
+            notifyUser: Boolean,
+            textChannelToRedeem: String,
+        },
+    },
+    guildAdmins: Array,
+    serverInvite: String,
+
+}, { versionKey: false, id: false, _id: false });
 
 const commandsSchema = new mongoose.Schema({
     commandName: String,
@@ -251,6 +301,7 @@ export const Schemas = {
     checkoutList,
     dailyStoreSchema,
     badgesSchema,
+    foxyVerseSchema
 };
 
 /* End of bot related schemas */

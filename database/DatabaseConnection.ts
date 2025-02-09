@@ -22,6 +22,7 @@ export default class DatabaseConnection {
     private cacheExpiration = 60000;
     private lastCacheUpdate = 0;
     private badgesCache: Badge[] = [];
+    public foxyVerse: any;
 
     constructor() {
         mongoose.set("strictQuery", true)
@@ -39,6 +40,7 @@ export default class DatabaseConnection {
         this.decorations = mongoose.model('decorations', Schemas.avatarDecorationSchema);
         this.riotAccount = mongoose.model('riotAccount', Schemas.riotAccountSchema);
         this.items = mongoose.model('storeItems', Schemas.storeSchema);
+        this.foxyVerse = mongoose.model('foxyVerse', Schemas.foxyVerseSchema);
         this.checkoutList = mongoose.model('checkoutList', Schemas.checkoutList);
         this.store = mongoose.model('dailyStore', Schemas.dailyStoreSchema);
         this.badges = mongoose.model('badges', Schemas.badgesSchema);
@@ -266,6 +268,13 @@ export default class DatabaseConnection {
         return decorationData;
     }
 
+    async getFoxyVerseGuild(guildId: String): Promise<FoxyVerseGuild | null> {
+        let document = await this.foxyVerse.findOne({ _id: guildId });
+        if (!document) return null;
+
+        return document;
+    }
+
     async saveGuildSettings(guildId: string, guildData: FoxyGuild) {
         const guild = await this.getGuild(guildId);
         if (!guild) return;
@@ -289,6 +298,21 @@ export default class DatabaseConnection {
 
         await guild.save();
     }
+}
+
+export interface FoxyVerseGuild {
+    _id: string;
+    serverBenefits: {
+        givePremiumIfBoosted: {
+            isEnabled: boolean;
+            notifyUser: boolean;
+            textChannelToRedeem: string;
+        };
+    };
+    guildAdmins: string[];
+    serverInvite: string;
+
+    save(): Promise<void>;
 }
 
 export interface Background {

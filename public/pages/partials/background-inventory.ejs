@@ -1,12 +1,11 @@
 <div class="itens" id="inventory">
-    <% userBackgrounds.reverse().forEach(background=> {
+    <% userBackgrounds.reverse().forEach(background => {
         const isSelected = currentBackground === background.id;
         %>
         <div class="item<%= isSelected ? ' selected' : '' %>" hx-get="/br/background/change/<%= background.id %>"
             hx-trigger="click" hx-target="this" hx-swap="none" id="<%= background.id %>">
             <div class="item__icon">
-                <img class="background" src="https://orchid.cakeyfox.live/assets/backgrounds/<%= background.filename %>"
-                    onerror="this.src='https://cakey.foxybot.win/assets/backgrounds/<%= background.filename %>'"
+                <img class="background" src="https://stuff.foxybot.win/backgrounds/<%= background.filename %>"
                     alt="<%= background.name %>">
             </div>
             <div class="item_info">
@@ -18,8 +17,6 @@
         <% }); %>
 
             <div id="notification" class="notification"></div>
-
-
             <script type="module">
                 import { showNotification } from "/js/notification.js";
 

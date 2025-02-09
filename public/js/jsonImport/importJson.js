@@ -5,7 +5,7 @@ function importJsonFromForm() {
     const jsonInput = document.getElementById("jsonInput").value;
 
     if (!bot || !jsonInput) {
-        alert("Por favor, selecione um bot e cole o JSON.");
+        showNotification("error", "Preencha todos os campos.");
         return;
     }
 
@@ -141,7 +141,7 @@ function importFromCarl(json) {
             }
         }]
     };
-    console.log(json)
+
     if (json.title) {
         convertedJson.embeds[0].title = replacePlaceholders(json.title);
     }
