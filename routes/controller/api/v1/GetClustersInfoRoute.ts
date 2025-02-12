@@ -11,13 +11,6 @@ export default class GetClustersInfoRoute {
     }
 
     async getClustersInfo(req, res) {
-        // const clusters = await fetch("http://localhost:3000/api/v1/info", {
-        //     method: "GET",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Authorization": "Bearer 2LyWJL2m52p7um1LBN4lUPuZHB8APVRb5AFuPEiz-es"
-        //     }
-        // });
         const clustersUrl = [
             "http://sakuya:5000/api/v1/info",
             "http://foxy-2:5000/api/v1/info",

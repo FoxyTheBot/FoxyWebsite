@@ -22,6 +22,7 @@ import ChangeDecorationRoute from './api/v1/ChangeDecorationRoute';
 import ChangeBackgroundRoute from './api/v1/ChangeBackgroundRoute';
 import GetClustersInfoRoute from './api/v1/GetClustersInfoRoute';
 import PostPartnershipRoute from './api/v1/PostPartnershipRoute';
+import PostWelcomerTestRoute from './api/v1/PostWelcomerTestRoute';
 
 class RouterManager {
     router: express.Router;
@@ -45,6 +46,7 @@ class RouterManager {
         new SaveGeneralSettingsRoute(this.router);
         new SaveWelcomerModuleRoute(this.router);
         new GetClustersInfoRoute(this.router);
+        new PostWelcomerTestRoute(this.router);
         new PostPartnershipRoute(this.router);
 
         /* ===[Partials Routes]=== */
