@@ -13,7 +13,8 @@
         padding: 10px 20px;
         border-radius: 5px;
         background: var(--reimu-secondary-color);
-        color: #fff;
+        color: var(--reimu-default-font-color);
+        border: 1px solid var(--reimu-tertiary-color);
         font-family: sans-serif;
         font-size: 14px;
         text-decoration: none;
@@ -28,7 +29,7 @@
         .server__icon {
             img {
                 width: 5.826rem;
-                border-radius: 50%;
+                border-radius: 25%;
                 margin-bottom: 10px;
                 transition: 0.5s;
             }
@@ -43,7 +44,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-                color: #fff;
+                color: var(--reimu-default-font-color);
                 max-width: 100%;
                 display: block;
             }
@@ -65,7 +66,7 @@
             font-family: var(--reimu-default-button-font-family);
             font-size: var(--reimu-button-font-size);
             font-weight: var(--reimu-button-font-weight);
-            color: #fff;
+            color: var(--reimu-button-font-color);
             margin-top: 1rem;
             cursor: pointer;
             box-sizing: border-box;

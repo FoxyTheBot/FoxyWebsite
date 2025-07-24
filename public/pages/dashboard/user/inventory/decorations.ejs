@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
 <head>
-  <link rel="canonical" href="https://foxybot.win/">
+  <link rel="canonical" href="https://foxybot.xyz/">
 
   <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
@@ -20,7 +20,6 @@
     gtag('config', 'G-E3J7N4BP8L');
   </script>
 </head>
-
 <body>
   <div class="ad vertical">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
@@ -33,44 +32,45 @@
   </div>
 
   <%- include('../../sidebar') %>
-    <% if (userDecorations && userDecorations.length> 0) { %>
-      <main>
-        <div class="itens decorations" id="inventory">
-          <div class="item <%= currentDecoration === null ? 'disabled' : '' %>"
-            onclick="window.location.href='/br/decorations/change/none'">
-            <div class="item__icon">
-              <img class="background" src="/assets/images/none.png">
-            </div>
-            
-            <% if (!currentDecoration) { %>
-              <span class="purchased">Selecionado</span>
-              <% } %>
+
+  <% if (userDecorations && userDecorations.length > 0) { %>
+    <main>
+      <div class="itens decorations" id="inventory">
+
+        <div class="item <%= currentDecoration === null ? 'disabled' : '' %>"
+          onclick="window.location.href='/br/decorations/change/none'">
+          <div class="item__icon">
+            <img class="background" src="/assets/images/none.png" />
           </div>
+          <% if (!currentDecoration) { %>
+            <span class="purchased">Selecionado</span>
+          <% } %>
+        </div>
 
-          <% userDecorations.forEach(decoration=> { %>
-            <div class="item <%= currentDecoration === decoration.id ? 'disabled' : '' %>" <% if (currentDecoration
-              !==decoration.id) { %>
-              onclick="change('<%= decoration.id %>')" <% } %>>
-                  <div class="item__icon">
-                    <img class="background" src="https://stuff.foxybot.win/decorations/<%= decoration.filename %>"
-                  </div>
-
-                  <% if (currentDecoration===decoration.id) { %>
-                    <span class="purchased">Selecionado</span>
-                    <% } %>
+        <% userDecorations.forEach(decoration => { 
+            const isDisabled = currentDecoration === decoration.id;
+        %>
+          <div class="item <%= isDisabled ? 'disabled' : '' %>" 
+            <%= !isDisabled ? `onclick="change('${decoration.id}')"` : '' %>>
+            <div class="item__icon">
+              <img class="background" src="https://stuff.foxybot.xyz/decorations/<%= decoration.filename %>" />
             </div>
-            <% }); %>
-        </div>
-      </main>
-      <% } else { %>
-        <div class="empty">
-          <img class="empty-img" src="/assets/emojis/foxy_cry.png" alt="Empty">
-          <p>Você não tem decorações de avatar.<br>Compre na lojinha da Foxy usando Cakes</p>
-        </div>
-        <% } %>
+            <% if (isDisabled) { %>
+              <span class="purchased">Selecionado</span>
+            <% } %>
+          </div>
+        <% }); %>
 
-
+      </div>
+    </main>
+  <% } else { %>
+    <div class="empty">
+      <img class="empty-img" src="/assets/emojis/foxy_cry.png" alt="Empty" />
+      <p>Você não tem decorações de avatar.<br>Compre na lojinha da Foxy usando Cakes</p>
+    </div>
+  <% } %>
 </body>
+
 
 <script>
   function change(backgroundId) {

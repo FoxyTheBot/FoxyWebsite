@@ -8,7 +8,7 @@
     height: 100vh;
 
     .module-title {
-        color: #e7385d;
+        color: var(--reimu-primary-color);
         font-size: 2rem;
         font-family: sans-serif;
         margin: 2rem 0 1rem;
@@ -16,8 +16,9 @@
     }
 
     .module-description {
-        color: #fafafa;
+        color: var(--reimu-default-font-color);
         font-size: 1rem;
+        font-weight: 600;
         font-family: sans-serif;
         text-align: center;
         margin-left: 0rem;
@@ -33,7 +34,7 @@
 
             .config-module {
                 margin-top: 2rem;
-                background-color: #2a1f3b;
+                background-color: var(--reimu-secondary-color);
                 padding: 1rem;
                 border-radius: 5px;
                 display: flex;
@@ -41,10 +42,10 @@
                 align-items: flex-start;
                 margin-left: -3rem;
                 margin-right: -2rem;
-                border: 1px solid #23282c;
+                border: 1px solid var(--reimu-tertiary-color);
 
                 .module-name {
-                    color: #fafafa;
+                    color: var(--reimu-default-font-color);
                     font-size: 1rem;
                     font-family: sans-serif;
                     font-weight: 700;
@@ -62,7 +63,7 @@
                     margin-top: 1rem;
 
                     .toggleable-option-title {
-                        color: #fafafa;
+                        color: var(--reimu-default-font-color);
                         font-size: 1rem;
                         font-family: sans-serif;
                         margin-bottom: 0.5rem;
@@ -74,6 +75,12 @@
 
                         &.embed-config {
                             margin-top: 2rem;
+                            background-color: #2b2d31;
+                            border-left: 4px solid #5865F2;
+                            border-radius: 8px;
+                            padding: 12px;
+                            max-width: 500px;
+                            font-family: 'Arial', sans-serif;
                         }
                     }
 
@@ -94,7 +101,7 @@
             .channel-mention {
                 display: inline-flex;
                 align-items: center;
-                background-color: #20182d;
+                background-color: var(--reimu-tertiary-color);
                 color: #7289da;
                 font-family: sans-serif;
                 padding: 4px 8px;
@@ -104,7 +111,7 @@
 
             .channel-mention button {
                 background: transparent;
-                color: #fff;
+                color: var(--reimu-default-font-color);
                 border: none;
                 cursor: pointer;
             }
@@ -141,7 +148,7 @@ form {
         }
 
         &:focus {
-            border-color: #5865F2;
+            border-color: var(--reimu-primary-color);
             box-shadow: 0 0 5px rgba(88, 101, 242, 0.5);
         }
     }
@@ -160,7 +167,7 @@ form {
         box-sizing: border-box;
 
         &:focus {
-            border-color: #5865F2;
+            border-color: var(--reimu-primary-color);
             box-shadow: 0 0 5px rgba(88, 101, 242, 0.5);
         }
     }
@@ -186,35 +193,8 @@ form {
     }
 
     textarea:focus {
-        border-color: #5865F2;
+        border-color: var(--reimu-primary-color);
         box-shadow: 0 0 8px rgba(88, 101, 242, 0.4);
-    }
-
-    .test-btn {
-        display: block;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background-color: #3372fa;
-        border: none;
-        outline: none;
-        margin-top: 1rem;
-        font-family: sans-serif;
-        font-size: 14px;
-        color: #fff;
-        margin-bottom: 10px;
-        cursor: pointer;
-        box-sizing: border-box;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-
-        &:hover {
-            background-color: #2d68e3;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        &:disabled {
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
     }
 
     .button-wrapper {
@@ -232,7 +212,7 @@ form {
         font-family: var(--reimu-default-button-font-family);
         font-size: var(--reimu-button-font-size);
         font-weight: var(--reimu-button-font-weight);
-        color: #fff;
+        color: var(--reimu-button-font-color);
         margin-bottom: 10px;
         margin-top: 0.525rem;
         cursor: pointer;
@@ -254,7 +234,7 @@ form {
         outline: none;
         font-family: sans-serif;
         font-size: 14px;
-        color: #fff;
+        color: var(--reimu-default-font-color);
         margin-bottom: 10px;
         margin-top: 3rem;
         cursor: pointer;
@@ -281,7 +261,7 @@ form {
         box-sizing: border-box;
 
         &:focus {
-            border-color: #5865F2;
+            border-color: var(--reimu-primary-color);
             box-shadow: 0 0 5px rgba(88, 101, 242, 0.5);
         }
     }
@@ -299,13 +279,13 @@ form {
 .actions-wrapper {
     color: white;
     display: flex;
-    background-color: #1e1f22;
+    background-color: var(--reimu-secondary-color);
     position: sticky;
     bottom: 1em;
     border-radius: 5px;
     padding: 1em;
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.01), 0 0px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #333;
+    border: 1px solid var(--reimu-tertiary-color);
     justify-content: center;
     align-items: center;
     transform: scale(1.025);
@@ -323,7 +303,7 @@ form {
 }
 
 .save-message {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 0.925rem;
     font-family: sans-serif;
     text-align: center;
@@ -348,7 +328,7 @@ form {
     margin-bottom: 15px;
 
     &:focus {
-        border-color: #5865F2;
+        border-color: var(--reimu-primary-color);
     }
 
     &:invalid {
@@ -389,30 +369,4 @@ form {
         }
     }
 
-}
-
-.shake {
-    animation: shake 0.5s;
-}
-
-@keyframes shake {
-    0% {
-        transform: translate(0, 0);
-    }
-
-    25% {
-        transform: translate(-10px, 0);
-    }
-
-    50% {
-        transform: translate(10px, 0);
-    }
-
-    75% {
-        transform: translate(-10px, 0);
-    }
-
-    100% {
-        transform: translate(0, 0);
-    }
 }

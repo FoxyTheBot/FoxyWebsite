@@ -1,14 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-$footer-color: var(--reimu-tertiary-color);
 $footer-font-family: var(--reimu-default-font-family);
 $default-color: #e7385d;
 $footer-add-color: #3ba55c;
 $footer-add-button-font-family: 'Roboto', sans-serif;
 
 footer {
-    background-color: $footer-color;
-    color: white;
+    background-color: var(--reimu-footer-color);
+    color: white !important;
     position: absolute;
     z-index: 9999;
     margin-top: auto;
@@ -20,6 +19,7 @@ footer {
     text-align: center;
 
     .footer-paragraph {
+        color: #fff;
         font-size: 1em;
         margin: 0;
         font-family: $footer-font-family;
@@ -73,6 +73,7 @@ footer {
 
     p {
         font-family: $footer-font-family;
+        color: #fff;
         margin: 0;
         margin-top: 10px;
     }

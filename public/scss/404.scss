@@ -138,13 +138,13 @@ main #coins {
 }
 
 main h3 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 18px;
     margin-left: 5px;
 }
 
 main h4 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 15px;
     font-family: var(--reimu-default-font-family);
     margin-left: 5px;
@@ -165,7 +165,7 @@ main a {
 }
 
 main h2 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 20px;
     margin-top: 5px;
 }

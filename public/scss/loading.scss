@@ -11,7 +11,7 @@
     font-family: var(--reimu-default-font-family);
     z-index: 1000;
     font-size: 24px;
-    color: #fff;
+    color: var(--reimu-default-font-color);
 
     &.new {
         position: absolute;
@@ -23,7 +23,7 @@
 
         .title {
             margin-top: 1rem;
-            color: #fff;
+            color: var(--reimu-default-font-color);
             font-size: 2rem;
             margin-left: 1rem;
         }
@@ -35,7 +35,7 @@
 
     .title {
         margin-top: 1rem;
-        color: #fff;
+        color: var(--reimu-default-font-color);
         font-size: 2rem;
     }
 

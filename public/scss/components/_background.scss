@@ -1,51 +1,80 @@
 :root {
     /* Primary Colors */
     --reimu-primary-color: #e7385d;
-    --reimu-secondary-color: #2d184b;
-    --reimu-tertiary-color: #1f1330;
-
+    --reimu-secondary-color: #353535;
+    --reimu-tertiary-color: #5a1e33;
+  
     /* Backgrounds and Gradients */
-    --reimu-background-color: #1f1330;
+    --reimu-background-color: #121212;
     --reimu-loading-overlay-color: rgba(29, 29, 29, 0.8);
-
+    --reimu-feature-session-background: #1e1f22;
+    --reimu-feature-card-background: var(--reimu-tertiary-color);
+    --reimu-feature-card-font-color: #eee;
+  
     /* Sidebar */
-    --reimu-sidebar-color: #251a35;
+    --reimu-sidebar-color: #1e1e1e;
     --reimu-sidebar-font-size: 14px;
     --reimu-sidebar-font-weight: 500;
-    --reimu-sidebar-font-color: #fff;
-    
+    --reimu-sidebar-font-color: #ddd;
+  
+    /* Header */
+    --reimu-navbar-color: #1e1e1e;
+    --reimu-navbar-text-color: #fff;
+    --reimu-navbar-text-hover-color: #bbb;
+    --reimu-navbar-font-size: 17px;
+    --reimu-navbar-font-family: var(--reimu-default-font-family);
+  
+    /* Mobile Nav */
+    --reimu-mobile-nav-color: var(--reimu-secondary-color);
+    --reimu-mobile-nav-text-color: #ddd;
+  
     /* Buttons */
-    --reimu-button-color: #e7385d;
-    --reimu-button-hover-color: #e71946;
-    --reimu-button-color: #e7385d;
-    --reimu-button-hover-color: #e71946;
-    --reimu-button-active-color: #e7385d;
+    --reimu-button-color: var(--reimu-primary-color);
+    --reimu-button-hover-color: var(--reimu-secondary-color);
+    --reimu-button-active-color: var(--reimu-primary-color);
+    --reimu-button-font-color: #fff;
     --reimu-button-font-size: 14px;
     --reimu-button-font-weight: 500;
     --reimu-button-border-radius: 2px;
     --reimu-button-padding: 10px 20px;
-
+  
     /* Specific Element Colors */
-    --reimu-server-card-color: #e85261;
+    --reimu-server-card-color: var(--reimu-secondary-color);
     --reimu-backdrop-blur: blur(12px);
-
+  
+    /* Premium Cards */
+    --reimu-premium-card-background: var(--reimu-tertiary-color);
+    --reimu-premium-card-border: 1px solid var(--reimu-primary-color);
+    --reimu-premium-recommended-color: #b93e69;
+    --reimu-premium-card-font-color: #eee;
+    --reimu-premium-recommended-flag-font-color: #fff;
+    --reimu-premium-recommended-flag-color: var(--reimu-primary-color);
+    --reimu-premium-card-button-color: var(--reimu-primary-color);
+    --reimu-premium-card-button-font-color: #fff;
+  
     /* Fonts */
     --reimu-greetings-font: "Cookie";
+    --reimu-popup-font-color: #000;
+    --reimu-default-font-color: #ddd;
     --reimu-default-button-font-family: Roboto, sans-serif;
     --reimu-default-font-family: Inter, SF Pro, Segoe UI, Roboto, Oxygen, Ubuntu, Helvetica Neue, Helvetica, Arial, sans-serif;
+
+    /* Footer */
+    --reimu-footer-color: #121212;
 }
 
+
 html {
-    background: url("/assets/images/background.png"), var(--reimu-background-color) !important;
+    background: url("/assets/images/background-white.png"), var(--reimu-background-color) !important;
     background-size: cover !important;
     background-attachment: fixed !important;
     height: 100%;
     width: 100%;
     scrollbar-width: thin;
-    scrollbar-color: var(--reimu-primary-color) #0f1923;
+    scrollbar-color: var(--reimu-primary-color);
 }
 
 body {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     transition: color 0.3s ease-in-out;
 }

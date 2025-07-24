@@ -30,7 +30,7 @@
         padding-top: 0.625rem;
         padding-bottom: 0.625rem;
         margin: 0.595rem;
-        background-color: #252525;
+        background-color: var(--reimu-secondary-color);
         border-radius: 0.625rem;
         transition: transform 0.3s ease-in-out;
 
@@ -55,7 +55,7 @@
         }
 
         .purchased {
-            color: #fff;
+            color: var(--reimu-default-font-color);
             font-size: 1rem;
             font-weight: bold;
             margin-top: 0.3125rem;
@@ -102,7 +102,7 @@
             }
 
             .item-name {
-                color: #fff;
+                color: var(--reimu-default-font-color);
                 font-size: 1.2rem;
                 font-family: var(--reimu-default-font-family);
                 text-align: center;
@@ -142,7 +142,7 @@
 .item {
     margin: 1.25rem;
     padding: 0.625rem 1.25rem;
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-family: var(--reimu-default-font-family);
     font-size: 0.875rem;
     text-decoration: none;
@@ -175,7 +175,7 @@
     left: 0;
     padding: 5px 10px;
     background: var(--reimu-secondary-color);
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;

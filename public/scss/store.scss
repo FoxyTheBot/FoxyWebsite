@@ -12,11 +12,15 @@
 }
 
 p {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 1rem;
     font-family: var(--reimu-default-font-family);
     margin-left: 1rem;
     margin-top: -14rem;
+
+    &.mendigagem {
+        font-size: 1.10rem;
+    }
 }
 
 main {
@@ -97,7 +101,7 @@ main {
     margin-top: -2%;
     margin-bottom: 15px;
     font-size: 17px;
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-family: sans-serif;
 }
 
@@ -120,7 +124,7 @@ main {
 }
 
 .plan-title {
-    color: #fff !important;
+    color: var(--reimu-premium-card-font-color) !important;
 }
 
 .recommended-flag {
@@ -128,8 +132,8 @@ main {
     top: 0;
     left: 0;
     padding: 5px 10px;
-    background: #333b94;
-    color: #fff;
+    background: var(--reimu-premium-recommended-flag-color);
+    color: var(--reimu-premium-recommended-flag-font-color);
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
@@ -148,8 +152,8 @@ main {
     margin: 10px;
     padding: 10px 20px;
     border-radius: 5px;
-    background: #7289da;
-    color: #fff;
+    background: var(--reimu-premium-card-background);
+    color: var(--reimu-default-font-color);
     font-family: sans-serif;
     font-size: 14px;
     text-decoration: none;
@@ -161,7 +165,7 @@ main {
     text-align: center;
 
     &.rec {
-        background: #5865F2;
+        background: var(--reimu-premium-recommended-color);
     }
 }
 
@@ -169,8 +173,8 @@ main {
     display: block;
     padding: 8px 16px;
     border-radius: 5px;
-    background-color: #fff;
-    color: #7289da;
+    background-color: var(--reimu-premium-card-button-color);
+    color: var(--reimu-premium-card-button-font-color);
     text-align: center;
     text-decoration: none;
 }
@@ -184,7 +188,7 @@ main h1 {
 }
 
 main h3 {
-    color: rgb(255, 255, 255);
+    color: var(--reimu-premium-card-font-color);
     font-size: 20px;
     font-family: var(--reimu-default-font-family);
 
@@ -234,14 +238,14 @@ main #coins {
 }
 
 main h3 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 18px;
     font-family: sans-serif;
     margin-left: 5px;
 }
 
 main h4 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 15px;
     font-family: sans-serif;
     margin-left: 5px;
@@ -262,7 +266,7 @@ main a {
 }
 
 main h2 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 20px;
     font-family: sans-serif;
     margin-top: 5px;
@@ -301,7 +305,7 @@ main h2 {
     }
 
     p {
-        color: #fff;
+        color: var(--reimu-default-font-color);
         font-size: 1rem;
         font-family: var(--reimu-default-font-family);
         margin-left: 0rem;
@@ -314,7 +318,7 @@ main h2 {
         padding: 10px 20px;
         border-radius: 5px;
         background: #7289da;
-        color: #fff;
+        color: var(--reimu-default-font-color);
         font-family: sans-serif;
         font-size: 14px;
         text-decoration: none;

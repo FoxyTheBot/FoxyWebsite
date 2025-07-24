@@ -24,12 +24,12 @@ async function sendWelcomeMessage(userId, guildName) {
                     "Se você está me conhecendo agora, eu sou a **Foxy**, um bot multiuso para Discord, pronta para ajudar você e seu servidor a se divertir e crescer! " +
                     "Além de entreter os membros, posso dar uma mãozinha no gerenciamento e proteção do servidor! :3" + 
                     "\n\n" +
-                    `<:foxy_drinking_coffee:1071119512352591974> **|** Quer saber mais sobre mim? Confira meus comandos [clicando aqui](https://foxybot.win/br/commands)! ` +
+                    `<:foxy_drinking_coffee:1071119512352591974> **|** Quer saber mais sobre mim? Confira meus comandos [clicando aqui](https://foxybot.xyz/br/commands)! ` +
                     "Se precisar de ajuda ou tiver alguma dúvida, você pode entrar no meu servidor de suporte; seria muito legal ter você lá!" +
                     "\n\n" +
                     `<:foxy_wow:853366914054881310> **|** Espero poder ajudar você e seu servidor a crescer e se divertir bastante!`,
                 image: {
-                    url: "https://cakey.foxybot.win/assets/banner-2.png"
+                    url: "https://cakey.foxybot.xyz/assets/banner-2.png"
                 }
             }],
             components: [{

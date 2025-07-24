@@ -14,17 +14,6 @@
 @import "components/footer";
 @import "components/ad-position";
 
-:root {
-    font-size: 16px;
-    --primary-color: #ff4655;
-    --secondary-color: #eb5362;
-    --background-color: linear-gradient(90deg, #0f1923, #0f1923);
-    --font-family: var(--reimu-default-font-family);
-}
-
-html {
-    background: var(--reimu-background-color) !important;
-}
 .page-title {
     color: #e7385d;
     font-size: 2rem;
@@ -35,7 +24,7 @@ html {
 }
 
 p {
-    color: #fff;
+    color: var(--reimu-default-font-color) !important;
     font-size: 1rem;
     font-family: sans-serif;
     text-align: center;
@@ -45,7 +34,7 @@ p {
 }
 
 .remaining-time {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 0.7545rem;
     font-family: var(--reimu-default-font-family);
     text-align: center;
@@ -77,7 +66,7 @@ main {
     }
 
     h3 {
-        color: #fff;
+        color: var(--reimu-default-font-color);
         font-size: 1.125rem;
         font-family: sans-serif;
         margin-left: 0.3125rem;
@@ -85,7 +74,7 @@ main {
 }
 
 .item-name {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 2.5rem;
     font-family: var(--reimu-default-font-family);
     text-align: center;
@@ -185,6 +174,14 @@ main {
     .item {
         flex: 1 1 100%;
         max-width: 100%;
+    }
+
+    .page-title {
+        margin-top: 4rem;
+    }
+
+    h2 {
+        margin-top: 4rem;
     }
 
     .title,

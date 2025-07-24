@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
 <head>
-    <link rel="canonical" href="https://foxybot.win/">
+    <link rel="canonical" href="https://foxybot.xyz/">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,53 +44,6 @@
         </script>
     </div>
     <%- include('../sidebar') %>
-        <div id="popup" class="popup-wrapper hidden">
-            <div class="popup">
-                <div class="content">
-                    <h2 class="title">Importar JSON</h2>
-                    <p class="description" style="text-align: center;">Importe embeds em JSON de outros bots para
-                        funcionar com a Foxy!
-                        <br><br>Campos incompatíveis serão removidos durante a importação.
-                    </p>
-                </div>
-                <form id="importForm" style="width: 100%;" data-gtm-form-interact-id="0">
-                    <div class="form-content">
-                        <input type="hidden" name="backgroundId" id="backgroundId">
-
-                        <div class="form-group" style="display: flex;align-items: center;gap: 51%;width: 100%;">
-                            <div>
-                                <label for="botSelect">Selecione o bot:</label>
-                                <select id="botSelect" name="botSelect" required="" onchange="updateBotImage()"
-                                    style="width: 250%;" data-gtm-form-interact-field-id="0">
-                                    <option value="" disabled="" selected="">Escolha um bot</option>
-                                    <option value="loritta">Loritta</option>
-                                    <option value="carl-bot">Carl Bot</option>
-                                </select>
-                            </div>
-
-                            <div id="botImageContainer" style="text-align: center;">
-                                <img id="botImage" src="https://cdn.discordapp.com/embed/avatars/0.png"
-                                    style="max-width: 85px;display: block;border-radius: 50%;">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="jsonInput">Cole o JSON:</label>
-                            <textarea id="jsonInput" name="jsonInput" rows="8" placeholder="Cole o JSON aqui..."
-                                required=""></textarea>
-                        </div>
-
-                    </div>
-                    <div class="popup-buttons">
-                        <button type="button" id="cancel" onclick="hidePopup()"
-                            class="popup-button cancel">Fechar</button>
-                        <button type="button" id="import" onclick="importJsonFromForm()"
-                            class="popup-button">Importar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
         <div class="config-wrapper">
             <h1 class="module-title">Mensagens de Entrada/Saída</h1>
             <p class="module-description">Configure a Foxy para notificar quando um membro entra ou sai do seu servidor!
@@ -115,7 +68,6 @@
                                 <label class="module-name">Mensagem de boas-vindas</label>
                                 <div class="button-wrapper">
                                     <button id="welcomeTestButton" type="button">Testar Mensagem</button>
-                                    <button type="button" onclick="showPopup()">Importar JSON</button>
                                 </div>
                                 <br>
                                 <div>
@@ -176,7 +128,6 @@
                                 <label class="toggleable-option-title">Mensagem de despedida</label>
                                 <div class="button-wrapper">
                                     <button id="goodbyeTestButton" type="button">Testar Mensagem</button>
-                                    <button type="button" onclick="showPopup()">Importar JSON</button>
                                 </div>
                                 <input type="text" name="goodbyeMessage" id="goodbyeMessage"
                                     placeholder="Mensagem de despedida">

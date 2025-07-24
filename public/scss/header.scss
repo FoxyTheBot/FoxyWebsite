@@ -4,18 +4,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Pacifico&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
 @import "components/footer";
-
-:root {
-    --reimu-navbar-color: #2d184b;
-    --reimu-navbar-text-color: #f2f2f2;
-    --reimu-navbar-text-hover-color: #dddddd;
-    --reimu-navbar-font-size: 17px;
-    --reimu-navbar-font-family: var(--reimu-default-font-family);
-
-    /* Mobile Nav */
-    --reimu-mobile-nav-color: #2d184b;
-    --reimu-mobile-nav-text-color: #edf0f1;
-}
+@import "components/background";
 
 * {
     box-sizing: border-box;
@@ -39,7 +28,7 @@
     left: 20px;
     font-size: 30px;
     background-color: transparent;
-    color: #fff;
+    color: var(--reimu-default-font-color);
     border: none;
     cursor: pointer;
     z-index: 2000;
@@ -57,7 +46,6 @@ nav.marisa-navbar {
     top: 0;
     width: 100%;
     height: 46px;
-    text-shadow: 0 1px rgb(0 0 0 / 20%);
     font-family: var(--reimu-default-font-family);
     font-weight: 501;
     font-size: 17px;
@@ -116,20 +104,20 @@ nav.marisa-navbar {
     .entry {
         display: flex;
         align-items: center;
-        color: #f2f2f2 !important;
+        color: var(--reimu-navbar-text-color) !important;
         font-size: 17px;
         transition: 0.5s;
         cursor: pointer;
         white-space: nowrap;
 
         a {
-            color: #f2f2f2 !important;
+            color: var(--reimu-navbar-text-color) !important;
             text-decoration: none;
             transition: 0.3s;
-            color: white !important;
+            color: var(--reimu-navbar-text-color) !important;
 
             &:hover {
-                color: rgb(221, 221, 221) !important;
+                color: var(--reimu-navbar-text-color) !important;
                 text-decoration: none;
             }
         }
@@ -232,7 +220,7 @@ nav.marisa-navbar {
     a {
         font-family: var(--reimu-default-font-family);
         font-weight: 500;
-        color: #edf0f1;
+        color: var(--reimu-navbar-text-color);
         text-decoration: none;
     }
 }
@@ -259,7 +247,6 @@ nav.marisa-navbar {
         top: 0;
         width: 126%;
         height: 50px;
-        text-shadow: 0 1px rgba(0, 0, 0, 0.2);
         font-family: "Oswald" !important;
         font-weight: 500;
         font-size: 17px;

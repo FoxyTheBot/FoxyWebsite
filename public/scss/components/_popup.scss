@@ -102,7 +102,7 @@
 
                     &:hover {
                         background-color: #616161;
-                        color: #fff;
+                        color: var(--reimu-default-font-color);
                     }
                 }
             }
@@ -118,7 +118,7 @@
         }
 
         .description {
-            color: #000000;
+            color: var(--reimu-popup-font-color) !important;
             font-size: 15px;
             margin-bottom: 10px;
             margin-left: 0rem;
@@ -161,7 +161,7 @@
 
 .close:hover,
 .close:focus {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     text-decoration: none;
     cursor: pointer;
 }
@@ -189,7 +189,7 @@
 
 @media (max-width: 768px) {
     #save {
-        color: #fff;
+        color: var(--reimu-default-font-color);
         display: block;
         padding: 10px 10px;
         border-radius: 5px;

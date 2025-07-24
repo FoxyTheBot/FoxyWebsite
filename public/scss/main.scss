@@ -7,15 +7,10 @@
 @import "components/footer";
 @import "components/ad-position";
 
-/* Will be used for unauthorized deprecated copies */
-.meeting, .meeting-2, .logo, .features, .shadow__btn, .navigation-bar {
-    display: none !important;
-}
-
 /* end */
 
 main .greetings {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 40px;
     font-family: 'Cookie';
     margin-left: 5px;
@@ -23,7 +18,7 @@ main .greetings {
 }
 
 main .greetings-2 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 40px;
     font-family: 'Cookie';
     margin-left: 5px;
@@ -41,7 +36,7 @@ main .greetings-2 {
 .feature-card-section {
     padding: 30px;
     opacity: inherit;
-    background-color: #36393f;
+    background-color: var(--reimu-feature-session-background);
     border-color: #000;
     position: relative;
     text-align: center;
@@ -65,7 +60,7 @@ main .greetings-2 {
         background-color: var(--reimu-primary-color);
 
         &:hover {
-            background-color: var(--reimu-button-hover-color);
+            background-color: #ff3a3a;
             transition: 0.5s;
         }
 
@@ -86,10 +81,7 @@ main .greetings-2 {
 
 main {
     margin-bottom: 6rem;
-    /* padding-left: 30%; */
-    /* padding-right: 37%; */
     margin-top: 15%;
-    /* margin-left: -40%; */
     transition-duration: 0.5s;
     text-align: center;
     cursor: default;
@@ -98,7 +90,7 @@ main {
 
 .feature-card-section {
     padding: 30px;
-    background-color: #2d184b;
+    background-color: var(--reimu-feature-session-background);
     border-color: #000;
     position: relative;
     text-align: center;
@@ -116,7 +108,7 @@ main {
     p {
         font-family: var(--reimu-default-font-family);
         font-size: 15px;
-        color: #3d3d3d;
+        color: var(--reimu-feature-card-font-color);
         margin-left: auto;
     }
 
@@ -124,12 +116,12 @@ main {
         font-family: var(--reimu-default-font-family);
         font-size: 20px;
         margin-top: 20px;
-        color: #fff;
+        color: var(--reimu-feature-card-font-color);
     }
 
     .description {
         font-family: var(--reimu-default-font-family);
-        color: #fff;
+        color: var(--reimu-feature-card-font-color);
     }
 
     .feature-card {
@@ -137,9 +129,12 @@ main {
         margin: 20px;
         padding: 2rem;
         border-radius: 10px;
-        background-color: #251739;
+        background-color: var(--reimu-feature-card-background);
         align-items: flex-start;
         margin-top: 1rem;
+        margin-bottom: 1rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+        
 
         &.right {
             flex-direction: row;
@@ -162,18 +157,23 @@ main {
             padding: 0 10px;
         }
 
+        &:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+        
         h1 {
             font-family: var(--reimu-default-font-family);
             font-size: 160%;
             margin: 0 0 10px 0;
-            color: #e7385d;
+            color: var(--reimu-primary-color);
         }
 
         h2 {
             font-family: var(--reimu-default-font-family);
             font-size: 110%;
             margin: 0;
-            color: #ffffff;
+            color: var(--reimu-feature-card-font-color);
         }
 
         .feature-card-image {
@@ -203,7 +203,7 @@ main {
 }
 
 .server-name {
-    color: #fff !important;
+    color: var(--reimu-feature-card-font-color) !important;
     margin-top: 1rem !important;
 }
 
@@ -211,7 +211,7 @@ main {
     margin-top: 8rem;
 
     .title {
-        color: #fff;
+        color: var(--reimu-default-font-color);
         font-size: 40px;
         font-family: var(--reimu-greetings-font);
         margin-left: 5px;
@@ -219,7 +219,7 @@ main {
     }
 
     .title-2 {
-        color: #fff;
+        color: var(--reimu-default-font-color);
         font-size: 40px;
         font-family: var(--reimu-greetings-font);
         margin-left: 5px;
@@ -230,7 +230,7 @@ main {
 .server-card {
     border-radius: 10px;
     padding: 15px;
-    color: #fff;
+    color: var(--reimu-default-font-color);
     text-align: center;
     display: inline-block;
     vertical-align: top;

@@ -7,7 +7,7 @@
 @import "components/inline-emoji";
 
 .command-category-name {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     text-align: center;
     font-family: var(--reimu-default-font-family);
     font-size: 30px;
@@ -34,8 +34,15 @@
 
     @media screen and (max-width: 768px) {
         display: block;
-        
+
     }
+}
+
+.commands-page {
+    padding-left: 23rem;
+    padding-right: 5rem;
+    transition-duration: 0.5s;
+    padding-top: 0rem;
 }
 
 main {
@@ -48,7 +55,7 @@ main {
 
 
 h2 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 25px;
     margin-bottom: 10px;
     font-family: Montserrat;
@@ -123,7 +130,7 @@ a {
 
 .left-sidebar .entry {
     padding: 10px 20px;
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-family: sans-serif;
     font-size: 14px;
     text-decoration: none;
@@ -138,7 +145,7 @@ a {
 }
 
 .section-title {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 20px;
     font-family: sans-serif;
     margin-left: 20px;
@@ -154,7 +161,7 @@ a {
 .feature-card-section .description {
     font-family: Montserrat;
     text-align: center;
-    color: #fff;
+    color: var(--reimu-default-font-color);
 }
 
 .feature-card-section .card-row {
@@ -178,7 +185,7 @@ a {
 .feature-card-section .card-row .card p {
     font-family: Montserrat;
     font-size: 15px;
-    color: #fff;
+    color: var(--reimu-default-font-color);
     margin-left: auto;
 }
 
@@ -208,14 +215,14 @@ main li {
 }
 
 main .description {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 17px;
     margin-bottom: 2%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 main .support-server {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 17px;
     margin-bottom: 30%;
     margin-left: 38%;
@@ -245,7 +252,7 @@ main .server-description {
 }
 
 main .support-description {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 17px;
     margin-bottom: 2%;
     text-align: center;
@@ -272,7 +279,7 @@ table {
     border-collapse: separate;
     width: 90%;
     margin: 20px auto;
-    background-color: #282a2e;
+    background-color: var(--reimu-primary-color);
     font-family: var(--reimu-default-font-family);
     border-radius: 10px;
     overflow: hidden;
@@ -281,7 +288,6 @@ table {
 }
 
 th {
-    background-color: var(--reimu-default-font-family);
     color: #fff;
     padding: 12px 15px;
     font-weight: 600;
@@ -294,18 +300,19 @@ th {
 td {
     padding: 12px 15px;
     text-align: left;
-    background-color: #3b3f45;
-    color: #fff;
-    border-bottom: 1px solid #464a4f;
+    background-color: var(--reimu-secondary-color);
+    color: var(--reimu-default-font-color);
+    border-bottom: 1px solid #f0f0f0;
 }
 
 tr:nth-child(even) td {
-    background-color: #353a3f;
+    background-color: var(--reimu-tertiary-color);
 }
 
 tr:hover td {
-    background-color: #464a4f;
+    background-color: var(--reimu-primary-color);
     cursor: pointer;
+    color: #fff;
     transition: background-color 0.3s ease;
 }
 
@@ -355,14 +362,14 @@ main .tos {
 }
 
 main .tos .term h2 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 25px;
     font-family: Montserrat;
     margin-bottom: 1%;
 }
 
 main .tos .term h3 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 18px;
     font-family: Montserrat;
     margin-bottom: 2%;
@@ -370,11 +377,11 @@ main .tos .term h3 {
 
 p {
     font-family: Montserrat;
-    color: #fff;
+    color: var(--reimu-default-font-color);
 }
 
 main h3 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 18px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -398,7 +405,7 @@ main a {
 }
 
 .main2 h3 {
-    color: #fff;
+    color: var(--reimu-default-font-color);
     font-size: 18px;
     font-family: sans-serif;
 }
@@ -411,6 +418,11 @@ main a {
 
     .left-sidebar {
         display: none;
+    }
+
+    .commands-page {
+        padding: 1rem;
+        transition-duration: 0.5s;
     }
 
     main {

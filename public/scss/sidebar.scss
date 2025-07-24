@@ -17,11 +17,11 @@ $default-color: #e7385d;
     background-color: var(--reimu-sidebar-color);
     transition: left 0.3s ease;
     overflow-y: auto;
+    padding: 0.5rem;
     overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: var(--reimu-sidebar-color);
     z-index: 900;
-    border: 1px solid #23282c;
 
     .entry {
         color: var(--reimu-sidebar-font-color);
@@ -111,7 +111,7 @@ $default-color: #e7385d;
     left: 20px;
     font-size: 30px;
     background-color: transparent;
-    color: #fff;
+    color: var(--reimu-default-font-color);
     border: none;
     cursor: pointer;
     z-index: 2000;
@@ -128,7 +128,7 @@ $default-color: #e7385d;
 
     .left-sidebar {
         left: -100%;
-        width: 100%;
+        width: 80%;
     }
 
     .left-sidebar.open {
