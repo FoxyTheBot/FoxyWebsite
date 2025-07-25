@@ -44,6 +44,51 @@
         </script>
     </div>
     <%- include('../sidebar') %>
+        <div id="popup" class="popup-wrapper hidden">
+            <div class="popup">
+                <div class="content">
+                    <h2 class="title">Importar JSON</h2>
+                    <p class="description" style="text-align: center;">Importe embeds em JSON de outros bots para
+                        funcionar com a Foxy!
+                        <br><br>Campos incompatíveis serão removidos durante a importação.
+                    </p>
+                </div>
+                <form id="importForm" style="width: 100%;" data-gtm-form-interact-id="0">
+                    <div class="form-content">
+                        <input type="hidden" name="backgroundId" id="backgroundId">
+
+                        <div class="form-group" style="display: flex;align-items: center;gap: 51%;width: 100%;">
+                            <div>
+                                <label for="botSelect">Selecione o bot:</label>
+                                <select id="botSelect" name="botSelect" required="" onchange="updateBotImage()"
+                                    style="width: 250%;" data-gtm-form-interact-field-id="0">
+                                    <option value="" disabled="" selected="">Escolha um bot</option>
+                                    <option value="loritta">Loritta</option>
+                                    <option value="carl-bot">Carl Bot</option>
+                                </select>
+                            </div>
+
+                            <div id="botImageContainer" style="text-align: center;">
+                                <img id="botImage" src="https://cdn.discordapp.com/embed/avatars/0.png"
+                                    style="max-width: 85px;display: block;border-radius: 50%;">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="jsonInput">Cole o JSON:</label>
+                            <textarea id="jsonInput" name="jsonInput" rows="8" placeholder="Cole o JSON aqui..."
+                                required=""></textarea>
+                        </div>
+                    </div>
+                    <div class="popup-buttons">
+                        <button type="button" id="cancel" onclick="hidePopup()"
+                            class="popup-button cancel">Fechar</button>
+                        <button type="button" id="import" class="popup-button">Importar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div class="config-wrapper">
             <h1 class="module-title">Mensagens de Entrada/Saída</h1>
             <p class="module-description">Configure a Foxy para notificar quando um membro entra ou sai do seu servidor!
@@ -68,12 +113,13 @@
                                 <label class="module-name">Mensagem de boas-vindas</label>
                                 <div class="button-wrapper">
                                     <button id="welcomeTestButton" type="button">Testar Mensagem</button>
+                                    <button type="button" onclick="showPopup()" data-module-type="welcome">Importar
+                                        JSON</button>
                                 </div>
                                 <br>
                                 <div>
                                     <label class="toggleable-option-title">Conteúdo da mensagem</label>
-                                    <input type="text" name="messageContent" id="messageContent"
-                                        placeholder="Conteúdo da mensagem">
+                                    <input type="text" name="messageContent" id="message" placeholder="Conteúdo da mensagem">
                                 </div>
                                 <div class="toggleable-option embed-config">
                                     <label class="module-name">Configurar Embed</label>
@@ -128,35 +174,41 @@
                                 <label class="toggleable-option-title">Mensagem de despedida</label>
                                 <div class="button-wrapper">
                                     <button id="goodbyeTestButton" type="button">Testar Mensagem</button>
+                                    <button type="button" onclick="showPopup()" data-module-type="goodbye">Importar
+                                        JSON</button>
                                 </div>
                                 <input type="text" name="goodbyeMessage" id="goodbyeMessage"
                                     placeholder="Mensagem de despedida">
 
-                                <label class="toggleable-option-title">Título do Embed</label>
-                                <input type="text" name="goodbyeEmbedTitle" id="goodbyeEmbedTitle"
-                                    placeholder="Título do embed">
+                                <div class="toggleable-option embed-config">
+                                    <label class="module-name">Configurar Embed</label>
+                                    <br><br>
+                                    <label class="toggleable-option-title">Título do Embed</label>
+                                    <input type="text" name="goodbyeEmbedTitle" id="goodbyeEmbedTitle"
+                                        placeholder="Título do embed">
 
-                                <label class="toggleable-option-title">Descrição do Embed</label>
-                                <textarea name="goodbyeEmbedDescription" id="goodbyeEmbedDescription" rows="10"
-                                    cols="50" placeholder="Descrição do embed"></textarea>
+                                    <label class="toggleable-option-title">Descrição do Embed</label>
+                                    <textarea name="goodbyeEmbedDescription" id="goodbyeEmbedDescription" rows="10"
+                                        cols="50" placeholder="Descrição do embed"></textarea>
 
-                                <label class="toggleable-option-title">Imagem (link)</label>
-                                <input type="text" name="goodbyeImageLink" id="goodbyeImageLink"
-                                    placeholder="Link da imagem">
+                                    <label class="toggleable-option-title">Imagem (link)</label>
+                                    <input type="text" name="goodbyeImageLink" id="goodbyeImageLink"
+                                        placeholder="Link da imagem">
 
-                                <label class="toggleable-option-title">Footer</label>
-                                <input type="text" name="goodbyeEmbedFooter" id="goodbyeEmbedFooter"
-                                    placeholder="Footer da embed">
+                                    <label class="toggleable-option-title">Footer</label>
+                                    <input type="text" name="goodbyeEmbedFooter" id="goodbyeEmbedFooter"
+                                        placeholder="Footer da embed">
 
-                                <label class="toggleable-option-title">Cor do Embed</label>
-                                <input type="color" name="goodbyeEmbedColor" id="goodbyeEmbedColor" value="#ffffff"
-                                    class="embedColor">
+                                    <label class="toggleable-option-title">Cor do Embed</label>
+                                    <input type="color" name="goodbyeEmbedColor" id="goodbyeEmbedColor" value="#ffffff"
+                                        class="embedColor">
 
-                                <label class="toggleable-option-title">Mostrar avatar do usuário</label>
-                                <label class="switch small">
-                                    <input type="checkbox" name="goodbyeShowAvatar" id="goodbyeShowAvatar">
-                                    <span class="slider round"></span>
-
+                                    <label class="toggleable-option-title">Mostrar avatar do usuário</label>
+                                    <label class="switch small">
+                                        <input type="checkbox" name="goodbyeShowAvatar" id="goodbyeShowAvatar">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -178,7 +230,6 @@
 
         <script>
             const imageLinkRegex = /https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp)/;
-
             const saveButton = document.getElementById("saveButton");
             const testButtons = document.querySelectorAll(".test-btn");
             const loadingOverlay = document.getElementById('loadingOverlay');
@@ -287,7 +338,7 @@
                 const goodbyeChannelSelect = document.getElementById('goodbyeChannel');
                 const goodbyeEmbedColor = document.getElementById('goodbyeEmbedColor');
                 const welcomeEmbedColor = document.getElementById('embedColor');
-                const welcomeShowAvatar = document.getElementById('welcomeShowAvatar');
+                const welcomeShowAvatar = document.getElementById('showAvatar');
                 const goodbyeShowAvatar = document.getElementById('goodbyeShowAvatar');
                 const saveButton = document.getElementById('saveButton');
 
@@ -317,7 +368,7 @@
                     const leaveMessage = JSON.parse(data.GuildJoinLeaveModule.leaveMessage || '{}');
 
                     if (joinMessage.embeds) {
-                        document.querySelector('#messageContent').value = joinMessage.content || '';
+                        document.querySelector('#message').value = joinMessage.content || '';
                         document.querySelector('#embedTitle').value = joinMessage.embeds[0]?.title || '';
                         document.querySelector('#embedDescription').value = joinMessage.embeds[0]?.description || '';
                         document.querySelector('#embedFooter').value = joinMessage.embeds[0]?.footer?.text || '';
@@ -329,13 +380,6 @@
                         const joinColor = joinMessage.embeds[0]?.color || 0xFFFFFF;
                         document.querySelector('#embedColor').value = `#${joinColor.toString(16).padStart(6, '0')}`;
                         welcomeEmbedColor.value = `#${joinColor.toString(16).padStart(6, '0')}`;
-
-                        if (joinMessage.embeds[0]?.fields) {
-                            joinMessage.embeds[0]?.fields.forEach(field => {
-                                const fieldDiv = createField(field.name, field.value);
-                                document.getElementById('embedFieldsContainer').appendChild(fieldDiv);
-                            });
-                        }
                     }
 
                     if (leaveMessage.embeds) {
@@ -351,13 +395,6 @@
                         const leaveColor = leaveMessage.embeds[0]?.color || 0xFFFFFF;
                         document.querySelector('#goodbyeEmbedColor').value = `#${leaveColor.toString(16).padStart(6, '0')}`;
                         goodbyeEmbedColor.value = `#${leaveColor.toString(16).padStart(6, '0')}`;
-
-                        if (leaveMessage.embeds[0]?.fields) {
-                            leaveMessage.embeds[0]?.fields.forEach(field => {
-                                const fieldDiv = createField(field.name, field.value, 'goodbye');
-                                document.getElementById('goodbyeEmbedFieldsContainer').appendChild(fieldDiv);
-                            });
-                        }
                     }
 
                     const channelsResponse = await fetch(`/api/v1/servers/<%= guildId %>/channels`);
@@ -396,4 +433,5 @@
             });
         </script>
 </body>
+
 </html>

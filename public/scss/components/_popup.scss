@@ -62,6 +62,10 @@
         .form-content {
             padding: 1rem;
             font-family: var(--reimu-default-font-family);
+
+            label {
+                color: black;
+            }
         }
 
         .popup-buttons {
