@@ -1,7 +1,7 @@
-import { Router } from "express";
+import {Router} from "express";
 import RouterUtils from "../../RouterUtils";
-import { database } from "../../../../client/app";
-import { constants } from "../../../../structures/constants";
+import {database} from "../../../../client/app";
+import {constants} from "../../../../structures/constants";
 
 export default class ChangeDecorationRoute {
     private manager: RouterUtils;
@@ -20,7 +20,7 @@ export default class ChangeDecorationRoute {
             if (req.params.id === "none") {
                 userData.userProfile.decoration = null;
                 await userData.save();
-                return res.redirect(constants.USER_DECORATIONS);
+                return res.status(200).json({ success: true })
             }
 
             if (!decoration) {
@@ -33,7 +33,7 @@ export default class ChangeDecorationRoute {
 
             userData.userProfile.decoration = decoration.id;
             await userData.save();
-            return res.redirect(constants.USER_DECORATIONS);
+            return res.status(200).json({ success: true })
         } catch (error) {
             next(error);
         }

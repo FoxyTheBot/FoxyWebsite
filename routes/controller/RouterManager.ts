@@ -20,9 +20,9 @@ import ConfirmStorePurchaseRoute from './api/v1/ConfirmStorePurchaseRoute';
 import ChangeLayoutRoute from './api/v1/ChangeLayoutRoute';
 import ChangeDecorationRoute from './api/v1/ChangeDecorationRoute';
 import ChangeBackgroundRoute from './api/v1/ChangeBackgroundRoute';
-import GetClustersInfoRoute from './api/v1/GetClustersInfoRoute';
 import PostPartnershipRoute from './api/v1/PostPartnershipRoute';
 import PostWelcomerTestRoute from './api/v1/PostWelcomerTestRoute';
+import GetUserDecorationsRoute from "./api/v1/GetUserDecorationsRoute";
 
 class RouterManager {
     router: express.Router;
@@ -45,7 +45,6 @@ class RouterManager {
         new GetServerChannelsRoute(this.router);
         new SaveGeneralSettingsRoute(this.router);
         new SaveWelcomerModuleRoute(this.router);
-        new GetClustersInfoRoute(this.router);
         new PostWelcomerTestRoute(this.router);
         new PostPartnershipRoute(this.router);
 
@@ -66,6 +65,7 @@ class RouterManager {
         new GetUserBackgrounds(this.router);
         new GetUserLayoutRoute(this.router);
         new ReceiveDailyRoute(this.router);
+        new GetUserDecorationsRoute(this.router);
 
         /* ===[Guild Dashboard Routes]=== */
         new ModuleRoute(this.router);

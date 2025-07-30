@@ -5,79 +5,126 @@
   <link rel="canonical" href="https://foxybot.xyz/">
 
   <link rel="stylesheet" href="/styles/dashboard.css" type="text/css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
-    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/styles/loading.css" type="text/css">
   <link rel="stylesheet" href="/styles/header.css" type="text/css">
   <link rel="icon" href="/assets/images/foxycake.png">
   <title>Foxy | Suas decorações</title>
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3J7N4BP8L"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-E3J7N4BP8L');
   </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649" crossorigin="anonymous"></script>
 </head>
+
 <body>
-  <div class="ad vertical">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7726590371480649"
-      crossorigin="anonymous"></script>
-    <ins id="adBanner" class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
-      data-ad-client="ca-pub-7726590371480649" data-ad-slot="4619028248"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
+<div id="loadingOverlay" class="loading-overlay">
+  <%- include('../../../global/loading') %>
+</div>
 
-  <%- include('../../sidebar') %>
+<div class="ad vertical">
+  <ins id="adBanner" class="adsbygoogle" style="display:inline-block;width:160px;height:600px"
+       data-ad-client="ca-pub-7726590371480649" data-ad-slot="4619028248"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
 
-  <% if (userDecorations && userDecorations.length > 0) { %>
-    <main>
-      <div class="itens decorations" id="inventory">
+<main id="content" class="hidden">
+  <!-- Conteúdo gerado dinamicamente -->
+</main>
 
-        <div class="item <%= currentDecoration === null ? 'disabled' : '' %>"
-          onclick="window.location.href='/br/decorations/change/none'">
-          <div class="item__icon">
-            <img class="background" src="/assets/images/none.png" />
-          </div>
-          <% if (!currentDecoration) { %>
-            <span class="purchased">Selecionado</span>
-          <% } %>
-        </div>
+<%- include('../../sidebar') %>
 
-        <% userDecorations.forEach(decoration => { 
-            const isDisabled = currentDecoration === decoration.id;
-        %>
-          <div class="item <%= isDisabled ? 'disabled' : '' %>" 
-            <%= !isDisabled ? `onclick="change('${decoration.id}')"` : '' %>>
-            <div class="item__icon">
-              <img class="background" src="https://stuff.foxybot.xyz/decorations/<%= decoration.filename %>" />
-            </div>
-            <% if (isDisabled) { %>
-              <span class="purchased">Selecionado</span>
-            <% } %>
-          </div>
-        <% }); %>
-
-      </div>
-    </main>
-  <% } else { %>
-    <div class="empty">
-      <img class="empty-img" src="/assets/emojis/foxy_cry.png" alt="Empty" />
-      <p>Você não tem decorações de avatar.<br>Compre na lojinha da Foxy usando Cakes</p>
-    </div>
-  <% } %>
-</body>
-
+<div id="notification" class="notification"></div>
 
 <script>
-  function change(backgroundId) {
-    window.location.href = "/br/decorations/change/" + backgroundId;
+  window.addEventListener('load', function () {
+    fetch('/br/user/decorations/data')
+            .then(response => response.json())
+            .then(data => {
+              document.getElementById('loadingOverlay').classList.add('hidden');
+              document.getElementById('content').classList.remove('hidden');
+              renderDecorations(data);
+            })
+            .catch(error => {
+              console.error('Erro ao buscar dados:', error);
+              document.getElementById('loadingOverlay').innerText = 'Falha ao carregar conteúdo. Tente novamente mais tarde.';
+            });
+  });
+
+  function renderDecorations(data) {
+    const content = document.getElementById('content');
+    if (!data.userDecorations || data.userDecorations.length === 0) {
+      content.innerHTML = `
+          <div class="empty">
+            <img class="empty-img" src="/assets/emojis/foxy_cry.png" alt="Empty" />
+            <p>Você não tem decorações de avatar.<br>Compre na lojinha da Foxy usando Cakes</p>
+          </div>
+        `;
+      return;
+    }
+
+    content.innerHTML = `
+        <div class="itens decorations" id="inventory">
+          <div class="item ${!data.currentDecoration ? 'selected' : ''} ${data.currentDecoration === null ? 'disabled' : ''}"
+            onclick="change('none')">
+            <div class="item__icon">
+              <img class="decorations" src="/assets/images/none.png" />
+            </div>
+          </div>
+
+          ${data.userDecorations.map(decoration => {
+      const isSelected = data.currentDecoration === decoration.id;
+      return `
+              <div class="item ${isSelected ? 'selected' : ''} ${isSelected ? 'disabled' : ''}"
+                ${!isSelected ? `onclick="change('${decoration.id}')"` : ''}>
+                <div class="item__icon">
+                  <img class="decorations" src="https://stuff.foxybot.xyz/decorations/${decoration.filename}" alt="${decoration.filename}" />
+                </div>
+              </div>
+            `;
+    }).join('')}
+        </div>
+      `;
+  }
+
+  function change(id) {
+    fetch(`/br/decorations/change/${id}`, { method: 'GET' })
+            .then(response => response.ok ? response.json() : response.text())
+            .then(data => {
+              if (typeof data === 'object' && data.success !== undefined) {
+                showNotification('Decoração alterada com sucesso!');
+                return fetch('/br/user/decorations/data')
+                        .then(response => response.json())
+                        .then(updatedData => renderDecorations(updatedData))
+              } else {
+                showNotification('Erro ao alterar a decoração. Tente novamente.');
+                console.error('Erro:', data);
+              }
+            })
+            .catch(error => {
+              console.error('Erro ao trocar decoração:', error);
+              showNotification('Erro ao alterar a decoração. Tente novamente.');
+            });
+  }
+
+  function showNotification(message) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.classList.add('show');
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 3000);
   }
 </script>
 
 <script src="../js/HeaderMobile.js"></script>
+</body>
 
 </html>
