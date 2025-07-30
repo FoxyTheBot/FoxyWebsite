@@ -1,5 +1,6 @@
-    <head>
-      <link rel="stylesheet" href="/styles/loading.css" type="text/css">
-    </head>
-    <img src="/assets/emojis/foxypat.gif" alt="Loading">
-    <h1 class="title">Carregando...</h1>
+<head>
+    <link rel="stylesheet" href="/styles/loading.css" type="text/css">
+</head>
+<% const randomNumber = Math.floor(Math.random() * 6) + 1; %>
+<img src="/assets/emojis/foxypat-<%= randomNumber %>.gif" alt="Loading">
+<h1 class="title">Carregando...</h1>
