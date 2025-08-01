@@ -52,6 +52,7 @@ export default class ReceiveDailyRoute {
 
             userData.userCakes.balance += amount;
             userData.userCakes.lastDaily = Date.now();
+            userData.userCakes.notifiedForDaily = false
 
             await userData.save();
             res.status(200).json({ coins: amount, totalCoins: userData.userCakes.balance });

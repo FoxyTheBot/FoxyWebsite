@@ -61,6 +61,7 @@ export default class DatabaseConnection {
                 userCakes: {
                     balance: 0,
                     lastDaily: null,
+                    notifiedForDaily: false,
                 },
                 marryStatus: {
                     marriedWith: null,
