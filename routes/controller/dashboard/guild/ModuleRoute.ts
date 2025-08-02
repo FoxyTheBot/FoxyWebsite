@@ -15,6 +15,10 @@ export default class ModuleRoute {
 
     async renderModulePage(req, res, module, guildId) {
         const guildInfo = await database.getGuild(guildId);
+        if (!guildInfo) {
+            return res.redirect(constants.INVITE_BOT(guildId));
+        }
+
         const foxyVerseGuild = await database.getFoxyVerseGuild(guildId);
         const guildJson = {
             _id: guildInfo._id,
@@ -26,10 +30,6 @@ export default class ModuleRoute {
             dashboardLogs: guildInfo.dashboardLogs,
             foxyVerseGuild
         }
-        if (!guildInfo) {
-            return res.redirect(constants.INVITE_BOT(guildId));
-        }
-
         try {
             res.status(200).render(`../public/pages/dashboard/guild/modules/${module}.ejs`, {
                 user: req.session.user_info,
