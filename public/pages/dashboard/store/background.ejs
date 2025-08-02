@@ -61,7 +61,7 @@
         <form id="purchaseForm" method="POST">
           <input type="hidden" name="backgroundId" id="backgroundId">
           <div class="popup-buttons">
-            <h3>Comprar por <strong style="color: #e7385d;" id="price-in-cakes"></strong> Cakes</h3>
+            <h3 id="popup-price">Comprar por <strong style="color: #e7385d;" id="price-in-cakes"></strong> Cakes</h3>
             <button id="save" type="submit">Comprar</button>
           </div>
         </form>
@@ -226,6 +226,7 @@
         const bgDescription = document.getElementById('bg-description');
         const saveButton = document.getElementById('save');
         const price = document.getElementById('price-in-cakes');
+        const popupPrice = document.getElementById("popup-price")
 
         let imageUrl = `https://cakey.foxybot.xyz/assets/previews/item_${background.id}.png`;
         if (background.id === "red" && background.profileSettings && typeof background.profileSettings === "object") {
@@ -239,12 +240,12 @@
 
         bgTitle.innerText = background.name;
         if (background.description && background.collection) {
-          bgDescription.innerText = `${background.description} \n\nColeção: ${background.collection}`;
+          bgDescription.innerHTML = `${background.description} <br><br>Coleção: <strong>${background.collection}</strong>`;
         } else {
           bgDescription.innerText = "";
         }
 
-        const userCakes = user.cakes;
+        const userCakes = userData.userCakes.balance;
         if (
           userData.userProfile.backgroundList.includes(background.id)
           || userData.userProfile.decorationList.includes(background.id)
@@ -256,7 +257,10 @@
         } else {
           saveButton.disabled = userCakes < background.cakes;
           saveButton.classList.toggle('disabled', saveButton.disabled);
-          saveButton.innerText = saveButton.disabled ? 'Insuficiente' : 'Comprar';
+          const missingValue = Math.max(0, background.cakes - userCakes);
+          const formattedMissingValue = new Intl.NumberFormat("pt-BR").format(missingValue);
+          const plural = missingValue === 1 ? "Cake" : "Cakes";
+          popupPrice.innerHTML = `Você precisa de mais <strong style="color: #e7385d;" id="price-in-cakes">${formattedMissingValue}</strong> ${plural} para comprar.`
         }
 
         preloadImage(imageUrl).then((loadedUrl) => {
