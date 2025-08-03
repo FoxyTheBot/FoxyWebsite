@@ -257,11 +257,16 @@
         } else {
           saveButton.disabled = userCakes < background.cakes;
           saveButton.classList.toggle('disabled', saveButton.disabled);
+
           const missingValue = Math.max(0, background.cakes - userCakes);
-          const formattedMissingValue = new Intl.NumberFormat("pt-BR").format(missingValue);
-          const plural = missingValue === 1 ? "Cake" : "Cakes";
-          popupPrice.innerHTML = `Você precisa de mais <strong style="color: #e7385d;" id="price-in-cakes">${formattedMissingValue}</strong> ${plural} para comprar.`
+
+          if (userCakes < background.cakes) {
+            const formattedMissingValue = new Intl.NumberFormat("pt-BR").format(missingValue);
+            const plural = missingValue === 1 ? "Cake" : "Cakes";
+            popupPrice.innerHTML = `Você precisa de mais <strong style="color: #e7385d;" id="price-in-cakes">${formattedMissingValue}</strong> ${plural} para comprar.`;
+          }
         }
+
 
         preloadImage(imageUrl).then((loadedUrl) => {
           popupImg.src = loadedUrl;
